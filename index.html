@@ -1,0 +1,1942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hugo Jiménez — Community Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{height:100%;overflow:hidden;}
+body{height:100%;overflow-y:auto;overflow-x:hidden;}
+
+:root{
+  /* ── Dark green matte + concrete palette ── */
+  --c0:#060a06;      /* near-black base */
+  --c1:#0d1510;      /* dark panel bg */
+  --c2:#182418;      /* slightly lighter panel */
+  --c3:#8a8870;      /* concrete mid — readable secondary text */
+  --c4:#aea890;      /* light concrete — body text */
+  --c5:#c8c2aa;      /* lighter concrete — secondary headings */
+  --c6:#ddd8c4;      /* warm cream — primary readable text */
+  --c7:#f0ece0;      /* off-white bone — max contrast */
+  --green:#1c3a18;        /* very dark matte green */
+  --green-l:#2e5228;      /* dark green — progress, highlights */
+  --green-a:#406c36;      /* medium matte green — interactive */
+  --accent:#2e5228;
+  --accent-l:#406c36;
+  --accent-a:#52883e;
+  --fb:'Bebas Neue',sans-serif;
+  --fs:'Space Grotesk',sans-serif;
+  --fm:'Space Mono',monospace;
+}
+
+body{
+  background:#070b07;
+  color:var(--c6);
+  font-family:var(--fs);
+  cursor:none;
+  overflow-x:hidden;
+}
+
+/* ── CURSOR ── */
+#cur{position:fixed;width:7px;height:7px;background:var(--green-a);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s;}
+#cur-ring{position:fixed;width:28px;height:28px;border:1px solid rgba(64,108,54,0.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:800;
+  height:52px;padding:0 36px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(5,9,5,0.96);
+  border-bottom:1px solid rgba(46,82,40,0.45);
+  backdrop-filter:blur(14px);
+}
+.n-logo{font-family:var(--fb);font-size:1.15rem;letter-spacing:0.14em;color:var(--c7);text-decoration:none;}
+.n-r{display:flex;align-items:center;gap:20px;}
+.lang-tog{display:flex;border:1px solid rgba(64,108,54,0.35);overflow:hidden;}
+.lang-btn{background:none;border:none;font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(200,194,170,0.5);padding:5px 9px;cursor:none;transition:all .2s;}
+.lang-btn.on{background:var(--green);color:var(--c7);}
+.n-cta{font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--green-a);text-decoration:none;border:1px solid var(--green-l);padding:5px 13px;transition:background .2s,color .2s;}
+.n-cta:hover{background:var(--green-l);color:var(--c7);}
+
+/* ── PROGRESS ── */
+#prog{position:fixed;top:52px;left:0;height:2px;background:var(--green-l);z-index:810;width:0;transition:width .06s linear;}
+
+/* ── CONCRETE BG — procedural ── */
+.concrete-bg{
+  position:fixed;inset:0;z-index:0;
+  pointer-events:none;
+  background-color:#070b07;
+}
+/* encofrado panel joints — tinted green */
+.concrete-bg::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    repeating-linear-gradient(
+      180deg,
+      transparent 0px, transparent 178px,
+      rgba(46,82,40,0.08) 178px, rgba(46,82,40,0.08) 180px,
+      transparent 180px, transparent 358px,
+      rgba(46,82,40,0.05) 358px, rgba(46,82,40,0.05) 360px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px, transparent 238px,
+      rgba(46,82,40,0.05) 238px, rgba(46,82,40,0.05) 240px
+    );
+  pointer-events:none;
+}
+/* dark vignette edges */
+.concrete-bg::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at center, rgba(0,0,0,0) 25%, rgba(0,0,0,0.7) 100%);
+  pointer-events:none;
+}
+/* canvas texture drawn by JS */
+#concrete-canvas{
+  position:fixed;top:0;left:0;
+  width:100vw;
+  height:300vh;
+  z-index:0;
+  pointer-events:none;
+  mix-blend-mode:overlay;
+  opacity:0.035;
+  will-change:transform;
+}
+
+/* ── LIGHT SHAFT ── */
+#light-shaft{
+  position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(135deg, rgba(80,120,60,0.06) 0%, transparent 45%, rgba(6,14,6,0.25) 100%);
+  transition:opacity 1.2s ease;
+}
+
+/* ── THREE.JS CANVAS ── */
+#three-canvas{
+  position:fixed;
+  top:0;left:0;width:100%;height:100%;
+  z-index:2;pointer-events:none;
+  touch-action:none;
+}
+
+/* ── SCROLL DRIVER ── */
+.scroll-driver{height:700vh;position:relative;}
+.sticky{position:sticky;top:0;height:100dvh;z-index:10;overflow:hidden;}
+
+/* ── PANELS ── */
+.panel{
+  position:absolute;inset:0;
+  display:flex;align-items:center;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .7s cubic-bezier(.23,1,.32,1);
+}
+.panel.on{opacity:1;pointer-events:auto;}
+
+/* TEXT ZONES */
+.tz-left{
+  position:absolute;left:clamp(64px,8vw,140px);
+  max-width:min(420px,32vw);
+  top:50%;transform:translateY(-50%);
+  transition:top .75s cubic-bezier(.23,1,.32,1), transform .75s cubic-bezier(.23,1,.32,1);
+  max-height:calc(100dvh - 90px);overflow:hidden;
+}
+.tz-r{
+  position:absolute;right:clamp(64px,8vw,140px);
+  max-width:min(420px,32vw);
+  top:50%;transform:translateY(-50%);
+  transition:top .75s cubic-bezier(.23,1,.32,1), transform .75s cubic-bezier(.23,1,.32,1);
+  max-height:calc(100dvh - 90px);overflow:hidden;
+}
+.tz-right{
+  position:absolute;right:clamp(64px,8vw,140px);
+  max-width:min(260px,18vw);
+  top:50%;transform:translateY(-50%);
+  text-align:right;
+}
+.tz-full{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:min(800px,85vw);
+}
+
+/* ── TYPOGRAPHY ── */
+.stamp{
+  font-family:var(--fm);font-size:0.56rem;font-weight:700;
+  letter-spacing:0.34em;text-transform:uppercase;
+  color:var(--green-a);display:block;margin-bottom:18px;
+  padding-left:12px;
+  border-left:2px solid var(--green-l);
+}
+.brutal{
+  font-family:var(--fb);
+  font-size:clamp(3.2rem,5.2vw,6.2rem);
+  line-height:0.88;letter-spacing:0.01em;
+  color:var(--c7);display:block;text-wrap:balance;
+}
+.brutal.xs{font-size:clamp(2rem,3.2vw,3.8rem);}
+.body-txt{
+  font-size:clamp(0.84rem,1.1vw,0.98rem);font-weight:500;
+  line-height:1.88;color:var(--c4);
+  margin-top:16px;display:block;text-wrap:pretty;
+  letter-spacing:0.01em;
+}
+.mono-txt{
+  font-family:var(--fm);font-size:0.66rem;font-weight:400;
+  line-height:1.75;color:var(--c3);
+  margin-top:12px;display:block;letter-spacing:0.04em;
+}
+
+/* ── THREAD ── */
+@keyframes thread-flow{to{stroke-dashoffset:-44;}}
+#thread-svg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:15;pointer-events:none;overflow:visible;}
+#tl{animation:thread-flow 3s linear infinite;}
+.ghost-num{
+  font-family:var(--fb);
+  font-size:clamp(6rem,14vw,13rem);
+  line-height:1;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(64,108,54,0.55);
+  display:block;letter-spacing:-0.02em;
+  pointer-events:none;user-select:none;
+}
+
+/* divider */
+.rule{height:2px;background:linear-gradient(90deg,var(--green-l),rgba(150,170,130,0.08));margin:20px 0;}
+
+/* ── SERVICE LIST ── */
+.svc{display:flex;flex-direction:column;margin-top:14px;border-top:1px solid rgba(150,170,130,0.18);}
+.svc-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:9px 0;border-bottom:1px solid rgba(150,170,130,0.18);
+  gap:8px;
+}
+.svc-name{font-family:var(--fb);font-size:clamp(1.1rem,2vw,1.6rem);letter-spacing:0.05em;color:var(--c5);transition:color .2s;}
+.svc-row:hover .svc-name{color:var(--c7);}
+.svc-n{font-family:var(--fm);font-size:0.47rem;font-weight:700;letter-spacing:0.15em;color:var(--green-a);}
+
+/* ── PROCESS GRID ── */
+.proc-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  background:rgba(46,82,40,0.55);border:1px solid rgba(46,82,40,0.55);
+  margin-top:14px;
+}
+.proc-cell{background:var(--c1);padding:16px 15px;}
+.proc-cell.hl{background:var(--green);}
+.pnum{font-family:var(--fb);font-size:2.5rem;color:rgba(150,180,130,0.22);display:block;line-height:1;margin-bottom:8px;}
+.proc-cell.hl .pnum{color:rgba(255,255,255,0.14);}
+.ptitle{font-family:var(--fm);font-size:0.56rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--c5);display:block;margin-bottom:5px;}
+.proc-cell.hl .ptitle{color:var(--c7);}
+.pdesc{font-size:0.73rem;font-weight:500;line-height:1.65;color:var(--c4);}
+.proc-cell.hl .pdesc{color:rgba(240,237,225,0.9);}
+
+/* ── CLIENT LIST ── */
+.cli-list{display:flex;flex-direction:column;margin-top:14px;}
+.cli-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:11px 0;border-bottom:1px solid rgba(150,170,130,0.18);
+}
+.cli-name{font-family:var(--fb);font-size:clamp(1.35rem,2.4vw,2rem);letter-spacing:0.04em;color:var(--c5);}
+.cli-tag{font-family:var(--fm);font-size:0.48rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--c3);}
+
+/* ── CONTACT ── */
+.con-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  background:rgba(46,82,40,0.45);border:1px solid rgba(46,82,40,0.45);
+}
+.con-col{background:var(--c1);padding:28px 24px;}
+.con-col.dk{background:rgba(4,8,4,0.98);}
+.c-lbl{font-family:var(--fm);font-size:0.45rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:rgba(150,170,130,0.55);display:block;margin-bottom:3px;}
+.c-val{font-family:var(--fb);font-size:1.2rem;letter-spacing:0.05em;color:var(--c7);text-decoration:none;display:block;margin-bottom:14px;transition:color .2s;word-break:break-all;}
+.c-val:hover{color:var(--green-a);}
+.c-form{display:flex;flex-direction:column;gap:7px;}
+.c-inp,.c-ta{
+  background:rgba(13,21,16,0.95);border:1px solid rgba(46,82,40,0.5);
+  color:var(--c6);font-family:var(--fs);font-size:0.75rem;font-weight:400;
+  padding:9px 11px;outline:none;cursor:none;resize:none;
+  transition:border-color .2s;
+}
+.c-ta{height:60px;}
+.c-inp:focus,.c-ta:focus{border-color:var(--green-a);}
+.c-inp::placeholder,.c-ta::placeholder{color:rgba(150,170,130,0.4);font-size:0.68rem;letter-spacing:0.06em;}
+.c-btn{
+  background:var(--green);color:var(--c7);
+  border:none;font-family:var(--fb);font-size:0.95rem;letter-spacing:0.12em;
+  padding:11px 14px;cursor:none;
+  display:flex;justify-content:space-between;align-items:center;
+  transition:background .2s,color .2s;
+}
+.c-btn:hover{background:var(--green-l);color:var(--c7);}
+
+/* ── HERO ── */
+.hero-bg-word{
+  position:absolute;
+  font-family:var(--fb);
+  font-size:clamp(8rem,18vw,20rem);
+  letter-spacing:0.04em;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(46,82,40,0.18);
+  pointer-events:none;user-select:none;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  white-space:nowrap;
+  z-index:0;
+}
+.scroll-hint{
+  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:7px;z-index:20;
+}
+.scroll-hint span{font-family:var(--fm);font-size:0.48rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--c4);}
+.sh-bar{width:1px;height:32px;background:linear-gradient(180deg,var(--green-l),transparent);animation:sh 2.2s ease-in-out infinite;}
+@keyframes sh{0%,100%{opacity:.35;transform:scaleY(1);}50%{opacity:1;transform:scaleY(.45);}}
+
+/* ── CORNER LABELS ── */
+.corner{position:absolute;font-family:var(--fm);font-size:0.46rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--c4);z-index:20;line-height:1.9;}
+.c-tl{top:62px;left:36px;}
+.c-tr{top:62px;right:36px;text-align:right;}
+.c-bl{bottom:24px;left:36px;}
+.c-br{bottom:24px;right:36px;text-align:right;}
+
+/* ── SEC DOTS ── */
+.dots{position:absolute;left:16px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:7px;z-index:20;}
+.dot{width:3px;height:3px;border-radius:50%;background:rgba(150,170,130,0.22);transition:all .4s;}
+.dot.on{background:var(--green-l);height:14px;border-radius:2px;}
+
+/* ── SERVICE OVERLAY ── */
+.svc-overlay{
+  position:fixed;inset:0;z-index:900;
+  background:rgba(4,8,4,0.97);
+  backdrop-filter:blur(6px);
+  transform:translateX(100%);
+  transition:transform 0.55s cubic-bezier(.23,1,.32,1);
+  overflow:hidden;
+  pointer-events:none;
+}
+.svc-overlay.open{transform:translateX(0);pointer-events:auto;}
+.ov-back{
+  position:absolute;top:15px;left:clamp(36px,6vw,80px);
+  font-family:var(--fm);font-size:0.52rem;font-weight:700;
+  letter-spacing:0.22em;text-transform:uppercase;color:var(--green-a);
+  background:none;border:none;cursor:none;
+  display:flex;align-items:center;gap:9px;
+  transition:color .2s;z-index:10;height:52px;
+}
+.ov-back:hover{color:var(--c7);}
+.ov-body{
+  position:absolute;top:50%;left:clamp(64px,8vw,140px);
+  transform:translateY(-50%);max-width:min(520px,42vw);z-index:5;
+}
+.ov-ghost{
+  position:absolute;right:clamp(24px,4vw,60px);top:50%;transform:translateY(-50%);
+  font-family:var(--fb);font-size:clamp(9rem,18vw,20rem);line-height:1;
+  color:transparent;-webkit-text-stroke:1px rgba(46,82,40,0.07);
+  pointer-events:none;user-select:none;z-index:1;
+}
+#ov-canvas{
+  position:absolute;right:0;top:0;
+  width:52%;height:100%;
+  z-index:4;pointer-events:none;
+}
+.ov-num{
+  font-family:var(--fm);font-size:0.48rem;font-weight:700;
+  letter-spacing:0.32em;text-transform:uppercase;color:var(--green-a);
+  border-left:2px solid var(--green-l);padding-left:12px;
+  display:block;margin-bottom:22px;
+}
+.ov-title{
+  font-family:var(--fb);font-size:clamp(3rem,5.5vw,6.5rem);
+  line-height:0.88;color:var(--c7);display:block;margin-bottom:28px;
+}
+.ov-rule{height:2px;background:linear-gradient(90deg,var(--green-l),transparent);margin:20px 0;}
+.ov-p{
+  font-size:clamp(0.84rem,1.05vw,0.97rem);font-weight:500;
+  line-height:1.9;color:var(--c4);display:block;text-wrap:pretty;margin-bottom:14px;
+}
+.ov-nav{
+  position:absolute;bottom:28px;left:clamp(64px,8vw,140px);
+  display:flex;gap:14px;z-index:10;
+}
+.ov-nav-btn{
+  font-family:var(--fm);font-size:0.5rem;font-weight:700;letter-spacing:0.2em;
+  text-transform:uppercase;background:none;border:1px solid rgba(46,82,40,0.45);
+  color:var(--c4);padding:7px 18px;cursor:none;transition:all .2s;
+}
+.ov-nav-btn:hover{background:var(--green-l);color:var(--c7);border-color:var(--green-l);}
+.ov-nav-btn:disabled{opacity:0.2;pointer-events:none;}
+/* svc-row interactive */
+.svc-row{cursor:none;transition:background .18s;}
+.svc-row:hover{background:rgba(46,82,40,0.08);padding-left:6px;}
+.svc-row:hover .svc-n::after{content:' →';}
+
+/* ── EQUALIZER BARS — P2/03 ── */
+.eq-bars{display:flex;align-items:flex-end;gap:5px;height:30px;}
+.eq-b{width:5px;background:rgba(80,150,60,0.5);border-radius:2px 2px 0 0;}
+.eq-b:nth-child(1){animation:eq 1.2s 0.00s ease-in-out infinite alternate;}
+.eq-b:nth-child(2){animation:eq 1.2s 0.22s ease-in-out infinite alternate;}
+.eq-b:nth-child(3){animation:eq 1.2s 0.44s ease-in-out infinite alternate;}
+.eq-b:nth-child(4){animation:eq 1.2s 0.66s ease-in-out infinite alternate;}
+.eq-b:nth-child(5){animation:eq 1.2s 0.88s ease-in-out infinite alternate;}
+.eq-b:nth-child(6){animation:eq 1.2s 1.10s ease-in-out infinite alternate;}
+@keyframes eq{from{height:3px;opacity:0.25;}to{height:28px;opacity:0.85;}}
+@keyframes st-pulse{0%,100%{opacity:0.65;}50%{opacity:1;}}
+.stat-pulse{animation:st-pulse 3s ease-in-out infinite;}
+
+/* ── PLATFORM OVERLAY (3D LEFT · text RIGHT) ── */
+.plat-overlay{
+  position:fixed;inset:0;z-index:900;
+  background:rgba(4,8,4,0.97);
+  backdrop-filter:blur(6px);
+  transform:translateX(-100%);
+  transition:transform 0.55s cubic-bezier(.23,1,.32,1);
+  overflow:hidden;pointer-events:none;
+}
+.plat-overlay.open{transform:translateX(0);pointer-events:auto;}
+.ov-body-r{
+  position:absolute;top:50%;right:clamp(64px,8vw,140px);
+  transform:translateY(-50%);max-width:min(520px,42vw);z-index:5;
+}
+.ov-ghost-l{
+  position:absolute;left:clamp(24px,4vw,60px);top:50%;transform:translateY(-50%);
+  font-family:var(--fb);font-size:clamp(9rem,18vw,20rem);line-height:1;
+  color:transparent;-webkit-text-stroke:1px rgba(46,82,40,0.07);
+  pointer-events:none;user-select:none;z-index:1;
+}
+#plat-canvas{
+  position:absolute;left:0;top:0;
+  width:52%;height:100%;
+  z-index:4;pointer-events:none;
+}
+
+/* ── FOOTER ── */
+footer{
+  position:relative;z-index:600;
+  padding:20px 36px;
+  border-top:1px solid rgba(46,82,40,0.35);
+  background:rgba(4,7,4,0.99);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:10px;
+}
+.f-copy{font-family:var(--fm);font-size:0.48rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(200,195,175,0.4);}
+.f-soc{display:flex;gap:18px;flex-wrap:wrap;}
+.f-a{font-family:var(--fm);font-size:0.48rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(200,195,175,0.4);text-decoration:none;transition:color .2s;}
+.f-a:hover{color:var(--green-a);}
+
+/* ══════════════════════════════════════════════════
+   MOBILE RESPONSIVE — max-width: 768px
+══════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* ── Cursor: off on touch ── */
+  #cur, #cur-ring { display: none; }
+  body { cursor: auto; }
+  .c-inp, .c-ta, .c-btn,
+  .lang-btn, .n-cta, .svc-row,
+  .ov-back, .ov-nav-btn { cursor: auto; }
+
+  /* ── Nav ── */
+  nav { padding: 0 16px; height: 48px; }
+  .n-logo { font-size: 1rem; }
+  .lang-tog { display: none; }
+  .n-cta { font-size: 0.5rem; padding: 5px 10px; }
+
+  /* ── Progress bar ── */
+  #prog { display: none; }
+
+  /* ── Background / decorative ── */
+  #three-canvas { display: none; }
+  #thread-svg { display: none; }
+  .corner { display: none; }
+  .dots { display: none; }
+  .scroll-hint { display: none; }
+  .hero-bg-word { font-size: 4rem; }
+
+  /* ── Scroll layout: unstack sticky ── */
+  html { overflow: auto; }
+  body { overflow-y: auto; overflow-x: hidden; }
+  .scroll-driver { height: auto; }
+  .sticky {
+    position: relative;
+    height: auto;
+    overflow: visible;
+  }
+
+  /* ── Panels: all visible, stacked vertically ── */
+  .panel {
+    position: relative;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 72px 20px 56px;
+    min-height: 0;
+    border-bottom: 1px solid rgba(46,82,40,0.2);
+  }
+
+  /* ── Text zones: reset absolute positioning ── */
+  .tz-left, .tz-r, .tz-right, .tz-full {
+    position: relative !important;
+    left: auto !important; right: auto !important;
+    top: auto !important;
+    transform: none !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    width: 100%;
+    text-align: left;
+  }
+
+  /* ── Typography ── */
+  .brutal { font-size: clamp(2.6rem, 9vw, 4rem); }
+  .brutal.xs { font-size: clamp(1.8rem, 7vw, 2.8rem); }
+  .body-txt { font-size: 0.9rem; line-height: 1.75; margin-top: 12px; }
+  .ghost-num {
+    font-size: clamp(4rem, 16vw, 7rem);
+    display: none; /* hide on mobile to reduce clutter */
+  }
+
+  /* ── Service list ── */
+  .svc-name { font-size: clamp(1rem, 5vw, 1.4rem); }
+  .svc-row { padding: 11px 0; }
+
+  /* ── Process grid: 1 column ── */
+  .proc-grid {
+    grid-template-columns: 1fr;
+    gap: 1px;
+  }
+  .proc-cell { padding: 14px 12px; }
+
+  /* ── Client list ── */
+  .cli-name { font-size: clamp(1.1rem, 5vw, 1.6rem); }
+
+  /* ── Contact: 1 column ── */
+  .con-grid {
+    grid-template-columns: 1fr;
+    gap: 1px;
+  }
+  .con-col { padding: 20px 16px; }
+  .c-val { font-size: 1rem; word-break: break-word; }
+  .c-ta { height: 80px; }
+  .tz-full { padding: 0; }
+  #p8 { padding-bottom: 40px; }
+
+  /* ── Service / Platform overlays ── */
+  .svc-overlay, .plat-overlay {
+    overflow-y: auto;
+  }
+  .ov-body, .ov-body-r {
+    position: relative !important;
+    top: auto !important; left: auto !important; right: auto !important;
+    transform: none !important;
+    max-width: 100% !important;
+    width: 100%;
+    padding: 80px 20px 120px;
+  }
+  #ov-canvas, .plat-canvas { display: none; }
+  .ov-ghost, .ov-ghost-l { display: none; }
+  .ov-title { font-size: clamp(2.4rem, 9vw, 4rem); }
+  .ov-back { left: 16px; }
+  .ov-nav { left: 16px; bottom: 20px; }
+
+  /* ── Footer ── */
+  footer { flex-direction: column; gap: 8px; padding: 20px 20px; text-align: center; }
+}
+</style>
+<template id="__bundler_thumbnail" data-bg-color="#0a0f0a">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <!-- Dark green background -->
+    <rect width="1200" height="800" fill="#0a0f0a"/>
+    <!-- Concrete grid lines -->
+    <line x1="0" y1="200" x2="1200" y2="200" stroke="#1e2a1e" stroke-width="1"/>
+    <line x1="0" y1="400" x2="1200" y2="400" stroke="#1e2a1e" stroke-width="1"/>
+    <line x1="0" y1="600" x2="1200" y2="600" stroke="#1e2a1e" stroke-width="1"/>
+    <line x1="300" y1="0" x2="300" y2="800" stroke="#1e2a1e" stroke-width="1"/>
+    <line x1="600" y1="0" x2="600" y2="800" stroke="#1e2a1e" stroke-width="1"/>
+    <line x1="900" y1="0" x2="900" y2="800" stroke="#1e2a1e" stroke-width="1"/>
+    <!-- Central blob shape -->
+    <ellipse cx="600" cy="400" rx="160" ry="140" fill="#2a3a2a" opacity="0.8"/>
+    <ellipse cx="600" cy="400" rx="120" ry="100" fill="#3d523d" opacity="0.6"/>
+    <!-- HJ monogram -->
+    <text x="600" y="420" font-family="serif" font-size="80" fill="#c8d4c0" opacity="0.15" text-anchor="middle" letter-spacing="10">HJ</text>
+    <!-- Name text -->
+    <text x="200" y="360" font-family="sans-serif" font-size="52" font-weight="900" fill="#c8d4c0" letter-spacing="4">HUGO</text>
+    <text x="200" y="420" font-family="sans-serif" font-size="52" font-weight="900" fill="#c8d4c0" letter-spacing="4">JIMÉNEZ</text>
+    <!-- Tag -->
+    <text x="200" y="460" font-family="monospace" font-size="14" fill="#3d523d" letter-spacing="6">// COMMUNITY MANAGER</text>
+    <!-- Green accent line -->
+    <rect x="200" y="480" width="60" height="2" fill="#3d523d"/>
+  </svg>
+</template>
+
+<body>
+
+<div id="cur"></div>
+<div id="cur-ring"></div>
+<div id="prog"></div>
+
+<!-- CONCRETE BG -->
+<div class="concrete-bg"></div>
+<canvas id="concrete-canvas"></canvas>
+<div id="light-shaft"></div>
+
+<!-- THREE.JS CANVAS -->
+<canvas id="three-canvas"></canvas>
+
+<!-- THREAD SVG -->
+<svg id="thread-svg">
+  <path id="tl" fill="none"
+    stroke="rgba(120,190,90,0.75)" stroke-width="1.4"
+    stroke-dasharray="5 9" stroke-linecap="round" stroke-linejoin="round" opacity="0"/>
+</svg>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="n-logo">HUGO JIMÉNEZ</a>
+  <div class="n-r">
+    <div class="lang-tog">
+      <button class="lang-btn on" data-lang="en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
+    </div>
+    <a href="#" class="n-cta" data-i18n="nav-cta">LET'S TALK</a>
+  </div>
+</nav>
+
+<!-- SCROLL STAGE -->
+<div class="scroll-driver" id="drv">
+  <div class="sticky" id="sc">
+
+    <!-- corner labels -->
+    <div class="corner c-tl"><span id="secLbl">01 — INTRO</span><br><span style="color:var(--c3)">HJ / CM</span></div>
+    <div class="corner c-tr" data-i18n="c-tr">SPAIN / GLOBAL<br><span style="color:var(--c3)">COMMUNITY MANAGER</span></div>
+    <div class="corner c-bl">© 2026</div>
+    <div class="corner c-br" id="secCnt">01 / 09</div>
+
+    <!-- dots -->
+    <div class="dots" id="dots">
+      <div class="dot on"></div><div class="dot"></div><div class="dot"></div>
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+
+    <!-- ══ P0: HERO ══ -->
+    <div class="panel on" id="p0" data-screen-label="01 Hero">
+      <div class="tz-left">
+        <span class="stamp" data-i18n="h-stamp">// community manager</span>
+        <span class="brutal" data-i18n="h-h">YOUR<br>BRAND<br>DESERVES<br>MORE.</span>
+        <span class="body-txt" data-i18n="h-b">Not just more posts. More reach, more conversation, more conversion. I make social media actually work for your brand.</span>
+        <span class="mono-txt" data-i18n="h-sub">— Hugo Jiménez. Building brands<br>people actually want to follow.</span>
+      </div>
+      <div class="tz-right">
+        <span class="ghost-num">01</span>
+        <span style="font-family:var(--fm);font-size:0.37rem;letter-spacing:0.26em;color:rgba(140,180,110,0.5);display:block;margin-top:6px;">— avg. attention span</span>
+        <span style="font-family:var(--fb);font-size:clamp(2.4rem,4.5vw,5rem);color:var(--c5);display:block;line-height:0.88;margin-top:3px;">8<br>SEC.</span>
+        <span style="font-family:var(--fm);font-size:0.33rem;letter-spacing:0.18em;color:var(--c3);display:block;margin-top:16px;">HOOK THEM IN 3.</span>
+      </div>
+      <div class="scroll-hint">
+        <span data-i18n="scroll">SCROLL</span>
+        <div class="sh-bar"></div>
+      </div>
+    </div>
+
+    <!-- ══ P1: ABOUT ══ -->
+    <div class="panel" id="p1" data-screen-label="02 About">
+      <div class="tz-left">
+        <span class="stamp" data-i18n="a-stamp">// about</span>
+        <span class="brutal" data-i18n="a-h">PEOPLE<br>BEFORE<br>METRICS.</span>
+        <span class="body-txt" data-i18n="a-b">I'm Hugo Jiménez — a community manager obsessed with authenticity. I don't chase vanity numbers. I build real communities around brands worth following: sharp content, human interaction, strategies that convert. Based in Spain. Working globally.</span>
+        <div class="rule"></div>
+        <span class="mono-txt" style="color:var(--c5);">IG · TK · LI · X · YT · FB · THREADS</span>
+      </div>
+      <div class="tz-right">
+        <span class="ghost-num">02</span>
+        <span class="stamp" style="margin-top:12px;" data-i18n="a-ql">// philosophy</span>
+        <span class="brutal xs" data-i18n="a-q">"DON'T<br>JUST POST.<br>CONNECT."</span>
+      </div>
+    </div>
+
+    <!-- ══ P2: SERVICES ══ -->
+    <div class="panel" id="p2" data-screen-label="03 Services">
+      <div class="tz-left">
+        <span class="stamp" data-i18n="s-stamp">// what i do</span>
+        <span class="brutal" data-i18n="s-h">FULL<br>SERVICE.<br>NO GAPS.</span>
+        <span class="body-txt" data-i18n="s-b">From strategy to execution, shooting to paid campaigns — every layer of your social presence, handled.</span>
+        <div class="svc">
+          <div class="svc-row" onclick="openSvc(0)" role="button" tabindex="0"><span class="svc-name" data-i18n="sv1">CONTENT STRATEGY</span><span class="svc-n">—01</span></div>
+          <div class="svc-row" onclick="openSvc(1)" role="button" tabindex="0"><span class="svc-name" data-i18n="sv2">VIDEO PRODUCTION & EDITING</span><span class="svc-n">—02</span></div>
+          <div class="svc-row" onclick="openSvc(2)" role="button" tabindex="0"><span class="svc-name" data-i18n="sv3">PAID SOCIAL CAMPAIGNS</span><span class="svc-n">—03</span></div>
+          <div class="svc-row" onclick="openSvc(3)" role="button" tabindex="0"><span class="svc-name" data-i18n="sv4">COMMUNITY MANAGEMENT</span><span class="svc-n">—04</span></div>
+          <div class="svc-row" onclick="openSvc(4)" role="button" tabindex="0"><span class="svc-name" data-i18n="sv5">BRAND SHOOTING</span><span class="svc-n">—05</span></div>
+          <div class="svc-row" onclick="openSvc(5)" role="button" tabindex="0"><span class="svc-name" data-i18n="sv6">ANALYTICS & REPORTING</span><span class="svc-n">—06</span></div>
+        </div>
+      </div>
+      <div class="tz-right">
+        <span class="ghost-num">03</span>
+      </div>
+    </div>
+
+    <!-- ══ P3: PROCESS ══ -->
+    <div class="panel" id="p3" data-screen-label="04 Process">
+      <div class="tz-left" style="pointer-events:none;">
+        <div style="margin-bottom:20px;">
+          <span style="font-family:var(--fm);font-size:0.35rem;letter-spacing:0.24em;color:rgba(140,180,110,0.42);display:block;margin-bottom:9px;">// the loop</span>
+          <span style="font-family:var(--fb);font-size:clamp(0.95rem,1.5vw,1.75rem);color:rgba(200,195,175,0.3);display:block;line-height:1.65;letter-spacing:0.05em;">AUDIT<br><span style="color:rgba(80,140,60,0.45);font-size:0.75em;">↓</span><br>STRATEGY<br><span style="color:rgba(80,140,60,0.45);font-size:0.75em;">↓</span><br>EXECUTE<br><span style="color:rgba(80,140,60,0.45);font-size:0.75em;">↓</span><br>SCALE</span>
+        </div>
+        <span class="ghost-num">04</span>
+      </div>
+      <div class="tz-r">
+        <span class="stamp" data-i18n="pr-stamp">// the process</span>
+        <span class="brutal" data-i18n="pr-h">SYSTEM.<br>NOT<br>LUCK.</span>
+        <span class="body-txt" data-i18n="pr-b">Every successful social presence is built on a repeatable, data-informed system. Here's mine.</span>
+        <div class="proc-grid">
+          <div class="proc-cell hl"><span class="pnum">01</span><span class="ptitle" data-i18n="p1t">AUDIT</span><span class="pdesc" data-i18n="p1d">Brand, audience, competitor analysis. Find the real gap.</span></div>
+          <div class="proc-cell"><span class="pnum">02</span><span class="ptitle" data-i18n="p2t">STRATEGY</span><span class="pdesc" data-i18n="p2d">Content roadmap, platform mix, tone of voice. Documented.</span></div>
+          <div class="proc-cell"><span class="pnum">03</span><span class="ptitle" data-i18n="p3t">EXECUTION</span><span class="pdesc" data-i18n="p3d">Creation, scheduling, DMs, engagement. End to end.</span></div>
+          <div class="proc-cell hl"><span class="pnum">04</span><span class="ptitle" data-i18n="p4t">OPTIMISE</span><span class="pdesc" data-i18n="p4d">Monthly data reviews. Kill what doesn't work. Scale what does.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ P4: CLIENTS ══ -->
+    <div class="panel" id="p4" data-screen-label="05 Clients">
+      <div class="tz-left">
+        <span class="stamp" data-i18n="cl-stamp">// clients & brands</span>
+        <span class="brutal" data-i18n="cl-h">BRANDS<br>THAT BET<br>ON IT.</span>
+        <span class="body-txt" data-i18n="cl-b">Brands that trusted the process and saw the results. Real community, real growth.</span>
+        <div class="cli-list">
+          <div class="cli-row"><a href="https://www.instagram.com/xpecado.oficial/" target="_blank" rel="noopener" class="cli-name" style="text-decoration:none;cursor:none;transition:color .2s;">@XPECADO.OFICIAL</a><span class="cli-tag">GASTRONOMÍA</span></div>
+          <div class="cli-row"><a href="https://www.instagram.com/cora.gelato/" target="_blank" rel="noopener" class="cli-name" style="text-decoration:none;cursor:none;transition:color .2s;">@CORA.GELATO</a><span class="cli-tag">HELADERÍA</span></div>
+          <div class="cli-row"><a href="https://www.instagram.com/esteticaburgos_/" target="_blank" rel="noopener" class="cli-name" style="text-decoration:none;cursor:none;transition:color .2s;">@ESTETICABURGOS_</a><span class="cli-tag">ESTÉTICA</span></div>
+        </div>
+      </div>
+      <div class="tz-right">
+        <span class="ghost-num">05</span>
+        <span style="font-family:var(--fb);font-size:clamp(1.8rem,3.2vw,3.8rem);color:rgba(200,195,175,0.13);display:block;line-height:0.9;margin-top:42px;letter-spacing:0.02em;">REAL<br>BRANDS.<br>REAL<br>PEOPLE.</span>
+      </div>
+    </div>
+
+    <!-- ══ P5: RESULTS / STATS ══ -->
+    <div class="panel" id="p5" data-screen-label="06 Results">
+      <div class="tz-left" style="pointer-events:none;">
+        <div style="margin-bottom:16px;">
+          <span style="font-family:var(--fm);font-size:0.34rem;letter-spacing:0.24em;color:rgba(140,180,110,0.42);display:block;margin-bottom:5px;">// avg. reach growth</span>
+          <span class="stat-pulse" style="font-family:var(--fb);font-size:clamp(3rem,5.5vw,6.5rem);color:var(--c6);display:block;line-height:0.88;">+340%</span>
+        </div>
+        <span class="ghost-num">06</span>
+      </div>
+      <div class="tz-r">
+        <span class="stamp" data-i18n="r-stamp">// results</span>
+        <span class="brutal" data-i18n="r-h">NUMBERS<br>DON'T<br>LIE.</span>
+        <span class="body-txt" data-i18n="r-b">Every strategy I deploy is built to move real metrics. Not impressions — conversions. Not followers — loyal audiences.</span>
+        <div class="svc" style="margin-top:18px;">
+          <div class="svc-row"><span class="svc-name" data-i18n="rs1">+340% AVERAGE REACH GROWTH</span><span class="svc-n">—KPI</span></div>
+          <div class="svc-row"><span class="svc-name" data-i18n="rs2">×4 ENGAGEMENT RATE</span><span class="svc-n">—KPI</span></div>
+          <div class="svc-row"><span class="svc-name" data-i18n="rs3">-60% COST PER LEAD</span><span class="svc-n">—KPI</span></div>
+          <div class="svc-row"><span class="svc-name" data-i18n="rs4">+180% CONTENT OUTPUT</span><span class="svc-n">—KPI</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ P6: PLATFORMS ══ -->
+    <div class="panel" id="p6" data-screen-label="07 Platforms">
+      <div class="tz-left">
+        <span class="stamp" data-i18n="pl-stamp">// platforms</span>
+        <span class="brutal" data-i18n="pl-h">EVERY<br>PLATFORM.<br>ONE VOICE.</span>
+        <span class="body-txt" data-i18n="pl-b">From short-form video to long-form strategy — I adapt the message to the platform, not the other way around. Each channel gets its own approach, all aligned to one brand identity.</span>
+        <div class="svc" style="margin-top:18px;">
+          <div class="svc-row" onclick="openPlat(0)" role="button" tabindex="0"><span class="svc-name">INSTAGRAM</span><span class="svc-n">REELS · STORIES · FEED</span></div>
+          <div class="svc-row" onclick="openPlat(1)" role="button" tabindex="0"><span class="svc-name">TIKTOK</span><span class="svc-n">SHORT FORM · TRENDS</span></div>
+          <div class="svc-row" onclick="openPlat(2)" role="button" tabindex="0"><span class="svc-name">LINKEDIN</span><span class="svc-n">B2B · THOUGHT LEADERSHIP</span></div>
+          <div class="svc-row" onclick="openPlat(3)" role="button" tabindex="0"><span class="svc-name">X / TWITTER</span><span class="svc-n">REAL-TIME · COMMUNITY</span></div>
+          <div class="svc-row" onclick="openPlat(4)" role="button" tabindex="0"><span class="svc-name">YOUTUBE</span><span class="svc-n">LONG FORM · SEO</span></div>
+          <div class="svc-row" onclick="openPlat(5)" role="button" tabindex="0"><span class="svc-name">FACEBOOK · THREADS</span><span class="svc-n">REACH · ENGAGEMENT</span></div>
+        </div>
+      </div>
+      <div class="tz-right">
+        <span class="ghost-num">07</span>
+        <span style="font-family:var(--fb);font-size:clamp(1.2rem,2vw,2.4rem);color:rgba(200,195,175,0.18);display:block;margin-top:12px;line-height:0.92;letter-spacing:0.03em;">EVERY<br>WHERE<br>AT<br>ONCE.</span>
+        <span style="font-family:var(--fm);font-size:0.33rem;letter-spacing:0.2em;color:rgba(140,180,110,0.38);display:block;margin-top:16px;">6 PLATFORMS · 1 VOICE</span>
+      </div>
+    </div>
+
+    <!-- ══ P7: WHY ME ══ -->
+    <div class="panel" id="p7" data-screen-label="08 Why Me">
+      <div class="tz-left" style="pointer-events:none;">
+        <div style="margin-bottom:30px;transform:rotate(-2deg);">
+          <span style="font-family:var(--fm);font-size:0.34rem;letter-spacing:0.22em;color:rgba(140,180,110,0.4);display:block;margin-bottom:8px;">// no middlemen</span>
+          <span style="font-family:var(--fb);font-size:clamp(1.4rem,2.4vw,2.8rem);color:var(--c5);display:block;line-height:0.9;">YOU<br>TALK<br>TO ME.<br>ONLY.</span>
+        </div>
+        <span class="ghost-num">08</span>
+      </div>
+      <div class="tz-r">
+        <span class="stamp" data-i18n="wm-stamp">// why hugo</span>
+        <span class="brutal" data-i18n="wm-h">NO<br>AGENCY.<br>JUST ME.</span>
+        <span class="body-txt" data-i18n="wm-b">You won't deal with account managers, junior creatives, or generic playbooks. You deal directly with me — one person who knows your brand inside out and is fully committed to its growth.</span>
+        <div class="proc-grid" style="margin-top:18px;">
+          <div class="proc-cell hl"><span class="pnum">01</span><span class="ptitle" data-i18n="wm1t">DIRECT</span><span class="pdesc" data-i18n="wm1d">You talk to me, not a middleman. Every decision, every piece of content — me.</span></div>
+          <div class="proc-cell"><span class="pnum">02</span><span class="ptitle" data-i18n="wm2t">COMMITTED</span><span class="pdesc" data-i18n="wm2d">I treat your brand like mine. Full ownership, full accountability.</span></div>
+          <div class="proc-cell"><span class="pnum">03</span><span class="ptitle" data-i18n="wm3t">AGILE</span><span class="pdesc" data-i18n="wm3d">No bureaucracy. Quick decisions, fast pivots, always ahead of trends.</span></div>
+          <div class="proc-cell hl"><span class="pnum">04</span><span class="ptitle" data-i18n="wm4t">RESULTS</span><span class="pdesc" data-i18n="wm4d">I'm only as good as my last campaign. That keeps me sharp.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ P8: CONTACT ══ -->
+    <div class="panel" id="p8" data-screen-label="09 Contact">
+      <div class="tz-full">
+        <span class="stamp" data-i18n="co-stamp">// let's work together</span>
+        <span class="brutal" style="font-size:clamp(3rem,7vw,7rem);display:block;margin-bottom:20px;" data-i18n="co-h">READY WHEN<br>YOU ARE.</span>
+        <div class="con-grid">
+          <div class="con-col dk">
+            <span class="c-lbl">EMAIL</span>
+            <a href="mailto:hjherrero7@gmail.com" class="c-val">hjherrero7@gmail.com</a>
+            <span class="c-lbl">PHONE</span>
+            <a href="tel:+34623171921" class="c-val">+34 623 171 921</a>
+            <span class="c-lbl">LINKEDIN</span>
+            <a href="https://www.linkedin.com/in/hugo-jiménez-herrero-514ba3305" target="_blank" class="c-val" style="font-size:0.9rem;">hugo-jiménez-herrero</a>
+            <span class="c-lbl" style="margin-top:12px;display:block;" data-i18n="co-avlbl">AVAILABILITY</span>
+            <span class="mono-txt" style="color:var(--c5);" data-i18n="co-avt">Open for new projects. Let's see if we're a good fit.</span>
+          </div>
+          <div class="con-col">
+            <form class="c-form" onsubmit="handleForm(event)">
+              <input class="c-inp" type="text" name="from_name" data-phi="nph" placeholder="Your name" required/>
+              <input class="c-inp" type="email" name="reply_to" data-phi="eph" placeholder="Your email" required/>
+              <input class="c-inp" type="text" name="company" data-phi="bph" placeholder="Your brand / company"/>
+              <textarea class="c-ta" name="message" data-phi="mph" placeholder="Tell me about your project..."></textarea>
+              <button type="submit" class="c-btn"><span data-i18n="send">SEND MESSAGE</span><span>→</span></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PLATFORM DETAIL OVERLAY -->
+<div id="plat-overlay" class="plat-overlay" role="dialog" aria-modal="true">
+  <button class="ov-back" onclick="closePlat()">← BACK TO PLATFORMS</button>
+  <canvas id="plat-canvas"></canvas>
+  <span class="ov-ghost-l" id="plat-ghost"></span>
+  <div class="ov-body-r">
+    <span class="ov-num" id="plat-num"></span>
+    <span class="stamp" id="plat-stamp" style="margin-bottom:14px;"></span>
+    <span class="ov-title" id="plat-title"></span>
+    <div class="ov-rule"></div>
+    <span class="ov-p" id="plat-p1"></span>
+    <span class="ov-p" id="plat-p2"></span>
+  </div>
+  <div class="ov-nav">
+    <button class="ov-nav-btn" id="plat-prev" onclick="navPlat(-1)">← PREV</button>
+    <button class="ov-nav-btn" id="plat-next" onclick="navPlat(1)">NEXT →</button>
+  </div>
+</div>
+
+<!-- SERVICE DETAIL OVERLAY -->
+<div id="svc-overlay" class="svc-overlay" role="dialog" aria-modal="true">
+  <button class="ov-back" onclick="closeSvc()">← BACK TO SERVICES</button>
+  <div class="ov-body">
+    <span class="ov-num" id="ov-num"></span>
+    <span class="ov-title" id="ov-title"></span>
+    <div class="ov-rule"></div>
+    <span class="ov-p" id="ov-p1"></span>
+    <span class="ov-p" id="ov-p2"></span>
+  </div>
+  <span class="ov-ghost" id="ov-ghost"></span>
+  <canvas id="ov-canvas"></canvas>
+  <div class="ov-nav">
+    <button class="ov-nav-btn" id="ov-prev" onclick="navSvc(-1)">← PREV</button>
+    <button class="ov-nav-btn" id="ov-next" onclick="navSvc(1)">NEXT →</button>
+  </div>
+</div>
+
+<footer>
+  <span class="f-copy">© 2026 HUGO JIMÉNEZ</span>
+  <div class="f-soc">
+    <a href="https://www.linkedin.com/in/hugo-jiménez-herrero-514ba3305" target="_blank" class="f-a">LINKEDIN</a>
+  </div>
+  <span class="f-copy" data-i18n="f-loc">SPAIN / GLOBAL</span>
+</footer>
+
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  // ── EMAILJS CONFIG ──
+  // 1. Create free account at https://www.emailjs.com
+  // 2. Add an Email Service (Gmail) → copy the Service ID below
+  // 3. Create an Email Template with variables: {{from_name}}, {{reply_to}}, {{company}}, {{message}}
+  //    → copy the Template ID below
+  // 4. Copy your Public Key from Account → API Keys
+  const EJS_SERVICE  = 'YOUR_SERVICE_ID';   // e.g. 'service_abc123'
+  const EJS_TEMPLATE = 'YOUR_TEMPLATE_ID';  // e.g. 'template_xyz789'
+  const EJS_PUBLIC   = 'YOUR_PUBLIC_KEY';   // e.g. 'aBcDeFgH1234567'
+  emailjs.init({ publicKey: EJS_PUBLIC });
+</script>
+
+<!-- THREE.JS -->
+<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+<script>
+/* ═══════════════════════════════════════
+   PROCEDURAL CONCRETE TEXTURE — SCROLL PARALLAX
+   Renders a tall canvas (3× viewport height) so we can
+   translate it upward as the user scrolls, simulating
+   moving along a real concrete wall.
+═══════════════════════════════════════ */
+(function(){
+  if(window.innerWidth <= 768) return; // skip on mobile
+  const cvs = document.getElementById('concrete-canvas');
+  const W = window.innerWidth;
+  const H = window.innerHeight * 3; // 3× tall for parallax travel
+  cvs.width  = W;
+  cvs.height = H;
+  cvs.style.width  = W + 'px';
+  cvs.style.height = H + 'px';
+  const ctx = cvs.getContext('2d');
+
+  // ── Pseudo-random seeded noise (no external libs) ──
+  function hash(x, y){
+    let h = (x * 374761393 + y * 668265263) ^ (x >> 6) ^ (y >> 6);
+    h = (h ^ (h >> 13)) * 1274126177;
+    return (h ^ (h >> 16)) & 0xffffffff;
+  }
+  function noise(x, y){ return (hash(x, y) & 0xffffff) / 0xffffff; }
+  function smooth(x, y){
+    const ix = Math.floor(x), iy = Math.floor(y);
+    const fx = x - ix, fy = y - iy;
+    const u = fx*fx*(3-2*fx), v = fy*fy*(3-2*fy);
+    const a = noise(ix,iy), b = noise(ix+1,iy);
+    const c = noise(ix,iy+1), d = noise(ix+1,iy+1);
+    return a + (b-a)*u + (c-a)*v + (a-b-c+d)*u*v;
+  }
+  function fbm(x, y, octs){
+    let val=0, amp=0.5, f=1;
+    for(let i=0;i<octs;i++){ val+=smooth(x*f,y*f)*amp; amp*=0.5; f*=2.1; }
+    return val;
+  }
+
+  // ── LAYER 1: Base concrete colour field ──
+  // Horizontal bands of slightly lighter/darker concrete
+  // (the natural variation in a poured wall)
+  const imgData = ctx.createImageData(W, H);
+  const px = imgData.data;
+  for(let y = 0; y < H; y++){
+    for(let x = 0; x < W; x++){
+      const idx = (y * W + x) * 4;
+      // Multi-octave noise at different scales
+      const macro  = fbm(x/400,  y/500,  4); // large cloud-like patches
+      const medium = fbm(x/90+5, y/110+5, 4); // medium variation
+      const micro  = fbm(x/18+12, y/18+12, 3); // fine grain
+
+      // Base: warm grey-white concrete (#c5c4bc range)
+      const base = 168 + macro*30 - medium*22 + micro*10;
+      // Very slight warm (reddish) concrete tint in bright zones
+      const warm = macro > 0.55 ? (macro - 0.55) * 14 : 0;
+
+      px[idx]   = Math.min(255, Math.max(100, base + warm));
+      px[idx+1] = Math.min(255, Math.max(100, base + warm*0.4));
+      px[idx+2] = Math.min(255, Math.max(100, base - warm*0.2));
+      px[idx+3] = 255;
+    }
+  }
+  ctx.putImageData(imgData, 0, 0);
+
+  // ── LAYER 2: Encofrado panel joints (the main brutalist feature) ──
+  ctx.globalAlpha = 1;
+  const PANEL_W = 240, PANEL_H = 180;
+  ctx.strokeStyle = 'rgba(90,88,80,0.55)';
+  ctx.lineWidth = 1.2;
+  // Horizontal joints
+  for(let y = PANEL_H; y < H; y += PANEL_H){
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(W, y);
+    ctx.stroke();
+    // Shadow below joint
+    const grd = ctx.createLinearGradient(0,y,0,y+12);
+    grd.addColorStop(0,'rgba(60,58,52,0.18)');
+    grd.addColorStop(1,'rgba(60,58,52,0)');
+    ctx.fillStyle = grd;
+    ctx.fillRect(0, y, W, 12);
+  }
+  // Vertical joints (staggered per row like real formwork)
+  for(let row = 0; row * PANEL_H < H; row++){
+    const offset = (row % 2) * (PANEL_W / 2);
+    const y0 = row * PANEL_H, y1 = y0 + PANEL_H;
+    for(let x = offset; x < W + PANEL_W; x += PANEL_W){
+      ctx.beginPath();
+      ctx.moveTo(x, y0);
+      ctx.lineTo(x, y1);
+      ctx.stroke();
+    }
+  }
+
+  // ── LAYER 3: Pores / bug holes (tiny dark dots) ──
+  ctx.globalAlpha = 0.9;
+  for(let i = 0; i < 8000; i++){
+    const hv  = hash(i * 7 + 42,  i * 13 + 42);
+    const hv2 = hash(i * 17 + 99, i * 5  + 99);
+    const px2 = (hv  & 0xffff) / 0xffff * W;
+    const py2 = ((hv >> 16) & 0xffff) / 0xffff * H;
+    const r   = 0.3 + (hv2 & 0xff) / 255 * 1.8;
+    const dk  = Math.floor(55 + (hv2 >> 8 & 0xff) / 255 * 35);
+    ctx.beginPath();
+    ctx.arc(px2, py2, r, 0, Math.PI*2);
+    ctx.fillStyle = `rgba(${dk},${dk},${dk-3},0.75)`;
+    ctx.fill();
+  }
+
+  // ── LAYER 4: Vertical water streaks / mineral stains ──
+  ctx.globalAlpha = 0.12;
+  for(let i = 0; i < 32; i++){
+    const hv  = hash(i * 31 + 200, i * 17 + 300);
+    const sx  = (hv & 0xffff) / 0xffff * W;
+    const sy  = ((hv >> 16) & 0xffff) / 0xffff * (H * 0.7);
+    const len = 60 + (hash(i+50,i*3) & 0xff) * 4;
+    const sw  = 0.8 + (hash(i+80,i*11) & 0xff) / 255 * 3;
+    const dark = 50 + (hash(i*3,i*11) & 0xff) / 5;
+    const grd = ctx.createLinearGradient(sx, sy, sx+sw*0.2, sy+len);
+    grd.addColorStop(0, `rgba(${dark},${dark},${dark},0)`);
+    grd.addColorStop(0.3, `rgba(${dark},${dark},${dark},1)`);
+    grd.addColorStop(1,   `rgba(${dark},${dark},${dark},0)`);
+    ctx.fillStyle = grd;
+    ctx.save();
+    ctx.translate(sx, sy);
+    ctx.rotate((hash(i*7,i*3)&0xff)/255 * 0.04 - 0.02);
+    ctx.fillRect(0, 0, sw, len);
+    ctx.restore();
+  }
+
+  // ── LAYER 5: Hairline cracks ──
+  ctx.globalAlpha = 0.28;
+  for(let i = 0; i < 14; i++){
+    const hv = hash(i * 77 + 400, i * 43 + 500);
+    let cx2 = (hv & 0xffff) / 0xffff * W;
+    let cy2 = ((hv >> 16) & 0xffff) / 0xffff * H;
+    ctx.beginPath();
+    ctx.moveTo(cx2, cy2);
+    ctx.lineWidth = 0.4 + (hash(i*3,i*7) & 0xff) / 255 * 0.6;
+    ctx.strokeStyle = `rgba(70,68,60,${0.4 + (hash(i*11,i*5)&0xff)/255*0.3})`;
+    const steps = 8 + (hash(i+10, i+20) & 0x7);
+    for(let s = 0; s < steps; s++){
+      const hv2 = hash(i * 100 + s * 13, s * 29 + i * 7);
+      cx2 += ((hv2 & 0xff) / 255 - 0.5) * 55;
+      cy2 += ((hv2 >> 8 & 0xff) / 255) * 50;
+      ctx.lineTo(cx2, cy2);
+    }
+    ctx.stroke();
+  }
+
+  ctx.globalAlpha = 1.0;
+
+  // ── SCROLL PARALLAX — move canvas upward at 0.3× scroll speed ──
+  // This gives the illusion of moving along the concrete wall
+  const PARALLAX = 0.28; // how much slower the wall moves than the content
+  function updateParallax(){
+    const scrollY = document.body.scrollTop;
+    const maxScroll = document.getElementById('drv').offsetHeight - window.innerHeight;
+    const t = Math.max(0, Math.min(1, scrollY / maxScroll));
+    // max translation = (H - window.innerHeight) * PARALLAX but inverted
+    const maxShift = (H - window.innerHeight);
+    const shift = -(t * maxShift * PARALLAX);
+    cvs.style.transform = `translateY(${shift}px)`;
+  }
+  document.body.addEventListener('scroll', updateParallax, {passive:true});
+  updateParallax();
+})();
+</script>
+<script>
+/* ═══════════════════════════════════════
+   CURSOR
+═══════════════════════════════════════ */
+if(!isMobile()){
+  const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.cssText=`left:${mx}px;top:${my}px;`;});
+  (function anim(){rx+=(mx-rx)*.09;ry+=(my-ry)*.09;ring.style.cssText=`left:${rx}px;top:${ry}px;`;requestAnimationFrame(anim);})();
+}
+
+/* ═══════════════════════════════════════
+   THREE.JS — SCROLL-REACTIVE MORPH
+═══════════════════════════════════════ */
+(function(){
+  if(isMobile()) return; // skip 3D on mobile for performance
+  const canvas = document.getElementById('three-canvas');
+  const renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  canvas.style.pointerEvents = 'none';
+  canvas.style.touchAction = 'none';
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(40, window.innerWidth/window.innerHeight, 0.1, 100);
+  camera.position.set(0, 0, 6);
+
+  function resize(){
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth/window.innerHeight;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  /* LIGHTING — dramatic single diagonal like reference photos */
+  // Bright ambient for concrete day setting
+  const ambient = new THREE.AmbientLight(0x888880, 0.5);
+  scene.add(ambient);
+
+  // Main directional — top-right harsh shaft of light
+  const mainLight = new THREE.DirectionalLight(0xfff8f0, 2.8);
+  mainLight.position.set(5, 6, 3);
+  mainLight.castShadow = true;
+  scene.add(mainLight);
+
+  // Rim — cold grey from opposite
+  const rimLight = new THREE.DirectionalLight(0x90a0b0, 0.6);
+  rimLight.position.set(-4, -2, 2);
+  scene.add(rimLight);
+
+  // Warm fill from below
+  const fillLight = new THREE.DirectionalLight(0xb0a890, 0.4);
+  fillLight.position.set(0, -5, 1);
+  scene.add(fillLight);
+
+  // Neutral point
+  const pointLight = new THREE.PointLight(0xfff0e0, 1.2, 8);
+  pointLight.position.set(0, 1, 3);
+  scene.add(pointLight);
+
+  /* CONCRETE MATERIAL — dark matte green-concrete */
+  const concreteMat = new THREE.MeshStandardMaterial({
+    color: 0x6a8060,
+    roughness: 0.96,
+    metalness: 0.0,
+    flatShading: false,
+  });
+
+  /* BUILD MORPH GEOMETRIES — each section has a target shape */
+  // We'll store original vertex positions for multiple shapes and lerp between them
+
+  // Helper: get sphere positions with deformation
+  function spherePositions(geo, deform){
+    const pos = geo.attributes.position;
+    const arr = new Float32Array(pos.count * 3);
+    for(let i=0;i<pos.count;i++){
+      arr[i*3]   = pos.getX(i) * (1 + deform * (Math.sin(pos.getY(i)*2.1)*0.5));
+      arr[i*3+1] = pos.getY(i) * (1 + deform * (Math.cos(pos.getX(i)*1.8)*0.4));
+      arr[i*3+2] = pos.getZ(i) * (1 + deform * (Math.sin(pos.getZ(i)*2.5)*0.5));
+    }
+    return arr;
+  }
+
+  // Base geometry — subdivided box that we'll deform
+  const BASE_GEO = new THREE.IcosahedronGeometry(1.4, 5);
+  const vCount = BASE_GEO.attributes.position.count;
+
+  // 6 target shapes (one per section)
+  function makeTarget(fn){
+    const pos = BASE_GEO.attributes.position;
+    const arr = new Float32Array(vCount*3);
+    for(let i=0;i<vCount;i++){
+      const x=pos.getX(i), y=pos.getY(i), z=pos.getZ(i);
+      const r = Math.sqrt(x*x+y*y+z*z);
+      const nx=x/r, ny=y/r, nz=z/r;
+      const res = fn(nx,ny,nz,r);
+      arr[i*3]=res.x; arr[i*3+1]=res.y; arr[i*3+2]=res.z;
+    }
+    return arr;
+  }
+
+  const targets = [
+    // 0 Hero — organic sphere with slight bulges
+    makeTarget((nx,ny,nz)=>{
+      const d = 1.4 + 0.15*Math.sin(ny*3.1)*Math.cos(nx*4.2) + 0.08*Math.sin(nz*5);
+      return {x:nx*d, y:ny*d, z:nz*d};
+    }),
+    // 1 About — stretched vertical, more irregular
+    makeTarget((nx,ny,nz)=>{
+      const d = 1.35 + 0.2*Math.sin(ny*4)*Math.sin(nx*3) + 0.12*Math.cos(nz*6);
+      return {x:nx*d*0.85, y:ny*d*1.3, z:nz*d*0.85};
+    }),
+    // 2 Services — wide, flattened, crystalline
+    makeTarget((nx,ny,nz)=>{
+      const d = 1.45 + 0.25*Math.sin(nx*5)*Math.cos(ny*4) + 0.1*Math.sin(nz*7);
+      return {x:nx*d*1.3, y:ny*d*0.75, z:nz*d*1.1};
+    }),
+    // 3 Process — cubic-ish, geometric angular
+    makeTarget((nx,ny,nz)=>{
+      const cube = Math.pow(Math.abs(nx),4)+Math.pow(Math.abs(ny),4)+Math.pow(Math.abs(nz),4);
+      const d = 1.4 / Math.pow(cube, 0.25) * 0.9;
+      return {x:nx*d, y:ny*d, z:nz*d};
+    }),
+    // 4 Clients — spreading, with tendrils (high freq deform)
+    makeTarget((nx,ny,nz)=>{
+      const d = 1.4 + 0.3*Math.sin(nx*8+ny*6) + 0.15*Math.cos(nz*9+nx*5);
+      return {x:nx*d, y:ny*d, z:nz*d};
+    }),
+    // 5 Results — sharp star-like spikes
+    makeTarget((nx,ny,nz)=>{
+      const spike = Math.pow(Math.abs(Math.sin(nx*Math.PI*3)*Math.sin(ny*Math.PI*3)),0.3);
+      const d = 1.1 + spike*0.6;
+      return {x:nx*d, y:ny*d, z:nz*d};
+    }),
+    // 6 Platforms — flattened torus-like ring
+    makeTarget((nx,ny,nz)=>{
+      const phi = Math.acos(Math.max(-1,Math.min(1,nz)));
+      const torusR = 1.0 + 0.45*Math.cos(phi*2);
+      const theta = Math.atan2(ny, nx);
+      const d = torusR + 0.12*Math.sin(theta*6+phi*4);
+      return {x:nx*d, y:ny*d*0.5, z:nz*d};
+    }),
+    // 7 Why Me — twisted helix form
+    makeTarget((nx,ny,nz)=>{
+      const twist = ny * Math.PI * 1.5;
+      const dx = nx*Math.cos(twist) - nz*Math.sin(twist);
+      const dz = nx*Math.sin(twist) + nz*Math.cos(twist);
+      const d  = 1.35 + 0.2*Math.sin(dx*4+dz*3);
+      return {x:dx*d, y:ny*d*1.2, z:dz*d};
+    }),
+    // 8 Contact — calm smooth sphere
+    makeTarget((nx,ny,nz)=>{
+      const d = 1.5 + 0.06*Math.sin(ny*2)*Math.cos(nx*2);
+      return {x:nx*d, y:ny*d, z:nz*d};
+    }),
+  ];
+
+  // Working geometry
+  const geo = BASE_GEO.clone();
+  const currentPos = new Float32Array(targets[0]);
+  const workPos = geo.attributes.position.array;
+
+  const mesh = new THREE.Mesh(geo, concreteMat);
+  mesh.scale.setScalar(0.68);
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
+  scene.add(mesh);
+
+  // Ground plane (receives shadow for dramatic effect)
+  const groundGeo = new THREE.PlaneGeometry(20, 20);
+  const groundMat = new THREE.ShadowMaterial({opacity: 0.45});
+  const ground = new THREE.Mesh(groundGeo, groundMat);
+  ground.rotation.x = -Math.PI/2;
+  ground.position.y = -2.5;
+  ground.receiveShadow = true;
+  scene.add(ground);
+
+  function lerp(a,b,t){return a+(b-a)*t;}
+  function easeInOut(t){return t<0.5?2*t*t:(4-2*t)*t-1;}
+
+  // ── ROPE PHYSICS SETUP ──
+  const ROPE_N=18;
+  const ropeNodes=[];
+  // Init nodes along a visible default catenary between mesh center and left text area
+  for(let i=0;i<ROPE_N;i++){
+    const t=i/(ROPE_N-1);
+    const sx=window.innerWidth*.52, sy=window.innerHeight*.5;
+    const ex=window.innerWidth*.28, ey=window.innerHeight*.45;
+    const x=sx+(ex-sx)*t;
+    const y=sy+(ey-sy)*t+Math.sin(t*Math.PI)*55;
+    ropeNodes.push({x,y,ox:x-0.2,oy:y});
+  }
+  // Per-panel rope character: gravity strength, slack (extra length), damping
+  const ROPE_PROPS=[
+    {g:0.28,slack:1.30,damp:0.975}, // P0 Hero      — taut, light
+    {g:0.62,slack:1.58,damp:0.960}, // P1 About     — heavy, swings
+    {g:0.24,slack:1.22,damp:0.978}, // P2 Services  — very taut
+    {g:0.82,slack:1.72,damp:0.950}, // P3 Process   — industrial heavy
+    {g:0.50,slack:1.48,damp:0.968}, // P4 Clients   — medium
+    {g:0.65,slack:1.80,damp:0.955}, // P5 Results   — lots of sag
+    {g:0.26,slack:1.24,damp:0.978}, // P6 Platforms — taut
+    {g:0.74,slack:1.65,damp:0.952}, // P7 Why Me    — heavy
+    {g:0.35,slack:1.35,damp:0.972}, // P8 Contact   — soft
+  ];
+  let _ropeScrollVel=0,_ropePrevScroll=0;
+  document.body.addEventListener('scroll',()=>{
+    const s=document.body.scrollTop;
+    _ropeScrollVel+=(s-_ropePrevScroll)*2.2; // inject velocity on scroll
+    _ropePrevScroll=s;
+  },{passive:true});
+  let _rG=0.30,_rSlack=1.30,_rDamp=0.975; // current interpolated props
+
+  let scrollProgress = 0;
+  let targetIdx = 0;
+  let morphT = 0; // 0..1 within current section morph
+
+  // Smooth scroll tracking
+  let displayProgress = 0;
+
+  const scroller = document.body;
+  scroller.addEventListener('scroll',()=>{
+    const drv = document.getElementById('drv');
+    const h = drv.offsetHeight - scroller.clientHeight;
+    scrollProgress = Math.max(0,Math.min(1, scroller.scrollTop/h));
+  },{passive:true});
+
+  let time = 0;
+
+  function animate(){
+    requestAnimationFrame(animate);
+    time += 0.008;
+
+    // Smooth scroll
+    displayProgress += (scrollProgress - displayProgress) * 0.05;
+
+    const totalSections = 9;
+    const rawIdx = displayProgress * 8;
+    const fromIdx = Math.floor(rawIdx);
+    const toIdx   = Math.min(fromIdx+1, 8);
+    const frac    = rawIdx - fromIdx;
+    const smoothFrac = easeInOut(frac);
+
+    const fromTarget = targets[fromIdx];
+    const toTarget   = targets[toIdx];
+
+    // Morph vertices
+    for(let i=0;i<vCount;i++){
+      const fx = fromTarget[i*3], fy = fromTarget[i*3+1], fz = fromTarget[i*3+2];
+      const tx = toTarget[i*3],   ty = toTarget[i*3+1],   tz = toTarget[i*3+2];
+      // Add tiny breathing motion
+      const breath = 1 + 0.018*Math.sin(time*0.9 + i*0.05);
+      workPos[i*3]   = lerp(fx,tx,smoothFrac)*breath;
+      workPos[i*3+1] = lerp(fy,ty,smoothFrac)*breath;
+      workPos[i*3+2] = lerp(fz,tz,smoothFrac)*breath;
+    }
+    geo.attributes.position.needsUpdate = true;
+    geo.computeVertexNormals();
+
+    // Rotate slowly — direction and speed change with scroll
+    mesh.rotation.y += 0.003 + displayProgress * 0.003;
+    mesh.rotation.x = Math.sin(time*0.3) * 0.08 + displayProgress * 0.2;
+    mesh.rotation.z += 0.0008;
+
+    // Light rotates with scroll — mimicking the shaft of light from reference
+    mainLight.position.x = 5*Math.cos(displayProgress*Math.PI*0.8);
+    mainLight.position.z = 3 + 2*Math.sin(displayProgress*Math.PI*0.6);
+    mainLight.intensity = 2.8 - displayProgress*0.6;
+
+    // ── ROPE PHYSICS — Verlet integration ──
+    const _tl=document.getElementById('tl');
+    if(_tl){
+      const _v=new THREE.Vector3();
+      _v.setFromMatrixPosition(mesh.matrixWorld);
+      _v.project(camera);
+      const _mx=(_v.x+1)/2*window.innerWidth;
+      const _my=(-_v.y+1)/2*window.innerHeight;
+      const _tz=document.querySelector('.panel.on .tz-r')||document.querySelector('.panel.on .tz-left');
+      const _show=!!_tz;
+      _tl.setAttribute('opacity',_show?'1':'0');
+      if(_tz){
+        const _r=_tz.getBoundingClientRect();
+        const _tzCX=_r.left+_r.width/2;
+        const _tx=_tzCX<window.innerWidth/2?_r.right+4:_r.left-4;
+        const _ty=_r.top+_r.height*0.26;
+        const _apEl=document.querySelector('.panel.on');
+        const _pIdx=_apEl?parseInt(_apEl.id.replace('p',''))||0:0;
+        const _rp=ROPE_PROPS[Math.min(_pIdx,ROPE_PROPS.length-1)];
+        _rG+=(_rp.g-_rG)*0.025;
+        _rSlack+=(_rp.slack-_rSlack)*0.025;
+        _rDamp+=(_rp.damp-_rDamp)*0.025;
+        _ropeScrollVel*=0.82;
+        const _sd=Math.sqrt((_tx-_mx)*(_tx-_mx)+(_ty-_my)*(_ty-_my));
+        const _segLen=(_sd*_rSlack)/(ROPE_N-1);
+        ropeNodes[0].x=_mx; ropeNodes[0].y=_my;
+        ropeNodes[ROPE_N-1].x=_tx; ropeNodes[ROPE_N-1].y=_ty;
+        for(let i=1;i<ROPE_N-1;i++){
+          const n=ropeNodes[i];
+          const vx=(n.x-n.ox)*_rDamp;
+          const vy=(n.y-n.oy)*_rDamp;
+          n.ox=n.x; n.oy=n.y;
+          const _envelope=Math.sin(i/ROPE_N*Math.PI);
+          n.x+=vx+_ropeScrollVel*_envelope*0.85;
+          n.y+=vy+_rG+Math.sin(time*0.6+i*0.4)*0.04;
+        }
+        for(let iter=0;iter<8;iter++){
+          for(let i=0;i<ROPE_N-1;i++){
+            const a=ropeNodes[i],b=ropeNodes[i+1];
+            const dx=b.x-a.x,dy=b.y-a.y;
+            const d=Math.sqrt(dx*dx+dy*dy)||0.001;
+            const diff=(d-_segLen)/d*0.5;
+            if(i>0){a.x+=dx*diff;a.y+=dy*diff;}
+            if(i<ROPE_N-2){b.x-=dx*diff;b.y-=dy*diff;}
+          }
+        }
+        let _d=`M ${ropeNodes[0].x.toFixed(1)} ${ropeNodes[0].y.toFixed(1)}`;
+        for(let i=1;i<ROPE_N;i++) _d+=` L ${ropeNodes[i].x.toFixed(1)} ${ropeNodes[i].y.toFixed(1)}`;
+        _tl.setAttribute('d',_d);
+      }
+    }
+
+    renderer.render(scene, camera);
+  }
+  animate();
+})();
+
+/* ═══════════════════════════════════════
+   MOBILE DETECTION
+═══════════════════════════════════════ */
+const isMobile = () => window.innerWidth <= 768;
+
+/* ═══════════════════════════════════════
+   SCROLL + PANELS
+═══════════════════════════════════════ */
+const panels = [...document.querySelectorAll('.panel')];
+const dots   = [...document.querySelectorAll('.dot')];
+const LABELS = ['01 — INTRO','02 — ABOUT','03 — SERVICES','04 — PROCESS','05 — CLIENTS','06 — RESULTS','07 — PLATFORMS','08 — WHY ME','09 — CONTACT'];
+const COUNTS = ['01 / 09','02 / 09','03 / 09','04 / 09','05 / 09','06 / 09','07 / 09','08 / 09','09 / 09'];
+let curPnl=0;
+
+// Per-panel text zone offsets — controlled visual disorder
+const PANEL_OFFSETS = [
+  { top:'50%', rot:0    }, // 00 Hero   — LEFT
+  { top:'44%', rot:-0.3 }, // 01 About  — LEFT
+  { top:'56%', rot:0    }, // 02 Services — LEFT
+  { top:'47%', rot:0.3  }, // 03 Process  — RIGHT
+  { top:'54%', rot:-0.2 }, // 04 Clients  — LEFT
+  { top:'43%', rot:0    }, // 05 Results  — RIGHT
+  { top:'52%', rot:0.2  }, // 06 Platforms — LEFT
+  { top:'46%', rot:0    }, // 07 Why Me   — RIGHT
+  { top:'50%', rot:0    }, // 08 Contact  — FULL
+];
+
+function applyOffset(idx){
+  if(isMobile()) return; // mobile layout handles positioning via CSS
+  const off=PANEL_OFFSETS[idx];
+  // Prefer .tz-r (right panels), fall back to .tz-left
+  const tz=panels[idx].querySelector('.tz-r')||panels[idx].querySelector('.tz-left');
+  if(tz){
+    tz.style.top=off.top;
+    tz.style.transform=`translateY(-50%) rotate(${off.rot}deg)`;
+  }
+}
+
+function setPanel(idx){
+  if(isMobile()) return; // all panels visible on mobile
+  if(idx===curPnl)return;
+  curPnl=idx;
+  panels.forEach((p,i)=>p.classList.toggle('on',i===idx));
+  dots.forEach((d,i)=>d.classList.toggle('on',i===idx));
+  document.getElementById('secLbl').textContent=LABELS[idx];
+  document.getElementById('secCnt').textContent=COUNTS[idx];
+  applyOffset(idx);
+}
+
+// Init first panel
+if(!isMobile()) applyOffset(0);
+
+document.body.addEventListener('scroll',()=>{
+  if(isMobile()) return;
+  const drv=document.getElementById('drv');
+  const h=drv.offsetHeight-document.body.clientHeight;
+  const p=Math.max(0,Math.min(1,document.body.scrollTop/h));
+  document.getElementById('prog').style.width=(p*100)+'%';
+  const idx=Math.min(8,Math.floor(p*9));
+  setPanel(idx);
+},{passive:true});
+
+/* ═══════════════════════════════════════
+   I18N
+═══════════════════════════════════════ */
+const T={
+  en:{
+    'nav-cta':"LET'S TALK",'c-tr':'SPAIN / GLOBAL<br><span style="color:var(--c3)">COMMUNITY MANAGER</span>',
+    'h-stamp':'// community manager','h-h':'YOUR<br>BRAND<br>DESERVES<br>MORE.',
+    'h-b':'Not just more posts. More reach, more conversation, more conversion. I make social media actually work for your brand.',
+    'h-sub':'— Hugo Jiménez. Building brands<br>people actually want to follow.',
+    'scroll':'SCROLL',
+    'a-stamp':'// about','a-h':'PEOPLE<br>BEFORE<br>METRICS.',
+    'a-b':"I'm Hugo Jiménez — a community manager obsessed with authenticity. I don't chase vanity numbers. I build real communities: sharp content, human interaction, strategies that convert. Based in Spain. Working globally.",
+    'a-ql':'// philosophy','a-q':'"DON\'T<br>JUST POST.<br>CONNECT."',
+    's-stamp':'// what i do','s-h':'FULL<br>SERVICE.<br>NO GAPS.',
+    's-b':'From strategy to execution, shooting to paid campaigns — every layer of your social presence, handled.',
+    'sv1':'CONTENT STRATEGY','sv2':'VIDEO PRODUCTION & EDITING','sv3':'PAID SOCIAL CAMPAIGNS',
+    'sv4':'COMMUNITY MANAGEMENT','sv5':'BRAND SHOOTING','sv6':'ANALYTICS & REPORTING',
+    'pr-stamp':'// the process','pr-h':'SYSTEM.<br>NOT<br>LUCK.',
+    'pr-b':"Every successful social presence is built on a repeatable, data-informed system. Here's mine.",
+    'p1t':'AUDIT','p1d':'Brand, audience, competitor analysis. Find the real gap.',
+    'p2t':'STRATEGY','p2d':'Content roadmap, platform mix, tone of voice. Documented.',
+    'p3t':'EXECUTION','p3d':'Creation, scheduling, DMs, engagement. End to end.',
+    'p4t':'OPTIMISE','p4d':"Monthly data reviews. Kill what doesn't work. Scale what does.",
+    'cl-stamp':'// clients & brands','cl-h':'BRANDS<br>THAT BET<br>ON IT.',
+    'cl-b':'Brands that trusted the process and saw the results. Real community, real growth.',
+    'r-stamp':'// results','r-h':'NUMBERS<br>DON\'T<br>LIE.',
+    'r-b':'Every strategy I deploy is built to move real metrics. Not impressions — conversions. Not followers — loyal audiences.',
+    'rs1':'+340% AVERAGE REACH GROWTH','rs2':'×4 ENGAGEMENT RATE','rs3':'-60% COST PER LEAD','rs4':'+180% CONTENT OUTPUT',
+    'pl-stamp':'// platforms','pl-h':'EVERY<br>PLATFORM.<br>ONE VOICE.',
+    'pl-b':'From short-form video to long-form strategy — I adapt the message to the platform, not the other way around.',
+    'wm-stamp':'// why hugo','wm-h':'NO<br>AGENCY.<br>JUST ME.',
+    'wm-b':'You won\'t deal with account managers or generic playbooks. You deal directly with me — one person who knows your brand inside out.',
+    'wm1t':'DIRECT','wm1d':'You talk to me, not a middleman. Every decision, every piece of content — me.',
+    'wm2t':'COMMITTED','wm2d':'I treat your brand like mine. Full ownership, full accountability.',
+    'wm3t':'AGILE','wm3d':'No bureaucracy. Quick decisions, fast pivots, always ahead of trends.',
+    'wm4t':'RESULTS','wm4d':'I\'m only as good as my last campaign. That keeps me sharp.',
+    'co-stamp':"// let's work together",'co-h':'READY WHEN<br>YOU ARE.',
+    'co-avlbl':'AVAILABILITY',"co-avt":"Open for new projects. Let's see if we're a good fit.",
+    'send':'SEND MESSAGE','f-loc':'SPAIN / GLOBAL',
+    'nph':'Your name','eph':'Your email','bph':'Your brand / company','mph':'Tell me about your project...'
+  },
+  es:{
+    'nav-cta':'HABLEMOS','c-tr':'ESPAÑA / GLOBAL<br><span style="color:var(--c3)">COMMUNITY MANAGER</span>',
+    'h-stamp':'// community manager','h-h':'TU<br>MARCA<br>MERECE<br>MÁS.',
+    'h-b':'No solo más publicaciones. Más alcance, conversación y conversión. Hago que las redes realmente funcionen.',
+    'h-sub':'— Hugo Jiménez. Construyendo marcas<br>que la gente realmente quiere seguir.',
+    'scroll':'BAJAR',
+    'a-stamp':'// sobre mí','a-h':'PERSONAS<br>ANTES QUE<br>MÉTRICAS.',
+    'a-b':'Soy Hugo Jiménez — community manager obsesionado con la autenticidad. No persigo números vacíos. Construyo comunidades reales: contenido directo, interacción humana, estrategias que convierten. Basado en España. Trabajo globalmente.',
+    'a-ql':'// filosofía','a-q':'"NO SOLO<br>PUBLIQUES.<br>CONECTA."',
+    's-stamp':'// lo que hago','s-h':'SERVICIO<br>COMPLETO.<br>SIN HUECOS.',
+    's-b':'Desde estrategia hasta ejecución, shooting hasta campañas de pago — cada capa de tu presencia social, gestionada.',
+    'sv1':'ESTRATEGIA DE CONTENIDO','sv2':'PRODUCCIÓN Y EDICIÓN DE VÍDEO','sv3':'CAMPAÑAS PAID SOCIAL',
+    'sv4':'GESTIÓN DE COMUNIDAD','sv5':'SHOOTING DE MARCA','sv6':'ANALÍTICA E INFORMES',
+    'pr-stamp':'// el proceso','pr-h':'SISTEMA.<br>NO<br>SUERTE.',
+    'pr-b':'Cada presencia social exitosa se construye sobre un sistema repetible y basado en datos. Este es el mío.',
+    'p1t':'AUDITORÍA','p1d':'Análisis de marca, audiencia y competidores. Encontrar la oportunidad real.',
+    'p2t':'ESTRATEGIA','p2d':'Hoja de ruta de contenido, mix de plataformas, tono de voz. Documentado.',
+    'p3t':'EJECUCIÓN','p3d':'Creación, programación, DMs, engagement. De principio a fin.',
+    'p4t':'OPTIMIZAR','p4d':'Revisiones mensuales con datos. Eliminar lo que no funciona. Escalar lo que sí.',
+    'cl-stamp':'// clientes y marcas','cl-h':'MARCAS<br>QUE SE<br>JUGARON.',
+    'cl-b':'Marcas que confiaron en el proceso y vieron los resultados. Comunidad real, crecimiento real.',
+    'r-stamp':'// resultados','r-h':'LOS NÚMEROS<br>NO MIENTEN.',
+    'r-b':'Cada estrategia que despliego está construida para mover métricas reales. No impresiones — conversiones. No seguidores — audiencias fieles.',
+    'rs1':'+340% CRECIMIENTO DE ALCANCE','rs2':'×4 TASA DE ENGAGEMENT','rs3':'-60% COSTE POR LEAD','rs4':'+180% PRODUCCIÓN DE CONTENIDO',
+    'pl-stamp':'// plataformas','pl-h':'CADA<br>PLATAFORMA.<br>UNA VOZ.',
+    'pl-b':'Del vídeo corto a la estrategia de largo plazo — adapto el mensaje a la plataforma, no al revés.',
+    'wm-stamp':'// por qué hugo','wm-h':'SIN<br>AGENCIA.<br>YO SOLO.',
+    'wm-b':'No tratas con account managers ni playbooks genéricos. Tratas directamente conmigo — una persona que conoce tu marca por dentro y está totalmente comprometida.',
+    'wm1t':'DIRECTO','wm1d':'Hablas conmigo, no con un intermediario. Cada decisión, cada contenido — yo.',
+    'wm2t':'COMPROMETIDO','wm2d':'Trato tu marca como si fuera la mía. Responsabilidad total.',
+    'wm3t':'ÁGIL','wm3d':'Sin burocracia. Decisiones rápidas, pivots rápidos, siempre por delante.',
+    'wm4t':'RESULTADOS','wm4d':'Solo soy tan bueno como mi última campaña. Eso me mantiene afilado.',
+    'co-stamp':'// trabajemos juntos','co-h':'LISTO CUANDO<br>QUIERAS.',
+    'co-avlbl':'DISPONIBILIDAD','co-avt':'Abierto a nuevos proyectos. Escríbeme y vemos si encajamos.',
+    'send':'ENVIAR MENSAJE','f-loc':'ESPAÑA / GLOBAL',
+    'nph':'Tu nombre','eph':'Tu email','bph':'Tu marca / empresa','mph':'Cuéntame tu proyecto...'
+  }
+};
+
+let lang='en';
+function setLang(l){
+  lang=l;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('on',b.dataset.lang===l));
+  const t=T[l];
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(t[k])el.innerHTML=t[k];});
+  document.querySelectorAll('[data-phi]').forEach(el=>{const k=el.dataset.phi;if(t[k])el.placeholder=t[k];});
+}
+
+/* ═══════════════════════════════════════
+   SERVICE OVERLAY
+═══════════════════════════════════════ */
+const SVC_ITEMS=[
+  {
+    num:'— 01',title:'CONTENT\nSTRATEGY',
+    p1:"A content strategy isn't a calendar — it's a system. I map your brand's voice, audience triggers, and platform rhythms into a coherent plan that generates real traction. Every post has a reason, every format has a goal.",
+    p2:"From content pillars to editorial planning, I build the architecture that turns your brand into a story people want to follow. No guesswork, no generic templates — built specifically for your audience."
+  },
+  {
+    num:'— 02',title:'VIDEO PRODUCTION\n& EDITING',
+    p1:"Short-form video is the most powerful organic reach tool available right now. I handle the full cycle — concept, shooting, editing, and delivery — optimised for each platform's native formats.",
+    p2:"From Reels to TikTok to YouTube Shorts, I produce content that stops the scroll. Tight cuts, sharp hooks, and visuals that feel native — not like ads."
+  },
+  {
+    num:'— 03',title:'PAID SOCIAL\nCAMPAIGNS',
+    p1:"Paid social done right is an amplifier, not a crutch. I build campaigns from strategy to execution — audience segmentation, creative testing, bid optimisation — with full transparency on spend and return.",
+    p2:"Every euro is tracked. Every creative variation is tested. I iterate fast, cut waste early, and scale what works. You'll always know where your money is going and what it's returning."
+  },
+  {
+    num:'— 04',title:'COMMUNITY\nMANAGEMENT',
+    p1:"Community management is where brands are actually built — in the comments, DMs, and interactions that most brands ignore. I show up consistently, respond strategically, and keep your community engaged and loyal.",
+    p2:"I handle the day-to-day: replying, moderating, sparking conversations. But I also look for the signals — what your community is telling you — and feed that back into content and strategy."
+  },
+  {
+    num:'— 05',title:'BRAND\nSHOOTING',
+    p1:"Your brand needs a visual language that's immediately recognisable. I plan and execute brand shoots that produce a library of content across formats — feed, stories, video — all cohesive, all on-brand.",
+    p2:"This isn't stock photography. It's a strategic content asset shoot, planned around your content calendar, designed to last. One shoot session, months of premium-looking content."
+  },
+  {
+    num:'— 06',title:'ANALYTICS\n& REPORTING',
+    p1:"Data without interpretation is noise. I deliver monthly reports that translate performance metrics into clear decisions: what's working, what isn't, and what we do next. No vanity metrics — only what matters.",
+    p2:"I track the full funnel — reach, engagement, conversion, and retention — and use that data to continuously improve the strategy. You always know exactly where you stand."
+  }
+];
+
+let _svcIdx=0;
+
+function openSvc(idx){
+  _svcIdx=idx;
+  renderSvc();
+  document.getElementById('svc-overlay').classList.add('open');
+  document.body.style.overflowY='hidden';
+  document.addEventListener('keydown',_svcEsc);
+  if(window._ovStart) window._ovStart(idx);
+}
+function closeSvc(){
+  document.getElementById('svc-overlay').classList.remove('open');
+  document.body.style.overflowY='';
+  document.removeEventListener('keydown',_svcEsc);
+  if(window._ovStop) window._ovStop();
+}
+function navSvc(dir){
+  _svcIdx=Math.max(0,Math.min(SVC_ITEMS.length-1,_svcIdx+dir));
+  renderSvc();
+  if(window._ovMorph) window._ovMorph(_svcIdx);
+}
+function renderSvc(){
+  const it=SVC_ITEMS[_svcIdx];
+  document.getElementById('ov-num').textContent=it.num;
+  document.getElementById('ov-title').innerHTML=it.title.replace(/\n/g,'<br>');
+  document.getElementById('ov-p1').textContent=it.p1;
+  document.getElementById('ov-p2').textContent=it.p2;
+  document.getElementById('ov-ghost').textContent=String(_svcIdx+1).padStart(2,'0');
+  document.getElementById('ov-prev').disabled=_svcIdx===0;
+  document.getElementById('ov-next').disabled=_svcIdx===SVC_ITEMS.length-1;
+}
+function _svcEsc(e){if(e.key==='Escape')closeSvc();}
+
+/* ═══════════════════════════════════════
+   OVERLAY 3D — per-service morphing figure
+═══════════════════════════════════════ */
+(function(){
+  const cvs=document.getElementById('ov-canvas');
+  if(!cvs||typeof THREE==='undefined')return;
+
+  const renderer=new THREE.WebGLRenderer({canvas:cvs,alpha:true,antialias:true});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  renderer.setClearColor(0x000000,0);
+
+  const scene=new THREE.Scene();
+  const camera=new THREE.PerspectiveCamera(38,1,0.1,100);
+  camera.position.set(0,0,5.5);
+
+  function resOv(){
+    const w=cvs.clientWidth,h=cvs.clientHeight;
+    if(!w||!h)return;
+    renderer.setSize(w,h,false);
+    camera.aspect=w/h;
+    camera.updateProjectionMatrix();
+  }
+  window.addEventListener('resize',resOv);
+
+  // Lighting — mirrors main scene
+  scene.add(new THREE.AmbientLight(0x888880,0.55));
+  const ml=new THREE.DirectionalLight(0xfff8f0,2.6);
+  ml.position.set(4,6,3);scene.add(ml);
+  const rl=new THREE.DirectionalLight(0x90a0b0,0.55);
+  rl.position.set(-4,-2,2);scene.add(rl);
+  const fl=new THREE.DirectionalLight(0xb0a890,0.4);
+  fl.position.set(0,-5,1);scene.add(fl);
+  const pl=new THREE.PointLight(0xfff0e0,1.0,8);
+  pl.position.set(0,1,3);scene.add(pl);
+
+  const mat=new THREE.MeshStandardMaterial({color:0x6a8060,roughness:0.96,metalness:0.0});
+
+  const BASE=new THREE.IcosahedronGeometry(1.4,5);
+  const vN=BASE.attributes.position.count;
+
+  function mkShape(fn){
+    const p=BASE.attributes.position;
+    const a=new Float32Array(vN*3);
+    for(let i=0;i<vN;i++){
+      const x=p.getX(i),y=p.getY(i),z=p.getZ(i);
+      const r=Math.sqrt(x*x+y*y+z*z)||1;
+      const res=fn(x/r,y/r,z/r);
+      a[i*3]=res.x;a[i*3+1]=res.y;a[i*3+2]=res.z;
+    }
+    return a;
+  }
+
+  const OV_SHAPES=[
+    // 0 Content Strategy — organic flowing wave
+    mkShape((nx,ny,nz)=>{const d=1.4+0.26*Math.sin(ny*3.5)*Math.cos(nx*4.2)+0.12*Math.sin(nz*6.1);return{x:nx*d,y:ny*d,z:nz*d};}),
+    // 1 Video Production — wide cinematic slab
+    mkShape((nx,ny,nz)=>{const d=1.3+0.18*Math.sin(nx*5)*Math.cos(ny*3.2);return{x:nx*d*1.55,y:ny*d*0.58,z:nz*d*1.18};}),
+    // 2 Paid Social — sharp geometric crystal
+    mkShape((nx,ny,nz)=>{const c=Math.pow(Math.abs(nx),2.8)+Math.pow(Math.abs(ny),2.8)+Math.pow(Math.abs(nz),2.8);const d=1.42/Math.pow(c,1/2.8)*0.87;return{x:nx*d,y:ny*d,z:nz*d};}),
+    // 3 Community — tendrils, spreading nodes
+    mkShape((nx,ny,nz)=>{const d=1.28+0.42*Math.sin(nx*7.2+ny*5.1)+0.22*Math.cos(nz*8.4+nx*3.9);return{x:nx*d,y:ny*d,z:nz*d};}),
+    // 4 Brand Shooting — boxy, bold, squared
+    mkShape((nx,ny,nz)=>{const c=Math.pow(Math.abs(nx),8)+Math.pow(Math.abs(ny),8)+Math.pow(Math.abs(nz),8);const d=1.55/Math.pow(c,1/8)*0.76;return{x:nx*d,y:ny*d*0.9,z:nz*d};}),
+    // 5 Analytics — star spikes data burst
+    mkShape((nx,ny,nz)=>{const sp=Math.pow(Math.abs(Math.sin(nx*Math.PI*4)*Math.sin(ny*Math.PI*4)),0.2);const d=1.05+sp*0.95;return{x:nx*d,y:ny*d*1.12,z:nz*d};}),
+  ];
+
+  const geo=BASE.clone();
+  const wp=geo.attributes.position.array;
+  // init to shape 0
+  for(let i=0;i<vN*3;i++) wp[i]=OV_SHAPES[0][i];
+
+  const mesh=new THREE.Mesh(geo,mat);
+  mesh.scale.setScalar(0.70);
+  scene.add(mesh);
+
+  let _from=new Float32Array(OV_SHAPES[0]);
+  let _to  =OV_SHAPES[0];
+  let _t   =1.0;
+  let _time=0;
+  let _raf =null;
+
+  function ei(t){return t<0.5?2*t*t:(4-2*t)*t-1;}
+
+  function tick(){
+    _raf=requestAnimationFrame(tick);
+    _time+=0.008;
+    if(_t<1) _t=Math.min(1,_t+0.025);
+    const sm=ei(_t);
+    for(let i=0;i<vN;i++){
+      const br=1+0.016*Math.sin(_time*0.85+i*0.05);
+      wp[i*3]  =(_from[i*3]  +(_to[i*3]  -_from[i*3]  )*sm)*br;
+      wp[i*3+1]=(_from[i*3+1]+(_to[i*3+1]-_from[i*3+1])*sm)*br;
+      wp[i*3+2]=(_from[i*3+2]+(_to[i*3+2]-_from[i*3+2])*sm)*br;
+    }
+    geo.attributes.position.needsUpdate=true;
+    geo.computeVertexNormals();
+    mesh.rotation.y+=0.005;
+    mesh.rotation.x=Math.sin(_time*0.28)*0.1;
+    ml.position.x=4.5*Math.cos(_time*0.18);
+    ml.position.z=3+1.8*Math.sin(_time*0.14);
+    resOv();
+    renderer.render(scene,camera);
+  }
+
+  window._ovStart=function(idx){
+    const tgt=OV_SHAPES[Math.min(idx,OV_SHAPES.length-1)];
+    // snap to target on fresh open
+    for(let i=0;i<vN*3;i++){wp[i]=tgt[i];_from[i]=tgt[i];}
+    _to=tgt;_t=1;
+    if(!_raf){resOv();tick();}
+  };
+  window._ovMorph=function(idx){
+    // capture current interpolated positions as new _from
+    _from=new Float32Array(wp);
+    _to=OV_SHAPES[Math.min(idx,OV_SHAPES.length-1)];
+    _t=0;
+  };
+  window._ovStop=function(){
+    if(_raf){cancelAnimationFrame(_raf);_raf=null;}
+  };
+})();
+
+/* ═══════════════════════════════════════
+   PLATFORM OVERLAY 3D
+═══════════════════════════════════════ */
+(function(){
+  const cvs=document.getElementById('plat-canvas');
+  if(!cvs||typeof THREE==='undefined')return;
+
+  const renderer=new THREE.WebGLRenderer({canvas:cvs,alpha:true,antialias:true});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  renderer.setClearColor(0x000000,0);
+
+  const scene=new THREE.Scene();
+  const camera=new THREE.PerspectiveCamera(38,1,0.1,100);
+  camera.position.set(0,0,5.5);
+
+  function resPl(){
+    const w=cvs.clientWidth,h=cvs.clientHeight;
+    if(!w||!h)return;
+    renderer.setSize(w,h,false);
+    camera.aspect=w/h;
+    camera.updateProjectionMatrix();
+  }
+  window.addEventListener('resize',resPl);
+
+  scene.add(new THREE.AmbientLight(0x888880,0.55));
+  const ml=new THREE.DirectionalLight(0xfff8f0,2.6);
+  ml.position.set(4,6,3);scene.add(ml);
+  const rl=new THREE.DirectionalLight(0x90a0b0,0.55);
+  rl.position.set(-4,-2,2);scene.add(rl);
+  const fl=new THREE.DirectionalLight(0xb0a890,0.4);
+  fl.position.set(0,-5,1);scene.add(fl);
+  const pl=new THREE.PointLight(0xfff0e0,1.0,8);
+  pl.position.set(0,1,3);scene.add(pl);
+
+  const mat=new THREE.MeshStandardMaterial({color:0x6a8060,roughness:0.96,metalness:0.0});
+
+  const BASE=new THREE.IcosahedronGeometry(1.4,5);
+  const vN=BASE.attributes.position.count;
+
+  function mkS(fn){
+    const p=BASE.attributes.position;
+    const a=new Float32Array(vN*3);
+    for(let i=0;i<vN;i++){
+      const x=p.getX(i),y=p.getY(i),z=p.getZ(i);
+      const r=Math.sqrt(x*x+y*y+z*z)||1;
+      const res=fn(x/r,y/r,z/r);
+      a[i*3]=res.x;a[i*3+1]=res.y;a[i*3+2]=res.z;
+    }
+    return a;
+  }
+
+  const PS=[
+    // Instagram — smooth aesthetic sphere, soft undulation
+    mkS((nx,ny,nz)=>{const d=1.45+0.11*Math.sin(ny*4.2+nx*3.1)*Math.cos(nz*5.3);return{x:nx*d,y:ny*d,z:nz*d};}),
+    // TikTok — diagonal twist, energetic
+    mkS((nx,ny,nz)=>{const tw=ny*Math.PI*2.2;const dx=nx*Math.cos(tw)-nz*Math.sin(tw);const dz=nx*Math.sin(tw)+nz*Math.cos(tw);const d=1.32+0.24*Math.sin(dx*5+dz*4);return{x:dx*d,y:ny*d*1.35,z:dz*d};}),
+    // LinkedIn — clean professional cubic
+    mkS((nx,ny,nz)=>{const c=Math.pow(Math.abs(nx),4)+Math.pow(Math.abs(ny),4)+Math.pow(Math.abs(nz),4);const d=1.42/Math.pow(c,0.25)*0.87;return{x:nx*d,y:ny*d,z:nz*d};}),
+    // X/Twitter — sharp spiky star, angular
+    mkS((nx,ny,nz)=>{const sp=Math.pow(Math.abs(Math.sin(nx*Math.PI*3.5)*Math.sin(ny*Math.PI*3.5)),0.25);const d=1.05+sp*0.82;return{x:nx*d,y:ny*d,z:nz*d};}),
+    // YouTube — wide cinematic horizontal slab
+    mkS((nx,ny,nz)=>{const d=1.38+0.2*Math.sin(nx*4.2)*Math.cos(ny*3.1);return{x:nx*d*1.62,y:ny*d*0.52,z:nz*d*1.1};}),
+    // Facebook/Threads — spreading community nodes
+    mkS((nx,ny,nz)=>{const d=1.28+0.38*Math.sin(nx*6.5+ny*4.2)+0.2*Math.cos(nz*7.8+nx*5.1);return{x:nx*d,y:ny*d,z:nz*d};}),
+  ];
+
+  const geo=BASE.clone();
+  const wp=geo.attributes.position.array;
+  for(let i=0;i<vN*3;i++) wp[i]=PS[0][i];
+
+  const mesh=new THREE.Mesh(geo,mat);
+  mesh.scale.setScalar(0.70);
+  scene.add(mesh);
+
+  let _pf=new Float32Array(PS[0]),_pt=PS[0],_pT=1.0,_ptime=0,_praf=null;
+
+  function ei(t){return t<0.5?2*t*t:(4-2*t)*t-1;}
+
+  function ptick(){
+    _praf=requestAnimationFrame(ptick);
+    _ptime+=0.008;
+    if(_pT<1)_pT=Math.min(1,_pT+0.025);
+    const sm=ei(_pT);
+    for(let i=0;i<vN;i++){
+      const br=1+0.016*Math.sin(_ptime*0.85+i*0.05);
+      wp[i*3]  =(_pf[i*3]  +(_pt[i*3]  -_pf[i*3]  )*sm)*br;
+      wp[i*3+1]=(_pf[i*3+1]+(_pt[i*3+1]-_pf[i*3+1])*sm)*br;
+      wp[i*3+2]=(_pf[i*3+2]+(_pt[i*3+2]-_pf[i*3+2])*sm)*br;
+    }
+    geo.attributes.position.needsUpdate=true;
+    geo.computeVertexNormals();
+    mesh.rotation.y+=0.005;
+    mesh.rotation.x=Math.sin(_ptime*0.28)*0.1;
+    ml.position.x=4.5*Math.cos(_ptime*0.18);
+    ml.position.z=3+1.8*Math.sin(_ptime*0.14);
+    resPl();
+    renderer.render(scene,camera);
+  }
+
+  window._platStart=function(idx){
+    const tgt=PS[Math.min(idx,PS.length-1)];
+    for(let i=0;i<vN*3;i++){wp[i]=tgt[i];_pf[i]=tgt[i];}
+    _pt=tgt;_pT=1;
+    if(!_praf){resPl();ptick();}
+  };
+  window._platMorph=function(idx){
+    _pf=new Float32Array(wp);
+    _pt=PS[Math.min(idx,PS.length-1)];
+    _pT=0;
+  };
+  window._platStop=function(){
+    if(_praf){cancelAnimationFrame(_praf);_praf=null;}
+  };
+})();
+
+/* ═══════════════════════════════════════
+   PLATFORM OVERLAY LOGIC
+═══════════════════════════════════════ */
+const PLAT_ITEMS=[
+  {
+    num:'— 01',stamp:'// visual platform',title:'INSTAGRAM',
+    p1:"Instagram is a visual world — every post is a window into your brand's identity. I build feed grids that hold together as a collection, Stories that create daily habits, and Reels engineered to reach far beyond your existing audience.",
+    p2:"The algorithm rewards consistency and native behavior. I don't just post — I study what your specific audience responds to, test formats relentlessly, and turn your profile into a magnet, not a bulletin board."
+  },
+  {
+    num:'— 02',stamp:'// short-form video',title:'TIKTOK',
+    p1:"TikTok rewards authenticity over production value — but that doesn't mean random. I build a content strategy rooted in your brand's genuine voice, using trends as amplifiers, not the message itself.",
+    p2:"The pace is relentless and the algorithm is brutal. I stay ahead of sound trends, hook formats, and the subtle codes of each niche so your brand shows up where attention actually lives right now."
+  },
+  {
+    num:'— 03',stamp:'// b2b & authority',title:'LINKEDIN',
+    p1:"LinkedIn is where professional reputations are built. I position you as a credible, thoughtful voice in your industry — long-form posts, clear points of view, content that earns respect and opens conversations.",
+    p2:"It's not about going viral here. It's about being the account that decision-makers follow. I craft content that builds your network and generates real B2B opportunities over time."
+  },
+  {
+    num:'— 04',stamp:'// real-time culture',title:'X / TWITTER',
+    p1:"X moves at the speed of the news cycle. Being present here means being fast, sharp, and always in tune with what's happening. I manage your brand's voice in real-time — reactive, witty, and strategically consistent.",
+    p2:"Replies are where communities form on X. I engage with industry conversations, build relationships through interaction, and position your brand as a voice that adds signal rather than noise."
+  },
+  {
+    num:'— 05',stamp:'// long-form & seo',title:'YOUTUBE',
+    p1:"YouTube builds the deepest loyalty of any platform. Subscribers who find you through a well-crafted video stay. I plan, produce, and optimise long-form content that serves both the algorithm and the viewer.",
+    p2:"SEO is critical here — titles, descriptions, thumbnails, and tags are all part of the strategy. I make your channel discoverable to people who are actively searching for what you offer."
+  },
+  {
+    num:'— 06',stamp:'// community & reach',title:'FACEBOOK\n& THREADS',
+    p1:"Facebook's strength is community and broad reach — especially for audiences 30+. I manage Groups, run targeted content strategies, and leverage Facebook's still-powerful organic reach when used correctly.",
+    p2:"Threads is the space for casual, text-first brand personality. I use it to show the human side of your brand — less polished, more conversational, building a different kind of connection."
+  }
+];
+
+let _platIdx=0;
+
+function openPlat(idx){
+  _platIdx=idx;
+  renderPlat();
+  document.getElementById('plat-overlay').classList.add('open');
+  document.body.style.overflowY='hidden';
+  document.addEventListener('keydown',_platEsc);
+  if(window._platStart) window._platStart(idx);
+}
+function closePlat(){
+  document.getElementById('plat-overlay').classList.remove('open');
+  document.body.style.overflowY='';
+  document.removeEventListener('keydown',_platEsc);
+  if(window._platStop) window._platStop();
+}
+function navPlat(dir){
+  _platIdx=Math.max(0,Math.min(PLAT_ITEMS.length-1,_platIdx+dir));
+  renderPlat();
+  if(window._platMorph) window._platMorph(_platIdx);
+}
+function renderPlat(){
+  const it=PLAT_ITEMS[_platIdx];
+  document.getElementById('plat-num').textContent=it.num;
+  document.getElementById('plat-stamp').textContent=it.stamp;
+  document.getElementById('plat-title').innerHTML=it.title.replace(/\n/g,'<br>');
+  document.getElementById('plat-p1').textContent=it.p1;
+  document.getElementById('plat-p2').textContent=it.p2;
+  document.getElementById('plat-ghost').textContent=String(_platIdx+1).padStart(2,'0');
+  document.getElementById('plat-prev').disabled=_platIdx===0;
+  document.getElementById('plat-next').disabled=_platIdx===PLAT_ITEMS.length-1;
+}
+function _platEsc(e){if(e.key==='Escape')closePlat();}
+
+/* ═══════════════════════════════════════
+   FORM
+═══════════════════════════════════════ */
+function handleForm(e){
+  e.preventDefault();
+  const form=e.target;
+  const btn=form.querySelector('.c-btn');
+  const btnSpan=btn.querySelector('span[data-i18n]');
+
+  // Disable button while sending
+  btn.disabled=true;
+  btnSpan.textContent=lang==='en'?'SENDING…':'ENVIANDO…';
+
+  emailjs.sendForm(EJS_SERVICE, EJS_TEMPLATE, form)
+    .then(()=>{
+      btnSpan.textContent=lang==='en'?'SENT ✓':'ENVIADO ✓';
+      btn.style.background='var(--accent)';
+      btn.style.color='var(--c7)';
+      form.reset();
+      setTimeout(()=>{
+        btnSpan.innerHTML=T[lang]['send'];
+        btn.style.background='';
+        btn.style.color='';
+        btn.disabled=false;
+      },3000);
+    })
+    .catch(()=>{
+      btnSpan.textContent=lang==='en'?'ERROR — TRY AGAIN':'ERROR — INTÉNTALO';
+      btn.style.background='#5a1a1a';
+      setTimeout(()=>{
+        btnSpan.innerHTML=T[lang]['send'];
+        btn.style.background='';
+        btn.disabled=false;
+      },3000);
+    });
+}
+</script>
+</body>
+</html>
