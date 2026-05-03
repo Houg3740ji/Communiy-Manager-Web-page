@@ -445,8 +445,8 @@ footer{
   .n-cta { font-size: 0.5rem; padding: 5px 10px; }
 
   #prog { display: none; }
-  /* 3D ball: visible but ultra-transparent behind content */
-  #three-canvas { opacity: 0.07; z-index: 1; pointer-events: none; }
+  /* 3D ball: visible but semi-transparent behind content */
+  #three-canvas { opacity: 0.18; z-index: 1; pointer-events: none; }
   #thread-svg { display: none; }
   .corner { display: none; }
   .dots { display: none; }
@@ -1441,10 +1441,19 @@ if(!isMobile()){
 
   const scroller = document.body;
   scroller.addEventListener('scroll',()=>{
+    if(_mob) return;
     const drv = document.getElementById('drv');
     const h = drv.offsetHeight - scroller.clientHeight;
     scrollProgress = Math.max(0,Math.min(1, scroller.scrollTop/h));
   },{passive:true});
+
+  // Mobile scroll — html is the scroller on mobile, use window.scrollY
+  if(_mob){
+    window.addEventListener('scroll',()=>{
+      const h = document.body.scrollHeight - window.innerHeight;
+      if(h > 0) scrollProgress = Math.max(0,Math.min(1, window.scrollY/h));
+    },{passive:true});
+  }
 
   let time = 0;
 
@@ -1452,10 +1461,25 @@ if(!isMobile()){
     requestAnimationFrame(animate);
     time += 0.008;
 
-    // Mobile: simple slow rotation only — no scroll morph, no rope
+    // Mobile: full morph + rotation, no rope physics
     if(_mob){
-      mesh.rotation.y += 0.0015;
-      mesh.rotation.x = Math.sin(time*0.25)*0.06;
+      displayProgress += (scrollProgress - displayProgress) * 0.04;
+      const rawIdxM = displayProgress * 8;
+      const fromIdxM = Math.floor(rawIdxM);
+      const toIdxM   = Math.min(fromIdxM+1, 8);
+      const fracM    = easeInOut(rawIdxM - fromIdxM);
+      const fromM = targets[fromIdxM], toM = targets[toIdxM];
+      for(let i=0;i<vCount;i++){
+        const breath = 1 + 0.02*Math.sin(time*0.9 + i*0.05);
+        workPos[i*3]   = lerp(fromM[i*3],   toM[i*3],   fracM)*breath;
+        workPos[i*3+1] = lerp(fromM[i*3+1], toM[i*3+1], fracM)*breath;
+        workPos[i*3+2] = lerp(fromM[i*3+2], toM[i*3+2], fracM)*breath;
+      }
+      geo.attributes.position.needsUpdate = true;
+      geo.computeVertexNormals();
+      mesh.rotation.y += 0.004 + displayProgress * 0.002;
+      mesh.rotation.x = Math.sin(time*0.3)*0.08 + displayProgress * 0.15;
+      mesh.rotation.z += 0.0008;
       renderer.render(scene, camera);
       return;
     }
