@@ -532,10 +532,11 @@ footer{
   .lang-btn, .n-cta, .svc-row,
   .ov-back, .ov-nav-btn { cursor: auto; }
 
-  nav { padding: 0 16px; height: 48px; }
-  .n-logo { font-size: 1rem; }
-  .lang-tog { display: none; }
-  .n-cta { font-size: 0.5rem; padding: 5px 10px; }
+  nav { padding: 0 12px; height: 48px; }
+  .n-logo { font-size: 0.9rem; }
+  .lang-tog { display: flex; gap: 1px; }
+  .lang-btn { font-size: 0.45rem; padding: 3px 6px; }
+  .n-cta { font-size: 0.45rem; padding: 4px 8px; }
 
   #prog { display: none; }
   /* 3D ball: visible but semi-transparent behind content */
@@ -857,10 +858,10 @@ footer{
   <a href="/" class="n-logo" title="Hugo Jiménez — Community Manager">HUGO JIMÉNEZ</a>
   <div class="n-r">
     <div class="lang-tog" aria-label="Seleccionar idioma">
-      <button class="lang-btn" data-lang="en" onclick="setLang('en')" aria-label="English">EN</button>
-      <button class="lang-btn on" data-lang="es" onclick="setLang('es')" aria-label="Español">ES</button>
+      <button class="lang-btn on" data-lang="en" onclick="setLang('en')" aria-label="English">EN</button>
+      <button class="lang-btn" data-lang="es" onclick="setLang('es')" aria-label="Español">ES</button>
     </div>
-    <a href="#p8" class="n-cta" data-i18n="nav-cta" title="Contactar con Hugo Jiménez">HABLEMOS</a>
+    <a href="#p8" class="n-cta" data-i18n="nav-cta" title="Contactar con Hugo Jiménez">LET'S TALK</a>
   </div>
 </nav>
 
@@ -886,7 +887,7 @@ footer{
     <div class="panel on" id="p0" role="region" aria-label="Inicio — Hugo Jiménez, Community Manager" data-screen-label="01 Hero">
       <div class="tz-left">
         <span class="stamp" data-i18n="h-stamp">// community manager</span>
-        <h1 class="brutal" data-i18n="h-h">TU<br>MARCA<br>MERECE<br>MÁS.</h1>
+        <h1 class="brutal" data-i18n="h-h">YOUR<br>BRAND<br>DESERVES<br>MORE.</h1>
         <span class="body-txt" data-i18n="h-b">Not just more posts. More reach, more conversation, more conversion. I make social media actually work for your brand.</span>
         <span class="mono-txt" data-i18n="h-sub">— Hugo Jiménez. Building brands<br>people actually want to follow.</span>
       </div>
@@ -907,7 +908,7 @@ footer{
       <img src="hugo.png" class="hugo-photo p1-photo" alt="Hugo Jiménez, Community Manager profesional en España" loading="lazy" decoding="async" width="600" height="800">
       <div class="tz-left">
         <span class="stamp" data-i18n="a-stamp">// about</span>
-        <h2 class="brutal" data-i18n="a-h">PERSONAS<br>ANTES QUE<br>MÉTRICAS.</h2>
+        <h2 class="brutal" data-i18n="a-h">PEOPLE<br>BEFORE<br>METRICS.</h2>
         <span class="body-txt" data-i18n="a-b">I'm Hugo Jiménez — a community manager obsessed with authenticity. I don't chase vanity numbers. I build real communities around brands worth following: sharp content, human interaction, strategies that convert. Based in Spain. Working globally.</span>
         <div class="rule"></div>
         <span class="mono-txt" style="color:var(--c5);">IG · TK · LI · X · YT · FB · THREADS</span>
@@ -923,7 +924,7 @@ footer{
     <div class="panel" id="p2" role="region" aria-label="Servicios de Community Management" data-screen-label="03 Services">
       <div class="tz-left">
         <span class="stamp" data-i18n="s-stamp">// what i do</span>
-        <h2 class="brutal" data-i18n="s-h">SERVICIO<br>COMPLETO.<br>SIN HUECOS.</h2>
+        <h2 class="brutal" data-i18n="s-h">FULL<br>SERVICE.<br>NO GAPS.</h2>
         <span class="body-txt" data-i18n="s-b">From strategy to execution, shooting to paid campaigns — every layer of your social presence, handled.</span>
         <div class="svc">
           <div class="svc-row" onclick="openSvc(0)" role="button" tabindex="0"><span class="svc-name" data-i18n="sv1">CONTENT STRATEGY</span><span class="svc-n">—01</span></div>
@@ -950,7 +951,7 @@ footer{
       </div>
       <div class="tz-r">
         <span class="stamp" data-i18n="pr-stamp">// the process</span>
-        <h2 class="brutal" data-i18n="pr-h">SISTEMA.<br>NO<br>SUERTE.</h2>
+        <h2 class="brutal" data-i18n="pr-h">SYSTEM.<br>NOT<br>LUCK.</h2>
         <span class="body-txt" data-i18n="pr-b">Every successful social presence is built on a repeatable, data-informed system. Here's mine.</span>
         <div class="proc-grid">
           <div class="proc-cell hl"><span class="pnum">01</span><span class="ptitle" data-i18n="p1t">AUDIT</span><span class="pdesc" data-i18n="p1d">Brand, audience, competitor analysis. Find the real gap.</span></div>
@@ -965,7 +966,7 @@ footer{
     <div class="panel" id="p4" role="region" aria-label="Clientes y marcas" data-screen-label="05 Clients">
       <div class="tz-left">
         <span class="stamp" data-i18n="cl-stamp">// clients & brands</span>
-        <h2 class="brutal" data-i18n="cl-h">MARCAS<br>QUE SE<br>JUGARON.</h2>
+        <h2 class="brutal" data-i18n="cl-h">BRANDS<br>THAT BET<br>ON IT.</h2>
         <span class="body-txt" data-i18n="cl-b">Brands that trusted the process and saw the results. Real community, real growth.</span>
         <div class="cli-list">
           <div class="cli-row"><a href="https://www.instagram.com/xpecado.oficial/" target="_blank" rel="noopener" class="cli-name" style="text-decoration:none;cursor:none;transition:color .2s;">@XPECADO.OFICIAL</a><span class="cli-tag">GASTRONOMÍA</span></div>
@@ -990,7 +991,7 @@ footer{
       </div>
       <div class="tz-r">
         <span class="stamp" data-i18n="r-stamp">// results</span>
-        <h2 class="brutal" data-i18n="r-h">LOS NÚMEROS<br>NO<br>MIENTEN.</h2>
+        <h2 class="brutal" data-i18n="r-h">NUMBERS<br>DON'T<br>LIE.</h2>
         <span class="body-txt" data-i18n="r-b">Every strategy I deploy is built to move real metrics. Not impressions — conversions. Not followers — loyal audiences.</span>
         <div class="svc" style="margin-top:18px;">
           <div class="svc-row"><span class="svc-name" data-i18n="rs1">+340% AVERAGE REACH GROWTH</span><span class="svc-n">—KPI</span></div>
@@ -1005,7 +1006,7 @@ footer{
     <div class="panel" id="p6" role="region" aria-label="Plataformas de redes sociales" data-screen-label="07 Platforms">
       <div class="tz-left">
         <span class="stamp" data-i18n="pl-stamp">// platforms</span>
-        <h2 class="brutal" data-i18n="pl-h">CADA<br>PLATAFORMA.<br>UNA VOZ.</h2>
+        <h2 class="brutal" data-i18n="pl-h">EVERY<br>PLATFORM.<br>ONE VOICE.</h2>
         <span class="body-txt" data-i18n="pl-b">From short-form video to long-form strategy — I adapt the message to the platform, not the other way around. Each channel gets its own approach, all aligned to one brand identity.</span>
         <div class="svc" style="margin-top:8px;">
           <div class="svc-row" onclick="openPlat(0)" role="button" tabindex="0"><span class="svc-name">INSTAGRAM</span><span class="svc-n">REELS · STORIES · FEED</span></div>
@@ -1035,7 +1036,7 @@ footer{
       </div>
       <div class="tz-r">
         <span class="stamp" data-i18n="wm-stamp">// why hugo</span>
-        <h2 class="brutal" data-i18n="wm-h">SIN<br>AGENCIA.<br>SOLO YO.</h2>
+        <h2 class="brutal" data-i18n="wm-h">NO<br>AGENCY.<br>JUST ME.</h2>
         <span class="body-txt" data-i18n="wm-b">You won't deal with account managers, junior creatives, or generic playbooks. You deal directly with me — one person who knows your brand inside out and is fully committed to its growth.</span>
         <div class="proc-grid" style="margin-top:8px;">
           <div class="proc-cell hl"><span class="pnum">01</span><span class="ptitle" data-i18n="wm1t">DIRECT</span><span class="pdesc" data-i18n="wm1d">You talk to me, not a middleman. Every decision, every piece of content — me.</span></div>
@@ -1050,7 +1051,7 @@ footer{
     <div class="panel" id="p8" role="region" aria-label="Contacto — trabajar con Hugo Jiménez" data-screen-label="09 Contact">
       <div class="tz-full">
         <span class="stamp" data-i18n="co-stamp">// let's work together</span>
-        <h2 class="brutal" style="font-size:clamp(3rem,7vw,7rem);display:block;margin-bottom:20px;" data-i18n="co-h">LISTO CUANDO<br>TÚ LO SEAS.</h2>
+        <h2 class="brutal" style="font-size:clamp(3rem,7vw,7rem);display:block;margin-bottom:20px;" data-i18n="co-h">READY WHEN<br>YOU ARE.</h2>
         <div class="con-grid">
           <div class="con-col dk">
             <span class="c-lbl">EMAIL</span>
@@ -1122,7 +1123,7 @@ footer{
     <a href="https://www.linkedin.com/in/hugo-jiménez-herrero-514ba3305" target="_blank" rel="noopener noreferrer" class="f-a" title="LinkedIn de Hugo Jiménez, Community Manager" aria-label="LinkedIn">LINKEDIN</a>
     <a href="mailto:brandkosmos@gmail.com" class="f-a" title="Email de contacto" aria-label="Email">EMAIL</a>
   </div>
-  <span class="f-copy" data-i18n="f-loc">ESPAÑA / GLOBAL</span>
+  <span class="f-copy" data-i18n="f-loc">SPAIN / GLOBAL</span>
 </footer>
 
 <!-- EmailJS -->
@@ -1841,48 +1842,75 @@ const T={
   }
 };
 
-let lang='es';
+let lang='en';
 function setLang(l){
   lang=l;
   document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('on',b.dataset.lang===l));
   const t=T[l];
   document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(t[k])el.innerHTML=t[k];});
   document.querySelectorAll('[data-phi]').forEach(el=>{const k=el.dataset.phi;if(t[k])el.placeholder=t[k];});
+  if(document.getElementById('svc-overlay').classList.contains('open'))renderSvc();
+  if(document.getElementById('plat-overlay').classList.contains('open'))renderPlat();
 }
+setLang('en');
 
 /* ═══════════════════════════════════════
    SERVICE OVERLAY
 ═══════════════════════════════════════ */
 const SVC_ITEMS=[
   {
-    num:'— 01',title:'CONTENT\nSTRATEGY',
-    p1:"A content strategy isn't a calendar — it's a system. I map your brand's voice, audience triggers, and platform rhythms into a coherent plan that generates real traction. Every post has a reason, every format has a goal.",
-    p2:"From content pillars to editorial planning, I build the architecture that turns your brand into a story people want to follow. No guesswork, no generic templates — built specifically for your audience."
+    num:'— 01',
+    en:{title:'CONTENT\nSTRATEGY',
+      p1:"A content strategy isn't a calendar — it's a system. I map your brand's voice, audience triggers, and platform rhythms into a coherent plan that generates real traction. Every post has a reason, every format has a goal.",
+      p2:"From content pillars to editorial planning, I build the architecture that turns your brand into a story people want to follow. No guesswork, no generic templates — built specifically for your audience."},
+    es:{title:'ESTRATEGIA DE\nCONTENIDO',
+      p1:"Una estrategia de contenido no es un calendario — es un sistema. Mapeo la voz de tu marca, los activadores de tu audiencia y los ritmos de cada plataforma en un plan coherente que genera tracción real. Cada publicación tiene una razón, cada formato tiene un objetivo.",
+      p2:"Desde pilares de contenido hasta planificación editorial, construyo la arquitectura que convierte tu marca en una historia que la gente quiere seguir. Sin suposiciones, sin plantillas genéricas — construido específicamente para tu audiencia."}
   },
   {
-    num:'— 02',title:'VIDEO PRODUCTION\n& EDITING',
-    p1:"Short-form video is the most powerful organic reach tool available right now. I handle the full cycle — concept, shooting, editing, and delivery — optimised for each platform's native formats.",
-    p2:"From Reels to TikTok to YouTube Shorts, I produce content that stops the scroll. Tight cuts, sharp hooks, and visuals that feel native — not like ads."
+    num:'— 02',
+    en:{title:'VIDEO PRODUCTION\n& EDITING',
+      p1:"Short-form video is the most powerful organic reach tool available right now. I handle the full cycle — concept, shooting, editing, and delivery — optimised for each platform's native formats.",
+      p2:"From Reels to TikTok to YouTube Shorts, I produce content that stops the scroll. Tight cuts, sharp hooks, and visuals that feel native — not like ads."},
+    es:{title:'PRODUCCIÓN Y\nEDICIÓN DE VÍDEO',
+      p1:"El vídeo corto es la herramienta de alcance orgánico más potente disponible ahora mismo. Me encargo del ciclo completo — concepto, grabación, edición y entrega — optimizado para los formatos nativos de cada plataforma.",
+      p2:"Desde Reels hasta TikTok y YouTube Shorts, produzco contenido que para el scroll. Cortes precisos, hooks potentes y visuales que se sienten nativos — no como anuncios."}
   },
   {
-    num:'— 03',title:'PAID SOCIAL\nCAMPAIGNS',
-    p1:"Paid social done right is an amplifier, not a crutch. I build campaigns from strategy to execution — audience segmentation, creative testing, bid optimisation — with full transparency on spend and return.",
-    p2:"Every euro is tracked. Every creative variation is tested. I iterate fast, cut waste early, and scale what works. You'll always know where your money is going and what it's returning."
+    num:'— 03',
+    en:{title:'PAID SOCIAL\nCAMPAIGNS',
+      p1:"Paid social done right is an amplifier, not a crutch. I build campaigns from strategy to execution — audience segmentation, creative testing, bid optimisation — with full transparency on spend and return.",
+      p2:"Every euro is tracked. Every creative variation is tested. I iterate fast, cut waste early, and scale what works. You'll always know where your money is going and what it's returning."},
+    es:{title:'CAMPAÑAS\nPAID SOCIAL',
+      p1:"El paid social bien hecho es un amplificador, no una muleta. Construyo campañas desde la estrategia hasta la ejecución — segmentación de audiencia, prueba de creatividades, optimización de pujas — con total transparencia en gasto y retorno.",
+      p2:"Cada euro está rastreado. Cada variación creativa se testea. Itero rápido, corto el desperdicio pronto y escalo lo que funciona. Siempre sabrás adónde va tu dinero y qué devuelve."}
   },
   {
-    num:'— 04',title:'COMMUNITY\nMANAGEMENT',
-    p1:"Community management is where brands are actually built — in the comments, DMs, and interactions that most brands ignore. I show up consistently, respond strategically, and keep your community engaged and loyal.",
-    p2:"I handle the day-to-day: replying, moderating, sparking conversations. But I also look for the signals — what your community is telling you — and feed that back into content and strategy."
+    num:'— 04',
+    en:{title:'COMMUNITY\nMANAGEMENT',
+      p1:"Community management is where brands are actually built — in the comments, DMs, and interactions that most brands ignore. I show up consistently, respond strategically, and keep your community engaged and loyal.",
+      p2:"I handle the day-to-day: replying, moderating, sparking conversations. But I also look for the signals — what your community is telling you — and feed that back into content and strategy."},
+    es:{title:'GESTIÓN DE\nCOMUNIDAD',
+      p1:"El community management es donde realmente se construyen las marcas — en los comentarios, DMs e interacciones que la mayoría ignora. Aparezco de forma consistente, respondo estratégicamente y mantengo tu comunidad comprometida y fiel.",
+      p2:"Me encargo del día a día: responder, moderar, generar conversaciones. Pero también busco las señales — lo que tu comunidad te está diciendo — y lo retroalimento en el contenido y la estrategia."}
   },
   {
-    num:'— 05',title:'BRAND\nSHOOTING',
-    p1:"Your brand needs a visual language that's immediately recognisable. I plan and execute brand shoots that produce a library of content across formats — feed, stories, video — all cohesive, all on-brand.",
-    p2:"This isn't stock photography. It's a strategic content asset shoot, planned around your content calendar, designed to last. One shoot session, months of premium-looking content."
+    num:'— 05',
+    en:{title:'BRAND\nSHOOTING',
+      p1:"Your brand needs a visual language that's immediately recognisable. I plan and execute brand shoots that produce a library of content across formats — feed, stories, video — all cohesive, all on-brand.",
+      p2:"This isn't stock photography. It's a strategic content asset shoot, planned around your content calendar, designed to last. One shoot session, months of premium-looking content."},
+    es:{title:'SHOOTING\nDE MARCA',
+      p1:"Tu marca necesita un lenguaje visual inmediatamente reconocible. Planifico y ejecuto shootings de marca que producen una biblioteca de contenido en distintos formatos — feed, stories, vídeo — todo cohesivo, todo acorde a la marca.",
+      p2:"Esto no es fotografía de stock. Es un shooting estratégico de activos de contenido, planificado en torno a tu calendario editorial, diseñado para durar. Una sesión, meses de contenido de aspecto premium."}
   },
   {
-    num:'— 06',title:'ANALYTICS\n& REPORTING',
-    p1:"Data without interpretation is noise. I deliver monthly reports that translate performance metrics into clear decisions: what's working, what isn't, and what we do next. No vanity metrics — only what matters.",
-    p2:"I track the full funnel — reach, engagement, conversion, and retention — and use that data to continuously improve the strategy. You always know exactly where you stand."
+    num:'— 06',
+    en:{title:'ANALYTICS\n& REPORTING',
+      p1:"Data without interpretation is noise. I deliver monthly reports that translate performance metrics into clear decisions: what's working, what isn't, and what we do next. No vanity metrics — only what matters.",
+      p2:"I track the full funnel — reach, engagement, conversion, and retention — and use that data to continuously improve the strategy. You always know exactly where you stand."},
+    es:{title:'ANALÍTICA\nE INFORMES',
+      p1:"Los datos sin interpretación son ruido. Entrego informes mensuales que traducen las métricas de rendimiento en decisiones claras: qué funciona, qué no y qué hacemos a continuación. Sin métricas de vanidad — solo lo que importa.",
+      p2:"Hago seguimiento del embudo completo — alcance, engagement, conversión y retención — y uso esos datos para mejorar continuamente la estrategia. Siempre sabrás exactamente dónde estás."}
   }
 ];
 
@@ -1909,10 +1937,11 @@ function navSvc(dir){
 }
 function renderSvc(){
   const it=SVC_ITEMS[_svcIdx];
+  const tr=it[lang]||it.en;
   document.getElementById('ov-num').textContent=it.num;
-  document.getElementById('ov-title').innerHTML=it.title.replace(/\n/g,'<br>');
-  document.getElementById('ov-p1').textContent=it.p1;
-  document.getElementById('ov-p2').textContent=it.p2;
+  document.getElementById('ov-title').innerHTML=tr.title.replace(/\n/g,'<br>');
+  document.getElementById('ov-p1').textContent=tr.p1;
+  document.getElementById('ov-p2').textContent=tr.p2;
   document.getElementById('ov-ghost').textContent=String(_svcIdx+1).padStart(2,'0');
   document.getElementById('ov-prev').disabled=_svcIdx===0;
   document.getElementById('ov-next').disabled=_svcIdx===SVC_ITEMS.length-1;
@@ -2162,34 +2191,58 @@ function _svcEsc(e){if(e.key==='Escape')closeSvc();}
 ═══════════════════════════════════════ */
 const PLAT_ITEMS=[
   {
-    num:'— 01',stamp:'// visual platform',title:'INSTAGRAM',
-    p1:"Instagram is a visual world — every post is a window into your brand's identity. I build feed grids that hold together as a collection, Stories that create daily habits, and Reels engineered to reach far beyond your existing audience.",
-    p2:"The algorithm rewards consistency and native behavior. I don't just post — I study what your specific audience responds to, test formats relentlessly, and turn your profile into a magnet, not a bulletin board."
+    num:'— 01',
+    en:{stamp:'// visual platform',title:'INSTAGRAM',
+      p1:"Instagram is a visual world — every post is a window into your brand's identity. I build feed grids that hold together as a collection, Stories that create daily habits, and Reels engineered to reach far beyond your existing audience.",
+      p2:"The algorithm rewards consistency and native behavior. I don't just post — I study what your specific audience responds to, test formats relentlessly, and turn your profile into a magnet, not a bulletin board."},
+    es:{stamp:'// plataforma visual',title:'INSTAGRAM',
+      p1:"Instagram es un mundo visual — cada publicación es una ventana a la identidad de tu marca. Construyo grids de feed que funcionan como colección, Stories que crean hábitos diarios, y Reels diseñados para alcanzar mucho más allá de tu audiencia actual.",
+      p2:"El algoritmo recompensa la consistencia y el comportamiento nativo. No solo publico — estudio a qué responde específicamente tu audiencia, testeo formatos sin parar y convierto tu perfil en un imán, no en un tablón de anuncios."}
   },
   {
-    num:'— 02',stamp:'// short-form video',title:'TIKTOK',
-    p1:"TikTok rewards authenticity over production value — but that doesn't mean random. I build a content strategy rooted in your brand's genuine voice, using trends as amplifiers, not the message itself.",
-    p2:"The pace is relentless and the algorithm is brutal. I stay ahead of sound trends, hook formats, and the subtle codes of each niche so your brand shows up where attention actually lives right now."
+    num:'— 02',
+    en:{stamp:'// short-form video',title:'TIKTOK',
+      p1:"TikTok rewards authenticity over production value — but that doesn't mean random. I build a content strategy rooted in your brand's genuine voice, using trends as amplifiers, not the message itself.",
+      p2:"The pace is relentless and the algorithm is brutal. I stay ahead of sound trends, hook formats, and the subtle codes of each niche so your brand shows up where attention actually lives right now."},
+    es:{stamp:'// vídeo corto',title:'TIKTOK',
+      p1:"TikTok premia la autenticidad por encima del valor de producción — pero eso no significa aleatorio. Construyo una estrategia de contenido arraigada en la voz genuina de tu marca, usando las tendencias como amplificadores, no como mensaje.",
+      p2:"El ritmo es implacable y el algoritmo es brutal. Me mantengo al día de las tendencias de sonido, los formatos de hook y los códigos sutiles de cada nicho para que tu marca aparezca donde realmente vive la atención."}
   },
   {
-    num:'— 03',stamp:'// b2b & authority',title:'LINKEDIN',
-    p1:"LinkedIn is where professional reputations are built. I position you as a credible, thoughtful voice in your industry — long-form posts, clear points of view, content that earns respect and opens conversations.",
-    p2:"It's not about going viral here. It's about being the account that decision-makers follow. I craft content that builds your network and generates real B2B opportunities over time."
+    num:'— 03',
+    en:{stamp:'// b2b & authority',title:'LINKEDIN',
+      p1:"LinkedIn is where professional reputations are built. I position you as a credible, thoughtful voice in your industry — long-form posts, clear points of view, content that earns respect and opens conversations.",
+      p2:"It's not about going viral here. It's about being the account that decision-makers follow. I craft content that builds your network and generates real B2B opportunities over time."},
+    es:{stamp:'// b2b y autoridad',title:'LINKEDIN',
+      p1:"LinkedIn es donde se construyen las reputaciones profesionales. Te posiciono como una voz creíble y reflexiva en tu sector — publicaciones de largo formato, puntos de vista claros, contenido que gana respeto y abre conversaciones.",
+      p2:"Aquí no se trata de hacerse viral. Se trata de ser la cuenta que siguen los tomadores de decisiones. Creo contenido que construye tu red y genera oportunidades B2B reales con el tiempo."}
   },
   {
-    num:'— 04',stamp:'// real-time culture',title:'X / TWITTER',
-    p1:"X moves at the speed of the news cycle. Being present here means being fast, sharp, and always in tune with what's happening. I manage your brand's voice in real-time — reactive, witty, and strategically consistent.",
-    p2:"Replies are where communities form on X. I engage with industry conversations, build relationships through interaction, and position your brand as a voice that adds signal rather than noise."
+    num:'— 04',
+    en:{stamp:'// real-time culture',title:'X / TWITTER',
+      p1:"X moves at the speed of the news cycle. Being present here means being fast, sharp, and always in tune with what's happening. I manage your brand's voice in real-time — reactive, witty, and strategically consistent.",
+      p2:"Replies are where communities form on X. I engage with industry conversations, build relationships through interaction, and position your brand as a voice that adds signal rather than noise."},
+    es:{stamp:'// cultura en tiempo real',title:'X / TWITTER',
+      p1:"X se mueve a la velocidad del ciclo de noticias. Estar presente aquí significa ser rápido, directo y siempre sintonizado con lo que está pasando. Gestiono la voz de tu marca en tiempo real — reactiva, ingeniosa y estratégicamente consistente.",
+      p2:"Las respuestas son donde se forman las comunidades en X. Me involucro en conversaciones del sector, construyo relaciones mediante la interacción y posiciono tu marca como una voz que aporta señal, no ruido."}
   },
   {
-    num:'— 05',stamp:'// long-form & seo',title:'YOUTUBE',
-    p1:"YouTube builds the deepest loyalty of any platform. Subscribers who find you through a well-crafted video stay. I plan, produce, and optimise long-form content that serves both the algorithm and the viewer.",
-    p2:"SEO is critical here — titles, descriptions, thumbnails, and tags are all part of the strategy. I make your channel discoverable to people who are actively searching for what you offer."
+    num:'— 05',
+    en:{stamp:'// long-form & seo',title:'YOUTUBE',
+      p1:"YouTube builds the deepest loyalty of any platform. Subscribers who find you through a well-crafted video stay. I plan, produce, and optimise long-form content that serves both the algorithm and the viewer.",
+      p2:"SEO is critical here — titles, descriptions, thumbnails, and tags are all part of the strategy. I make your channel discoverable to people who are actively searching for what you offer."},
+    es:{stamp:'// largo formato y seo',title:'YOUTUBE',
+      p1:"YouTube construye la fidelidad más profunda de cualquier plataforma. Los suscriptores que te encuentran a través de un vídeo bien elaborado se quedan. Planifico, produzco y optimizo contenido de largo formato que sirve tanto al algoritmo como al espectador.",
+      p2:"El SEO es crítico aquí — títulos, descripciones, miniaturas y etiquetas forman parte de la estrategia. Hago tu canal descubrible para personas que están buscando activamente lo que ofreces."}
   },
   {
-    num:'— 06',stamp:'// community & reach',title:'FACEBOOK\n& THREADS',
-    p1:"Facebook's strength is community and broad reach — especially for audiences 30+. I manage Groups, run targeted content strategies, and leverage Facebook's still-powerful organic reach when used correctly.",
-    p2:"Threads is the space for casual, text-first brand personality. I use it to show the human side of your brand — less polished, more conversational, building a different kind of connection."
+    num:'— 06',
+    en:{stamp:'// community & reach',title:'FACEBOOK\n& THREADS',
+      p1:"Facebook's strength is community and broad reach — especially for audiences 30+. I manage Groups, run targeted content strategies, and leverage Facebook's still-powerful organic reach when used correctly.",
+      p2:"Threads is the space for casual, text-first brand personality. I use it to show the human side of your brand — less polished, more conversational, building a different kind of connection."},
+    es:{stamp:'// comunidad y alcance',title:'FACEBOOK\n& THREADS',
+      p1:"La fortaleza de Facebook son la comunidad y el alcance amplio — especialmente para audiencias de 30+. Gestiono Grupos, ejecuto estrategias de contenido dirigidas y aprovecho el aún poderoso alcance orgánico de Facebook cuando se usa correctamente.",
+      p2:"Threads es el espacio para la personalidad de marca casual y basada en texto. Lo uso para mostrar el lado humano de tu marca — menos pulido, más conversacional, construyendo un tipo diferente de conexión."}
   }
 ];
 
@@ -2216,11 +2269,12 @@ function navPlat(dir){
 }
 function renderPlat(){
   const it=PLAT_ITEMS[_platIdx];
+  const tr=it[lang]||it.en;
   document.getElementById('plat-num').textContent=it.num;
-  document.getElementById('plat-stamp').textContent=it.stamp;
-  document.getElementById('plat-title').innerHTML=it.title.replace(/\n/g,'<br>');
-  document.getElementById('plat-p1').textContent=it.p1;
-  document.getElementById('plat-p2').textContent=it.p2;
+  document.getElementById('plat-stamp').textContent=tr.stamp;
+  document.getElementById('plat-title').innerHTML=tr.title.replace(/\n/g,'<br>');
+  document.getElementById('plat-p1').textContent=tr.p1;
+  document.getElementById('plat-p2').textContent=tr.p2;
   document.getElementById('plat-ghost').textContent=String(_platIdx+1).padStart(2,'0');
   document.getElementById('plat-prev').disabled=_platIdx===0;
   document.getElementById('plat-next').disabled=_platIdx===PLAT_ITEMS.length-1;
