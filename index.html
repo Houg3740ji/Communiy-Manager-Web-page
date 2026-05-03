@@ -425,6 +425,36 @@ footer{
 .f-a{font-family:var(--fm);font-size:0.48rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(200,195,175,0.4);text-decoration:none;transition:color .2s;}
 .f-a:hover{color:var(--green-a);}
 
+/* ── HUGO PHOTO ── */
+.hugo-photo{
+  position:absolute;
+  bottom:0;
+  pointer-events:none;
+  user-select:none;
+  object-fit:contain;
+  object-position:bottom center;
+  filter:grayscale(100%) contrast(0.68) brightness(0.52);
+  mix-blend-mode:luminosity;
+}
+/* P1 About — retrato editorial derecha */
+.p1-photo{
+  right:clamp(44px,7vw,110px);
+  height:clamp(52vh,70dvh,78dvh);
+  width:auto;
+  opacity:0.38;
+  z-index:5;
+}
+/* P7 Why Me — marca de agua fantasma izquierda */
+.p7-ghost{
+  left:clamp(24px,4vw,80px);
+  height:clamp(40vh,54dvh,62dvh);
+  width:auto;
+  opacity:0.11;
+  filter:grayscale(100%) contrast(0.52) brightness(0.42);
+  mix-blend-mode:luminosity;
+  z-index:3;
+}
+
 /* ══════════════════════════════════════════════════
    RESPONSIVE — FLUID MULTI-BREAKPOINT SYSTEM
 ══════════════════════════════════════════════════ */
@@ -530,6 +560,19 @@ footer{
   .ov-nav { left: 16px; bottom: 20px; }
 
   footer { flex-direction: column; gap: 8px; padding: 20px; text-align: center; }
+
+  /* Foto móvil: centrada, discreta, en flujo normal */
+  .p1-photo{
+    position:relative;
+    right:auto; bottom:auto;
+    display:block;
+    margin:16px auto 0;
+    height:clamp(160px, 44vw, 260px);
+    width:auto;
+    opacity:0.32;
+  }
+  /* Fantasma p7: oculto en móvil (no aporta a layout apilado) */
+  .p7-ghost{ display:none; }
 }
 
 /* ─────────────────────────────────────────────────
@@ -797,6 +840,7 @@ footer{
 
     <!-- ══ P1: ABOUT ══ -->
     <div class="panel" id="p1" data-screen-label="02 About">
+      <img src="hugo.png" class="hugo-photo p1-photo" alt="Hugo Jiménez">
       <div class="tz-left">
         <span class="stamp" data-i18n="a-stamp">// about</span>
         <span class="brutal" data-i18n="a-h">PEOPLE<br>BEFORE<br>METRICS.</span>
@@ -917,6 +961,7 @@ footer{
 
     <!-- ══ P7: WHY ME ══ -->
     <div class="panel" id="p7" data-screen-label="08 Why Me">
+      <img src="hugo.png" class="hugo-photo p7-ghost" alt="">
       <div class="tz-left" style="pointer-events:none;">
         <div style="margin-bottom:30px;transform:rotate(-2deg);">
           <span style="font-family:var(--fm);font-size:0.34rem;letter-spacing:0.22em;color:rgba(140,180,110,0.4);display:block;margin-bottom:8px;">// no middlemen</span>
