@@ -1441,19 +1441,16 @@ if(!isMobile()){
 
   const scroller = document.body;
   scroller.addEventListener('scroll',()=>{
-    if(_mob) return;
+    if(_mob){
+      // Mobile: panels are stacked, scroll against full body height
+      const h = document.body.scrollHeight - scroller.clientHeight;
+      if(h > 0) scrollProgress = Math.max(0,Math.min(1, scroller.scrollTop/h));
+      return;
+    }
     const drv = document.getElementById('drv');
     const h = drv.offsetHeight - scroller.clientHeight;
     scrollProgress = Math.max(0,Math.min(1, scroller.scrollTop/h));
   },{passive:true});
-
-  // Mobile scroll — html is the scroller on mobile, use window.scrollY
-  if(_mob){
-    window.addEventListener('scroll',()=>{
-      const h = document.body.scrollHeight - window.innerHeight;
-      if(h > 0) scrollProgress = Math.max(0,Math.min(1, window.scrollY/h));
-    },{passive:true});
-  }
 
   let time = 0;
 
