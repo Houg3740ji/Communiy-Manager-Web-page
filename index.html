@@ -1512,8 +1512,6 @@ if(!isMobile()){
       const off = document.createElement('canvas');
       off.width = sz; off.height = sz;
       const ctx = off.getContext('2d');
-      ctx.fillStyle = '#070b07';
-      ctx.fillRect(0,0,sz,sz);
       // Crop center square from the full-screen WebGL canvas
       const src = renderer.domElement;
       const side = Math.min(src.width, src.height) * 0.6;
