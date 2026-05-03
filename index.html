@@ -445,12 +445,24 @@ footer{
   .n-cta { font-size: 0.5rem; padding: 5px 10px; }
 
   #prog { display: none; }
-  #three-canvas { display: none; }
+  /* 3D ball: visible but ultra-transparent behind content */
+  #three-canvas { opacity: 0.07; z-index: 1; pointer-events: none; }
   #thread-svg { display: none; }
   .corner { display: none; }
   .dots { display: none; }
   .scroll-hint { display: none; }
-  .hero-bg-word { font-size: clamp(3rem, 10vw, 7rem); }
+  .hero-bg-word { display: none; }
+
+  /* ── Zonas puramente decorativas ── */
+  .tz-right { display: none !important; }
+  #p3 .tz-left { display: none !important; }
+  #p5 .tz-left { display: none !important; }
+  #p7 .tz-left { display: none !important; }
+
+  /* ── Relleno dentro de zonas principales ── */
+  .mono-txt  { display: none; }
+  .eq-bars   { display: none; }
+  .rule      { display: none; }
 
   html { overflow: auto; }
   body { overflow-y: auto; overflow-x: hidden; }
@@ -1221,12 +1233,12 @@ if(!isMobile()){
    THREE.JS — SCROLL-REACTIVE MORPH
 ═══════════════════════════════════════ */
 (function(){
-  if(isMobile()) return; // skip 3D on mobile for performance
+  const _mob = isMobile();
   const canvas = document.getElementById('three-canvas');
-  const renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true});
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
-  renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  const renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:!_mob});
+  renderer.setPixelRatio(_mob ? 1 : Math.min(window.devicePixelRatio,2));
+  renderer.shadowMap.enabled = !_mob;
+  if(!_mob) renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   canvas.style.pointerEvents = 'none';
   canvas.style.touchAction = 'none';
 
@@ -1439,6 +1451,14 @@ if(!isMobile()){
   function animate(){
     requestAnimationFrame(animate);
     time += 0.008;
+
+    // Mobile: simple slow rotation only — no scroll morph, no rope
+    if(_mob){
+      mesh.rotation.y += 0.0015;
+      mesh.rotation.x = Math.sin(time*0.25)*0.06;
+      renderer.render(scene, camera);
+      return;
+    }
 
     // Smooth scroll
     displayProgress += (scrollProgress - displayProgress) * 0.05;
