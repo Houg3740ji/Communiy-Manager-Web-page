@@ -4,6 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Hugo Jiménez — Community Manager</title>
+<link rel="icon" id="favicon" type="image/png" href="data:image/png;base64,iVBORw0KGgo=">
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
@@ -1285,7 +1286,7 @@ if(!isMobile()){
 (function(){
   const _mob = isMobile();
   const canvas = document.getElementById('three-canvas');
-  const renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:!_mob});
+  const renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:!_mob, preserveDrawingBuffer:true});
   renderer.setPixelRatio(_mob ? 1 : Math.min(window.devicePixelRatio,2));
   renderer.shadowMap.enabled = !_mob;
   if(!_mob) renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -1503,6 +1504,25 @@ if(!isMobile()){
   },{passive:true});
 
   let time = 0;
+  let _faviconDone = false;
+
+  function captureFavicon(){
+    try{
+      const sz = 64;
+      const off = document.createElement('canvas');
+      off.width = sz; off.height = sz;
+      const ctx = off.getContext('2d');
+      ctx.fillStyle = '#070b07';
+      ctx.fillRect(0,0,sz,sz);
+      // Crop center square from the full-screen WebGL canvas
+      const src = renderer.domElement;
+      const side = Math.min(src.width, src.height) * 0.6;
+      const sx = (src.width  - side) / 2;
+      const sy = (src.height - side) / 2;
+      ctx.drawImage(src, sx, sy, side, side, 0, 0, sz, sz);
+      document.getElementById('favicon').href = off.toDataURL('image/png');
+    }catch(e){}
+  }
 
   function animate(){
     requestAnimationFrame(animate);
@@ -1528,6 +1548,7 @@ if(!isMobile()){
       mesh.rotation.x = Math.sin(time*0.3)*0.08 + displayProgress * 0.15;
       mesh.rotation.z += 0.0008;
       renderer.render(scene, camera);
+      if(!_faviconDone){ _faviconDone=true; setTimeout(captureFavicon,200); }
       return;
     }
 
@@ -1620,6 +1641,7 @@ if(!isMobile()){
     }
 
     renderer.render(scene, camera);
+    if(!_faviconDone){ _faviconDone=true; setTimeout(captureFavicon,200); }
   }
   animate();
 })();
