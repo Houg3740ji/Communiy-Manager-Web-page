@@ -1144,7 +1144,7 @@ footer{
   //    → copy the Template ID below
   // 4. Copy your Public Key from Account → API Keys
   const EJS_SERVICE  = 'service_y3nmipr';
-  const EJS_TEMPLATE = 'template_7ikj1aq';
+  const EJS_TEMPLATE = 'template_kejky2a';
   const EJS_PUBLIC   = 'wKeXOOBA1C5iufhgI';
   emailjs.init({ publicKey: EJS_PUBLIC });
 </script>
@@ -2353,16 +2353,14 @@ function handleForm(e){
         btn.disabled=false;
       },3000);
     })
-    .catch((err)=>{
-      console.error('EmailJS error:', err);
-      const msg = err && err.text ? err.text : (err && err.status ? 'Status '+err.status : 'unknown');
-      btnSpan.textContent='ERR: '+msg;
+    .catch(()=>{
+      btnSpan.textContent=lang==='en'?'ERROR — TRY AGAIN':'ERROR — INTÉNTALO';
       btn.style.background='#5a1a1a';
       setTimeout(()=>{
         btnSpan.innerHTML=T[lang]['send'];
         btn.style.background='';
         btn.disabled=false;
-      },5000);
+      },3000);
     });
 }
 </script>
