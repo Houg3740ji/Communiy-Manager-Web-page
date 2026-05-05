@@ -1773,6 +1773,20 @@ document.body.addEventListener('scroll',()=>{
   setPanel(idx);
 },{passive:true});
 
+// CTA nav to contact panel (#p8)
+document.querySelectorAll('a[href="#p8"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    if(isMobile()){
+      document.getElementById('p8').scrollIntoView({behavior:'smooth',block:'start'});
+    } else {
+      const drv=document.getElementById('drv');
+      const h=drv.offsetHeight-document.body.clientHeight;
+      document.body.scrollTo({top:Math.round(h*8.5/9),behavior:'smooth'});
+    }
+  });
+});
+
 /* ═══════════════════════════════════════
    I18N
 ═══════════════════════════════════════ */
