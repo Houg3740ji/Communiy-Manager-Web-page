@@ -2353,14 +2353,16 @@ function handleForm(e){
         btn.disabled=false;
       },3000);
     })
-    .catch(()=>{
-      btnSpan.textContent=lang==='en'?'ERROR — TRY AGAIN':'ERROR — INTÉNTALO';
+    .catch((err)=>{
+      console.error('EmailJS error:', err);
+      const msg = err && err.text ? err.text : (err && err.status ? 'Status '+err.status : 'unknown');
+      btnSpan.textContent='ERR: '+msg;
       btn.style.background='#5a1a1a';
       setTimeout(()=>{
         btnSpan.innerHTML=T[lang]['send'];
         btn.style.background='';
         btn.disabled=false;
-      },3000);
+      },5000);
     });
 }
 </script>
