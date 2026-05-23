@@ -127,6 +127,8 @@ nav{
 .lang-tog{display:flex;border:1px solid rgba(64,108,54,0.35);overflow:hidden;}
 .lang-btn{background:none;border:none;font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(200,194,170,0.5);padding:5px 9px;cursor:none;transition:all .2s;}
 .lang-btn.on{background:var(--green);color:var(--c7);}
+.n-blog{font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(200,194,170,0.45);text-decoration:none;transition:color .2s;}
+.n-blog:hover{color:var(--c6);}
 .n-cta{font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--green-a);text-decoration:none;border:1px solid var(--green-l);padding:5px 13px;transition:background .2s,color .2s;}
 .n-cta:hover{background:var(--green-l);color:var(--c7);}
 
@@ -547,6 +549,7 @@ footer{
   .lang-tog { display: flex; gap: 1px; }
   .lang-btn { font-size: 0.45rem; padding: 3px 6px; }
   .n-cta { font-size: 0.45rem; padding: 4px 8px; }
+  .n-blog { display: none; }
 
   #prog { display: none; }
   /* 3D ball: visible but semi-transparent behind content */
@@ -871,6 +874,7 @@ footer{
       <button class="lang-btn on" data-lang="en" onclick="setLang('en')" aria-label="English">EN</button>
       <button class="lang-btn" data-lang="es" onclick="setLang('es')" aria-label="Español">ES</button>
     </div>
+    <a href="/blog/" class="n-blog" title="Blog — Estrategia de contenido y community management">BLOG</a>
     <a href="#p8" class="n-cta" data-i18n="nav-cta" title="Contactar con Hugo Jiménez">LET'S TALK</a>
   </div>
 </nav>
