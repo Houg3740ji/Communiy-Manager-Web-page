@@ -40,7 +40,10 @@ h1,h2,h3,h4{font-weight:inherit;font-size:inherit;}
 body{background:#070b07;color:var(--c6);font-family:var(--fs);min-height:100vh;overflow-x:hidden;}
 nav{position:fixed;top:0;left:0;right:0;z-index:800;height:52px;padding:0 36px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,9,5,0.96);border-bottom:1px solid rgba(46,82,40,0.45);backdrop-filter:blur(14px);}
 .n-logo{font-family:var(--fb);font-size:1.15rem;letter-spacing:0.14em;color:var(--c7);text-decoration:none;}
-.n-r{display:flex;align-items:center;gap:20px;}
+.n-r{display:flex;align-items:center;gap:16px;}
+.lang-tog{display:flex;border:1px solid rgba(64,108,54,0.35);overflow:hidden;}
+.lang-btn{background:none;border:none;font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(200,194,170,0.5);padding:5px 9px;cursor:pointer;transition:all .2s;}
+.lang-btn.on{background:var(--green);color:var(--c7);}
 .n-back{font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(200,194,170,0.45);text-decoration:none;transition:color .2s;}
 .n-back:hover{color:var(--c6);}
 .n-cta{font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--green-a);text-decoration:none;border:1px solid var(--green-l);padding:5px 13px;transition:background .2s,color .2s;}
@@ -84,7 +87,8 @@ footer{border-top:1px solid rgba(46,82,40,0.2);padding:24px 36px;display:flex;al
 .f-a{font-family:var(--fm);font-size:0.48rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(200,195,175,0.4);text-decoration:none;transition:color .2s;}
 .f-a:hover{color:var(--c6);}
 @media(max-width:700px){
-  nav{padding:0 14px;height:48px;}.n-logo{font-size:0.9rem;}.n-back,.n-cta{font-size:0.42rem;padding:4px 8px;}
+  nav{padding:0 12px;height:48px;}.n-logo{font-size:0.9rem;}
+  .lang-btn{font-size:0.45rem;padding:3px 6px;}.n-back,.n-cta{font-size:0.42rem;padding:4px 8px;}
   .article-wrap{padding:78px 18px 60px;}.compare-grid{grid-template-columns:1fr;}
 }
 </style>
@@ -94,8 +98,12 @@ footer{border-top:1px solid rgba(46,82,40,0.2);padding:24px 36px;display:flex;al
 <nav aria-label="Navegación principal">
   <a href="/" class="n-logo" title="Hugo Jiménez — Community Manager">HUGO JIMÉNEZ</a>
   <div class="n-r">
-    <a href="/blog/" class="n-back">← BLOG</a>
-    <a href="/#p8" class="n-cta">LET'S TALK</a>
+    <div class="lang-tog" aria-label="Seleccionar idioma">
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')" aria-label="English">EN</button>
+      <button class="lang-btn" data-lang="es" onclick="setLang('es')" aria-label="Español">ES</button>
+    </div>
+    <a href="/blog/" class="n-back" data-i18n="nav-back">← BLOG</a>
+    <a href="/#p8" class="n-cta" data-i18n="nav-cta">LET'S TALK</a>
   </div>
 </nav>
 
@@ -103,109 +111,107 @@ footer{border-top:1px solid rgba(46,82,40,0.2);padding:24px 36px;display:flex;al
 <article class="article-wrap" itemscope itemtype="https://schema.org/Article">
 
   <span class="breadcrumb">
-    <a href="/">Hugo Jiménez</a> / <a href="/blog/">Blog</a> / Freelance vs Agencia
+    <a href="/">Hugo Jiménez</a> / <a href="/blog/" data-i18n="bc-blog">Blog</a> / <span data-i18n="bc-cur">Freelance vs Agencia</span>
   </span>
 
   <header class="art-hero">
-    <span class="stamp">// estrategia · contratación</span>
-    <h1 class="art-title" itemprop="headline">COMMUNITY MANAGER FREELANCE VS AGENCIA: ¿QUÉ ES MEJOR PARA TU MARCA?</h1>
-    <span class="art-lead">Las diferencias reales entre las dos opciones. Ventajas, riesgos y en qué situación tiene sentido cada una. Sin discurso de venta — análisis directo.</span>
+    <span class="stamp" data-i18n="stamp">// estrategia · contratación</span>
+    <h1 class="art-title" itemprop="headline" data-i18n="title">COMMUNITY MANAGER FREELANCE VS AGENCIA: ¿QUÉ ES MEJOR PARA TU MARCA?</h1>
+    <span class="art-lead" data-i18n="lead">Las diferencias reales entre las dos opciones. Ventajas, riesgos y en qué situación tiene sentido cada una. Sin discurso de venta — análisis directo.</span>
     <div class="art-meta">
       <span>Hugo Jiménez</span>
-      <span>Mayo 2026</span>
-      <span>5 min lectura</span>
+      <span data-i18n="date">Mayo 2026</span>
+      <span data-i18n="read">5 min lectura</span>
     </div>
   </header>
 
   <div class="art-body" itemprop="articleBody">
 
-    <p>Cuando una marca decide que necesita un <strong>community manager</strong>, la primera pregunta suele ser: ¿freelance o agencia? No hay una respuesta universal, pero sí hay factores concretos que hacen que una opción tenga más sentido que la otra según tu situación.</p>
+    <p data-i18n="p1">Cuando una marca decide que necesita un <strong>community manager</strong>, la primera pregunta suele ser: ¿freelance o agencia? No hay una respuesta universal, pero sí hay factores concretos que hacen que una opción tenga más sentido que la otra según tu situación.</p>
 
-    <h2>LAS DIFERENCIAS REALES</h2>
+    <h2 data-i18n="h2-1">LAS DIFERENCIAS REALES</h2>
 
     <div class="compare-grid">
       <div class="compare-col">
-        <h3>// Freelance</h3>
+        <h3 data-i18n="col1-h">// Freelance</h3>
         <ul>
-          <li>Tratas directamente con quien hace el trabajo</li>
-          <li>Más ágil, sin burocracia interna</li>
-          <li>Precio más ajustado (sin overhead)</li>
-          <li>Especialización profunda en su área</li>
-          <li>Adaptación rápida a cambios</li>
-          <li>Relación directa y transparente</li>
+          <li data-i18n="f1">Tratas directamente con quien hace el trabajo</li>
+          <li data-i18n="f2">Más ágil, sin burocracia interna</li>
+          <li data-i18n="f3">Precio más ajustado (sin overhead)</li>
+          <li data-i18n="f4">Especialización profunda en su área</li>
+          <li data-i18n="f5">Adaptación rápida a cambios</li>
+          <li data-i18n="f6">Relación directa y transparente</li>
         </ul>
       </div>
       <div class="compare-col">
-        <h3>// Agencia</h3>
+        <h3 data-i18n="col2-h">// Agencia</h3>
         <ul>
-          <li>Equipo multidisciplinar bajo un mismo techo</li>
-          <li>Más estructura y procesos formales</li>
-          <li>Precio más alto por la estructura de costes</li>
-          <li>Un account manager como intermediario</li>
-          <li>Escalan mejor si necesitas muchos servicios</li>
-          <li>Más recursos para proyectos grandes</li>
+          <li data-i18n="a1">Equipo multidisciplinar bajo un mismo techo</li>
+          <li data-i18n="a2">Más estructura y procesos formales</li>
+          <li data-i18n="a3">Precio más alto por la estructura de costes</li>
+          <li data-i18n="a4">Un account manager como intermediario</li>
+          <li data-i18n="a5">Escalan mejor si necesitas muchos servicios</li>
+          <li data-i18n="a6">Más recursos para proyectos grandes</li>
         </ul>
       </div>
     </div>
 
-    <h2>EL PROBLEMA DEL INTERMEDIARIO</h2>
+    <h2 data-i18n="h2-2">EL PROBLEMA DEL INTERMEDIARIO</h2>
 
-    <p>En una agencia, raramente hablas con la persona que gestiona tus redes. Hablas con un <strong>account manager</strong> que traslada tus instrucciones al equipo. Ese paso extra genera ruido, malentendidos y ralentiza cualquier cambio de dirección.</p>
+    <p data-i18n="p2">En una agencia, raramente hablas con la persona que gestiona tus redes. Hablas con un <strong>account manager</strong> que traslada tus instrucciones al equipo. Ese paso extra genera ruido, malentendidos y ralentiza cualquier cambio de dirección.</p>
 
-    <p>Con un <strong>community manager freelance</strong>, la persona que toma la llamada es la misma que crea el contenido, ejecuta las campañas y analiza los datos. El feedback llega directo. La corrección es inmediata. El conocimiento de tu marca es mucho más profundo porque hay una sola persona construyéndolo.</p>
+    <p data-i18n="p3">Con un <strong>community manager freelance</strong>, la persona que toma la llamada es la misma que crea el contenido, ejecuta las campañas y analiza los datos. El feedback llega directo. La corrección es inmediata. El conocimiento de tu marca es mucho más profundo porque hay una sola persona construyéndolo.</p>
 
-    <h2>EL COSTE REAL DE CADA OPCIÓN</h2>
+    <h2 data-i18n="h2-3">EL COSTE REAL DE CADA OPCIÓN</h2>
 
-    <p>Una agencia de marketing digital en España cobra de media entre <strong>1.500€ y 4.000€/mes</strong> por gestionar las redes sociales de una marca mediana. Parte de ese dinero financia la estructura de la agencia: alquiler de oficinas, nóminas del equipo de soporte, herramientas corporativas, margen de beneficio.</p>
+    <p data-i18n="p4">Una agencia de marketing digital en España cobra de media entre <strong>1.500€ y 4.000€/mes</strong> por gestionar las redes sociales de una marca mediana. Parte de ese dinero financia la estructura de la agencia: alquiler de oficinas, nóminas del equipo de soporte, herramientas corporativas, margen de beneficio.</p>
 
-    <p>Un <strong>community manager freelance de nivel equivalente</strong> cobra entre 800€ y 2.000€/mes por el mismo trabajo. La diferencia no está en la calidad — está en el overhead que pagas o no pagas.</p>
+    <p data-i18n="p5">Un <strong>community manager freelance de nivel equivalente</strong> cobra entre 800€ y 2.000€/mes por el mismo trabajo. La diferencia no está en la calidad — está en el overhead que pagas o no pagas.</p>
 
     <div class="callout">
-      <p><strong>Regla práctica:</strong> si tu presupuesto para redes sociales es inferior a 3.000€/mes, casi siempre obtienes más valor con un freelance especializado que con una agencia.</p>
+      <p data-i18n="callout1"><strong>Regla práctica:</strong> si tu presupuesto para redes sociales es inferior a 3.000€/mes, casi siempre obtienes más valor con un freelance especializado que con una agencia.</p>
     </div>
 
-    <h2>CUÁNDO TIENE SENTIDO UNA AGENCIA</h2>
+    <h2 data-i18n="h2-4">CUÁNDO TIENE SENTIDO UNA AGENCIA</h2>
 
-    <p>Ser honesto es importante: hay situaciones donde una agencia gana claramente.</p>
+    <h3 data-i18n="h3-1">// Múltiples servicios integrados</h3>
+    <p data-i18n="p6">Si necesitas SEO, diseño web, publicidad en buscadores, redes sociales y email marketing coordinados bajo una misma estrategia, una agencia tiene más sentido. Un freelance puede subcontratar, pero la coordinación es más compleja.</p>
 
-    <h3>// Múltiples servicios integrados</h3>
-    <p>Si necesitas SEO, diseño web, publicidad en buscadores, redes sociales y email marketing coordinados bajo una misma estrategia, una agencia tiene más sentido. Un freelance puede subcontratar, pero la coordinación es más compleja.</p>
+    <h3 data-i18n="h3-2">// Volumen muy alto de contenido</h3>
+    <p data-i18n="p7">Si tu marca necesita producir más de 30-40 piezas de contenido al mes en varios formatos y plataformas simultáneamente, un equipo tiene ventaja sobre un perfil individual.</p>
 
-    <h3>// Volumen muy alto de contenido</h3>
-    <p>Si tu marca necesita producir más de 30-40 piezas de contenido al mes en varios formatos y plataformas simultáneamente, un equipo tiene ventaja sobre un perfil individual.</p>
+    <h3 data-i18n="h3-3">// Empresas grandes con procesos de aprobación</h3>
+    <p data-i18n="p8">Grandes corporaciones con múltiples stakeholders y procesos de validación internos encajan mejor con la estructura formal de una agencia.</p>
 
-    <h3>// Empresas grandes con procesos de aprobación</h3>
-    <p>Grandes corporaciones con múltiples stakeholders y procesos de validación internos encajan mejor con la estructura formal de una agencia.</p>
+    <h2 data-i18n="h2-5">CUÁNDO TIENE SENTIDO UN FREELANCE</h2>
 
-    <h2>CUÁNDO TIENE SENTIDO UN FREELANCE</h2>
+    <p data-i18n="p9">Para la gran mayoría de PYMEs, negocios locales, marcas personales y startups en fase de crecimiento, un <strong>community manager freelance especializado</strong> es la opción con mejor ROI. Especialmente si buscas:</p>
 
-    <p>Para la gran mayoría de PYMEs, negocios locales, marcas personales y startups en fase de crecimiento, un <strong>community manager freelance especializado</strong> es la opción con mejor ROI. Especialmente si buscas:</p>
+    <p data-i18n="p10"><strong>Comunicación directa y rápida.</strong> Sin tickets de soporte, sin esperas para que el account manager traslade tu mensaje al equipo. Escribes al CM y responde él directamente.</p>
 
-    <p><strong>Comunicación directa y rápida.</strong> Sin tickets de soporte, sin esperas para que el account manager traslade tu mensaje al equipo. Escribes al CM y responde él directamente.</p>
+    <p data-i18n="p11"><strong>Alguien que conozca tu marca de verdad.</strong> No hay rotación de personal, no hay juniors aprendiendo con tu cuenta. El mismo perfil que diseñó la estrategia es el que la ejecuta cada día.</p>
 
-    <p><strong>Alguien que conozca tu marca de verdad.</strong> No hay rotación de personal, no hay juniors aprendiendo con tu cuenta. El mismo perfil que diseñó la estrategia es el que la ejecuta cada día.</p>
+    <p data-i18n="p12"><strong>Flexibilidad real.</strong> Si el algoritmo cambia o surge una oportunidad de tendencia, un freelance puede reaccionar en horas. Una agencia necesita reuniones internas, aprobaciones y actualización del planning.</p>
 
-    <p><strong>Flexibilidad real.</strong> Si el algoritmo cambia o surge una oportunidad de tendencia, un freelance puede reaccionar en horas. Una agencia necesita reuniones internas, aprobaciones y actualización del planning.</p>
+    <h2 data-i18n="h2-6">MI VISIÓN COMO FREELANCE</h2>
 
-    <h2>MI VISIÓN COMO FREELANCE</h2>
+    <p data-i18n="p13">No voy a fingir objetividad total aquí — soy community manager freelance y creo genuinamente en este modelo de trabajo. Pero no porque sea "mi negocio", sino porque lo he visto funcionar: clientes que venían de agencias con resultados mediocres, y que en tres meses de trabajo directo conmigo vieron métricas que nunca habían alcanzado.</p>
 
-    <p>No voy a fingir objetividad total aquí — soy community manager freelance y creo genuinamente en este modelo de trabajo. Pero no porque sea "mi negocio", sino porque lo he visto funcionar: clientes que venían de agencias con resultados mediocres, y que en tres meses de trabajo directo conmigo vieron métricas que nunca habían alcanzado.</p>
+    <p data-i18n="p14">La clave no es freelance vs agencia. La clave es <strong>con quién concretamente trabajas</strong> y si esa persona entiende tu marca, tiene experiencia demostrable y se compromete con tus resultados como si fueran los suyos.</p>
 
-    <p>La clave no es freelance vs agencia. La clave es <strong>con quién concretamente trabajas</strong> y si esa persona entiende tu marca, tiene experiencia demostrable y se compromete con tus resultados como si fueran los suyos.</p>
-
-    <p>Si quieres valorar si trabajar juntos tiene sentido, <a href="/#p8">cuéntame tu proyecto</a> y hablamos sin compromiso.</p>
+    <p data-i18n="p15">Si quieres valorar si trabajar juntos tiene sentido, <a href="/#p8">cuéntame tu proyecto</a> y hablamos sin compromiso.</p>
 
     <div class="art-cta">
-      <span class="cta-title">¿TRABAJAMOS DIRECTAMENTE?</span>
-      <p>Sin intermediarios, sin account managers. Tú hablas con quien hace el trabajo.</p>
-      <a href="/#p8">CONTACTAR →</a>
+      <span class="cta-title" data-i18n="cta-title">¿TRABAJAMOS DIRECTAMENTE?</span>
+      <p data-i18n="cta-p">Sin intermediarios, sin account managers. Tú hablas con quien hace el trabajo.</p>
+      <a href="/#p8" data-i18n="cta-btn">CONTACTAR →</a>
     </div>
 
     <div class="author-box">
       <img src="/hugo.png" alt="Hugo Jiménez, Community Manager Freelance España" class="author-img" width="56" height="56" loading="lazy"/>
       <div class="author-info">
         <strong>HUGO JIMÉNEZ</strong>
-        Community manager freelance basado en España. Gestión de redes sociales, estrategia de contenido y paid social para marcas que quieren crecer de verdad. <a href="/">brandkosmos.company</a>
+        <span data-i18n="author-bio">Community manager freelance basado en España. Gestión de redes sociales, estrategia de contenido y paid social para marcas que quieren crecer de verdad. <a href="/">brandkosmos.company</a></span>
       </div>
     </div>
 
@@ -219,8 +225,122 @@ footer{border-top:1px solid rgba(46,82,40,0.2);padding:24px 36px;display:flex;al
     <a href="https://www.linkedin.com/in/hugo-jiménez-herrero-514ba3305" target="_blank" rel="noopener" class="f-a">LinkedIn</a>
     <a href="mailto:hugo@brandkosmos.company" class="f-a">Email</a>
   </div>
-  <span class="f-copy">Spain / Global</span>
+  <span class="f-copy" data-i18n="f-loc">España / Global</span>
 </footer>
 
+<script>
+const T={
+  en:{
+    'nav-back':'← BLOG','nav-cta':"LET'S TALK",
+    'bc-blog':'Blog','bc-cur':'Freelance vs Agency',
+    'stamp':'// strategy · hiring',
+    'title':'COMMUNITY MANAGER FREELANCE VS AGENCY: WHICH IS BETTER FOR YOUR BRAND?',
+    'lead':'The real differences between the two options. Advantages, risks and in which situation each makes sense. No sales pitch — straight analysis.',
+    'date':'May 2026','read':'5 min read',
+    'p1':'When a brand decides it needs a <strong>community manager</strong>, the first question is usually: freelance or agency? There\'s no universal answer, but there are concrete factors that make one option more sensible than the other depending on your situation.',
+    'h2-1':'THE REAL DIFFERENCES',
+    'col1-h':'// Freelance','col2-h':'// Agency',
+    'f1':'You deal directly with the person doing the work',
+    'f2':'More agile, no internal bureaucracy',
+    'f3':'More affordable pricing (no overhead)',
+    'f4':'Deep specialisation in their area',
+    'f5':'Quick adaptation to changes',
+    'f6':'Direct and transparent relationship',
+    'a1':'Multidisciplinary team under one roof',
+    'a2':'More structure and formal processes',
+    'a3':'Higher price due to cost structure',
+    'a4':'An account manager as middleman',
+    'a5':'Scales better if you need many services',
+    'a6':'More resources for large projects',
+    'h2-2':'THE MIDDLEMAN PROBLEM',
+    'p2':'In an agency, you rarely talk to the person actually managing your social media. You talk to an <strong>account manager</strong> who passes your instructions to the team. That extra step creates noise, misunderstandings, and slows down any change of direction.',
+    'p3':'With a <strong>freelance community manager</strong>, the person who takes the call is the same one who creates the content, runs the campaigns and analyses the data. Feedback is direct. Corrections are immediate. Brand knowledge is much deeper because there\'s just one person building it.',
+    'h2-3':'THE REAL COST OF EACH OPTION',
+    'p4':'A digital marketing agency in Spain charges on average between <strong>€1,500 and €4,000/month</strong> to manage the social media of a mid-sized brand. Part of that money finances the agency\'s structure: office rent, support team salaries, corporate tools, profit margin.',
+    'p5':'An <strong>equivalent freelance community manager</strong> charges between €800 and €2,000/month for the same work. The difference isn\'t in quality — it\'s in overhead you pay or don\'t pay.',
+    'callout1':'<strong>Practical rule:</strong> if your social media budget is under €3,000/month, you almost always get more value from a specialised freelance than from an agency.',
+    'h2-4':'WHEN AN AGENCY MAKES SENSE',
+    'h3-1':'// Multiple integrated services',
+    'p6':'If you need SEO, web design, search advertising, social media and email marketing coordinated under one strategy, an agency makes more sense. A freelance can subcontract, but coordination is more complex.',
+    'h3-2':'// Very high content volume',
+    'p7':'If your brand needs to produce more than 30-40 pieces of content per month across multiple formats and platforms simultaneously, a team has an advantage over an individual.',
+    'h3-3':'// Large companies with approval processes',
+    'p8':'Large corporations with multiple stakeholders and internal validation processes fit better with an agency\'s formal structure.',
+    'h2-5':'WHEN A FREELANCE MAKES SENSE',
+    'p9':'For the vast majority of SMEs, local businesses, personal brands and growth-stage startups, a <strong>specialised freelance community manager</strong> is the option with the best ROI. Especially if you\'re looking for:',
+    'p10':'<strong>Direct and fast communication.</strong> No support tickets, no waiting for an account manager to relay your message. You message the CM and they respond directly.',
+    'p11':'<strong>Someone who really knows your brand.</strong> No staff turnover, no juniors learning on your account. The same person who designed the strategy is the one executing it every day.',
+    'p12':'<strong>Real flexibility.</strong> If the algorithm changes or a trend opportunity arises, a freelance can react in hours. An agency needs internal meetings, approvals and planning updates.',
+    'h2-6':'MY VIEW AS A FREELANCE',
+    'p13':'I won\'t pretend to be fully objective here — I\'m a freelance community manager and I genuinely believe in this work model. But not because it\'s "my business", but because I\'ve seen it work: clients who came from agencies with mediocre results, and who in three months of working directly with me achieved metrics they\'d never reached before.',
+    'p14':'The key isn\'t freelance vs agency. The key is <strong>who specifically you work with</strong> and whether that person understands your brand, has demonstrable experience and commits to your results as if they were their own.',
+    'p15':'If you want to assess whether working together makes sense, <a href="/#p8">tell me about your project</a> and let\'s talk with no strings attached.',
+    'cta-title':'WORK DIRECTLY?',
+    'cta-p':'No intermediaries, no account managers. You talk to the person who does the work.',
+    'cta-btn':'CONTACT →',
+    'author-bio':'Freelance community manager based in Spain. Social media management, content strategy and paid social for brands that want to grow for real. <a href="/">brandkosmos.company</a>',
+    'f-loc':'Spain / Global'
+  },
+  es:{
+    'nav-back':'← BLOG','nav-cta':'HABLEMOS',
+    'bc-blog':'Blog','bc-cur':'Freelance vs Agencia',
+    'stamp':'// estrategia · contratación',
+    'title':'COMMUNITY MANAGER FREELANCE VS AGENCIA: ¿QUÉ ES MEJOR PARA TU MARCA?',
+    'lead':'Las diferencias reales entre las dos opciones. Ventajas, riesgos y en qué situación tiene sentido cada una. Sin discurso de venta — análisis directo.',
+    'date':'Mayo 2026','read':'5 min lectura',
+    'p1':'Cuando una marca decide que necesita un <strong>community manager</strong>, la primera pregunta suele ser: ¿freelance o agencia? No hay una respuesta universal, pero sí hay factores concretos que hacen que una opción tenga más sentido que la otra según tu situación.',
+    'h2-1':'LAS DIFERENCIAS REALES',
+    'col1-h':'// Freelance','col2-h':'// Agencia',
+    'f1':'Tratas directamente con quien hace el trabajo',
+    'f2':'Más ágil, sin burocracia interna',
+    'f3':'Precio más ajustado (sin overhead)',
+    'f4':'Especialización profunda en su área',
+    'f5':'Adaptación rápida a cambios',
+    'f6':'Relación directa y transparente',
+    'a1':'Equipo multidisciplinar bajo un mismo techo',
+    'a2':'Más estructura y procesos formales',
+    'a3':'Precio más alto por la estructura de costes',
+    'a4':'Un account manager como intermediario',
+    'a5':'Escalan mejor si necesitas muchos servicios',
+    'a6':'Más recursos para proyectos grandes',
+    'h2-2':'EL PROBLEMA DEL INTERMEDIARIO',
+    'p2':'En una agencia, raramente hablas con la persona que gestiona tus redes. Hablas con un <strong>account manager</strong> que traslada tus instrucciones al equipo. Ese paso extra genera ruido, malentendidos y ralentiza cualquier cambio de dirección.',
+    'p3':'Con un <strong>community manager freelance</strong>, la persona que toma la llamada es la misma que crea el contenido, ejecuta las campañas y analiza los datos. El feedback llega directo. La corrección es inmediata. El conocimiento de tu marca es mucho más profundo porque hay una sola persona construyéndolo.',
+    'h2-3':'EL COSTE REAL DE CADA OPCIÓN',
+    'p4':'Una agencia de marketing digital en España cobra de media entre <strong>1.500€ y 4.000€/mes</strong> por gestionar las redes sociales de una marca mediana. Parte de ese dinero financia la estructura de la agencia: alquiler de oficinas, nóminas del equipo de soporte, herramientas corporativas, margen de beneficio.',
+    'p5':'Un <strong>community manager freelance de nivel equivalente</strong> cobra entre 800€ y 2.000€/mes por el mismo trabajo. La diferencia no está en la calidad — está en el overhead que pagas o no pagas.',
+    'callout1':'<strong>Regla práctica:</strong> si tu presupuesto para redes sociales es inferior a 3.000€/mes, casi siempre obtienes más valor con un freelance especializado que con una agencia.',
+    'h2-4':'CUÁNDO TIENE SENTIDO UNA AGENCIA',
+    'h3-1':'// Múltiples servicios integrados',
+    'p6':'Si necesitas SEO, diseño web, publicidad en buscadores, redes sociales y email marketing coordinados bajo una misma estrategia, una agencia tiene más sentido. Un freelance puede subcontratar, pero la coordinación es más compleja.',
+    'h3-2':'// Volumen muy alto de contenido',
+    'p7':'Si tu marca necesita producir más de 30-40 piezas de contenido al mes en varios formatos y plataformas simultáneamente, un equipo tiene ventaja sobre un perfil individual.',
+    'h3-3':'// Empresas grandes con procesos de aprobación',
+    'p8':'Grandes corporaciones con múltiples stakeholders y procesos de validación internos encajan mejor con la estructura formal de una agencia.',
+    'h2-5':'CUÁNDO TIENE SENTIDO UN FREELANCE',
+    'p9':'Para la gran mayoría de PYMEs, negocios locales, marcas personales y startups en fase de crecimiento, un <strong>community manager freelance especializado</strong> es la opción con mejor ROI. Especialmente si buscas:',
+    'p10':'<strong>Comunicación directa y rápida.</strong> Sin tickets de soporte, sin esperas para que el account manager traslade tu mensaje al equipo. Escribes al CM y responde él directamente.',
+    'p11':'<strong>Alguien que conozca tu marca de verdad.</strong> No hay rotación de personal, no hay juniors aprendiendo con tu cuenta. El mismo perfil que diseñó la estrategia es el que la ejecuta cada día.',
+    'p12':'<strong>Flexibilidad real.</strong> Si el algoritmo cambia o surge una oportunidad de tendencia, un freelance puede reaccionar en horas. Una agencia necesita reuniones internas, aprobaciones y actualización del planning.',
+    'h2-6':'MI VISIÓN COMO FREELANCE',
+    'p13':'No voy a fingir objetividad total aquí — soy community manager freelance y creo genuinamente en este modelo de trabajo. Pero no porque sea "mi negocio", sino porque lo he visto funcionar: clientes que venían de agencias con resultados mediocres, y que en tres meses de trabajo directo conmigo vieron métricas que nunca habían alcanzado.',
+    'p14':'La clave no es freelance vs agencia. La clave es <strong>con quién concretamente trabajas</strong> y si esa persona entiende tu marca, tiene experiencia demostrable y se compromete con tus resultados como si fueran los suyos.',
+    'p15':'Si quieres valorar si trabajar juntos tiene sentido, <a href="/#p8">cuéntame tu proyecto</a> y hablamos sin compromiso.',
+    'cta-title':'¿TRABAJAMOS DIRECTAMENTE?',
+    'cta-p':'Sin intermediarios, sin account managers. Tú hablas con quien hace el trabajo.',
+    'cta-btn':'CONTACTAR →',
+    'author-bio':'Community manager freelance basado en España. Gestión de redes sociales, estrategia de contenido y paid social para marcas que quieren crecer de verdad. <a href="/">brandkosmos.company</a>',
+    'f-loc':'España / Global'
+  }
+};
+function setLang(l){
+  try{localStorage.setItem('hj-lang',l);}catch(e){}
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('on',b.dataset.lang===l));
+  const t=T[l]||T.es;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(t[k]!==undefined)el.innerHTML=t[k];});
+}
+const _l=(()=>{try{return localStorage.getItem('hj-lang')||'en';}catch(e){return 'en';}})();
+setLang(_l);
+</script>
 </body>
 </html>

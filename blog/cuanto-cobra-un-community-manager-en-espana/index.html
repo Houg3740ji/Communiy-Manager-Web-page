@@ -36,187 +36,64 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 h1,h2,h3,h4{font-weight:inherit;font-size:inherit;}
 :root{
-  --c0:#060a06;
-  --c1:#0d1510;
-  --c3:#8a8870;
-  --c4:#aea890;
-  --c5:#c8c2aa;
-  --c6:#ddd8c4;
-  --c7:#f0ece0;
-  --green:#1c3a18;
-  --green-l:#2e5228;
-  --green-a:#406c36;
-  --fb:'Bebas Neue',sans-serif;
-  --fs:'Space Grotesk',sans-serif;
-  --fm:'Space Mono',monospace;
+  --c0:#060a06;--c1:#0d1510;--c3:#8a8870;--c4:#aea890;--c5:#c8c2aa;--c6:#ddd8c4;--c7:#f0ece0;
+  --green:#1c3a18;--green-l:#2e5228;--green-a:#406c36;
+  --fb:'Bebas Neue',sans-serif;--fs:'Space Grotesk',sans-serif;--fm:'Space Mono',monospace;
 }
-body{
-  background:#070b07;
-  color:var(--c6);
-  font-family:var(--fs);
-  min-height:100vh;
-  overflow-x:hidden;
-}
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:800;
-  height:52px;padding:0 36px;
-  display:flex;align-items:center;justify-content:space-between;
-  background:rgba(5,9,5,0.96);
-  border-bottom:1px solid rgba(46,82,40,0.45);
-  backdrop-filter:blur(14px);
-}
+body{background:#070b07;color:var(--c6);font-family:var(--fs);min-height:100vh;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:800;height:52px;padding:0 36px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,9,5,0.96);border-bottom:1px solid rgba(46,82,40,0.45);backdrop-filter:blur(14px);}
 .n-logo{font-family:var(--fb);font-size:1.15rem;letter-spacing:0.14em;color:var(--c7);text-decoration:none;}
-.n-r{display:flex;align-items:center;gap:20px;}
+.n-r{display:flex;align-items:center;gap:16px;}
+.lang-tog{display:flex;border:1px solid rgba(64,108,54,0.35);overflow:hidden;}
+.lang-btn{background:none;border:none;font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(200,194,170,0.5);padding:5px 9px;cursor:pointer;transition:all .2s;}
+.lang-btn.on{background:var(--green);color:var(--c7);}
 .n-back{font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(200,194,170,0.45);text-decoration:none;transition:color .2s;}
 .n-back:hover{color:var(--c6);}
 .n-cta{font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--green-a);text-decoration:none;border:1px solid var(--green-l);padding:5px 13px;transition:background .2s,color .2s;}
 .n-cta:hover{background:var(--green-l);color:var(--c7);}
-
-.article-wrap{
-  max-width:720px;
-  margin:0 auto;
-  padding:100px 36px 80px;
-}
-
-/* HERO */
-.art-hero{
-  border-bottom:1px solid rgba(46,82,40,0.3);
-  padding-bottom:40px;
-  margin-bottom:48px;
-}
-.stamp{
-  font-family:var(--fm);font-size:0.56rem;font-weight:700;
-  letter-spacing:0.34em;text-transform:uppercase;
-  color:var(--green-a);display:block;margin-bottom:12px;
-  padding-left:12px;border-left:2px solid var(--green-l);
-}
-.art-title{
-  font-family:var(--fb);
-  font-size:clamp(2.4rem,5vw,4.2rem);
-  line-height:0.9;letter-spacing:0.01em;
-  color:var(--c7);display:block;margin-bottom:18px;
-}
-.art-lead{
-  font-size:1.05rem;line-height:1.7;color:var(--c5);
-  display:block;margin-bottom:20px;
-}
-.art-meta{
-  font-family:var(--fm);font-size:0.48rem;letter-spacing:0.18em;
-  color:var(--c3);display:flex;gap:16px;text-transform:uppercase;flex-wrap:wrap;
-}
-
-/* BODY */
-.art-body h2{
-  font-family:var(--fb);
-  font-size:clamp(1.6rem,3vw,2.6rem);
-  line-height:0.92;letter-spacing:0.01em;
-  color:var(--c7);margin:48px 0 18px;
-  padding-left:14px;border-left:3px solid var(--green-l);
-}
-.art-body h3{
-  font-family:var(--fm);font-size:0.7rem;font-weight:700;
-  letter-spacing:0.2em;text-transform:uppercase;
-  color:var(--green-a);margin:32px 0 12px;
-}
-.art-body p{
-  font-size:0.95rem;line-height:1.8;color:var(--c4);
-  margin-bottom:20px;
-}
+.article-wrap{max-width:720px;margin:0 auto;padding:100px 36px 80px;}
+.art-hero{border-bottom:1px solid rgba(46,82,40,0.3);padding-bottom:40px;margin-bottom:48px;}
+.stamp{font-family:var(--fm);font-size:0.56rem;font-weight:700;letter-spacing:0.34em;text-transform:uppercase;color:var(--green-a);display:block;margin-bottom:12px;padding-left:12px;border-left:2px solid var(--green-l);}
+.art-title{font-family:var(--fb);font-size:clamp(2.4rem,5vw,4.2rem);line-height:0.9;letter-spacing:0.01em;color:var(--c7);display:block;margin-bottom:18px;}
+.art-lead{font-size:1.05rem;line-height:1.7;color:var(--c5);display:block;margin-bottom:20px;}
+.art-meta{font-family:var(--fm);font-size:0.48rem;letter-spacing:0.18em;color:var(--c3);display:flex;gap:16px;text-transform:uppercase;flex-wrap:wrap;}
+.art-body h2{font-family:var(--fb);font-size:clamp(1.6rem,3vw,2.6rem);line-height:0.92;letter-spacing:0.01em;color:var(--c7);margin:48px 0 18px;padding-left:14px;border-left:3px solid var(--green-l);}
+.art-body h3{font-family:var(--fm);font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--green-a);margin:32px 0 12px;}
+.art-body p{font-size:0.95rem;line-height:1.8;color:var(--c4);margin-bottom:20px;}
 .art-body strong{color:var(--c6);font-weight:600;}
 .art-body a{color:var(--green-a);text-decoration:none;border-bottom:1px solid rgba(64,108,54,0.3);transition:border-color .2s;}
 .art-body a:hover{border-color:var(--green-a);}
-
-/* TABLE */
-.price-table{
-  width:100%;border-collapse:collapse;
-  margin:28px 0;font-family:var(--fm);font-size:0.62rem;
-}
-.price-table th{
-  text-align:left;padding:10px 14px;
-  background:var(--green);color:var(--c7);
-  letter-spacing:0.18em;text-transform:uppercase;font-size:0.52rem;
-}
-.price-table td{
-  padding:12px 14px;border-bottom:1px solid rgba(46,82,40,0.2);
-  color:var(--c4);letter-spacing:0.04em;
-}
+.price-table{width:100%;border-collapse:collapse;margin:28px 0;font-family:var(--fm);font-size:0.62rem;}
+.price-table th{text-align:left;padding:10px 14px;background:var(--green);color:var(--c7);letter-spacing:0.18em;text-transform:uppercase;font-size:0.52rem;}
+.price-table td{padding:12px 14px;border-bottom:1px solid rgba(46,82,40,0.2);color:var(--c4);letter-spacing:0.04em;}
 .price-table tr:hover td{background:rgba(13,21,16,0.6);}
 .price-table .hi{color:var(--c6);font-weight:700;}
-
-/* HIGHLIGHT BOX */
-.callout{
-  background:var(--c1);
-  border-left:3px solid var(--green-a);
-  padding:20px 24px;
-  margin:28px 0;
-}
+.callout{background:var(--c1);border-left:3px solid var(--green-a);padding:20px 24px;margin:28px 0;}
 .callout p{margin-bottom:0;color:var(--c5);}
 .callout strong{color:var(--c7);}
-
-/* CTA */
-.art-cta{
-  background:var(--c1);
-  border:1px solid rgba(46,82,40,0.35);
-  padding:32px;
-  margin-top:56px;
-  text-align:center;
-}
-.art-cta .cta-title{
-  font-family:var(--fb);font-size:clamp(1.6rem,3vw,2.4rem);
-  color:var(--c7);display:block;margin-bottom:10px;
-}
+.art-cta{background:var(--c1);border:1px solid rgba(46,82,40,0.35);padding:32px;margin-top:56px;text-align:center;}
+.art-cta .cta-title{font-family:var(--fb);font-size:clamp(1.6rem,3vw,2.4rem);color:var(--c7);display:block;margin-bottom:10px;}
 .art-cta p{font-size:0.88rem;color:var(--c4);margin-bottom:20px;}
-.art-cta a{
-  font-family:var(--fm);font-size:0.55rem;font-weight:700;
-  letter-spacing:0.18em;text-transform:uppercase;
-  color:var(--green-a);text-decoration:none;
-  border:1px solid var(--green-l);padding:10px 24px;
-  display:inline-block;transition:background .2s,color .2s;
-}
+.art-cta a{font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--green-a);text-decoration:none;border:1px solid var(--green-l);padding:10px 24px;display:inline-block;transition:background .2s,color .2s;}
 .art-cta a:hover{background:var(--green-l);color:var(--c7);}
-
-/* BREADCRUMB */
-.breadcrumb{
-  font-family:var(--fm);font-size:0.46rem;letter-spacing:0.16em;
-  color:var(--c3);margin-bottom:24px;display:block;text-transform:uppercase;
-}
+.breadcrumb{font-family:var(--fm);font-size:0.46rem;letter-spacing:0.16em;color:var(--c3);margin-bottom:24px;display:block;text-transform:uppercase;}
 .breadcrumb a{color:var(--c3);text-decoration:none;transition:color .2s;}
 .breadcrumb a:hover{color:var(--c5);}
-
-/* AUTHOR */
-.author-box{
-  display:flex;align-items:center;gap:18px;
-  border-top:1px solid rgba(46,82,40,0.25);
-  padding-top:32px;margin-top:48px;
-}
-.author-img{
-  width:56px;height:56px;border-radius:50%;
-  object-fit:cover;object-position:center top;
-  border:2px solid rgba(46,82,40,0.4);
-  flex-shrink:0;
-}
+.author-box{display:flex;align-items:center;gap:18px;border-top:1px solid rgba(46,82,40,0.25);padding-top:32px;margin-top:48px;}
+.author-img{width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:center top;border:2px solid rgba(46,82,40,0.4);flex-shrink:0;}
 .author-info{font-size:0.78rem;color:var(--c4);line-height:1.5;}
 .author-info strong{color:var(--c6);display:block;font-family:var(--fb);font-size:1rem;letter-spacing:0.04em;}
 .author-info a{color:var(--green-a);text-decoration:none;}
-
-footer{
-  border-top:1px solid rgba(46,82,40,0.2);
-  padding:24px 36px;
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:12px;
-}
+footer{border-top:1px solid rgba(46,82,40,0.2);padding:24px 36px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
 .f-copy{font-family:var(--fm);font-size:0.46rem;letter-spacing:0.18em;color:var(--c3);text-transform:uppercase;}
 .f-soc{display:flex;gap:20px;}
 .f-a{font-family:var(--fm);font-size:0.48rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(200,195,175,0.4);text-decoration:none;transition:color .2s;}
 .f-a:hover{color:var(--c6);}
-
 @media(max-width:700px){
-  nav{padding:0 14px;height:48px;}
-  .n-logo{font-size:0.9rem;}
-  .n-back,.n-cta{font-size:0.42rem;padding:4px 8px;}
+  nav{padding:0 12px;height:48px;}.n-logo{font-size:0.9rem;}
+  .lang-btn{font-size:0.45rem;padding:3px 6px;}.n-back,.n-cta{font-size:0.42rem;padding:4px 8px;}
   .article-wrap{padding:78px 18px 60px;}
-  .price-table{font-size:0.54rem;}
-  .price-table td,.price-table th{padding:8px 10px;}
+  .price-table{font-size:0.54rem;}.price-table td,.price-table th{padding:8px 10px;}
 }
 </style>
 </head>
@@ -225,8 +102,12 @@ footer{
 <nav aria-label="Navegación principal">
   <a href="/" class="n-logo" title="Hugo Jiménez — Community Manager">HUGO JIMÉNEZ</a>
   <div class="n-r">
-    <a href="/blog/" class="n-back">← BLOG</a>
-    <a href="/#p8" class="n-cta">LET'S TALK</a>
+    <div class="lang-tog" aria-label="Seleccionar idioma">
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')" aria-label="English">EN</button>
+      <button class="lang-btn" data-lang="es" onclick="setLang('es')" aria-label="Español">ES</button>
+    </div>
+    <a href="/blog/" class="n-back" data-i18n="nav-back">← BLOG</a>
+    <a href="/#p8" class="n-cta" data-i18n="nav-cta">LET'S TALK</a>
   </div>
 </nav>
 
@@ -234,138 +115,138 @@ footer{
 <article class="article-wrap" itemscope itemtype="https://schema.org/Article">
 
   <span class="breadcrumb">
-    <a href="/">Hugo Jiménez</a> / <a href="/blog/">Blog</a> / Tarifas Community Manager
+    <a href="/">Hugo Jiménez</a> / <a href="/blog/" data-i18n="bc-blog">Blog</a> / <span data-i18n="bc-cur">Tarifas Community Manager</span>
   </span>
 
   <header class="art-hero">
-    <span class="stamp">// tarifas · mercado · 2026</span>
-    <h1 class="art-title" itemprop="headline">¿CUÁNTO COBRA UN COMMUNITY MANAGER EN ESPAÑA EN 2026?</h1>
-    <span class="art-lead">Tarifas reales, factores que las condicionan y cómo saber si lo que te ofrecen es justo. Sin adornos — datos del mercado español actualizados.</span>
+    <span class="stamp" data-i18n="stamp">// tarifas · mercado · 2026</span>
+    <h1 class="art-title" itemprop="headline" data-i18n="title">¿CUÁNTO COBRA UN COMMUNITY MANAGER EN ESPAÑA EN 2026?</h1>
+    <span class="art-lead" data-i18n="lead">Tarifas reales, factores que las condicionan y cómo saber si lo que te ofrecen es justo. Sin adornos — datos del mercado español actualizados.</span>
     <div class="art-meta">
       <span>Hugo Jiménez</span>
-      <span>Mayo 2026</span>
-      <span>6 min lectura</span>
+      <span data-i18n="date">Mayo 2026</span>
+      <span data-i18n="read">6 min lectura</span>
     </div>
   </header>
 
   <div class="art-body" itemprop="articleBody">
 
-    <p>Una de las preguntas que más recibo cuando una marca quiere empezar en redes sociales es siempre la misma: <strong>¿cuánto cobra un community manager?</strong> Y la respuesta honesta es: depende. Pero eso no te sirve de nada, así que voy a darte datos reales del mercado español en 2026 para que puedas tomar una decisión informada.</p>
+    <p data-i18n="p1">Una de las preguntas que más recibo cuando una marca quiere empezar en redes sociales es siempre la misma: <strong>¿cuánto cobra un community manager?</strong> Y la respuesta honesta es: depende. Pero eso no te sirve de nada, así que voy a darte datos reales del mercado español en 2026 para que puedas tomar una decisión informada.</p>
 
-    <h2>TARIFAS POR HORA</h2>
+    <h2 data-i18n="h2-1">TARIFAS POR HORA</h2>
 
-    <p>El precio por hora de un <strong>community manager freelance en España</strong> varía mucho según la experiencia y la especialización:</p>
+    <p data-i18n="p2">El precio por hora de un <strong>community manager freelance en España</strong> varía mucho según la experiencia y la especialización:</p>
 
     <table class="price-table" aria-label="Tarifas por hora de community manager en España">
       <thead>
         <tr>
-          <th>Perfil</th>
-          <th>Tarifa hora</th>
-          <th>Características</th>
+          <th data-i18n="th1">Perfil</th>
+          <th data-i18n="th2">Tarifa hora</th>
+          <th data-i18n="th3">Características</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Junior (0-2 años)</td>
+          <td data-i18n="tr1-1">Junior (0-2 años)</td>
           <td class="hi">20€ – 35€/h</td>
-          <td>Sin casos de éxito demostrados, manejo básico de herramientas</td>
+          <td data-i18n="tr1-3">Sin casos de éxito demostrados, manejo básico de herramientas</td>
         </tr>
         <tr>
-          <td>Mid (2-4 años)</td>
+          <td data-i18n="tr2-1">Mid (2-4 años)</td>
           <td class="hi">35€ – 60€/h</td>
-          <td>Resultados medibles, gestión de paid social, estrategia documentada</td>
+          <td data-i18n="tr2-3">Resultados medibles, gestión de paid social, estrategia documentada</td>
         </tr>
         <tr>
-          <td>Senior (+5 años)</td>
+          <td data-i18n="tr3-1">Senior (+5 años)</td>
           <td class="hi">60€ – 90€/h</td>
-          <td>Especializaciones, casos de éxito sólidos, producción propia</td>
+          <td data-i18n="tr3-3">Especializaciones, casos de éxito sólidos, producción propia</td>
         </tr>
         <tr>
-          <td>Agencia</td>
+          <td data-i18n="tr4-1">Agencia</td>
           <td class="hi">80€ – 150€/h</td>
-          <td>Overhead de estructura, equipo multidisciplinar, mayor burocracia</td>
+          <td data-i18n="tr4-3">Overhead de estructura, equipo multidisciplinar, mayor burocracia</td>
         </tr>
       </tbody>
     </table>
 
-    <h2>PRECIOS MENSUALES REALES</h2>
+    <h2 data-i18n="h2-2">PRECIOS MENSUALES REALES</h2>
 
-    <p>La mayoría de los clientes contratan a un community manager con un <strong>fee mensual fijo</strong>, no por horas. Esto beneficia a ambas partes: al cliente le da previsibilidad de costes, y al CM le permite planificar correctamente el trabajo.</p>
+    <p data-i18n="p3">La mayoría de los clientes contratan a un community manager con un <strong>fee mensual fijo</strong>, no por horas. Esto beneficia a ambas partes: al cliente le da previsibilidad de costes, y al CM le permite planificar correctamente el trabajo.</p>
 
     <table class="price-table" aria-label="Precios mensuales de community manager freelance España">
       <thead>
         <tr>
-          <th>Servicio incluido</th>
-          <th>Precio/mes (freelance)</th>
+          <th data-i18n="th4">Servicio incluido</th>
+          <th data-i18n="th5">Precio/mes (freelance)</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>1 red social · 8-12 publicaciones · sin paid</td>
+          <td data-i18n="tm1">1 red social · 8-12 publicaciones · sin paid</td>
           <td class="hi">500€ – 800€/mes</td>
         </tr>
         <tr>
-          <td>2-3 redes · 16-24 publicaciones · sin paid</td>
+          <td data-i18n="tm2">2-3 redes · 16-24 publicaciones · sin paid</td>
           <td class="hi">800€ – 1.400€/mes</td>
         </tr>
         <tr>
-          <td>3-4 redes · contenido + paid social gestionado</td>
+          <td data-i18n="tm3">3-4 redes · contenido + paid social gestionado</td>
           <td class="hi">1.400€ – 2.500€/mes</td>
         </tr>
         <tr>
-          <td>Estrategia completa · producción vídeo · paid · analítica</td>
+          <td data-i18n="tm4">Estrategia completa · producción vídeo · paid · analítica</td>
           <td class="hi">2.500€ – 4.000€/mes</td>
         </tr>
       </tbody>
     </table>
 
     <div class="callout">
-      <p><strong>Nota importante:</strong> el presupuesto publicitario de paid social va siempre aparte del fee del community manager. Si te dicen que con 500€/mes ya va incluida la publicidad, algo no cuadra.</p>
+      <p data-i18n="callout1"><strong>Nota importante:</strong> el presupuesto publicitario de paid social va siempre aparte del fee del community manager. Si te dicen que con 500€/mes ya va incluida la publicidad, algo no cuadra.</p>
     </div>
 
-    <h2>FACTORES QUE AFECTAN AL PRECIO</h2>
+    <h2 data-i18n="h2-3">FACTORES QUE AFECTAN AL PRECIO</h2>
 
-    <h3>// Número de plataformas</h3>
-    <p>No es lo mismo gestionar solo Instagram que llevar Instagram + TikTok + LinkedIn + YouTube. Cada plataforma tiene su propio lenguaje, formato y estrategia. Más plataformas = más trabajo = más coste.</p>
+    <h3 data-i18n="h3-1">// Número de plataformas</h3>
+    <p data-i18n="p4">No es lo mismo gestionar solo Instagram que llevar Instagram + TikTok + LinkedIn + YouTube. Cada plataforma tiene su propio lenguaje, formato y estrategia. Más plataformas = más trabajo = más coste.</p>
 
-    <h3>// Producción de contenido</h3>
-    <p>Hay una diferencia enorme entre un CM que solo planifica y publica tu contenido existente, y uno que <strong>produce el contenido desde cero</strong>: guiones, grabación, edición de vídeo, fotografía. La producción propia puede doblar el precio, pero también dobla el valor.</p>
+    <h3 data-i18n="h3-2">// Producción de contenido</h3>
+    <p data-i18n="p5">Hay una diferencia enorme entre un CM que solo planifica y publica tu contenido existente, y uno que <strong>produce el contenido desde cero</strong>: guiones, grabación, edición de vídeo, fotografía. La producción propia puede doblar el precio, pero también dobla el valor.</p>
 
-    <h3>// Paid social incluido o no</h3>
-    <p>La gestión de campañas de Meta Ads, TikTok Ads o LinkedIn Ads requiere una cualificación específica. No todos los community managers la tienen, y los que la tienen la cobran aparte o tienen tarifas más altas.</p>
+    <h3 data-i18n="h3-3">// Paid social incluido o no</h3>
+    <p data-i18n="p6">La gestión de campañas de Meta Ads, TikTok Ads o LinkedIn Ads requiere una cualificación específica. No todos los community managers la tienen, y los que la tienen la cobran aparte o tienen tarifas más altas.</p>
 
-    <h3>// Sector y competencia</h3>
-    <p>Sectores como gastronomía, moda o lifestyle suelen tener tarifas más ajustadas por la alta oferta. Sectores B2B, tecnología o lujo suelen pagar más porque requieren un copy más técnico y una estrategia más sofisticada.</p>
+    <h3 data-i18n="h3-4">// Sector y competencia</h3>
+    <p data-i18n="p7">Sectores como gastronomía, moda o lifestyle suelen tener tarifas más ajustadas por la alta oferta. Sectores B2B, tecnología o lujo suelen pagar más porque requieren un copy más técnico y una estrategia más sofisticada.</p>
 
-    <h2>¿POR QUÉ NO CONTRATAR AL MÁS BARATO?</h2>
+    <h2 data-i18n="h2-4">¿POR QUÉ NO CONTRATAR AL MÁS BARATO?</h2>
 
-    <p>Es tentador ir a la opción más económica. Pero un community manager que cobra 200€/mes por gestionar tres redes sociales matemáticamente <strong>no puede dedicarle el tiempo que tu marca necesita</strong>. O trabaja con 30 clientes a la vez, o está aprendiendo contigo.</p>
+    <p data-i18n="p8">Es tentador ir a la opción más económica. Pero un community manager que cobra 200€/mes por gestionar tres redes sociales matemáticamente <strong>no puede dedicarle el tiempo que tu marca necesita</strong>. O trabaja con 30 clientes a la vez, o está aprendiendo contigo.</p>
 
-    <p>El coste de hacer las redes sociales mal no es cero — es alcance quemado, audiencia mal construida, dinero en paid mal invertido y meses de trabajo tirados. Hay que pensarlo como una inversión, no como un gasto.</p>
+    <p data-i18n="p9">El coste de hacer las redes sociales mal no es cero — es alcance quemado, audiencia mal construida, dinero en paid mal invertido y meses de trabajo tirados. Hay que pensarlo como una inversión, no como un gasto.</p>
 
-    <h2>FREELANCE VS AGENCIA: EL PRECIO DE LA ESTRUCTURA</h2>
+    <h2 data-i18n="h2-5">FREELANCE VS AGENCIA: EL PRECIO DE LA ESTRUCTURA</h2>
 
-    <p>Una agencia de marketing cobra más porque tiene estructura: alquileres, nóminas, overhead. Parte de lo que pagas va a financiar esa estructura, no a tu marca. Con un <strong>community manager freelance</strong> que trabaja directamente contigo, el 100% del presupuesto va al trabajo.</p>
+    <p data-i18n="p10">Una agencia de marketing cobra más porque tiene estructura: alquileres, nóminas, overhead. Parte de lo que pagas va a financiar esa estructura, no a tu marca. Con un <strong>community manager freelance</strong> que trabaja directamente contigo, el 100% del presupuesto va al trabajo.</p>
 
-    <p>Eso no significa que una agencia sea siempre peor opción — si necesitas muchos servicios coordinados (SEO, diseño, web, ads, redes) puede tener sentido. Pero para la gestión pura de comunidades y contenido, un freelance especializado suele ganar en calidad, agilidad y precio.</p>
+    <p data-i18n="p11">Eso no significa que una agencia sea siempre peor opción — si necesitas muchos servicios coordinados puede tener sentido. Pero para la gestión pura de comunidades y contenido, un freelance especializado suele ganar en calidad, agilidad y precio.</p>
 
-    <h2>MI TARIFA COMO REFERENCIA</h2>
+    <h2 data-i18n="h2-6">MI TARIFA COMO REFERENCIA</h2>
 
-    <p>Para no dejarte con datos en el aire: trabajo con tarifas dentro del rango mid-senior del mercado. Cada presupuesto es personalizado según el volumen de trabajo, plataformas y si incluye producción de vídeo o paid social.</p>
+    <p data-i18n="p12">Para no dejarte con datos en el aire: trabajo con tarifas dentro del rango mid-senior del mercado. Cada presupuesto es personalizado según el volumen de trabajo, plataformas y si incluye producción de vídeo o paid social.</p>
 
-    <p>Si quieres saber exactamente cuánto costaría llevar las redes de tu marca, <a href="/#p8">escríbeme y te preparo una propuesta en 48h</a>. Sin compromiso.</p>
+    <p data-i18n="p13">Si quieres saber exactamente cuánto costaría llevar las redes de tu marca, <a href="/#p8">escríbeme y te preparo una propuesta en 48h</a>. Sin compromiso.</p>
 
     <div class="art-cta">
-      <span class="cta-title">¿QUIERES SABER QUÉ COSTARÍA TU PROYECTO?</span>
-      <p>Cuéntame qué necesitas y te preparo una propuesta personalizada en menos de 48 horas.</p>
-      <a href="/#p8">HABLAMOS →</a>
+      <span class="cta-title" data-i18n="cta-title">¿QUIERES SABER QUÉ COSTARÍA TU PROYECTO?</span>
+      <p data-i18n="cta-p">Cuéntame qué necesitas y te preparo una propuesta personalizada en menos de 48 horas.</p>
+      <a href="/#p8" data-i18n="cta-btn">HABLAMOS →</a>
     </div>
 
     <div class="author-box">
       <img src="/hugo.png" alt="Hugo Jiménez, Community Manager Freelance España" class="author-img" width="56" height="56" loading="lazy"/>
       <div class="author-info">
         <strong>HUGO JIMÉNEZ</strong>
-        Community manager freelance basado en España. Gestión de redes sociales, estrategia de contenido y paid social para marcas que quieren crecer de verdad. <a href="/">brandkosmos.company</a>
+        <span data-i18n="author-bio">Community manager freelance basado en España. Gestión de redes sociales, estrategia de contenido y paid social para marcas que quieren crecer de verdad. <a href="/">brandkosmos.company</a></span>
       </div>
     </div>
 
@@ -379,8 +260,114 @@ footer{
     <a href="https://www.linkedin.com/in/hugo-jiménez-herrero-514ba3305" target="_blank" rel="noopener" class="f-a">LinkedIn</a>
     <a href="mailto:hugo@brandkosmos.company" class="f-a">Email</a>
   </div>
-  <span class="f-copy">Spain / Global</span>
+  <span class="f-copy" data-i18n="f-loc">España / Global</span>
 </footer>
 
+<script>
+const T={
+  en:{
+    'nav-back':'← BLOG','nav-cta':"LET'S TALK",
+    'bc-blog':'Blog','bc-cur':'Community Manager Rates',
+    'stamp':'// rates · market · 2026',
+    'title':'HOW MUCH DOES A COMMUNITY MANAGER EARN IN SPAIN IN 2026?',
+    'lead':'Real rates, the factors that affect them, and how to know if what you\'re being offered is fair. No fluff — updated Spanish market data.',
+    'date':'May 2026','read':'6 min read',
+    'p1':'One of the most common questions when a brand wants to start on social media is always the same: <strong>how much does a community manager charge?</strong> The honest answer is: it depends. But that\'s not useful to you, so here are real market data for Spain in 2026 so you can make an informed decision.',
+    'h2-1':'HOURLY RATES',
+    'p2':'The hourly rate of a <strong>freelance community manager in Spain</strong> varies greatly depending on experience and specialisation:',
+    'th1':'Profile','th2':'Hourly rate','th3':'Characteristics',
+    'tr1-1':'Junior (0-2 years)','tr1-3':'No proven track record, basic tool knowledge',
+    'tr2-1':'Mid (2-4 years)','tr2-3':'Measurable results, paid social management, documented strategy',
+    'tr3-1':'Senior (5+ years)','tr3-3':'Specialisations, solid case studies, in-house production',
+    'tr4-1':'Agency','tr4-3':'Structural overhead, multidisciplinary team, more bureaucracy',
+    'h2-2':'REAL MONTHLY PRICES',
+    'p3':'Most clients hire a community manager on a <strong>fixed monthly fee</strong>, not by the hour. This benefits both parties: the client gets cost predictability, and the CM can plan the work properly.',
+    'th4':'Services included','th5':'Price/month (freelance)',
+    'tm1':'1 social network · 8-12 posts · no paid social',
+    'tm2':'2-3 networks · 16-24 posts · no paid social',
+    'tm3':'3-4 networks · content + managed paid social',
+    'tm4':'Full strategy · video production · paid social · analytics',
+    'callout1':'<strong>Important note:</strong> the paid social advertising budget is always separate from the community manager\'s fee. If someone tells you advertising is included for €500/month, something doesn\'t add up.',
+    'h2-3':'FACTORS THAT AFFECT THE PRICE',
+    'h3-1':'// Number of platforms',
+    'p4':'Managing just Instagram is not the same as handling Instagram + TikTok + LinkedIn + YouTube. Each platform has its own language, format and strategy. More platforms = more work = more cost.',
+    'h3-2':'// Content production',
+    'p5':'There\'s a huge difference between a CM who only plans and publishes your existing content, and one who <strong>produces content from scratch</strong>: scripts, filming, video editing, photography. In-house production can double the price, but it also doubles the value.',
+    'h3-3':'// Paid social included or not',
+    'p6':'Managing Meta Ads, TikTok Ads or LinkedIn Ads campaigns requires specific skills. Not all community managers have them, and those who do charge extra or have higher rates.',
+    'h3-4':'// Sector and competition',
+    'p7':'Sectors like gastronomy, fashion or lifestyle tend to have more competitive rates due to high supply. B2B, technology or luxury sectors usually pay more because they require more technical copy and a more sophisticated strategy.',
+    'h2-4':'WHY NOT HIRE THE CHEAPEST?',
+    'p8':'It\'s tempting to go with the cheapest option. But a community manager charging €200/month to manage three social networks mathematically <strong>cannot dedicate the time your brand needs</strong>. Either they work with 30 clients at once, or they\'re learning on your dime.',
+    'p9':'The cost of doing social media badly isn\'t zero — it\'s burnt reach, poorly built audiences, badly invested paid social money, and months of wasted work. Think of it as an investment, not an expense.',
+    'h2-5':'FREELANCE VS AGENCY: THE COST OF STRUCTURE',
+    'p10':'An agency charges more because it has structure: rent, payroll, overhead. Part of what you pay finances that structure, not your brand. With a <strong>freelance community manager</strong> working directly with you, 100% of the budget goes to actual work.',
+    'p11':'That doesn\'t mean an agency is always the worse option — if you need many coordinated services it can make sense. But for pure community and content management, a specialised freelance usually wins on quality, agility and price.',
+    'h2-6':'MY RATES AS A REFERENCE',
+    'p12':'To not leave you with abstract data: I work within the mid-senior market range. Each quote is personalised based on workload, platforms, and whether it includes video production or paid social.',
+    'p13':'If you want to know exactly what managing your brand\'s social media would cost, <a href="/#p8">write to me and I\'ll prepare a proposal within 48h</a>. No commitment.',
+    'cta-title':'WANT TO KNOW WHAT YOUR PROJECT WOULD COST?',
+    'cta-p':'Tell me what you need and I\'ll prepare a personalised proposal in less than 48 hours.',
+    'cta-btn':'GET A QUOTE →',
+    'author-bio':'Freelance community manager based in Spain. Social media management, content strategy and paid social for brands that want to grow for real. <a href="/">brandkosmos.company</a>',
+    'f-loc':'Spain / Global'
+  },
+  es:{
+    'nav-back':'← BLOG','nav-cta':'HABLEMOS',
+    'bc-blog':'Blog','bc-cur':'Tarifas Community Manager',
+    'stamp':'// tarifas · mercado · 2026',
+    'title':'¿CUÁNTO COBRA UN COMMUNITY MANAGER EN ESPAÑA EN 2026?',
+    'lead':'Tarifas reales, factores que las condicionan y cómo saber si lo que te ofrecen es justo. Sin adornos — datos del mercado español actualizados.',
+    'date':'Mayo 2026','read':'6 min lectura',
+    'p1':'Una de las preguntas que más recibo cuando una marca quiere empezar en redes sociales es siempre la misma: <strong>¿cuánto cobra un community manager?</strong> Y la respuesta honesta es: depende. Pero eso no te sirve de nada, así que voy a darte datos reales del mercado español en 2026 para que puedas tomar una decisión informada.',
+    'h2-1':'TARIFAS POR HORA',
+    'p2':'El precio por hora de un <strong>community manager freelance en España</strong> varía mucho según la experiencia y la especialización:',
+    'th1':'Perfil','th2':'Tarifa hora','th3':'Características',
+    'tr1-1':'Junior (0-2 años)','tr1-3':'Sin casos de éxito demostrados, manejo básico de herramientas',
+    'tr2-1':'Mid (2-4 años)','tr2-3':'Resultados medibles, gestión de paid social, estrategia documentada',
+    'tr3-1':'Senior (+5 años)','tr3-3':'Especializaciones, casos de éxito sólidos, producción propia',
+    'tr4-1':'Agencia','tr4-3':'Overhead de estructura, equipo multidisciplinar, mayor burocracia',
+    'h2-2':'PRECIOS MENSUALES REALES',
+    'p3':'La mayoría de los clientes contratan a un community manager con un <strong>fee mensual fijo</strong>, no por horas. Esto beneficia a ambas partes: al cliente le da previsibilidad de costes, y al CM le permite planificar correctamente el trabajo.',
+    'th4':'Servicio incluido','th5':'Precio/mes (freelance)',
+    'tm1':'1 red social · 8-12 publicaciones · sin paid',
+    'tm2':'2-3 redes · 16-24 publicaciones · sin paid',
+    'tm3':'3-4 redes · contenido + paid social gestionado',
+    'tm4':'Estrategia completa · producción vídeo · paid · analítica',
+    'callout1':'<strong>Nota importante:</strong> el presupuesto publicitario de paid social va siempre aparte del fee del community manager. Si te dicen que con 500€/mes ya va incluida la publicidad, algo no cuadra.',
+    'h2-3':'FACTORES QUE AFECTAN AL PRECIO',
+    'h3-1':'// Número de plataformas',
+    'p4':'No es lo mismo gestionar solo Instagram que llevar Instagram + TikTok + LinkedIn + YouTube. Cada plataforma tiene su propio lenguaje, formato y estrategia. Más plataformas = más trabajo = más coste.',
+    'h3-2':'// Producción de contenido',
+    'p5':'Hay una diferencia enorme entre un CM que solo planifica y publica tu contenido existente, y uno que <strong>produce el contenido desde cero</strong>: guiones, grabación, edición de vídeo, fotografía. La producción propia puede doblar el precio, pero también dobla el valor.',
+    'h3-3':'// Paid social incluido o no',
+    'p6':'La gestión de campañas de Meta Ads, TikTok Ads o LinkedIn Ads requiere una cualificación específica. No todos los community managers la tienen, y los que la tienen la cobran aparte o tienen tarifas más altas.',
+    'h3-4':'// Sector y competencia',
+    'p7':'Sectores como gastronomía, moda o lifestyle suelen tener tarifas más ajustadas por la alta oferta. Sectores B2B, tecnología o lujo suelen pagar más porque requieren un copy más técnico y una estrategia más sofisticada.',
+    'h2-4':'¿POR QUÉ NO CONTRATAR AL MÁS BARATO?',
+    'p8':'Es tentador ir a la opción más económica. Pero un community manager que cobra 200€/mes por gestionar tres redes sociales matemáticamente <strong>no puede dedicarle el tiempo que tu marca necesita</strong>. O trabaja con 30 clientes a la vez, o está aprendiendo contigo.',
+    'p9':'El coste de hacer las redes sociales mal no es cero — es alcance quemado, audiencia mal construida, dinero en paid mal invertido y meses de trabajo tirados. Hay que pensarlo como una inversión, no como un gasto.',
+    'h2-5':'FREELANCE VS AGENCIA: EL PRECIO DE LA ESTRUCTURA',
+    'p10':'Una agencia de marketing cobra más porque tiene estructura: alquileres, nóminas, overhead. Parte de lo que pagas va a financiar esa estructura, no a tu marca. Con un <strong>community manager freelance</strong> que trabaja directamente contigo, el 100% del presupuesto va al trabajo.',
+    'p11':'Eso no significa que una agencia sea siempre peor opción — si necesitas muchos servicios coordinados puede tener sentido. Pero para la gestión pura de comunidades y contenido, un freelance especializado suele ganar en calidad, agilidad y precio.',
+    'h2-6':'MI TARIFA COMO REFERENCIA',
+    'p12':'Para no dejarte con datos en el aire: trabajo con tarifas dentro del rango mid-senior del mercado. Cada presupuesto es personalizado según el volumen de trabajo, plataformas y si incluye producción de vídeo o paid social.',
+    'p13':'Si quieres saber exactamente cuánto costaría llevar las redes de tu marca, <a href="/#p8">escríbeme y te preparo una propuesta en 48h</a>. Sin compromiso.',
+    'cta-title':'¿QUIERES SABER QUÉ COSTARÍA TU PROYECTO?',
+    'cta-p':'Cuéntame qué necesitas y te preparo una propuesta personalizada en menos de 48 horas.',
+    'cta-btn':'HABLAMOS →',
+    'author-bio':'Community manager freelance basado en España. Gestión de redes sociales, estrategia de contenido y paid social para marcas que quieren crecer de verdad. <a href="/">brandkosmos.company</a>',
+    'f-loc':'España / Global'
+  }
+};
+function setLang(l){
+  try{localStorage.setItem('hj-lang',l);}catch(e){}
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('on',b.dataset.lang===l));
+  const t=T[l]||T.es;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(t[k]!==undefined)el.innerHTML=t[k];});
+}
+const _l=(()=>{try{return localStorage.getItem('hj-lang')||'en';}catch(e){return 'en';}})();
+setLang(_l);
+</script>
 </body>
 </html>

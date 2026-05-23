@@ -28,162 +28,51 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 h1,h2,h3{font-weight:inherit;font-size:inherit;}
 :root{
-  --c0:#060a06;
-  --c1:#0d1510;
-  --c3:#8a8870;
-  --c4:#aea890;
-  --c5:#c8c2aa;
-  --c6:#ddd8c4;
-  --c7:#f0ece0;
-  --green:#1c3a18;
-  --green-l:#2e5228;
-  --green-a:#406c36;
-  --fb:'Bebas Neue',sans-serif;
-  --fs:'Space Grotesk',sans-serif;
-  --fm:'Space Mono',monospace;
+  --c0:#060a06;--c1:#0d1510;--c3:#8a8870;--c4:#aea890;--c5:#c8c2aa;--c6:#ddd8c4;--c7:#f0ece0;
+  --green:#1c3a18;--green-l:#2e5228;--green-a:#406c36;
+  --fb:'Bebas Neue',sans-serif;--fs:'Space Grotesk',sans-serif;--fm:'Space Mono',monospace;
 }
-body{
-  background:#070b07;
-  color:var(--c6);
-  font-family:var(--fs);
-  min-height:100vh;
-  overflow-x:hidden;
-}
-/* ── NAV ── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:800;
-  height:52px;padding:0 36px;
-  display:flex;align-items:center;justify-content:space-between;
-  background:rgba(5,9,5,0.96);
-  border-bottom:1px solid rgba(46,82,40,0.45);
-  backdrop-filter:blur(14px);
-}
+body{background:#070b07;color:var(--c6);font-family:var(--fs);min-height:100vh;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:800;height:52px;padding:0 36px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,9,5,0.96);border-bottom:1px solid rgba(46,82,40,0.45);backdrop-filter:blur(14px);}
 .n-logo{font-family:var(--fb);font-size:1.15rem;letter-spacing:0.14em;color:var(--c7);text-decoration:none;}
-.n-r{display:flex;align-items:center;gap:20px;}
+.n-r{display:flex;align-items:center;gap:16px;}
+.lang-tog{display:flex;border:1px solid rgba(64,108,54,0.35);overflow:hidden;}
+.lang-btn{background:none;border:none;font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(200,194,170,0.5);padding:5px 9px;cursor:pointer;transition:all .2s;}
+.lang-btn.on{background:var(--green);color:var(--c7);}
 .n-back{font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(200,194,170,0.45);text-decoration:none;transition:color .2s;}
 .n-back:hover{color:var(--c6);}
 .n-cta{font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--green-a);text-decoration:none;border:1px solid var(--green-l);padding:5px 13px;transition:background .2s,color .2s;}
 .n-cta:hover{background:var(--green-l);color:var(--c7);}
-
-/* ── LAYOUT ── */
-.blog-wrap{
-  max-width:960px;
-  margin:0 auto;
-  padding:100px 36px 80px;
-}
-
-/* ── HEADER ── */
-.blog-header{
-  border-bottom:1px solid rgba(46,82,40,0.3);
-  padding-bottom:40px;
-  margin-bottom:60px;
-}
-.stamp{
-  font-family:var(--fm);font-size:0.56rem;font-weight:700;
-  letter-spacing:0.34em;text-transform:uppercase;
-  color:var(--green-a);display:block;margin-bottom:10px;
-  padding-left:12px;border-left:2px solid var(--green-l);
-}
-.page-title{
-  font-family:var(--fb);
-  font-size:clamp(3rem,6vw,5.5rem);
-  line-height:0.88;letter-spacing:0.01em;
-  color:var(--c7);display:block;margin-bottom:16px;
-}
-.page-sub{
-  font-size:0.9rem;line-height:1.65;color:var(--c4);
-  max-width:520px;display:block;
-}
-
-/* ── GRID ── */
-.article-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-  gap:2px;
-}
-
-/* ── CARD ── */
-.article-card{
-  background:var(--c1);
-  border:1px solid rgba(46,82,40,0.2);
-  padding:28px;
-  text-decoration:none;
-  display:block;
-  transition:border-color .2s, background .2s;
-  position:relative;
-  overflow:hidden;
-}
-.article-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--green-l),transparent);
-  opacity:0;transition:opacity .2s;
-}
-.article-card:hover{
-  border-color:rgba(64,108,54,0.5);
-  background:rgba(13,21,16,0.9);
-}
+.blog-wrap{max-width:960px;margin:0 auto;padding:100px 36px 80px;}
+.blog-header{border-bottom:1px solid rgba(46,82,40,0.3);padding-bottom:40px;margin-bottom:60px;}
+.stamp{font-family:var(--fm);font-size:0.56rem;font-weight:700;letter-spacing:0.34em;text-transform:uppercase;color:var(--green-a);display:block;margin-bottom:10px;padding-left:12px;border-left:2px solid var(--green-l);}
+.page-title{font-family:var(--fb);font-size:clamp(3rem,6vw,5.5rem);line-height:0.88;letter-spacing:0.01em;color:var(--c7);display:block;margin-bottom:16px;}
+.page-sub{font-size:0.9rem;line-height:1.65;color:var(--c4);max-width:520px;display:block;}
+.article-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:2px;}
+.article-card{background:var(--c1);border:1px solid rgba(46,82,40,0.2);padding:28px;text-decoration:none;display:block;transition:border-color .2s,background .2s;position:relative;overflow:hidden;}
+.article-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green-l),transparent);opacity:0;transition:opacity .2s;}
+.article-card:hover{border-color:rgba(64,108,54,0.5);background:rgba(13,21,16,0.9);}
 .article-card:hover::before{opacity:1;}
-.card-tag{
-  font-family:var(--fm);font-size:0.48rem;font-weight:700;
-  letter-spacing:0.28em;text-transform:uppercase;
-  color:var(--green-a);display:block;margin-bottom:14px;
-}
-.card-title{
-  font-family:var(--fb);
-  font-size:clamp(1.3rem,2.2vw,1.8rem);
-  line-height:0.95;letter-spacing:0.01em;
-  color:var(--c7);display:block;margin-bottom:12px;
-}
-.card-desc{
-  font-size:0.8rem;line-height:1.6;color:var(--c4);display:block;margin-bottom:20px;
-}
-.card-meta{
-  font-family:var(--fm);font-size:0.46rem;letter-spacing:0.16em;
-  color:var(--c3);display:flex;gap:14px;text-transform:uppercase;
-}
-.card-arrow{
-  position:absolute;bottom:28px;right:28px;
-  font-family:var(--fb);font-size:1.4rem;
-  color:rgba(64,108,54,0.4);
-  transition:color .2s,transform .2s;
-}
+.card-tag{font-family:var(--fm);font-size:0.48rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:var(--green-a);display:block;margin-bottom:14px;}
+.card-title{font-family:var(--fb);font-size:clamp(1.3rem,2.2vw,1.8rem);line-height:0.95;letter-spacing:0.01em;color:var(--c7);display:block;margin-bottom:12px;}
+.card-desc{font-size:0.8rem;line-height:1.6;color:var(--c4);display:block;margin-bottom:20px;}
+.card-meta{font-family:var(--fm);font-size:0.46rem;letter-spacing:0.16em;color:var(--c3);display:flex;gap:14px;text-transform:uppercase;}
+.card-arrow{position:absolute;bottom:28px;right:28px;font-family:var(--fb);font-size:1.4rem;color:rgba(64,108,54,0.4);transition:color .2s,transform .2s;}
 .article-card:hover .card-arrow{color:var(--green-a);transform:translate(3px,-3px);}
-
-/* ── FEATURED ── */
-.article-card.featured{
-  grid-column:1/-1;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:40px;
-  padding:36px;
-}
+.article-card.featured{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:40px;padding:36px;}
 .article-card.featured .card-title{font-size:clamp(2rem,4vw,3.2rem);}
 .article-card.featured .card-desc{font-size:0.88rem;}
 .featured-col-r{display:flex;flex-direction:column;justify-content:flex-end;}
-.featured-num{
-  font-family:var(--fb);
-  font-size:clamp(4rem,8vw,7rem);
-  line-height:1;
-  color:transparent;
-  -webkit-text-stroke:1px rgba(64,108,54,0.3);
-  display:block;
-}
-
-/* ── FOOTER ── */
-footer{
-  border-top:1px solid rgba(46,82,40,0.2);
-  padding:24px 36px;
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:12px;
-}
+.featured-num{font-family:var(--fb);font-size:clamp(4rem,8vw,7rem);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(64,108,54,0.3);display:block;}
+footer{border-top:1px solid rgba(46,82,40,0.2);padding:24px 36px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
 .f-copy{font-family:var(--fm);font-size:0.46rem;letter-spacing:0.18em;color:var(--c3);text-transform:uppercase;}
 .f-soc{display:flex;gap:20px;}
 .f-a{font-family:var(--fm);font-size:0.48rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(200,195,175,0.4);text-decoration:none;transition:color .2s;}
 .f-a:hover{color:var(--c6);}
-
 @media(max-width:700px){
-  nav{padding:0 14px;height:48px;}
+  nav{padding:0 12px;height:48px;}
   .n-logo{font-size:0.9rem;}
+  .lang-btn{font-size:0.45rem;padding:3px 6px;}
   .n-back,.n-cta{font-size:0.42rem;padding:4px 8px;}
   .blog-wrap{padding:80px 16px 60px;}
   .article-card.featured{grid-template-columns:1fr;}
@@ -197,32 +86,34 @@ footer{
 <nav aria-label="Navegación principal">
   <a href="/" class="n-logo" title="Hugo Jiménez — Community Manager">HUGO JIMÉNEZ</a>
   <div class="n-r">
-    <a href="/" class="n-back">← PORTFOLIO</a>
-    <a href="/#p8" class="n-cta">LET'S TALK</a>
+    <div class="lang-tog" aria-label="Seleccionar idioma">
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')" aria-label="English">EN</button>
+      <button class="lang-btn" data-lang="es" onclick="setLang('es')" aria-label="Español">ES</button>
+    </div>
+    <a href="/" class="n-back" data-i18n="nav-back">← PORTFOLIO</a>
+    <a href="/#p8" class="n-cta" data-i18n="nav-cta">LET'S TALK</a>
   </div>
 </nav>
 
 <main>
 <div class="blog-wrap">
-
   <header class="blog-header">
-    <span class="stamp">// recursos & estrategia</span>
+    <span class="stamp" data-i18n="stamp">// recursos & estrategia</span>
     <h1 class="page-title">BLOG.</h1>
-    <span class="page-sub">Community management, redes sociales y marketing digital. Sin fluff — solo lo que funciona de verdad.</span>
+    <span class="page-sub" data-i18n="sub">Community management, redes sociales y marketing digital. Sin fluff — solo lo que funciona de verdad.</span>
   </header>
 
   <div class="article-grid">
 
-    <!-- FEATURED -->
     <a href="/blog/cuanto-cobra-un-community-manager-en-espana/" class="article-card featured">
       <div>
-        <span class="card-tag">// tarifas · mercado</span>
-        <span class="card-title">¿CUÁNTO COBRA UN COMMUNITY MANAGER EN ESPAÑA EN 2026?</span>
-        <span class="card-desc">Tarifas reales, factores que las condicionan y cómo saber si lo que te ofrecen es justo. Guía actualizada con datos del mercado español.</span>
+        <span class="card-tag" data-i18n="c1-tag">// tarifas · mercado</span>
+        <span class="card-title" data-i18n="c1-title">¿CUÁNTO COBRA UN COMMUNITY MANAGER EN ESPAÑA EN 2026?</span>
+        <span class="card-desc" data-i18n="c1-desc">Tarifas reales, factores que las condicionan y cómo saber si lo que te ofrecen es justo. Guía actualizada con datos del mercado español.</span>
         <div class="card-meta">
-          <span>Mayo 2026</span>
-          <span>6 min lectura</span>
-          <span>Destacado</span>
+          <span data-i18n="c1-date">Mayo 2026</span>
+          <span data-i18n="c1-read">6 min lectura</span>
+          <span data-i18n="featured">Destacado</span>
         </div>
       </div>
       <div class="featured-col-r">
@@ -231,26 +122,24 @@ footer{
       <span class="card-arrow">↗</span>
     </a>
 
-    <!-- ARTICLE 2 -->
     <a href="/blog/community-manager-freelance-vs-agencia/" class="article-card">
-      <span class="card-tag">// estrategia</span>
-      <span class="card-title">FREELANCE VS AGENCIA: ¿QUÉ ES MEJOR PARA TU MARCA?</span>
-      <span class="card-desc">Las diferencias reales entre contratar a un community manager freelance o a una agencia. Ventajas, riesgos y cuándo elegir cada opción.</span>
+      <span class="card-tag" data-i18n="c2-tag">// estrategia</span>
+      <span class="card-title" data-i18n="c2-title">FREELANCE VS AGENCIA: ¿QUÉ ES MEJOR PARA TU MARCA?</span>
+      <span class="card-desc" data-i18n="c2-desc">Las diferencias reales entre contratar a un community manager freelance o a una agencia. Ventajas, riesgos y cuándo elegir cada opción.</span>
       <div class="card-meta">
-        <span>Mayo 2026</span>
-        <span>5 min lectura</span>
+        <span data-i18n="c2-date">Mayo 2026</span>
+        <span data-i18n="c2-read">5 min lectura</span>
       </div>
       <span class="card-arrow">↗</span>
     </a>
 
-    <!-- ARTICLE 3 -->
     <a href="/blog/como-gestionar-instagram-en-2026/" class="article-card">
-      <span class="card-tag">// instagram · contenido</span>
-      <span class="card-title">CÓMO GESTIONAR INSTAGRAM EN 2026 PASO A PASO</span>
-      <span class="card-desc">Estrategia de contenido, algoritmo, Reels, Stories y métricas que importan. Todo lo que necesitas saber para crecer en Instagram este año.</span>
+      <span class="card-tag" data-i18n="c3-tag">// instagram · contenido</span>
+      <span class="card-title" data-i18n="c3-title">CÓMO GESTIONAR INSTAGRAM EN 2026 PASO A PASO</span>
+      <span class="card-desc" data-i18n="c3-desc">Estrategia de contenido, algoritmo, Reels, Stories y métricas que importan. Todo lo que necesitas saber para crecer en Instagram este año.</span>
       <div class="card-meta">
-        <span>Próximamente</span>
-        <span>8 min lectura</span>
+        <span data-i18n="c3-date">Próximamente</span>
+        <span data-i18n="c3-read">8 min lectura</span>
       </div>
       <span class="card-arrow">↗</span>
     </a>
@@ -260,13 +149,65 @@ footer{
 </main>
 
 <footer>
-  <span class="f-copy">© 2026 Hugo Jiménez — Community Manager</span>
+  <span class="f-copy" data-i18n="f-copy">© 2026 Hugo Jiménez — Community Manager</span>
   <div class="f-soc">
     <a href="https://www.linkedin.com/in/hugo-jiménez-herrero-514ba3305" target="_blank" rel="noopener" class="f-a">LinkedIn</a>
     <a href="mailto:hugo@brandkosmos.company" class="f-a">Email</a>
   </div>
-  <span class="f-copy">Spain / Global</span>
+  <span class="f-copy" data-i18n="f-loc">España / Global</span>
 </footer>
 
+<script>
+const T={
+  en:{
+    'stamp':'// resources & strategy',
+    'sub':'Community management, social media and digital marketing. No fluff — just what actually works.',
+    'nav-back':'← PORTFOLIO','nav-cta':"LET'S TALK",
+    'c1-tag':'// rates · market',
+    'c1-title':'HOW MUCH DOES A COMMUNITY MANAGER EARN IN SPAIN IN 2026?',
+    'c1-desc':'Real rates, the factors that affect them, and how to know if what you\'re being offered is fair. Updated guide with Spanish market data.',
+    'c1-date':'May 2026','c1-read':'6 min read',
+    'featured':'Featured',
+    'c2-tag':'// strategy',
+    'c2-title':'FREELANCE VS AGENCY: WHICH IS BETTER FOR YOUR BRAND?',
+    'c2-desc':'The real differences between hiring a freelance community manager or an agency. Advantages, risks and when to choose each option.',
+    'c2-date':'May 2026','c2-read':'5 min read',
+    'c3-tag':'// instagram · content',
+    'c3-title':'HOW TO MANAGE INSTAGRAM IN 2026 STEP BY STEP',
+    'c3-desc':'Content strategy, algorithm, Reels, Stories and the metrics that matter. Everything you need to know to grow on Instagram this year.',
+    'c3-date':'Coming soon','c3-read':'8 min read',
+    'f-copy':'© 2026 Hugo Jiménez — Community Manager',
+    'f-loc':'Spain / Global'
+  },
+  es:{
+    'stamp':'// recursos & estrategia',
+    'sub':'Community management, redes sociales y marketing digital. Sin fluff — solo lo que funciona de verdad.',
+    'nav-back':'← PORTFOLIO','nav-cta':'HABLEMOS',
+    'c1-tag':'// tarifas · mercado',
+    'c1-title':'¿CUÁNTO COBRA UN COMMUNITY MANAGER EN ESPAÑA EN 2026?',
+    'c1-desc':'Tarifas reales, factores que las condicionan y cómo saber si lo que te ofrecen es justo. Guía actualizada con datos del mercado español.',
+    'c1-date':'Mayo 2026','c1-read':'6 min lectura',
+    'featured':'Destacado',
+    'c2-tag':'// estrategia',
+    'c2-title':'FREELANCE VS AGENCIA: ¿QUÉ ES MEJOR PARA TU MARCA?',
+    'c2-desc':'Las diferencias reales entre contratar a un community manager freelance o a una agencia. Ventajas, riesgos y cuándo elegir cada opción.',
+    'c2-date':'Mayo 2026','c2-read':'5 min lectura',
+    'c3-tag':'// instagram · contenido',
+    'c3-title':'CÓMO GESTIONAR INSTAGRAM EN 2026 PASO A PASO',
+    'c3-desc':'Estrategia de contenido, algoritmo, Reels, Stories y métricas que importan. Todo lo que necesitas saber para crecer en Instagram este año.',
+    'c3-date':'Próximamente','c3-read':'8 min lectura',
+    'f-copy':'© 2026 Hugo Jiménez — Community Manager',
+    'f-loc':'España / Global'
+  }
+};
+function setLang(l){
+  try{localStorage.setItem('hj-lang',l);}catch(e){}
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('on',b.dataset.lang===l));
+  const t=T[l]||T.es;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(t[k])el.innerHTML=t[k];});
+}
+const _l=(()=>{try{return localStorage.getItem('hj-lang')||'en';}catch(e){return 'en';}})();
+setLang(_l);
+</script>
 </body>
 </html>
