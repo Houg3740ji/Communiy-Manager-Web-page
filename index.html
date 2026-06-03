@@ -50,6 +50,7 @@
 <link rel="dns-prefetch" href="https://fonts.gstatic.com"/>
 <link rel="preconnect" href="https://unpkg.com"/>
 <link rel="dns-prefetch" href="https://unpkg.com"/>
+<link rel="preload" href="/hugo.png" as="image" fetchpriority="high"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 
 <!-- Schema.org — Person -->
@@ -74,7 +75,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/></noscript>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 h1,h2,h3{font-weight:inherit;font-size:inherit;}
@@ -1097,7 +1099,7 @@ footer{
 </main>
 
 <!-- PLATFORM DETAIL OVERLAY -->
-<div id="plat-overlay" class="plat-overlay" role="dialog" aria-modal="true">
+<div id="plat-overlay" class="plat-overlay" role="dialog" aria-modal="true" aria-label="Detalle de plataforma">
   <button class="ov-back" onclick="closePlat()">← BACK TO PLATFORMS</button>
   <canvas id="plat-canvas"></canvas>
   <span class="ov-ghost-l" id="plat-ghost"></span>
@@ -1116,7 +1118,7 @@ footer{
 </div>
 
 <!-- SERVICE DETAIL OVERLAY -->
-<div id="svc-overlay" class="svc-overlay" role="dialog" aria-modal="true">
+<div id="svc-overlay" class="svc-overlay" role="dialog" aria-modal="true" aria-label="Detalle de servicio">
   <button class="ov-back" onclick="closeSvc()">← BACK TO SERVICES</button>
   <div class="ov-body">
     <span class="ov-num" id="ov-num"></span>
@@ -1143,7 +1145,7 @@ footer{
 </footer>
 
 <!-- EmailJS -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
   // ── EMAILJS CONFIG ──
   // 1. Create free account at https://www.emailjs.com
@@ -1362,8 +1364,9 @@ if(!isMobile()){
 ═══════════════════════════════════════ */
 (function(){
   const _mob = isMobile();
+  if(_mob){ document.getElementById('three-canvas').style.display='none'; return; }
   const canvas = document.getElementById('three-canvas');
-  const renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:!_mob, preserveDrawingBuffer:true});
+  const renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true, preserveDrawingBuffer:true});
   renderer.setPixelRatio(_mob ? 1 : Math.min(window.devicePixelRatio,2));
   renderer.shadowMap.enabled = !_mob;
   if(!_mob) renderer.shadowMap.type = THREE.PCFSoftShadowMap;
