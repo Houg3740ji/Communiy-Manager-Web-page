@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="html-root">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,9 +34,54 @@ body {
   overflow-x: hidden;
 }
 
+/* ── NAV ── */
+.report-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 80px;
+  height: 52px;
+  background: rgba(12,15,13,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(168,200,180,0.08);
+}
+.nav-brand {
+  font-family: var(--serif);
+  font-size: 13px;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.14em;
+  color: var(--sage3);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-brand:hover { color: var(--white); }
+.lang-switcher { display: flex; align-items: center; gap: 4px; }
+.lang-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--sage3);
+  font-family: var(--sans);
+  text-transform: uppercase;
+  font-weight: 400;
+  padding: 5px 8px;
+  border-radius: 2px;
+  transition: color 0.2s, background 0.2s;
+}
+.lang-btn:hover { color: var(--white); }
+.lang-btn.active { color: var(--white); background: rgba(168,200,180,0.08); }
+.lang-sep { font-size: 10px; color: rgba(168,200,180,0.2); }
+
 /* ── HERO ── */
 .hero {
-  min-height: 100vh;
+  min-height: calc(100vh - 52px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -323,7 +368,6 @@ body {
   gap: 40px;
   align-items: start;
 }
-.chart-main {}
 .chart-title {
   font-family: var(--serif);
   font-size: 28px;
@@ -339,12 +383,6 @@ body {
   margin-bottom: 32px;
   line-height: 1.6;
 }
-.chart-canvas-wrap {
-  position: relative;
-  width: 100%;
-  height: 220px;
-}
-.chart-aside {}
 .chart-insight {
   background: rgba(46,92,63,0.15);
   border: 1px solid rgba(168,200,180,0.12);
@@ -373,7 +411,6 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 60px;
 }
-.format-group {}
 .format-group-title {
   font-family: var(--serif);
   font-size: 22px;
@@ -389,211 +426,53 @@ body {
   margin-bottom: 32px;
   letter-spacing: 0.04em;
 }
-.fbar-item {
-  margin-bottom: 20px;
-}
-.fbar-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
-}
-.fbar-name {
-  font-size: 12px;
-  color: var(--sage2);
-  font-weight: 300;
-}
-.fbar-value {
-  font-family: var(--serif);
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--white);
-}
-.fbar-track {
-  height: 3px;
-  background: rgba(168,200,180,0.1);
-  border-radius: 2px;
-  overflow: hidden;
-}
-.fbar-fill {
-  height: 100%;
-  border-radius: 2px;
-  transition: width 1.2s cubic-bezier(0.25, 1, 0.5, 1);
-}
+.fbar-item { margin-bottom: 20px; }
+.fbar-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
+.fbar-name { font-size: 12px; color: var(--sage2); font-weight: 300; }
+.fbar-value { font-family: var(--serif); font-size: 14px; font-weight: 400; color: var(--white); }
+.fbar-track { height: 3px; background: rgba(168,200,180,0.1); border-radius: 2px; overflow: hidden; }
+.fbar-fill { height: 100%; border-radius: 2px; transition: width 1.2s cubic-bezier(0.25, 1, 0.5, 1); }
 
 /* ── AUDIENCE ── */
-.audience-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-}
-.aud-title {
-  font-family: var(--serif);
-  font-size: 22px;
-  font-weight: 200;
-  font-style: italic;
-  color: var(--white);
-  margin-bottom: 6px;
-}
-.aud-sub {
-  font-size: 11px;
-  color: var(--sage3);
-  margin-bottom: 32px;
-  font-weight: 300;
-}
-.age-item {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 16px;
-}
-.age-label-s {
-  font-size: 11px;
-  color: var(--sage3);
-  width: 44px;
-  flex-shrink: 0;
-  font-weight: 300;
-}
+.audience-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+.aud-title { font-family: var(--serif); font-size: 22px; font-weight: 200; font-style: italic; color: var(--white); margin-bottom: 6px; }
+.aud-sub { font-size: 11px; color: var(--sage3); margin-bottom: 32px; font-weight: 300; }
+.age-item { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+.age-label-s { font-size: 11px; color: var(--sage3); width: 44px; flex-shrink: 0; font-weight: 300; }
 .age-bars-wrap { flex: 1; }
-.age-bar-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 3px;
-}
-.age-track {
-  flex: 1;
-  height: 3px;
-  background: rgba(168,200,180,0.1);
-  border-radius: 2px;
-  overflow: hidden;
-}
+.age-bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
+.age-track { flex: 1; height: 3px; background: rgba(168,200,180,0.1); border-radius: 2px; overflow: hidden; }
 .age-fill-m { background: var(--mid); height: 100%; border-radius: 2px; }
 .age-fill-f { background: var(--sage3); height: 100%; border-radius: 2px; }
-.age-pct {
-  font-size: 10px;
-  color: var(--sage3);
-  width: 32px;
-  text-align: right;
-  flex-shrink: 0;
-}
-
-.country-item {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 18px;
-}
-.country-name {
-  font-size: 12px;
-  color: var(--sage2);
-  width: 90px;
-  flex-shrink: 0;
-  font-weight: 300;
-}
-.country-track {
-  flex: 1;
-  height: 2px;
-  background: rgba(168,200,180,0.1);
-  border-radius: 1px;
-  overflow: hidden;
-}
-.country-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--mid), var(--light));
-  border-radius: 1px;
-}
-.country-pct {
-  font-family: var(--serif);
-  font-size: 14px;
-  color: var(--white);
-  font-weight: 400;
-  width: 36px;
-  text-align: right;
-}
+.age-pct { font-size: 10px; color: var(--sage3); width: 32px; text-align: right; flex-shrink: 0; }
+.country-item { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
+.country-name { font-size: 12px; color: var(--sage2); width: 90px; flex-shrink: 0; font-weight: 300; }
+.country-track { flex: 1; height: 2px; background: rgba(168,200,180,0.1); border-radius: 1px; overflow: hidden; }
+.country-fill { height: 100%; background: linear-gradient(90deg, var(--mid), var(--light)); border-radius: 1px; }
+.country-pct { font-family: var(--serif); font-size: 14px; color: var(--white); font-weight: 400; width: 36px; text-align: right; }
 
 /* ── CONCLUSIONS ── */
-.conclusions-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
-}
-.conc-card {
-  background: rgba(255,255,255,0.03);
-  padding: 48px 36px;
-  position: relative;
-  overflow: hidden;
-  transition: background 0.3s;
-}
+.conclusions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.conc-card { background: rgba(255,255,255,0.03); padding: 48px 36px; position: relative; overflow: hidden; transition: background 0.3s; }
 .conc-card:hover { background: rgba(46,92,63,0.1); }
-.conc-card::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--mid), transparent);
-}
-.conc-index {
-  font-family: var(--serif);
-  font-size: 80px;
-  font-weight: 200;
-  color: rgba(168,200,180,0.07);
-  line-height: 1;
-  margin-bottom: 24px;
-  pointer-events: none;
-}
-.conc-title {
-  font-family: var(--serif);
-  font-size: 20px;
-  font-weight: 200;
-  color: var(--sage2);
-  margin-bottom: 16px;
-  line-height: 1.3;
-}
-.conc-body {
-  font-size: 12px;
-  color: var(--sage3);
-  line-height: 1.8;
-  font-weight: 300;
-}
+.conc-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--mid), transparent); }
+.conc-index { font-family: var(--serif); font-size: 80px; font-weight: 200; color: rgba(168,200,180,0.07); line-height: 1; margin-bottom: 24px; pointer-events: none; }
+.conc-title { font-family: var(--serif); font-size: 20px; font-weight: 200; color: var(--sage2); margin-bottom: 16px; line-height: 1.3; }
+.conc-body { font-size: 12px; color: var(--sage3); line-height: 1.8; font-weight: 300; }
 
 /* ── FOOTER ── */
-.report-footer {
-  padding: 40px 80px;
-  border-top: 1px solid rgba(168,200,180,0.08);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.footer-brand {
-  font-family: var(--serif);
-  font-size: 13px;
-  font-weight: 200;
-  font-style: italic;
-  color: var(--sage3);
-  letter-spacing: 0.1em;
-}
-.footer-contact {
-  font-size: 10px;
-  color: var(--sage3);
-  font-weight: 300;
-  letter-spacing: 0.06em;
-  opacity: 0.6;
-}
+.report-footer { padding: 40px 80px; border-top: 1px solid rgba(168,200,180,0.08); display: flex; justify-content: space-between; align-items: center; }
+.footer-brand { font-family: var(--serif); font-size: 13px; font-weight: 200; font-style: italic; color: var(--sage3); letter-spacing: 0.1em; }
+.footer-contact { font-size: 10px; color: var(--sage3); font-weight: 300; letter-spacing: 0.06em; opacity: 0.6; }
 
 /* ── ANIMATIONS ── */
-.fade-up {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.fade-up.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
 
 /* ── PRINT ── */
 @media print {
   body { background: #0c0f0d; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .report-nav { display: none; }
   .hero { min-height: auto; padding: 40px 60px; }
   .section { padding: 40px 60px; }
   .scroll-hint { display: none; }
@@ -602,149 +481,34 @@ body {
 
 /* ── MOBILE ── */
 @media (max-width: 768px) {
-
-  .hero {
-    padding: 40px 24px 60px;
-    min-height: 100svh;
-  }
-
-  .hero-eyebrow {
-    margin-bottom: 40px;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .hero-title {
-    font-size: 42px;
-  }
-
-  .hero-period {
-    font-size: 14px;
-    margin-bottom: 36px;
-  }
-
-  .hero-stats {
-    flex-direction: column;
-    width: 100%;
-    border-radius: 4px;
-  }
-
-  .hstat {
-    padding: 18px 20px;
-    border-right: none;
-    border-bottom: 1px solid rgba(168,200,180,0.12);
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
+  .report-nav { padding: 0 24px; height: 48px; }
+  .hero { padding: 40px 24px 60px; min-height: calc(100svh - 48px); }
+  .hero-eyebrow { margin-bottom: 40px; flex-wrap: wrap; gap: 8px; }
+  .hero-title { font-size: 42px; }
+  .hero-period { font-size: 14px; margin-bottom: 36px; }
+  .hero-stats { flex-direction: column; width: 100%; border-radius: 4px; }
+  .hstat { padding: 18px 20px; border-right: none; border-bottom: 1px solid rgba(168,200,180,0.12); display: flex; align-items: center; gap: 16px; }
   .hstat:last-child { border-bottom: none; }
-
-  .hstat-num {
-    font-size: 32px;
-    margin: 0;
-    flex-shrink: 0;
-    width: 80px;
-  }
-
-  .hstat-label, .hstat-platform {
-    margin: 0;
-    line-height: 1.4;
-  }
-
-  .scroll-hint {
-    left: 24px;
-    bottom: 24px;
-  }
-
-  .section {
-    padding: 48px 24px;
-  }
-
-  /* 2-col grids → 1 col on mobile */
-  .reveal-grid {
-    grid-template-columns: 1fr;
-  }
-
-  /* 4-col grids → 2 col on mobile */
-  .reveal-grid-4 {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .rcard {
-    padding: 28px 20px;
-  }
-
-  .rcard-big {
-    font-size: 52px !important;
-  }
-
-  /* Charts */
-  .chart-layout {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .chart-aside {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-
-  .chart-insight:last-child {
-    grid-column: 1 / -1;
-  }
-
-  /* Format bars */
-  .format-layout {
-    grid-template-columns: 1fr;
-    gap: 36px;
-  }
-
-  /* Audience */
-  .audience-layout {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  /* Conclusions */
-  .conclusions-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .conc-card {
-    padding: 32px 24px;
-  }
-
-  .conc-index {
-    font-size: 52px;
-    margin-bottom: 12px;
-  }
-
-  /* Content published section */
-  .section > div[style*="grid-template-columns: repeat(4"] {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-  }
-
-  /* Footer */
-  .report-footer {
-    padding: 24px;
-    flex-direction: column;
-    gap: 6px;
-    text-align: center;
-  }
-
-  /* Section label */
-  .section-label {
-    margin-bottom: 32px;
-  }
-
-  /* Chart comparison footers */
-  div[style*="justify-content:space-between;margin-top:16px"] {
-    flex-direction: column !important;
-    gap: 6px;
-  }
+  .hstat-num { font-size: 32px; margin: 0; flex-shrink: 0; width: 80px; }
+  .hstat-label, .hstat-platform { margin: 0; line-height: 1.4; }
+  .scroll-hint { left: 24px; bottom: 24px; }
+  .section { padding: 48px 24px; }
+  .reveal-grid { grid-template-columns: 1fr; }
+  .reveal-grid-4 { grid-template-columns: 1fr 1fr; }
+  .rcard { padding: 28px 20px; }
+  .rcard-big { font-size: 52px !important; }
+  .chart-layout { grid-template-columns: 1fr; gap: 24px; }
+  .chart-aside { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .chart-insight:last-child { grid-column: 1 / -1; }
+  .format-layout { grid-template-columns: 1fr; gap: 36px; }
+  .audience-layout { grid-template-columns: 1fr; gap: 40px; }
+  .conclusions-grid { grid-template-columns: 1fr; }
+  .conc-card { padding: 32px 24px; }
+  .conc-index { font-size: 52px; margin-bottom: 12px; }
+  .section > div[style*="grid-template-columns: repeat(4"] { display: grid !important; grid-template-columns: 1fr 1fr !important; }
+  .report-footer { padding: 24px; flex-direction: column; gap: 6px; text-align: center; }
+  .section-label { margin-bottom: 32px; }
+  div[style*="justify-content:space-between;margin-top:16px"] { flex-direction: column !important; gap: 6px; }
 }
 
 @media (max-width: 420px) {
@@ -758,6 +522,18 @@ body {
 </head>
 <body>
 
+<!-- ══ NAV ══ -->
+<nav class="report-nav">
+  <a href="https://brandkosmos.company" class="nav-brand">BrandKosmos</a>
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
+    <span class="lang-sep">·</span>
+    <button class="lang-btn" onclick="setLang('es')" id="btn-es">ES</button>
+    <span class="lang-sep">·</span>
+    <button class="lang-btn" onclick="setLang('it')" id="btn-it">IT</button>
+  </div>
+</nav>
+
 <!-- ══ HERO ══ -->
 <section class="hero">
   <div class="hero-bg"></div>
@@ -770,32 +546,32 @@ body {
   </div>
 
   <div class="hero-content">
-    <div class="hero-overline fade-up" style="transition-delay:0.2s">Performance Report · Social Media</div>
-    <h1 class="hero-title fade-up" style="transition-delay:0.3s">
+    <div class="hero-overline fade-up" style="transition-delay:0.2s" data-i18n="hero-overline">Performance Report · Social Media</div>
+    <h1 class="hero-title fade-up" style="transition-delay:0.3s" data-i18n-html="hero-title">
       The first month<br>
       <em>speaks for itself.</em>
     </h1>
-    <p class="hero-period fade-up" style="transition-delay:0.4s">14 May – 7 June 2026</p>
+    <p class="hero-period fade-up" style="transition-delay:0.4s" data-i18n="hero-period">14 May – 7 June 2026</p>
 
     <div class="hero-stats fade-up" style="transition-delay:0.5s">
       <div class="hstat">
         <div class="hstat-num"><span>×</span>30</div>
-        <div class="hstat-label">more interactions</div>
+        <div class="hstat-label" data-i18n="h1-label">more interactions</div>
         <div class="hstat-platform">Instagram</div>
       </div>
       <div class="hstat">
         <div class="hstat-num"><span>×</span>8</div>
-        <div class="hstat-label">more reach</div>
+        <div class="hstat-label" data-i18n="h2-label">more reach</div>
         <div class="hstat-platform">Instagram</div>
       </div>
       <div class="hstat">
         <div class="hstat-num"><span>×</span>4</div>
-        <div class="hstat-label">new followers gained</div>
+        <div class="hstat-label" data-i18n="h3-label">new followers gained</div>
         <div class="hstat-platform">Instagram</div>
       </div>
       <div class="hstat">
         <div class="hstat-num"><span>×</span>5.6</div>
-        <div class="hstat-label">more interactions</div>
+        <div class="hstat-label" data-i18n="h4-label">more interactions</div>
         <div class="hstat-platform">Facebook</div>
       </div>
     </div>
@@ -803,7 +579,7 @@ body {
 
   <div class="scroll-hint">
     <div class="scroll-line"></div>
-    See full report
+    <span data-i18n="scroll">See full report</span>
   </div>
 </section>
 
@@ -812,73 +588,71 @@ body {
   <div class="section-label">
     <span class="sec-num">01</span>
     <div class="sec-line"></div>
-    <span class="sec-title">Instagram — period growth</span>
+    <span class="sec-title" data-i18n="s1-sec">Instagram — period growth</span>
   </div>
 
-  <!-- HERO: video views + followers -->
   <div class="reveal-grid" style="margin-bottom:2px">
     <div class="rcard">
       <div class="rcard-platform"><div class="plat-pip" style="background:#C13584"></div>Instagram</div>
       <div class="rcard-big counter" data-target="116000" data-suffix=""></div>
-      <div class="rcard-metric">video views</div>
+      <div class="rcard-metric" data-i18n="s1-m1">video views</div>
       <div class="rcard-compare">
-        <span class="rcard-prev">Previous month: 13,079</span>
+        <span class="rcard-prev" data-i18n="s1-prev1">Previous month: 13,079</span>
         <span class="rcard-arrow">→</span>
-        <span class="rcard-change">×9 more</span>
+        <span class="rcard-change" data-i18n="s1-ch1">×9 more</span>
       </div>
     </div>
     <div class="rcard">
       <div class="rcard-platform"><div class="plat-pip" style="background:#C13584"></div>Instagram</div>
       <div class="rcard-big counter" data-target="220" data-suffix=""></div>
-      <div class="rcard-metric">new followers</div>
+      <div class="rcard-metric" data-i18n="s1-m2">new followers</div>
       <div class="rcard-compare">
-        <span class="rcard-prev">Previous month: 55</span>
+        <span class="rcard-prev" data-i18n="s1-prev2">Previous month: 55</span>
         <span class="rcard-arrow">→</span>
-        <span class="rcard-change">×4 more</span>
+        <span class="rcard-change" data-i18n="s1-ch2">×4 more</span>
       </div>
     </div>
   </div>
 
-  <!-- SECONDARY: supporting metrics, lower visual weight -->
   <div class="reveal-grid-4" style="margin-bottom:2px">
     <div class="rcard" style="background:rgba(255,255,255,0.015)">
       <div class="rcard-platform"><div class="plat-pip" style="background:#C13584"></div>Instagram</div>
       <div class="rcard-big" style="font-size:44px;color:var(--sage2)">38.8K</div>
-      <div class="rcard-metric">people reached</div>
+      <div class="rcard-metric" data-i18n="s1-m3">people reached</div>
       <div class="rcard-compare">
-        <span class="rcard-prev">Before: 4,860</span>
+        <span class="rcard-prev" data-i18n="s1-prev3">Before: 4,860</span>
         <span class="rcard-arrow">→</span>
-        <span class="rcard-change">×8</span>
+        <span class="rcard-change" data-i18n="s1-ch3">×8</span>
       </div>
     </div>
     <div class="rcard" style="background:rgba(255,255,255,0.015)">
       <div class="rcard-platform"><div class="plat-pip" style="background:#C13584"></div>Instagram</div>
       <div class="rcard-big" style="font-size:44px;color:var(--sage2)">4.211</div>
-      <div class="rcard-metric">content interactions</div>
+      <div class="rcard-metric" data-i18n="s1-m4">content interactions</div>
       <div class="rcard-compare">
-        <span class="rcard-prev">Before: 142</span>
+        <span class="rcard-prev" data-i18n="s1-prev4">Before: 142</span>
         <span class="rcard-arrow">→</span>
-        <span class="rcard-change">×30</span>
+        <span class="rcard-change" data-i18n="s1-ch4">×30</span>
       </div>
     </div>
     <div class="rcard" style="background:rgba(255,255,255,0.015)">
       <div class="rcard-platform"><div class="plat-pip" style="background:#C13584"></div>Instagram</div>
       <div class="rcard-big" style="font-size:44px;color:var(--sage2)">3.760</div>
-      <div class="rcard-metric">profile visits</div>
+      <div class="rcard-metric" data-i18n="s1-m5">profile visits</div>
       <div class="rcard-compare">
-        <span class="rcard-prev">Before: 724</span>
+        <span class="rcard-prev" data-i18n="s1-prev5">Before: 724</span>
         <span class="rcard-arrow">→</span>
-        <span class="rcard-change">×5</span>
+        <span class="rcard-change" data-i18n="s1-ch5">×5</span>
       </div>
     </div>
     <div class="rcard" style="background:rgba(255,255,255,0.015)">
       <div class="rcard-platform"><div class="plat-pip" style="background:#C13584"></div>Instagram</div>
       <div class="rcard-big" style="font-size:44px;color:var(--sage2)">91</div>
-      <div class="rcard-metric">bio link clicks</div>
+      <div class="rcard-metric" data-i18n="s1-m6">bio link clicks</div>
       <div class="rcard-compare">
-        <span class="rcard-prev">Before: 0</span>
+        <span class="rcard-prev" data-i18n="s1-prev6">Before: 0</span>
         <span class="rcard-arrow">→</span>
-        <span class="rcard-change new-metric">new metric</span>
+        <span class="rcard-change new-metric" data-i18n="s1-nm">new metric</span>
       </div>
     </div>
   </div>
@@ -889,24 +663,24 @@ body {
   <div class="section-label">
     <span class="sec-num">02</span>
     <div class="sec-line"></div>
-    <span class="sec-title">Before vs. now — the difference is visual</span>
+    <span class="sec-title" data-i18n="s2-sec">Before vs. now — the difference is visual</span>
   </div>
 
-  <!-- Chart 1: Views comparison -->
+  <!-- Chart 1: Views -->
   <div style="margin-bottom: 64px;">
     <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:12px;">
       <div>
-        <h2 class="chart-title">Daily video views</h2>
-        <p class="chart-subtitle" style="margin-bottom:0">Each line represents a 25-day period. The difference speaks for itself.</p>
+        <h2 class="chart-title" data-i18n="s2-c1t">Daily video views</h2>
+        <p class="chart-subtitle" style="margin-bottom:0" data-i18n="s2-c1s">Each line represents a 25-day period. The difference speaks for itself.</p>
       </div>
       <div style="display:flex; gap:20px; align-items:center; padding-bottom:4px;">
         <div style="display:flex;align-items:center;gap:8px;font-size:10px;color:var(--sage3);letter-spacing:0.08em;text-transform:uppercase;">
           <div style="width:24px;height:2px;background:rgba(168,200,180,0.3);border-radius:1px"></div>
-          Without management
+          <span data-i18n="s2-without">Without management</span>
         </div>
         <div style="display:flex;align-items:center;gap:8px;font-size:10px;color:var(--sage3);letter-spacing:0.08em;text-transform:uppercase;">
           <div style="width:24px;height:2px;background:#C13584;border-radius:1px"></div>
-          With BrandKosmos
+          <span data-i18n="s2-with">With BrandKosmos</span>
         </div>
       </div>
     </div>
@@ -914,26 +688,26 @@ body {
       <canvas id="chartAlcance"></canvas>
     </div>
     <div style="display:flex;justify-content:space-between;margin-top:16px;padding-top:16px;border-top:1px solid rgba(168,200,180,0.08);">
-      <div style="font-size:11px;color:var(--sage3);font-weight:300;">Peak without management: <strong style="color:var(--white);font-family:var(--serif);font-size:14px">919</strong> views/day</div>
-      <div style="font-size:11px;color:var(--sage3);font-weight:300;">Peak with BrandKosmos: <strong style="color:#C13584;font-family:var(--serif);font-size:14px">24,956</strong> views/day</div>
+      <div style="font-size:11px;color:var(--sage3);font-weight:300;"><span data-i18n="s2-pk1a">Peak without management:</span> <strong style="color:var(--white);font-family:var(--serif);font-size:14px">919</strong> <span data-i18n="s2-pk1b">views/day</span></div>
+      <div style="font-size:11px;color:var(--sage3);font-weight:300;"><span data-i18n="s2-pk1c">Peak with BrandKosmos:</span> <strong style="color:#C13584;font-family:var(--serif);font-size:14px">24,956</strong> <span data-i18n="s2-pk1d">views/day</span></div>
     </div>
   </div>
 
-  <!-- Chart 2: New followers comparison -->
+  <!-- Chart 2: Followers -->
   <div>
     <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:12px;">
       <div>
-        <h2 class="chart-title">New followers per day</h2>
-        <p class="chart-subtitle" style="margin-bottom:0">Every new follower is someone who chose Best CEO Awards. The pace changed from day one.</p>
+        <h2 class="chart-title" data-i18n="s2-c2t">New followers per day</h2>
+        <p class="chart-subtitle" style="margin-bottom:0" data-i18n="s2-c2s">Every new follower is someone who chose Best CEO Awards. The pace changed from day one.</p>
       </div>
       <div style="display:flex; gap:20px; align-items:center; padding-bottom:4px;">
         <div style="display:flex;align-items:center;gap:8px;font-size:10px;color:var(--sage3);letter-spacing:0.08em;text-transform:uppercase;">
           <div style="width:24px;height:2px;background:rgba(168,200,180,0.3);border-radius:1px"></div>
-          Without management
+          <span data-i18n="s2-without">Without management</span>
         </div>
         <div style="display:flex;align-items:center;gap:8px;font-size:10px;color:var(--sage3);letter-spacing:0.08em;text-transform:uppercase;">
           <div style="width:24px;height:2px;background:#6fcf97;border-radius:1px"></div>
-          With BrandKosmos
+          <span data-i18n="s2-with">With BrandKosmos</span>
         </div>
       </div>
     </div>
@@ -941,8 +715,8 @@ body {
       <canvas id="chartInt"></canvas>
     </div>
     <div style="display:flex;justify-content:space-between;margin-top:16px;padding-top:16px;border-top:1px solid rgba(168,200,180,0.08);">
-      <div style="font-size:11px;color:var(--sage3);font-weight:300;">Peak without management: <strong style="color:var(--white);font-family:var(--serif);font-size:14px">10</strong> followers/day</div>
-      <div style="font-size:11px;color:var(--sage3);font-weight:300;">Peak with BrandKosmos: <strong style="color:#6fcf97;font-family:var(--serif);font-size:14px">58</strong> followers/day</div>
+      <div style="font-size:11px;color:var(--sage3);font-weight:300;"><span data-i18n="s2-pk2a">Peak without management:</span> <strong style="color:var(--white);font-family:var(--serif);font-size:14px">10</strong> <span data-i18n="s2-pk2b">followers/day</span></div>
+      <div style="font-size:11px;color:var(--sage3);font-weight:300;"><span data-i18n="s2-pk2c">Peak with BrandKosmos:</span> <strong style="color:#6fcf97;font-family:var(--serif);font-size:14px">58</strong> <span data-i18n="s2-pk2d">followers/day</span></div>
     </div>
   </div>
 
@@ -953,14 +727,14 @@ body {
   <div class="section-label">
     <span class="sec-num">03</span>
     <div class="sec-line"></div>
-    <span class="sec-title">Facebook — growing too</span>
+    <span class="sec-title" data-i18n="s3-sec">Facebook — growing too</span>
   </div>
 
   <div class="reveal-grid-4">
     <div class="rcard">
       <div class="rcard-platform"><div class="plat-pip" style="background:#1877F2"></div>Facebook</div>
       <div class="rcard-big" style="font-size:64px">×5,6</div>
-      <div class="rcard-metric">more interactions</div>
+      <div class="rcard-metric" data-i18n="s3-m1">more interactions</div>
       <div class="rcard-compare">
         <span class="rcard-prev">55 → 309</span>
         <span class="rcard-arrow">→</span>
@@ -970,7 +744,7 @@ body {
     <div class="rcard">
       <div class="rcard-platform"><div class="plat-pip" style="background:#1877F2"></div>Facebook</div>
       <div class="rcard-big" style="font-size:64px">×2,7</div>
-      <div class="rcard-metric">more page visits</div>
+      <div class="rcard-metric" data-i18n="s3-m2">more page visits</div>
       <div class="rcard-compare">
         <span class="rcard-prev">338 → 805</span>
         <span class="rcard-arrow">→</span>
@@ -980,7 +754,7 @@ body {
     <div class="rcard">
       <div class="rcard-platform"><div class="plat-pip" style="background:#1877F2"></div>Facebook</div>
       <div class="rcard-big" style="font-size:64px">×2,7</div>
-      <div class="rcard-metric">new followers gained</div>
+      <div class="rcard-metric" data-i18n="s3-m3">new followers gained</div>
       <div class="rcard-compare">
         <span class="rcard-prev">11 → 30</span>
         <span class="rcard-arrow">→</span>
@@ -990,9 +764,9 @@ body {
     <div class="rcard">
       <div class="rcard-platform"><div class="plat-pip" style="background:#1877F2"></div>Facebook</div>
       <div class="rcard-big" style="font-size:64px">36.8K</div>
-      <div class="rcard-metric">total views</div>
+      <div class="rcard-metric" data-i18n="s3-m4">total views</div>
       <div class="rcard-compare">
-        <span class="rcard-prev">Before: 30,975</span>
+        <span class="rcard-prev" data-i18n="s3-prev4">Before: 30,975</span>
         <span class="rcard-arrow">→</span>
         <span class="rcard-change">+19%</span>
       </div>
@@ -1005,24 +779,24 @@ body {
   <div class="section-label">
     <span class="sec-num">04</span>
     <div class="sec-line"></div>
-    <span class="sec-title">Which content format performs best</span>
+    <span class="sec-title" data-i18n="s4-sec">Which content format performs best</span>
   </div>
 
   <div class="format-layout">
     <div class="format-group">
-      <h3 class="format-group-title">Interactions by format</h3>
-      <p class="format-group-sub">Instagram · Period total</p>
+      <h3 class="format-group-title" data-i18n="s4-g1t">Interactions by format</h3>
+      <p class="format-group-sub" data-i18n="s4-g1s">Instagram · Period total</p>
       <div id="fmtInteracciones"></div>
     </div>
     <div class="format-group">
-      <h3 class="format-group-title">Views by format</h3>
-      <p class="format-group-sub">Instagram · Period total</p>
+      <h3 class="format-group-title" data-i18n="s4-g2t">Views by format</h3>
+      <p class="format-group-sub" data-i18n="s4-g2s">Instagram · Period total</p>
       <div id="fmtVisualizaciones"></div>
     </div>
   </div>
 
   <div style="margin-top:48px; padding:32px; background:rgba(46,92,63,0.12); border:1px solid rgba(168,200,180,0.1); border-radius:4px;">
-    <p style="font-family:var(--serif); font-size:20px; font-weight:200; font-style:italic; color:var(--sage2); line-height:1.5;">
+    <p style="font-family:var(--serif); font-size:20px; font-weight:200; font-style:italic; color:var(--sage2); line-height:1.5;" data-i18n-html="s4-insight">
       Reels account for <strong style="color:var(--white); font-style:normal">66% of all interactions</strong> and <strong style="color:var(--white); font-style:normal">89% of all video views</strong> during the period. This is the format to keep prioritising.
     </p>
   </div>
@@ -1033,31 +807,31 @@ body {
   <div class="section-label">
     <span class="sec-num">05</span>
     <div class="sec-line"></div>
-    <span class="sec-title">Who follows us — audience profile</span>
+    <span class="sec-title" data-i18n="s5-sec">Who follows us — audience profile</span>
   </div>
 
   <div class="audience-layout">
     <div>
-      <h3 class="aud-title">Age & gender</h3>
-      <p class="aud-sub">Instagram · current period</p>
+      <h3 class="aud-title" data-i18n="s5-age-t">Age & gender</h3>
+      <p class="aud-sub" data-i18n="s5-age-s">Instagram · current period</p>
       <div id="ageViz"></div>
       <div style="display:flex;gap:20px;margin-top:20px">
         <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:var(--sage3)">
-          <div style="width:16px;height:2px;background:var(--mid)"></div>Men
+          <div style="width:16px;height:2px;background:var(--mid)"></div><span data-i18n="s5-legend-m">Men</span>
         </div>
         <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:var(--sage3)">
-          <div style="width:16px;height:2px;background:var(--sage3)"></div>Women
+          <div style="width:16px;height:2px;background:var(--sage3)"></div><span data-i18n="s5-legend-f">Women</span>
         </div>
       </div>
-      <p style="font-size:11px;color:var(--sage3);margin-top:16px;line-height:1.7;font-weight:300;">
+      <p style="font-size:11px;color:var(--sage3);margin-top:16px;line-height:1.7;font-weight:300;" data-i18n="s5-age-b">
         The majority of our audience is 35–54 — exactly the CEO and C-suite profile we're targeting. The 25–44 bracket alone accounts for 60% of the total.
       </p>
     </div>
     <div>
-      <h3 class="aud-title">Top countries</h3>
-      <p class="aud-sub">Instagram · current period</p>
+      <h3 class="aud-title" data-i18n="s5-cnt-t">Top countries</h3>
+      <p class="aud-sub" data-i18n="s5-cnt-s">Instagram · current period</p>
       <div id="countriesViz"></div>
-      <p style="font-size:11px;color:var(--sage3);margin-top:20px;line-height:1.7;font-weight:300;">
+      <p style="font-size:11px;color:var(--sage3);margin-top:20px;line-height:1.7;font-weight:300;" data-i18n="s5-cnt-b">
         International audience with strong Ibero-American presence. Spain, Italy and the UK confirm the European positioning of Best CEO Awards.
       </p>
     </div>
@@ -1069,7 +843,7 @@ body {
   <div class="section-label">
     <span class="sec-num">06</span>
     <div class="sec-line"></div>
-    <span class="sec-title">Content published — Instagram</span>
+    <span class="sec-title" data-i18n="s6-sec">Content published — Instagram</span>
   </div>
 
   <div style="display:grid; grid-template-columns: repeat(4,1fr); gap:2px;">
@@ -1077,8 +851,8 @@ body {
     <div class="rcard" style="text-align:center; padding:48px 24px;">
       <div class="rcard-platform" style="justify-content:center"><div class="plat-pip" style="background:#C13584"></div>Instagram</div>
       <div style="font-family:var(--serif);font-size:88px;font-weight:200;color:var(--white);line-height:1;margin:16px 0 8px;">13</div>
-      <div class="rcard-metric" style="font-size:13px;">Reels</div>
-      <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(168,200,180,0.1);font-size:11px;color:var(--sage3);font-weight:300;line-height:1.6;">
+      <div class="rcard-metric" style="font-size:13px;" data-i18n="s6-r1l">Reels</div>
+      <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(168,200,180,0.1);font-size:11px;color:var(--sage3);font-weight:300;line-height:1.6;" data-i18n-html="s6-r1s">
         Short-form cinematic video.<br>The primary growth driver.
       </div>
     </div>
@@ -1086,8 +860,8 @@ body {
     <div class="rcard" style="text-align:center; padding:48px 24px;">
       <div class="rcard-platform" style="justify-content:center"><div class="plat-pip" style="background:#C13584"></div>Instagram</div>
       <div style="font-family:var(--serif);font-size:88px;font-weight:200;color:var(--white);line-height:1;margin:16px 0 8px;">75</div>
-      <div class="rcard-metric" style="font-size:13px;">Stories</div>
-      <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(168,200,180,0.1);font-size:11px;color:var(--sage3);font-weight:300;line-height:1.6;">
+      <div class="rcard-metric" style="font-size:13px;" data-i18n="s6-r2l">Stories</div>
+      <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(168,200,180,0.1);font-size:11px;color:var(--sage3);font-weight:300;line-height:1.6;" data-i18n-html="s6-r2s">
         Daily presence.<br>From 0 stories the previous month.
       </div>
     </div>
@@ -1095,8 +869,8 @@ body {
     <div class="rcard" style="text-align:center; padding:48px 24px;">
       <div class="rcard-platform" style="justify-content:center"><div class="plat-pip" style="background:#C13584"></div>Instagram</div>
       <div style="font-family:var(--serif);font-size:88px;font-weight:200;color:var(--white);line-height:1;margin:16px 0 8px;">6</div>
-      <div class="rcard-metric" style="font-size:13px;">Feed posts</div>
-      <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(168,200,180,0.1);font-size:11px;color:var(--sage3);font-weight:300;line-height:1.6;">
+      <div class="rcard-metric" style="font-size:13px;" data-i18n="s6-r3l">Feed posts</div>
+      <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(168,200,180,0.1);font-size:11px;color:var(--sage3);font-weight:300;line-height:1.6;" data-i18n-html="s6-r3s">
         Static and carousel.<br>Brand identity anchors.
       </div>
     </div>
@@ -1104,8 +878,8 @@ body {
     <div class="rcard" style="text-align:center; padding:48px 24px; background:rgba(255,255,255,0.015);">
       <div class="rcard-platform" style="justify-content:center"><div class="plat-pip" style="background:var(--sage3)"></div>Instagram</div>
       <div style="font-family:var(--serif);font-size:88px;font-weight:200;color:var(--sage3);line-height:1;margin:16px 0 8px;">2</div>
-      <div class="rcard-metric" style="font-size:13px; color:var(--sage3);">Test Reels</div>
-      <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(168,200,180,0.06);font-size:11px;color:var(--sage3);opacity:0.6;font-weight:300;line-height:1.6;">
+      <div class="rcard-metric" style="font-size:13px; color:var(--sage3);" data-i18n="s6-r4l">Test Reels</div>
+      <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(168,200,180,0.06);font-size:11px;color:var(--sage3);opacity:0.6;font-weight:300;line-height:1.6;" data-i18n-html="s6-r4s">
         Format and timing tests.<br>Not counted in performance data.
       </div>
     </div>
@@ -1113,8 +887,8 @@ body {
   </div>
 
   <div style="margin-top:2px; padding:24px 32px; background:rgba(255,255,255,0.02); border:1px solid rgba(168,200,180,0.06); border-radius:0 0 4px 4px; display:flex; justify-content:space-between; align-items:center;">
-    <span style="font-size:12px;color:var(--sage3);font-weight:300;">Total pieces published in 25 days</span>
-    <span style="font-family:var(--serif);font-size:22px;font-weight:400;color:var(--white);">96 <span style="font-size:13px;color:var(--sage3);font-weight:300;">pieces of content</span></span>
+    <span style="font-size:12px;color:var(--sage3);font-weight:300;" data-i18n="s6-tot">Total pieces published in 25 days</span>
+    <span style="font-family:var(--serif);font-size:22px;font-weight:400;color:var(--white);">96 <span style="font-size:13px;color:var(--sage3);font-weight:300;" data-i18n="s6-unit">pieces of content</span></span>
   </div>
 </section>
 
@@ -1123,48 +897,225 @@ body {
   <div class="section-label">
     <span class="sec-num">07</span>
     <div class="sec-line"></div>
-    <span class="sec-title">What we built in 25 days</span>
+    <span class="sec-title" data-i18n="s7-sec">What we built in 25 days</span>
   </div>
 
   <div class="conclusions-grid">
     <div class="conc-card">
       <div class="conc-index">01</div>
-      <h3 class="conc-title">From zero content to daily presence</h3>
-      <p class="conc-body">The previous month Best CEO Awards published 0 stories and 0 posts on Instagram. Under BrandKosmos: 75 stories and 21 posts. The brand now has a visual presence for the first time.</p>
+      <h3 class="conc-title" data-i18n="s7-c1t">From zero content to daily presence</h3>
+      <p class="conc-body" data-i18n="s7-c1b">The previous month Best CEO Awards published 0 stories and 0 posts on Instagram. Under BrandKosmos: 75 stories and 21 posts. The brand now has a visual presence for the first time.</p>
     </div>
     <div class="conc-card">
       <div class="conc-index">02</div>
-      <h3 class="conc-title">Reels are the growth engine</h3>
-      <p class="conc-body">204 of all Instagram interactions came from Reels. 28,274 views from that format alone. The formula is clear: short-form, cinematic content with a hook in the first 3 seconds.</p>
+      <h3 class="conc-title" data-i18n="s7-c2t">Reels are the growth engine</h3>
+      <p class="conc-body" data-i18n="s7-c2b">204 of all Instagram interactions came from Reels. 28,274 views from that format alone. The formula is clear: short-form, cinematic content with a hook in the first 3 seconds.</p>
     </div>
     <div class="conc-card">
       <div class="conc-index">03</div>
-      <h3 class="conc-title">The right audience is already following</h3>
-      <p class="conc-body">60% of our audience is between 25 and 44, with presence in Spain, Italy, the UK and Latin America. Exactly the profile that attracts sponsors and reinforces the brand's European positioning.</p>
+      <h3 class="conc-title" data-i18n="s7-c3t">The right audience is already following</h3>
+      <p class="conc-body" data-i18n="s7-c3b">60% of our audience is between 25 and 44, with presence in Spain, Italy, the UK and Latin America. Exactly the profile that attracts sponsors and reinforces the brand's European positioning.</p>
     </div>
   </div>
 </section>
 
 <!-- ══ FOOTER ══ -->
 <footer class="report-footer">
-  <span class="footer-brand">BrandKosmos — Digital Marketing</span>
-  <span class="footer-contact">hugo@brandkosmos.company · brandkosmos.company · Confidential</span>
+  <span class="footer-brand" data-i18n="footer-brand">BrandKosmos — Digital Marketing</span>
+  <span class="footer-contact">hugo@brandkosmos.company · brandkosmos.company · <span data-i18n="footer-conf">Confidential</span></span>
 </footer>
 
 <script>
+const T = {
+  en: {
+    'hero-overline':'Performance Report · Social Media',
+    'hero-title':'The first month<br><em>speaks for itself.</em>',
+    'hero-period':'14 May – 7 June 2026',
+    'h1-label':'more interactions','h2-label':'more reach','h3-label':'new followers gained','h4-label':'more interactions',
+    'scroll':'See full report',
+    's1-sec':'Instagram — period growth',
+    's1-m1':'video views','s1-prev1':'Previous month: 13,079','s1-ch1':'×9 more',
+    's1-m2':'new followers','s1-prev2':'Previous month: 55','s1-ch2':'×4 more',
+    's1-m3':'people reached','s1-prev3':'Before: 4,860','s1-ch3':'×8',
+    's1-m4':'content interactions','s1-prev4':'Before: 142','s1-ch4':'×30',
+    's1-m5':'profile visits','s1-prev5':'Before: 724','s1-ch5':'×5',
+    's1-m6':'bio link clicks','s1-prev6':'Before: 0','s1-nm':'new metric',
+    's2-sec':'Before vs. now — the difference is visual',
+    's2-c1t':'Daily video views',
+    's2-c1s':'Each line represents a 25-day period. The difference speaks for itself.',
+    's2-without':'Without management','s2-with':'With BrandKosmos',
+    's2-pk1a':'Peak without management:','s2-pk1b':'views/day',
+    's2-pk1c':'Peak with BrandKosmos:','s2-pk1d':'views/day',
+    's2-c2t':'New followers per day',
+    's2-c2s':'Every new follower is someone who chose Best CEO Awards. The pace changed from day one.',
+    's2-pk2a':'Peak without management:','s2-pk2b':'followers/day',
+    's2-pk2c':'Peak with BrandKosmos:','s2-pk2d':'followers/day',
+    's3-sec':'Facebook — growing too',
+    's3-m1':'more interactions','s3-m2':'more page visits','s3-m3':'new followers gained','s3-m4':'total views','s3-prev4':'Before: 30,975',
+    's4-sec':'Which content format performs best',
+    's4-g1t':'Interactions by format','s4-g1s':'Instagram · Period total',
+    's4-g2t':'Views by format','s4-g2s':'Instagram · Period total',
+    's4-insight':'Reels account for <strong style="color:var(--white);font-style:normal">66% of all interactions</strong> and <strong style="color:var(--white);font-style:normal">89% of all video views</strong> during the period. This is the format to keep prioritising.',
+    's5-sec':'Who follows us — audience profile',
+    's5-age-t':'Age & gender','s5-age-s':'Instagram · current period',
+    's5-age-b':"The majority of our audience is 35–54 — exactly the CEO and C-suite profile we're targeting. The 25–44 bracket alone accounts for 60% of the total.",
+    's5-legend-m':'Men','s5-legend-f':'Women',
+    's5-cnt-t':'Top countries','s5-cnt-s':'Instagram · current period',
+    's5-cnt-b':'International audience with strong Ibero-American presence. Spain, Italy and the UK confirm the European positioning of Best CEO Awards.',
+    's6-sec':'Content published — Instagram',
+    's6-r1l':'Reels','s6-r1s':'Short-form cinematic video.<br>The primary growth driver.',
+    's6-r2l':'Stories','s6-r2s':'Daily presence.<br>From 0 stories the previous month.',
+    's6-r3l':'Feed posts','s6-r3s':'Static and carousel.<br>Brand identity anchors.',
+    's6-r4l':'Test Reels','s6-r4s':'Format and timing tests.<br>Not counted in performance data.',
+    's6-tot':'Total pieces published in 25 days','s6-unit':'pieces of content',
+    's7-sec':'What we built in 25 days',
+    's7-c1t':'From zero content to daily presence',
+    's7-c1b':'The previous month Best CEO Awards published 0 stories and 0 posts on Instagram. Under BrandKosmos: 75 stories and 21 posts. The brand now has a visual presence for the first time.',
+    's7-c2t':'Reels are the growth engine',
+    's7-c2b':'204 of all Instagram interactions came from Reels. 28,274 views from that format alone. The formula is clear: short-form, cinematic content with a hook in the first 3 seconds.',
+    's7-c3t':'The right audience is already following',
+    's7-c3b':"60% of our audience is between 25 and 44, with presence in Spain, Italy, the UK and Latin America. Exactly the profile that attracts sponsors and reinforces the brand's European positioning.",
+    'footer-brand':'BrandKosmos — Digital Marketing','footer-conf':'Confidential',
+    'tt-views':'views','tt-followers':'new followers',
+    'fmt-int':[{l:'Reels',v:204},{l:'Photo albums',v:50},{l:'Stories',v:35},{l:'Other',v:16},{l:'Links',v:2}],
+    'fmt-views':[{l:'Reels',v:28274},{l:'Other',v:4931},{l:'Photo albums',v:1196},{l:'Stories',v:1157},{l:'Photo',v:440}],
+  },
+  es: {
+    'hero-overline':'Informe de Resultados · Redes Sociales',
+    'hero-title':'El primer mes<br><em>habla por sí solo.</em>',
+    'hero-period':'14 mayo – 7 junio 2026',
+    'h1-label':'más interacciones','h2-label':'más alcance','h3-label':'nuevos seguidores','h4-label':'más interacciones',
+    'scroll':'Ver informe completo',
+    's1-sec':'Instagram — crecimiento del periodo',
+    's1-m1':'visualizaciones de vídeo','s1-prev1':'Mes anterior: 13.079','s1-ch1':'×9 más',
+    's1-m2':'nuevos seguidores','s1-prev2':'Mes anterior: 55','s1-ch2':'×4 más',
+    's1-m3':'personas alcanzadas','s1-prev3':'Antes: 4.860','s1-ch3':'×8',
+    's1-m4':'interacciones de contenido','s1-prev4':'Antes: 142','s1-ch4':'×30',
+    's1-m5':'visitas al perfil','s1-prev5':'Antes: 724','s1-ch5':'×5',
+    's1-m6':'clics en enlace de bio','s1-prev6':'Antes: 0','s1-nm':'nueva métrica',
+    's2-sec':'Antes vs. ahora — la diferencia es visual',
+    's2-c1t':'Visualizaciones de vídeo diarias',
+    's2-c1s':'Cada línea representa un periodo de 25 días. La diferencia habla por sí sola.',
+    's2-without':'Sin gestión','s2-with':'Con BrandKosmos',
+    's2-pk1a':'Pico sin gestión:','s2-pk1b':'vis./día',
+    's2-pk1c':'Pico con BrandKosmos:','s2-pk1d':'vis./día',
+    's2-c2t':'Nuevos seguidores por día',
+    's2-c2s':'Cada nuevo seguidor es alguien que eligió Best CEO Awards. El ritmo cambió desde el primer día.',
+    's2-pk2a':'Pico sin gestión:','s2-pk2b':'seg./día',
+    's2-pk2c':'Pico con BrandKosmos:','s2-pk2d':'seg./día',
+    's3-sec':'Facebook — también crece',
+    's3-m1':'más interacciones','s3-m2':'más visitas a la página','s3-m3':'nuevos seguidores','s3-m4':'visualizaciones totales','s3-prev4':'Antes: 30.975',
+    's4-sec':'Qué formato de contenido funciona mejor',
+    's4-g1t':'Interacciones por formato','s4-g1s':'Instagram · Total del periodo',
+    's4-g2t':'Visualizaciones por formato','s4-g2s':'Instagram · Total del periodo',
+    's4-insight':'Los Reels representan el <strong style="color:var(--white);font-style:normal">66% de todas las interacciones</strong> y el <strong style="color:var(--white);font-style:normal">89% de todas las visualizaciones de vídeo</strong> durante el periodo. Es el formato a seguir priorizando.',
+    's5-sec':'Quién nos sigue — perfil de audiencia',
+    's5-age-t':'Edad y género','s5-age-s':'Instagram · periodo actual',
+    's5-age-b':'La mayoría de nuestra audiencia tiene entre 35 y 54 años — exactamente el perfil CEO y C-suite que buscamos. La franja 25–44 representa el 60% del total.',
+    's5-legend-m':'Hombres','s5-legend-f':'Mujeres',
+    's5-cnt-t':'Principales países','s5-cnt-s':'Instagram · periodo actual',
+    's5-cnt-b':'Audiencia internacional con fuerte presencia iberoamericana. España, Italia y el Reino Unido confirman el posicionamiento europeo de Best CEO Awards.',
+    's6-sec':'Contenido publicado — Instagram',
+    's6-r1l':'Reels','s6-r1s':'Vídeo corto cinematográfico.<br>El principal motor de crecimiento.',
+    's6-r2l':'Stories','s6-r2s':'Presencia diaria.<br>Desde 0 stories el mes anterior.',
+    's6-r3l':'Posts en feed','s6-r3s':'Estáticos y carruseles.<br>Anclas de identidad de marca.',
+    's6-r4l':'Reels de prueba','s6-r4s':'Pruebas de formato y timing.<br>No incluidos en datos de rendimiento.',
+    's6-tot':'Total de piezas publicadas en 25 días','s6-unit':'piezas de contenido',
+    's7-sec':'Lo que construimos en 25 días',
+    's7-c1t':'De cero contenido a presencia diaria',
+    's7-c1b':'El mes anterior Best CEO Awards publicó 0 stories y 0 posts en Instagram. Con BrandKosmos: 75 stories y 21 posts. La marca tiene presencia visual por primera vez.',
+    's7-c2t':'Los Reels son el motor de crecimiento',
+    's7-c2b':'204 de todas las interacciones de Instagram vinieron de Reels. 28.274 visualizaciones solo de ese formato. La fórmula es clara: contenido corto y cinematográfico con un gancho en los primeros 3 segundos.',
+    's7-c3t':'La audiencia correcta ya nos sigue',
+    's7-c3b':'El 60% de nuestra audiencia tiene entre 25 y 44 años, con presencia en España, Italia, el Reino Unido y Latinoamérica. Exactamente el perfil que atrae patrocinadores y refuerza el posicionamiento europeo de la marca.',
+    'footer-brand':'BrandKosmos — Marketing Digital','footer-conf':'Confidencial',
+    'tt-views':'visualizaciones','tt-followers':'nuevos seguidores',
+    'fmt-int':[{l:'Reels',v:204},{l:'Álbumes de fotos',v:50},{l:'Stories',v:35},{l:'Otro',v:16},{l:'Enlaces',v:2}],
+    'fmt-views':[{l:'Reels',v:28274},{l:'Otro',v:4931},{l:'Álbumes de fotos',v:1196},{l:'Stories',v:1157},{l:'Foto',v:440}],
+  },
+  it: {
+    'hero-overline':'Report di Performance · Social Media',
+    'hero-title':'Il primo mese<br><em>parla da solo.</em>',
+    'hero-period':'14 maggio – 7 giugno 2026',
+    'h1-label':'interazioni in più','h2-label':'portata in più','h3-label':'nuovi follower','h4-label':'interazioni in più',
+    'scroll':'Vedi report completo',
+    's1-sec':'Instagram — crescita del periodo',
+    's1-m1':'visualizzazioni video','s1-prev1':'Mese precedente: 13.079','s1-ch1':'×9 in più',
+    's1-m2':'nuovi follower','s1-prev2':'Mese precedente: 55','s1-ch2':'×4 in più',
+    's1-m3':'persone raggiunte','s1-prev3':'Prima: 4.860','s1-ch3':'×8',
+    's1-m4':'interazioni sui contenuti','s1-prev4':'Prima: 142','s1-ch4':'×30',
+    's1-m5':'visite al profilo','s1-prev5':'Prima: 724','s1-ch5':'×5',
+    's1-m6':'clic sul link in bio','s1-prev6':'Prima: 0','s1-nm':'nuova metrica',
+    's2-sec':'Prima vs. ora — la differenza è visiva',
+    's2-c1t':'Visualizzazioni video giornaliere',
+    's2-c1s':'Ogni linea rappresenta un periodo di 25 giorni. La differenza parla da sola.',
+    's2-without':'Senza gestione','s2-with':'Con BrandKosmos',
+    's2-pk1a':'Picco senza gestione:','s2-pk1b':'vis./giorno',
+    's2-pk1c':'Picco con BrandKosmos:','s2-pk1d':'vis./giorno',
+    's2-c2t':'Nuovi follower al giorno',
+    's2-c2s':'Ogni nuovo follower è qualcuno che ha scelto Best CEO Awards. Il ritmo è cambiato dal primo giorno.',
+    's2-pk2a':'Picco senza gestione:','s2-pk2b':'follower/giorno',
+    's2-pk2c':'Picco con BrandKosmos:','s2-pk2d':'follower/giorno',
+    's3-sec':'Facebook — cresce anche lui',
+    's3-m1':'interazioni in più','s3-m2':'visite alla pagina in più','s3-m3':'nuovi follower','s3-m4':'visualizzazioni totali','s3-prev4':'Prima: 30.975',
+    's4-sec':'Quale formato di contenuto performa meglio',
+    's4-g1t':'Interazioni per formato','s4-g1s':'Instagram · Totale del periodo',
+    's4-g2t':'Visualizzazioni per formato','s4-g2s':'Instagram · Totale del periodo',
+    's4-insight':'I Reels rappresentano il <strong style="color:var(--white);font-style:normal">66% di tutte le interazioni</strong> e il <strong style="color:var(--white);font-style:normal">89% di tutte le visualizzazioni video</strong> nel periodo. È il formato da continuare a privilegiare.',
+    's5-sec':'Chi ci segue — profilo del pubblico',
+    's5-age-t':'Età e genere','s5-age-s':'Instagram · periodo attuale',
+    's5-age-b':'La maggior parte del nostro pubblico ha tra 35 e 54 anni — esattamente il profilo CEO e C-suite che stiamo cercando. La fascia 25–44 rappresenta il 60% del totale.',
+    's5-legend-m':'Uomini','s5-legend-f':'Donne',
+    's5-cnt-t':'Paesi principali','s5-cnt-s':'Instagram · periodo attuale',
+    's5-cnt-b':'Pubblico internazionale con forte presenza iberoamericana. Spagna, Italia e Regno Unito confermano il posizionamento europeo di Best CEO Awards.',
+    's6-sec':'Contenuti pubblicati — Instagram',
+    's6-r1l':'Reels','s6-r1s':'Video breve cinematografico.<br>Il principale motore di crescita.',
+    's6-r2l':'Stories','s6-r2s':'Presenza quotidiana.<br>Da 0 stories il mese precedente.',
+    's6-r3l':'Post nel feed','s6-r3s':'Statici e caroselli.<br>Pilastri dell\'identità del brand.',
+    's6-r4l':'Reel di test','s6-r4s':'Test di formato e timing.<br>Non inclusi nei dati di performance.',
+    's6-tot':'Totale pezzi pubblicati in 25 giorni','s6-unit':'pezzi di contenuto',
+    's7-sec':'Cosa abbiamo costruito in 25 giorni',
+    's7-c1t':'Da zero contenuti a presenza quotidiana',
+    's7-c1b':'Il mese precedente Best CEO Awards ha pubblicato 0 stories e 0 post su Instagram. Con BrandKosmos: 75 stories e 21 post. Il brand ha una presenza visiva per la prima volta.',
+    's7-c2t':'I Reels sono il motore di crescita',
+    's7-c2b':'204 di tutte le interazioni Instagram provenivano dai Reels. 28.274 visualizzazioni solo da quel formato. La formula è chiara: contenuto breve e cinematografico con un aggancio nei primi 3 secondi.',
+    's7-c3t':'Il pubblico giusto ci segue già',
+    's7-c3b':'Il 60% del nostro pubblico ha tra 25 e 44 anni, con presenza in Spagna, Italia, Regno Unito e America Latina. Esattamente il profilo che attira sponsor e rafforza il posizionamento europeo del brand.',
+    'footer-brand':'BrandKosmos — Digital Marketing','footer-conf':'Riservato',
+    'tt-views':'visualizzazioni','tt-followers':'nuovi follower',
+    'fmt-int':[{l:'Reels',v:204},{l:'Album fotografici',v:50},{l:'Stories',v:35},{l:'Altro',v:16},{l:'Link',v:2}],
+    'fmt-views':[{l:'Reels',v:28274},{l:'Altro',v:4931},{l:'Album fotografici',v:1196},{l:'Stories',v:1157},{l:'Foto',v:440}],
+  }
+};
+
+let lang = localStorage.getItem('bca-lang') || 'en';
+
+function setLang(l) {
+  lang = l;
+  document.getElementById('html-root').lang = l;
+  ['en','es','it'].forEach(c => document.getElementById('btn-'+c).classList.toggle('active', c === l));
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.dataset.i18n;
+    if (T[l][k] !== undefined) el.textContent = T[l][k];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const k = el.dataset.i18nHtml;
+    if (T[l][k] !== undefined) el.innerHTML = T[l][k];
+  });
+  renderFormatBars('fmtInteracciones', T[l]['fmt-int'], '#C13584');
+  renderFormatBars('fmtVisualizaciones', T[l]['fmt-views'], '#6fcf97');
+  localStorage.setItem('bca-lang', l);
+}
+
 // ── Scroll animations
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      observer.unobserve(e.target);
-    }
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
   });
 }, { threshold: 0.08 });
 
 document.querySelectorAll('.fade-up').forEach(el => {
   observer.observe(el);
-  // Hero elements visible immediately
   if (el.closest('.hero')) el.classList.add('visible');
 });
 
@@ -1176,233 +1127,97 @@ function animateCounter(el) {
   const update = (now) => {
     const progress = Math.min((now - start) / duration, 1);
     const eased = 1 - Math.pow(1 - progress, 3);
-    const current = Math.round(eased * target);
-    el.textContent = current.toLocaleString('en');
+    el.textContent = Math.round(eased * target).toLocaleString('en');
     if (progress < 1) requestAnimationFrame(update);
   };
   requestAnimationFrame(update);
 }
-
 const counterObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      animateCounter(e.target);
-      counterObs.unobserve(e.target);
-    }
-  });
+  entries.forEach(e => { if (e.isIntersecting) { animateCounter(e.target); counterObs.unobserve(e.target); } });
 }, { threshold: 0.3 });
 document.querySelectorAll('.counter').forEach(el => counterObs.observe(el));
 
 // ── Charts
 const gridColor = 'rgba(168,200,180,0.07)';
-const tickColor = '#4a8c62';
-const tickFont  = { size: 9, family: "'DM Sans'" };
-
-// Visualizaciones anterior: max 919, total 13079 (27 días → primeros 25)
+const tickColor  = '#4a8c62';
+const tickFont   = { size: 9, family: "'DM Sans'" };
 const alcanceAnt = [414,434,555,472,424,462,409,306,430,404,288,394,311,291,328,335,894,919,861,740,397,456,367,376,835];
-// Visualizaciones BrandKosmos: max 24956, total 115994 (25 días)
 const alcanceNow = [1003,1053,12870,24956,4769,1875,984,684,1583,6203,10603,4658,3482,6024,5496,2777,4632,3986,3279,2956,4025,2834,1322,3144,796];
-// Seguidores nuevos anterior: max 10, total 55 (20 días → pad a 25)
 const intAnt = [2,2,3,2,2,1,2,2,1,1,10,3,1,2,3,2,2,4,7,3,0,0,0,0,0];
-// Seguidores nuevos BrandKosmos: max 58, total 220 (22 días → pad a 25)
 const intNow = [9,58,42,11,8,2,1,1,4,7,3,5,12,9,6,4,7,10,2,9,6,4,0,0,0];
-
 const days = Array.from({length:25}, (_,i) => `Day ${i+1}`);
+const tooltipBase = { backgroundColor:'rgba(12,15,13,0.96)', titleColor:'#eef4f0', bodyColor:'#8faa98', borderColor:'rgba(168,200,180,0.15)', borderWidth:1, padding:10 };
 
-const tooltipBase = {
-  backgroundColor: 'rgba(12,15,13,0.96)',
-  titleColor: '#eef4f0',
-  bodyColor: '#8faa98',
-  borderColor: 'rgba(168,200,180,0.15)',
-  borderWidth: 1,
-  padding: 10,
-};
-
-// ── ALCANCE comparison chart (area overlap)
 new Chart(document.getElementById('chartAlcance'), {
-  type: 'line',
-  data: {
-    labels: days,
-    datasets: [
-      {
-        label: 'Without management',
-        data: alcanceAnt,
-        borderColor: 'rgba(168,200,180,0.35)',
-        backgroundColor: 'rgba(168,200,180,0.05)',
-        borderWidth: 1.5,
-        fill: true,
-        tension: 0.4,
-        pointRadius: 0,
-        pointHoverRadius: 4,
-        pointHoverBackgroundColor: 'rgba(168,200,180,0.6)',
-        order: 2,
-      },
-      {
-        label: 'With BrandKosmos',
-        data: alcanceNow,
-        borderColor: '#C13584',
-        backgroundColor: 'rgba(193,53,132,0.12)',
-        borderWidth: 2.5,
-        fill: true,
-        tension: 0.4,
-        pointRadius: 0,
-        pointHoverRadius: 5,
-        pointHoverBackgroundColor: '#C13584',
-        order: 1,
-      },
-    ]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    interaction: { mode: 'index', intersect: false },
-    plugins: {
-      legend: { display: false },
-      tooltip: {
-        ...tooltipBase,
-        callbacks: {
-          title: ctx => `Day ${ctx[0].dataIndex + 1}`,
-          label: ctx => ` ${ctx.dataset.label}: ${ctx.raw.toLocaleString('es')} views`
-        }
-      }
-    },
-    scales: {
-      x: {
-        grid: { display: false },
-        ticks: { color: tickColor, font: tickFont, maxTicksLimit: 8, callback: (v,i) => i % 5 === 0 ? `Day ${i+1}` : '' }
-      },
-      y: {
-        grid: { color: gridColor },
-        min: 0,
-        ticks: {
-          color: tickColor,
-          font: tickFont,
-          callback: v => v >= 1000 ? (v/1000).toFixed(0)+'K' : v
-        }
-      }
+  type:'line',
+  data:{ labels:days, datasets:[
+    { data:alcanceAnt, borderColor:'rgba(168,200,180,0.35)', backgroundColor:'rgba(168,200,180,0.05)', borderWidth:1.5, fill:true, tension:0.4, pointRadius:0, pointHoverRadius:4, pointHoverBackgroundColor:'rgba(168,200,180,0.6)', order:2 },
+    { data:alcanceNow, borderColor:'#C13584', backgroundColor:'rgba(193,53,132,0.12)', borderWidth:2.5, fill:true, tension:0.4, pointRadius:0, pointHoverRadius:5, pointHoverBackgroundColor:'#C13584', order:1 },
+  ]},
+  options:{ responsive:true, maintainAspectRatio:false, interaction:{mode:'index',intersect:false},
+    plugins:{ legend:{display:false}, tooltip:{...tooltipBase, callbacks:{
+      title: ctx => `Day ${ctx[0].dataIndex+1}`,
+      label: ctx => ` ${ctx.datasetIndex===1 ? T[lang]['s2-with'] : T[lang]['s2-without']}: ${ctx.raw.toLocaleString('de')} ${T[lang]['tt-views']}`
+    }}},
+    scales:{
+      x:{ grid:{display:false}, ticks:{color:tickColor,font:tickFont,maxTicksLimit:8,callback:(v,i)=>i%5===0?`Day ${i+1}`:''} },
+      y:{ grid:{color:gridColor}, min:0, ticks:{color:tickColor,font:tickFont,callback:v=>v>=1000?(v/1000).toFixed(0)+'K':v} }
     }
   }
 });
 
-// ── INTERACCIONES comparison chart
 new Chart(document.getElementById('chartInt'), {
-  type: 'line',
-  data: {
-    labels: days,
-    datasets: [
-      {
-        label: 'Without management',
-        data: intAnt,
-        borderColor: 'rgba(168,200,180,0.35)',
-        backgroundColor: 'rgba(168,200,180,0.05)',
-        borderWidth: 1.5,
-        fill: true,
-        tension: 0.4,
-        pointRadius: 0,
-        pointHoverRadius: 4,
-        pointHoverBackgroundColor: 'rgba(168,200,180,0.6)',
-        order: 2,
-      },
-      {
-        label: 'With BrandKosmos',
-        data: intNow,
-        borderColor: '#6fcf97',
-        backgroundColor: 'rgba(111,207,151,0.1)',
-        borderWidth: 2.5,
-        fill: true,
-        tension: 0.4,
-        pointRadius: 0,
-        pointHoverRadius: 5,
-        pointHoverBackgroundColor: '#6fcf97',
-        order: 1,
-      },
-    ]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    interaction: { mode: 'index', intersect: false },
-    plugins: {
-      legend: { display: false },
-      tooltip: {
-        ...tooltipBase,
-        callbacks: {
-          title: ctx => `Day ${ctx[0].dataIndex + 1}`,
-          label: ctx => ` ${ctx.dataset.label}: ${ctx.raw.toLocaleString('es')} new followers`
-        }
-      }
-    },
-    scales: {
-      x: {
-        grid: { display: false },
-        ticks: { color: tickColor, font: tickFont, maxTicksLimit: 8, callback: (v,i) => i % 5 === 0 ? `Day ${i+1}` : '' }
-      },
-      y: {
-        grid: { color: gridColor },
-        min: 0,
-        ticks: { color: tickColor, font: tickFont }
-      }
+  type:'line',
+  data:{ labels:days, datasets:[
+    { data:intAnt, borderColor:'rgba(168,200,180,0.35)', backgroundColor:'rgba(168,200,180,0.05)', borderWidth:1.5, fill:true, tension:0.4, pointRadius:0, pointHoverRadius:4, pointHoverBackgroundColor:'rgba(168,200,180,0.6)', order:2 },
+    { data:intNow, borderColor:'#6fcf97', backgroundColor:'rgba(111,207,151,0.1)', borderWidth:2.5, fill:true, tension:0.4, pointRadius:0, pointHoverRadius:5, pointHoverBackgroundColor:'#6fcf97', order:1 },
+  ]},
+  options:{ responsive:true, maintainAspectRatio:false, interaction:{mode:'index',intersect:false},
+    plugins:{ legend:{display:false}, tooltip:{...tooltipBase, callbacks:{
+      title: ctx => `Day ${ctx[0].dataIndex+1}`,
+      label: ctx => ` ${ctx.datasetIndex===1 ? T[lang]['s2-with'] : T[lang]['s2-without']}: ${ctx.raw.toLocaleString('de')} ${T[lang]['tt-followers']}`
+    }}},
+    scales:{
+      x:{ grid:{display:false}, ticks:{color:tickColor,font:tickFont,maxTicksLimit:8,callback:(v,i)=>i%5===0?`Day ${i+1}`:''} },
+      y:{ grid:{color:gridColor}, min:0, ticks:{color:tickColor,font:tickFont} }
     }
   }
 });
 
-// Format bars
+// ── Format bars
 function renderFormatBars(containerId, items, color) {
   const max = Math.max(...items.map(i => i.v));
   document.getElementById(containerId).innerHTML = items.map(i => `
     <div class="fbar-item">
-      <div class="fbar-header">
-        <span class="fbar-name">${i.l}</span>
-        <span class="fbar-value">${i.v.toLocaleString('en')}</span>
-      </div>
-      <div class="fbar-track">
-        <div class="fbar-fill" style="width:0%;background:${color}" data-width="${Math.round(i.v/max*100)}"></div>
-      </div>
+      <div class="fbar-header"><span class="fbar-name">${i.l}</span><span class="fbar-value">${i.v.toLocaleString('en')}</span></div>
+      <div class="fbar-track"><div class="fbar-fill" style="width:0%;background:${color}" data-width="${Math.round(i.v/max*100)}"></div></div>
     </div>`).join('');
-
-  // Animate on scroll
   setTimeout(() => {
-    document.querySelectorAll(`#${containerId} .fbar-fill`).forEach(el => {
-      el.style.width = el.dataset.width + '%';
-    });
+    document.querySelectorAll(`#${containerId} .fbar-fill`).forEach(el => { el.style.width = el.dataset.width + '%'; });
   }, 300);
 }
 
-renderFormatBars('fmtInteracciones', [
-  {l:'Reels', v:204}, {l:'Photo albums', v:50}, {l:'Stories', v:35}, {l:'Other', v:16}, {l:'Links', v:2}
-], '#C13584');
-
-renderFormatBars('fmtVisualizaciones', [
-  {l:'Reels', v:28274}, {l:'Other', v:4931}, {l:'Photo albums', v:1196}, {l:'Stories', v:1157}, {l:'Photo', v:440}
-], '#6fcf97');
-
-// Age viz
+// ── Age visualization
 const ageData = [
-  {label:'18–24', m:3.9, f:2.2}, {label:'25–34', m:16.3, f:8.3},
-  {label:'35–44', m:21.7, f:14.0}, {label:'45–54', m:11.8, f:10.0},
-  {label:'55–64', m:5.4, f:3.3}, {label:'65+', m:2.1, f:1.0},
+  {label:'18–24',m:3.9,f:2.2},{label:'25–34',m:16.3,f:8.3},
+  {label:'35–44',m:21.7,f:14.0},{label:'45–54',m:11.8,f:10.0},
+  {label:'55–64',m:5.4,f:3.3},{label:'65+',m:2.1,f:1.0},
 ];
 const maxAge = 25;
 document.getElementById('ageViz').innerHTML = ageData.map(d => `
   <div class="age-item">
     <span class="age-label-s">${d.label}</span>
     <div class="age-bars-wrap">
-      <div class="age-bar-row">
-        <div class="age-track"><div class="age-fill-m" style="width:${d.m/maxAge*100}%"></div></div>
-        <span class="age-pct">${d.m}%</span>
-      </div>
-      <div class="age-bar-row">
-        <div class="age-track"><div class="age-fill-f" style="width:${d.f/maxAge*100}%"></div></div>
-        <span class="age-pct">${d.f}%</span>
-      </div>
+      <div class="age-bar-row"><div class="age-track"><div class="age-fill-m" style="width:${d.m/maxAge*100}%"></div></div><span class="age-pct">${d.m}%</span></div>
+      <div class="age-bar-row"><div class="age-track"><div class="age-fill-f" style="width:${d.f/maxAge*100}%"></div></div><span class="age-pct">${d.f}%</span></div>
     </div>
   </div>`).join('');
 
-// Countries
+// ── Countries
 const countries = [
-  {name:'Argentina', v:14.4}, {name:'Colombia', v:13.4}, {name:'Spain', v:11.6},
-  {name:'Mexico', v:10.6}, {name:'Italia', v:9.5}, {name:'United Kingdom', v:7.6},
-  {name:'Peru', v:5.0}, {name:'Bolivia', v:3.8},
+  {name:'Argentina',v:14.4},{name:'Colombia',v:13.4},{name:'Spain',v:11.6},
+  {name:'Mexico',v:10.6},{name:'Italia',v:9.5},{name:'United Kingdom',v:7.6},
+  {name:'Peru',v:5.0},{name:'Bolivia',v:3.8},
 ];
 const maxC = 14.4;
 document.getElementById('countriesViz').innerHTML = countries.map(c => `
@@ -1411,6 +1226,9 @@ document.getElementById('countriesViz').innerHTML = countries.map(c => `
     <div class="country-track"><div class="country-fill" style="width:${c.v/maxC*100}%"></div></div>
     <span class="country-pct">${c.v}%</span>
   </div>`).join('');
+
+// ── Init
+setLang(lang);
 </script>
 </body>
 </html>
