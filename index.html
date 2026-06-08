@@ -1400,9 +1400,8 @@ if(!isMobile()){
 ═══════════════════════════════════════ */
 (function(){
   const _mob = isMobile();
-  if(_mob){ document.getElementById('three-canvas').style.display='none'; return; }
   const canvas = document.getElementById('three-canvas');
-  const renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true, preserveDrawingBuffer:true});
+  const renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:!_mob, preserveDrawingBuffer:true});
   renderer.setPixelRatio(_mob ? 1 : Math.min(window.devicePixelRatio,2));
   renderer.shadowMap.enabled = !_mob;
   if(!_mob) renderer.shadowMap.type = THREE.PCFSoftShadowMap;

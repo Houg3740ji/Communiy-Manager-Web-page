@@ -147,7 +147,7 @@ footer{padding:24px clamp(24px,8vw,100px);border-top:1px solid var(--border);dis
 .mob-lang-btn{font-family:var(--fm);font-size:0.58rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(200,194,170,0.4);background:none;border:1px solid rgba(64,108,54,0.2);padding:7px 16px;cursor:pointer;transition:all .2s;width:auto;}
 .mob-lang-btn.on{background:var(--green);color:var(--c7);border-color:var(--green);}
 @media(max-width:900px){
-  #three-canvas{display:none;}
+  #three-canvas{opacity:0.12;pointer-events:none;touch-action:none;}
   #prog{display:none;}
 }
 @media(max-width:768px){
@@ -646,11 +646,12 @@ document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
 <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
 <script>
 (function(){
-  if(window.innerWidth<=900)return;
+  const _mob=window.innerWidth<=900;
   const canvas=document.getElementById('three-canvas');
-  const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
-  renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+  const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:!_mob});
+  renderer.setPixelRatio(_mob?1:Math.min(window.devicePixelRatio,2));
+  renderer.shadowMap.enabled=!_mob;
+  if(!_mob)renderer.shadowMap.type=THREE.PCFSoftShadowMap;
   const scene=new THREE.Scene();
   const camera=new THREE.PerspectiveCamera(40,innerWidth/innerHeight,0.1,100);
   camera.position.set(0,0,6);
