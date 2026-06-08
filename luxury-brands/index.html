@@ -20,48 +20,55 @@
 <meta property="og:title" content="Social Media Management for Luxury Brands | BrandKosmos"/>
 <meta property="og:description" content="Social media management for luxury brands, premium events, and high-end hospitality. Where quality is non-negotiable."/>
 <meta property="og:image" content="https://brandkosmos.company/hugo.png"/>
-<meta property="og:locale" content="en_GB"/>
 <meta property="og:site_name" content="BrandKosmos — Premium Social Media Management"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Social Media Management for Luxury Brands | BrandKosmos"/>
 <meta name="twitter:description" content="Social media management for luxury brands, premium events, and high-end hospitality."/>
 <meta name="twitter:image" content="https://brandkosmos.company/hugo.png"/>
 <meta name="theme-color" content="#070b07"/>
-
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Service","name":"Social Media Management for Luxury Brands","description":"Premium social media management for luxury brands, high-end events, and premium B2B companies. Content strategy, visual identity, and brand positioning at the level your brand demands.","provider":{"@type":"Person","name":"Hugo Jiménez","jobTitle":"Social Media Director & Strategist","url":"https://brandkosmos.company"},"serviceType":"Social Media Management","areaServed":{"@type":"Place","name":"Europe"},"url":"https://brandkosmos.company/luxury-brands/","audience":{"@type":"Audience","audienceType":"Luxury brands, premium events, high-end hospitality, luxury retail, premium B2B"},"offers":{"@type":"Offer","description":"Starting from €1,200/month","priceCurrency":"EUR"}}
+{"@context":"https://schema.org","@type":"Service","name":"Social Media Management for Luxury Brands","description":"Premium social media management for luxury brands, high-end events, and premium B2B companies. Content strategy, visual identity, and brand positioning at the level your brand demands.","provider":{"@type":"Person","name":"Hugo Jiménez","jobTitle":"Social Media Director & Strategist","url":"https://brandkosmos.company"},"serviceType":"Social Media Management","areaServed":{"@type":"Place","name":"Europe"},"url":"https://brandkosmos.company/luxury-brands/","audience":{"@type":"Audience","audienceType":"Luxury brands, premium events, high-end hospitality, luxury retail, premium B2B"}}
 </script>
-
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 h1,h2,h3,h4{font-weight:inherit;font-size:inherit;}
+html{scroll-behavior:smooth;}
 :root{
   --c0:#060a06;--c1:#0d1510;--c3:#8a8870;--c4:#aea890;--c5:#c8c2aa;--c6:#ddd8c4;--c7:#f0ece0;
-  --green:#1c3a18;--green-l:#2e5228;--green-a:#406c36;
-  --border:#131a13;
+  --green:#1c3a18;--green-l:#2e5228;--green-a:#406c36;--border:rgba(46,82,40,0.2);
   --fb:'Bebas Neue',sans-serif;--fs:'Space Grotesk',sans-serif;--fm:'Space Mono',monospace;
 }
-html{scroll-behavior:smooth;}
 body{background:#070b07;color:var(--c6);font-family:var(--fs);min-height:100vh;overflow-x:hidden;}
 body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(180deg,transparent,transparent 39px,rgba(46,82,40,0.05) 39px,rgba(46,82,40,0.05) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(46,82,40,0.05) 39px,rgba(46,82,40,0.05) 40px);pointer-events:none;z-index:0;}
 body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at center,transparent 40%,rgba(3,6,3,0.6) 100%);pointer-events:none;z-index:0;}
 
+/* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:800;height:52px;padding:0 36px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,9,5,0.96);border-bottom:1px solid rgba(46,82,40,0.45);backdrop-filter:blur(14px);}
 .n-logo{font-family:var(--fb);font-size:1.15rem;letter-spacing:0.14em;color:var(--c7);text-decoration:none;transition:color .2s;}
 .n-logo:hover{color:var(--green-a);}
 .n-r{display:flex;align-items:center;gap:16px;}
-.n-l{font-family:var(--fm);font-size:0.48rem;font-weight:700;letter-spacing:0.2em;color:rgba(200,195,175,0.4);text-decoration:none;text-transform:uppercase;transition:color .2s;}
-.n-l:hover{color:var(--c5);}
+.lang-tog{display:flex;border:1px solid rgba(64,108,54,0.35);overflow:hidden;}
+.lang-btn{background:none;border:none;font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(200,194,170,0.5);padding:5px 9px;cursor:pointer;transition:all .2s;}
+.lang-btn.on{background:var(--green);color:var(--c7);}
+.n-blog{font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(200,194,170,0.45);text-decoration:none;transition:color .2s;}
+.n-blog:hover{color:var(--c6);}
 .n-cta{font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--green-a);text-decoration:none;border:1px solid var(--green-l);padding:5px 13px;transition:background .2s,color .2s;}
 .n-cta:hover{background:var(--green-l);color:var(--c7);}
 
-main{position:relative;z-index:1;}
+/* ── PROGRESS BAR ── */
+#prog{position:fixed;top:52px;left:0;height:2px;background:var(--green-l);z-index:810;width:0;transition:width .06s linear;}
 
-/* HERO */
-.hero{padding:120px 36px 80px;max-width:1200px;margin:0 auto;}
+/* ── THREE.JS CANVAS ── */
+#three-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;touch-action:none;}
+
+main{position:relative;z-index:1;}
+section,footer{position:relative;z-index:1;}
+
+/* ── HERO ── */
+.hero{padding:132px 36px 80px;max-width:1200px;margin:0 auto;}
 .hero-stamp{font-family:var(--fm);font-size:0.54rem;font-weight:700;letter-spacing:0.34em;text-transform:uppercase;color:var(--green-a);display:block;margin-bottom:14px;padding-left:12px;border-left:2px solid var(--green-l);}
 .hero-title{font-family:var(--fb);font-size:clamp(3.5rem,8vw,8rem);line-height:0.86;letter-spacing:0.01em;color:var(--c7);display:block;margin-bottom:32px;}
 .hero-title span{color:var(--green-a);}
@@ -71,17 +78,15 @@ main{position:relative;z-index:1;}
 .btn-p:hover{background:var(--green-a);}
 .btn-g{font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(200,195,175,0.45);text-decoration:none;transition:color .2s;}
 .btn-g:hover{color:var(--c6);}
-
 .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(46,82,40,0.2);border:1px solid rgba(46,82,40,0.2);margin-top:60px;}
 .hs-cell{background:#070b07;padding:24px 20px;text-align:center;}
 .hs-num{font-family:var(--fb);font-size:clamp(2.2rem,4vw,3.5rem);color:var(--c7);display:block;line-height:1;}
 .hs-lbl{font-family:var(--fm);font-size:0.42rem;letter-spacing:0.2em;color:var(--c3);display:block;margin-top:8px;text-transform:uppercase;line-height:1.5;}
 
 .rule{height:1px;background:linear-gradient(90deg,transparent,var(--green-l) 30%,var(--green-l) 70%,transparent);margin:0;border:none;}
-section{position:relative;z-index:1;}
 
-/* PROBLEM */
-.problem{padding:80px 36px;max-width:1200px;margin:0 auto;}
+/* ── SECTIONS ── */
+.sec-wrap{padding:80px 36px;max-width:1200px;margin:0 auto;}
 .sec-stamp{font-family:var(--fm);font-size:0.52rem;font-weight:700;letter-spacing:0.34em;text-transform:uppercase;color:var(--green-a);display:block;margin-bottom:14px;padding-left:10px;border-left:2px solid var(--green-l);}
 .sec-title{font-family:var(--fb);font-size:clamp(2rem,5vw,4.5rem);line-height:0.88;letter-spacing:0.01em;color:var(--c7);display:block;margin-bottom:24px;}
 .two-col-wide{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:32px;}
@@ -92,48 +97,22 @@ section{position:relative;z-index:1;}
 .col-aside .ca-item{font-size:0.82rem;line-height:1.6;color:var(--c4);padding:8px 0;border-bottom:1px solid rgba(46,82,40,0.12);display:flex;gap:10px;}
 .col-aside .ca-item::before{content:'//';font-family:var(--fm);font-size:0.5rem;color:var(--green-a);flex-shrink:0;margin-top:3px;}
 .col-aside .ca-item:last-child{border-bottom:none;}
-
-/* WHO */
-.who-sec{padding:80px 36px;max-width:1200px;margin:0 auto;}
 .proc-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(46,82,40,0.18);border:1px solid rgba(46,82,40,0.18);margin-top:32px;}
 .pg3-cell{background:#070b07;padding:28px 22px;}
 .pg3-num{font-family:var(--fb);font-size:clamp(2.5rem,4vw,3.5rem);-webkit-text-stroke:1px rgba(64,108,54,0.25);color:transparent;display:block;line-height:1;margin-bottom:6px;}
 .pg3-title{font-family:var(--fm);font-size:0.54rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--c6);display:block;margin-bottom:8px;}
 .pg3-desc{font-size:0.8rem;line-height:1.65;color:var(--c4);}
-
-/* WHAT I DO */
-.what-sec{padding:80px 36px;max-width:1200px;margin:0 auto;border-top:1px solid rgba(46,82,40,0.15);}
 .svc-list{margin-top:32px;}
 .svc-row{display:grid;grid-template-columns:200px 1fr;gap:40px;padding:28px 0;border-bottom:1px solid rgba(46,82,40,0.15);}
 .svc-row:first-child{border-top:1px solid rgba(46,82,40,0.15);}
 .svc-tag{font-family:var(--fm);font-size:0.5rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--green-a);padding-top:4px;}
 .svc-content h3{font-family:var(--fb);font-size:clamp(1.2rem,2vw,1.8rem);letter-spacing:0.04em;color:var(--c7);margin-bottom:10px;}
 .svc-content p{font-size:0.85rem;line-height:1.75;color:var(--c4);}
-
-/* PROCESS */
-.proc-sec{padding:80px 36px;max-width:1200px;margin:0 auto;border-top:1px solid rgba(46,82,40,0.15);}
 .proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(46,82,40,0.18);border:1px solid rgba(46,82,40,0.18);margin-top:32px;}
 .proc-cell{background:#070b07;padding:28px 20px;}
 .proc-n{font-family:var(--fb);font-size:clamp(2rem,3.5vw,3rem);-webkit-text-stroke:1px rgba(64,108,54,0.2);color:transparent;display:block;line-height:1;margin-bottom:10px;}
 .proc-label{font-family:var(--fm);font-size:0.5rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--green-a);display:block;margin-bottom:8px;}
 .proc-desc{font-size:0.78rem;line-height:1.65;color:var(--c4);}
-
-/* INVESTMENT */
-.inv-sec{padding:80px 36px;max-width:1200px;margin:0 auto;border-top:1px solid rgba(46,82,40,0.15);}
-.inv-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:32px;align-items:start;}
-.inv-list{list-style:none;}
-.inv-list li{font-size:0.88rem;line-height:1.75;color:var(--c4);padding:8px 0;border-bottom:1px solid rgba(46,82,40,0.12);display:flex;gap:12px;}
-.inv-list li::before{content:'→';font-family:var(--fm);color:var(--green-a);flex-shrink:0;}
-.price-box{background:var(--c1);border:1px solid rgba(46,82,40,0.3);border-left:3px solid var(--green-a);padding:36px 32px;}
-.price-label{font-family:var(--fm);font-size:0.48rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--c3);display:block;margin-bottom:12px;}
-.price-amount{font-family:var(--fb);font-size:clamp(2.5rem,4vw,4rem);color:var(--c7);display:block;line-height:1;margin-bottom:4px;}
-.price-amount span{font-size:0.45em;color:var(--c3);}
-.price-note{font-size:0.8rem;color:var(--c4);line-height:1.6;margin-top:14px;display:block;}
-.price-cta{display:block;margin-top:24px;font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--c7);background:var(--green-l);border:1px solid var(--green-a);padding:12px 24px;text-decoration:none;text-align:center;transition:background .2s;}
-.price-cta:hover{background:var(--green-a);}
-
-/* CTA SECTION */
-.cta-sec{padding:80px 36px;max-width:1200px;margin:0 auto;border-top:1px solid rgba(46,82,40,0.15);}
 .cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:32px;}
 .cta-left{background:var(--c1);border:1px solid rgba(46,82,40,0.25);border-left:3px solid var(--green-a);padding:36px;}
 .cta-left h3{font-family:var(--fb);font-size:clamp(1.8rem,3vw,2.8rem);color:var(--c7);line-height:0.92;margin-bottom:14px;}
@@ -150,25 +129,20 @@ section{position:relative;z-index:1;}
 .cta-right .cr-sep{height:1px;background:rgba(46,82,40,0.2);margin:20px 0;}
 .cta-right .cr-detail{font-size:0.82rem;color:var(--c4);line-height:1.7;margin-bottom:8px;}
 .cta-right .cr-detail strong{color:var(--c5);font-weight:500;}
-
 footer{position:relative;z-index:1;border-top:1px solid rgba(46,82,40,0.2);padding:24px 36px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
 .f-copy{font-family:var(--fm);font-size:0.46rem;letter-spacing:0.18em;color:var(--c3);text-transform:uppercase;}
 .f-soc{display:flex;gap:20px;}
 .f-a{font-family:var(--fm);font-size:0.48rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(200,195,175,0.4);text-decoration:none;transition:color .2s;}
 .f-a:hover{color:var(--c6);}
-
 .fade-up{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
 .fade-up.visible{opacity:1;transform:none;}
-#three-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;touch-action:none;}
-@media(max-width:900px){#three-canvas{display:none;}}
-
+@media(max-width:900px){#three-canvas{display:none;}#prog{display:none;}}
 @media(max-width:800px){
-  nav{padding:0 12px;}.n-logo{font-size:0.9rem;}
+  nav{padding:0 12px;}.n-logo{font-size:0.9rem;}.n-blog{display:none;}
   .hero{padding:90px 18px 60px;}
-  .problem,.who-sec,.what-sec,.proc-sec,.inv-sec,.cta-sec{padding:56px 18px;}
-  .two-col-wide,.inv-grid,.cta-grid{grid-template-columns:1fr;}
-  .hero-stats{grid-template-columns:1fr 1fr 1fr;}
-  .proc-grid-3{grid-template-columns:1fr 1fr;}
+  .sec-wrap{padding:56px 18px;}
+  .two-col-wide,.cta-grid{grid-template-columns:1fr;}
+  .hero-stats,.proc-grid-3{grid-template-columns:1fr 1fr;}
   .proc-grid{grid-template-columns:1fr 1fr;}
   .svc-row{grid-template-columns:1fr;gap:8px;}
 }
@@ -177,13 +151,19 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(46,82,40,0.2);paddi
 <body>
 
 <canvas id="three-canvas"></canvas>
+<div id="prog"></div>
 
 <nav aria-label="Main navigation">
   <a href="/" class="n-logo" title="BrandKosmos — Premium Social Media">BRANDKOSMOS</a>
   <div class="n-r">
-    <a href="/executive-linkedin/" class="n-l">LinkedIn</a>
-    <a href="/blog/" class="n-l">Blog</a>
-    <a href="mailto:hugo@brandkosmos.company" class="n-cta">LET'S TALK</a>
+    <div class="lang-tog" aria-label="Language">
+      <button class="lang-btn on" data-lang="en" onclick="setLang('en')" aria-label="English">EN</button>
+      <button class="lang-btn" data-lang="es" onclick="setLang('es')" aria-label="Español">ES</button>
+    </div>
+    <a href="/executive-linkedin/" class="n-blog">LINKEDIN</a>
+    <a href="/luxury-brands/" class="n-blog">LUXURY</a>
+    <a href="/blog/" class="n-blog">BLOG</a>
+    <a href="mailto:hugo@brandkosmos.company" class="n-cta" data-i18n="nav-cta">LET'S TALK</a>
   </div>
 </nav>
 
@@ -191,25 +171,25 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(46,82,40,0.2);paddi
 
 <!-- HERO -->
 <section class="hero fade-up">
-  <span class="hero-stamp">// Luxury Brand Social Media Management</span>
-  <h1 class="hero-title">YOUR BRAND<br>IS <span>PREMIUM</span>.<br>YOUR SOCIAL<br>SHOULD BE TOO.</h1>
-  <span class="hero-sub">Social media management for luxury brands, premium events, and high-end B2B companies. Strategy, content, and brand positioning at the level your brand demands — not the level most agencies default to.</span>
+  <span class="hero-stamp" data-i18n="hero-stamp">// Luxury Brand Social Media Management</span>
+  <h1 class="hero-title" data-i18n-html="hero-h">YOUR BRAND<br>IS <span>PREMIUM</span>.<br>YOUR SOCIAL<br>SHOULD BE TOO.</h1>
+  <span class="hero-sub" data-i18n="hero-sub">Social media management for luxury brands, premium events, and high-end B2B companies. Strategy, content, and brand positioning at the level your brand demands — not the level most agencies default to.</span>
   <div class="hero-cta-row">
-    <a href="mailto:hugo@brandkosmos.company?subject=Luxury Brand Social Media — Let's Talk" class="btn-p">Get in touch</a>
-    <a href="/blog/social-media-strategy-for-luxury-brands/" class="btn-g">Read the guide →</a>
+    <a href="mailto:hugo@brandkosmos.company?subject=Luxury Brand Social Media — Let's Talk" class="btn-p" data-i18n="hero-cta">Get in touch</a>
+    <a href="/blog/social-media-strategy-for-luxury-brands/" class="btn-g" data-i18n="hero-guide">Read the guide →</a>
   </div>
   <div class="hero-stats">
     <div class="hs-cell">
       <span class="hs-num">100%</span>
-      <span class="hs-lbl">Bespoke strategy — no templates, no shortcuts</span>
+      <span class="hs-lbl" data-i18n="hs1">Bespoke strategy — no templates, no shortcuts</span>
     </div>
     <div class="hs-cell">
       <span class="hs-num">5+</span>
-      <span class="hs-lbl">Years managing premium & luxury brand accounts</span>
+      <span class="hs-lbl" data-i18n="hs2">Years managing premium & luxury brand accounts</span>
     </div>
     <div class="hs-cell">
       <span class="hs-num">EU</span>
-      <span class="hs-lbl">Working with luxury brands across Europe & Global</span>
+      <span class="hs-lbl" data-i18n="hs3">Working with luxury brands across Europe & Global</span>
     </div>
   </div>
 </section>
@@ -217,183 +197,121 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(46,82,40,0.2);paddi
 <hr class="rule"/>
 
 <!-- PROBLEM -->
-<section class="problem fade-up">
-  <span class="sec-stamp">// The problem with standard social media management</span>
-  <h2 class="sec-title">STANDARD PLAYBOOKS<br>DAMAGE LUXURY BRANDS</h2>
+<section>
+<div class="sec-wrap fade-up">
+  <span class="sec-stamp" data-i18n="s1-stamp">// The problem with standard social media management</span>
+  <h2 class="sec-title" data-i18n-html="s1-h">STANDARD PLAYBOOKS<br>DAMAGE LUXURY BRANDS</h2>
   <div class="two-col-wide">
     <div class="col-text">
-      <p>Most social media agencies were built to serve mass-market brands: post frequently, optimise for reach, chase trends, measure follower counts. That approach actively contradicts how luxury brands work.</p>
-      <p>Luxury is built on scarcity, selectivity, and aspiration. A luxury brand that posts twice a day, uses viral formats, and partners with macro-influencers is communicating the opposite of what it should: it's saying it needs your attention rather than deserving it.</p>
-      <p><strong>The production standard, the frequency, the platform selection, the content strategy, and the success metrics all need to be different for luxury brands.</strong> Most agencies don't know how to operate at this level — because their processes were never designed for it.</p>
-      <p>What luxury brands need is a partner who understands that every visual touchpoint carries the weight of what the brand charges, and who holds that standard without needing to be reminded.</p>
+      <p data-i18n="s1-p1">Most social media agencies were built to serve mass-market brands: post frequently, optimise for reach, chase trends, measure follower counts. That approach actively contradicts how luxury brands work.</p>
+      <p data-i18n="s1-p2">Luxury is built on scarcity, selectivity, and aspiration. A luxury brand that posts twice a day, uses viral formats, and partners with macro-influencers is communicating the opposite of what it should: it's saying it needs your attention rather than deserving it.</p>
+      <p><strong data-i18n="s1-p3s">The production standard, the frequency, the platform selection, the content strategy, and the success metrics all need to be different for luxury brands.</strong> <span data-i18n="s1-p3e">Most agencies don't know how to operate at this level — because their processes were never designed for it.</span></p>
+      <p data-i18n="s1-p4">What luxury brands need is a partner who understands that every visual touchpoint carries the weight of what the brand charges, and who holds that standard without needing to be reminded.</p>
     </div>
     <div class="col-aside">
-      <span class="ca-label">// What changes when you work with a premium-first partner</span>
-      <div class="ca-item">Art-directed content, not just scheduled posts</div>
-      <div class="ca-item">Platform strategy driven by audience quality, not reach</div>
-      <div class="ca-item">Influencer selection by relevance, not follower count</div>
-      <div class="ca-item">Frequency calibrated to exclusivity, not the algorithm</div>
-      <div class="ca-item">Metrics that measure qualified leads, not vanity numbers</div>
-      <div class="ca-item">Consistent visual identity that extends your brand world</div>
+      <span class="ca-label" data-i18n="aside-lbl">// What changes when you work with a premium-first partner</span>
+      <div class="ca-item" data-i18n="ca1">Art-directed content, not just scheduled posts</div>
+      <div class="ca-item" data-i18n="ca2">Platform strategy driven by audience quality, not reach</div>
+      <div class="ca-item" data-i18n="ca3">Influencer selection by relevance, not follower count</div>
+      <div class="ca-item" data-i18n="ca4">Frequency calibrated to exclusivity, not the algorithm</div>
+      <div class="ca-item" data-i18n="ca5">Metrics that measure qualified leads, not vanity numbers</div>
+      <div class="ca-item" data-i18n="ca6">Consistent visual identity that extends your brand world</div>
     </div>
   </div>
+</div>
 </section>
 
 <hr class="rule"/>
 
 <!-- WHO -->
-<section class="who-sec fade-up">
-  <span class="sec-stamp">// Who this is for</span>
-  <h2 class="sec-title">BRANDS WHERE<br>QUALITY IS NON-NEGOTIABLE</h2>
+<section>
+<div class="sec-wrap fade-up">
+  <span class="sec-stamp" data-i18n="s2-stamp">// Who this is for</span>
+  <h2 class="sec-title" data-i18n-html="s2-h">BRANDS WHERE<br>QUALITY IS NON-NEGOTIABLE</h2>
   <div class="proc-grid-3">
-    <div class="pg3-cell">
-      <span class="pg3-num">01</span>
-      <span class="pg3-title">Luxury retail & fashion</span>
-      <p class="pg3-desc">Heritage brands, independent luxury houses, and premium fashion labels who need their social presence to match the standard of their product.</p>
-    </div>
-    <div class="pg3-cell">
-      <span class="pg3-num">02</span>
-      <span class="pg3-title">Premium events & experiences</span>
-      <p class="pg3-desc">Luxury event organisers, private members clubs, and high-end experience brands. Social media that builds anticipation and signals exclusivity — not just promotion.</p>
-    </div>
-    <div class="pg3-cell">
-      <span class="pg3-num">03</span>
-      <span class="pg3-title">High-end hospitality</span>
-      <p class="pg3-desc">Boutique luxury hotels, fine dining, and premium travel brands where the experience is the product and the social presence must convey what words alone cannot.</p>
-    </div>
-    <div class="pg3-cell">
-      <span class="pg3-num">04</span>
-      <span class="pg3-title">Luxury real estate</span>
-      <p class="pg3-desc">Premium property developers, luxury real estate agents, and high-end architectural studios who need social content at the level of their projects.</p>
-    </div>
-    <div class="pg3-cell">
-      <span class="pg3-num">05</span>
-      <span class="pg3-title">Premium B2B companies</span>
-      <p class="pg3-desc">High-end professional services, premium consulting firms, and B2B companies targeting executive audiences — where LinkedIn presence and brand positioning matter as much as Instagram.</p>
-    </div>
-    <div class="pg3-cell">
-      <span class="pg3-num">06</span>
-      <span class="pg3-title">Lifestyle & wellness brands</span>
-      <p class="pg3-desc">Premium wellness, luxury beauty, and high-end lifestyle brands where the brand world is the primary asset and social media must protect and extend it consistently.</p>
-    </div>
+    <div class="pg3-cell"><span class="pg3-num">01</span><span class="pg3-title" data-i18n="w1-t">Luxury retail & fashion</span><p class="pg3-desc" data-i18n="w1-d">Heritage brands, independent luxury houses, and premium fashion labels who need their social presence to match the standard of their product.</p></div>
+    <div class="pg3-cell"><span class="pg3-num">02</span><span class="pg3-title" data-i18n="w2-t">Premium events & experiences</span><p class="pg3-desc" data-i18n="w2-d">Luxury event organisers, private members clubs, and high-end experience brands. Social media that builds anticipation and signals exclusivity — not just promotion.</p></div>
+    <div class="pg3-cell"><span class="pg3-num">03</span><span class="pg3-title" data-i18n="w3-t">High-end hospitality</span><p class="pg3-desc" data-i18n="w3-d">Boutique luxury hotels, fine dining, and premium travel brands where the experience is the product and the social presence must convey what words alone cannot.</p></div>
+    <div class="pg3-cell"><span class="pg3-num">04</span><span class="pg3-title" data-i18n="w4-t">Luxury real estate</span><p class="pg3-desc" data-i18n="w4-d">Premium property developers, luxury real estate agents, and high-end architectural studios who need social content at the level of their projects.</p></div>
+    <div class="pg3-cell"><span class="pg3-num">05</span><span class="pg3-title" data-i18n="w5-t">Premium B2B companies</span><p class="pg3-desc" data-i18n="w5-d">High-end professional services, premium consulting firms, and B2B companies targeting executive audiences — where LinkedIn presence matters as much as Instagram.</p></div>
+    <div class="pg3-cell"><span class="pg3-num">06</span><span class="pg3-title" data-i18n="w6-t">Lifestyle & wellness brands</span><p class="pg3-desc" data-i18n="w6-d">Premium wellness, luxury beauty, and high-end lifestyle brands where the brand world is the primary asset and social media must protect and extend it consistently.</p></div>
   </div>
+</div>
 </section>
 
 <hr class="rule"/>
 
 <!-- WHAT I DO -->
-<section class="what-sec fade-up">
-  <span class="sec-stamp">// What's included</span>
-  <h2 class="sec-title">WHAT LUXURY BRAND<br>SOCIAL MEDIA LOOKS LIKE</h2>
+<section>
+<div class="sec-wrap fade-up">
+  <span class="sec-stamp" data-i18n="s3-stamp">// What's included</span>
+  <h2 class="sec-title" data-i18n-html="s3-h">WHAT LUXURY BRAND<br>SOCIAL MEDIA LOOKS LIKE</h2>
   <div class="svc-list">
-    <div class="svc-row">
-      <div class="svc-tag">// 01 — Strategy</div>
-      <div class="svc-content">
-        <h3>BRAND AUDIT & POSITIONING STRATEGY</h3>
-        <p>Before anything goes live, I audit the current social presence against the brand's positioning: what's working, what's contradicting the brand, what's missing. Then we define the social strategy — platform selection, content pillars, visual identity standards, tone of voice — that aligns with where the brand needs to be, not where it currently is.</p>
-      </div>
-    </div>
-    <div class="svc-row">
-      <div class="svc-tag">// 02 — Content</div>
-      <div class="svc-content">
-        <h3>ART-DIRECTED CONTENT CREATION</h3>
-        <p>Content created at the standard a luxury brand demands: art-directed imagery, storyboarded video, crafted copy. Not stock assets, not repurposed content, not templates. Every post is a deliberate brand touchpoint — the visual identity, the caption, the timing, the framing — all held to the standard of the brand.</p>
-      </div>
-    </div>
-    <div class="svc-row">
-      <div class="svc-tag">// 03 — Community</div>
-      <div class="svc-content">
-        <h3>SELECTIVE COMMUNITY MANAGEMENT</h3>
-        <p>Managing the brand's social presence with the same selectivity the brand applies to everything else. Responding to qualified interactions, curating mentions, managing DM inquiries, and protecting the brand's comment sections from anything that contradicts the positioning — without over-moderating in a way that kills authentic engagement.</p>
-      </div>
-    </div>
-    <div class="svc-row">
-      <div class="svc-tag">// 04 — Influence</div>
-      <div class="svc-content">
-        <h3>PRECISION INFLUENCER STRATEGY</h3>
-        <p>Identifying and managing partnerships with influencers and collaborators whose audiences match the brand's target customer — not by follower count, but by audience quality, lifestyle alignment, and genuine brand affinity. For luxury brands, one right partnership is worth more than twenty wrong ones.</p>
-      </div>
-    </div>
-    <div class="svc-row">
-      <div class="svc-tag">// 05 — Reporting</div>
-      <div class="svc-content">
-        <h3>BRAND-ALIGNED PERFORMANCE REPORTING</h3>
-        <p>Monthly reporting focused on the metrics that matter for luxury brands: qualified reach, lead quality, engagement from target demographics, and press/editorial mentions driven by social content. Not vanity metrics, not raw follower counts — data that tells you whether the brand's social presence is building what it should be building.</p>
-      </div>
-    </div>
+    <div class="svc-row"><div class="svc-tag" data-i18n="sv1-tag">// 01 — Strategy</div><div class="svc-content"><h3 data-i18n="sv1-t">BRAND AUDIT & POSITIONING STRATEGY</h3><p data-i18n="sv1-d">Before anything goes live, I audit the current social presence against the brand's positioning: what's working, what's contradicting the brand, what's missing. Then we define the social strategy — platform selection, content pillars, visual identity standards, tone of voice — that aligns with where the brand needs to be.</p></div></div>
+    <div class="svc-row"><div class="svc-tag" data-i18n="sv2-tag">// 02 — Content</div><div class="svc-content"><h3 data-i18n="sv2-t">ART-DIRECTED CONTENT CREATION</h3><p data-i18n="sv2-d">Content created at the standard a luxury brand demands: art-directed imagery, storyboarded video, crafted copy. Not stock assets, not repurposed content, not templates. Every post is a deliberate brand touchpoint — the visual identity, the caption, the timing — all held to the standard of the brand.</p></div></div>
+    <div class="svc-row"><div class="svc-tag" data-i18n="sv3-tag">// 03 — Community</div><div class="svc-content"><h3 data-i18n="sv3-t">SELECTIVE COMMUNITY MANAGEMENT</h3><p data-i18n="sv3-d">Managing the brand's social presence with the same selectivity the brand applies to everything else. Responding to qualified interactions, curating mentions, managing DM inquiries, and protecting the brand's comment sections — without over-moderating in a way that kills authentic engagement.</p></div></div>
+    <div class="svc-row"><div class="svc-tag" data-i18n="sv4-tag">// 04 — Influence</div><div class="svc-content"><h3 data-i18n="sv4-t">PRECISION INFLUENCER STRATEGY</h3><p data-i18n="sv4-d">Identifying and managing partnerships with influencers whose audiences match the brand's target customer — not by follower count, but by audience quality, lifestyle alignment, and genuine brand affinity. For luxury brands, one right partnership is worth more than twenty wrong ones.</p></div></div>
+    <div class="svc-row"><div class="svc-tag" data-i18n="sv5-tag">// 05 — Reporting</div><div class="svc-content"><h3 data-i18n="sv5-t">BRAND-ALIGNED PERFORMANCE REPORTING</h3><p data-i18n="sv5-d">Monthly reporting focused on the metrics that matter for luxury brands: qualified reach, lead quality, engagement from target demographics, and press mentions driven by social content. Not vanity metrics — data that tells you whether the brand's social presence is building what it should.</p></div></div>
   </div>
+</div>
 </section>
 
 <hr class="rule"/>
 
 <!-- PROCESS -->
-<section class="proc-sec fade-up">
-  <span class="sec-stamp">// How it works</span>
-  <h2 class="sec-title">THE PROCESS</h2>
+<section>
+<div class="sec-wrap fade-up">
+  <span class="sec-stamp" data-i18n="s4-stamp">// How it works</span>
+  <h2 class="sec-title" data-i18n="s4-h">THE PROCESS</h2>
   <div class="proc-grid">
-    <div class="proc-cell">
-      <span class="proc-n">01</span>
-      <span class="proc-label">// Brand Immersion</span>
-      <p class="proc-desc">Deep dive into the brand's world: positioning, audience, competitors, visual identity, and current social presence. This is where I understand what the brand is — and what it's not allowed to be on social media.</p>
-    </div>
-    <div class="proc-cell">
-      <span class="proc-n">02</span>
-      <span class="proc-label">// Strategy</span>
-      <p class="proc-desc">Platform selection, content pillars, editorial calendar, visual standards, tone of voice guide, and success metrics — all calibrated to the luxury positioning rather than generic best practice.</p>
-    </div>
-    <div class="proc-cell">
-      <span class="proc-n">03</span>
-      <span class="proc-label">// Execution</span>
-      <p class="proc-desc">Monthly content creation, scheduling, community management, and influencer coordination — delivered at the standard defined in the strategy phase. Every post approved before it goes live.</p>
-    </div>
-    <div class="proc-cell">
-      <span class="proc-n">04</span>
-      <span class="proc-label">// Review</span>
-      <p class="proc-desc">Monthly brand-aligned performance review, strategy refinement, and forward planning. The brand's social presence isn't static — it evolves with campaigns, seasons, and positioning shifts.</p>
-    </div>
+    <div class="proc-cell"><span class="proc-n">01</span><span class="proc-label" data-i18n="pr1-t">// Brand Immersion</span><p class="proc-desc" data-i18n="pr1-d">Deep dive into the brand's world: positioning, audience, competitors, visual identity, and current social presence. This is where I understand what the brand is — and what it's not allowed to be on social media.</p></div>
+    <div class="proc-cell"><span class="proc-n">02</span><span class="proc-label" data-i18n="pr2-t">// Strategy</span><p class="proc-desc" data-i18n="pr2-d">Platform selection, content pillars, editorial calendar, visual standards, tone of voice guide, and success metrics — all calibrated to the luxury positioning rather than generic best practice.</p></div>
+    <div class="proc-cell"><span class="proc-n">03</span><span class="proc-label" data-i18n="pr3-t">// Execution</span><p class="proc-desc" data-i18n="pr3-d">Monthly content creation, scheduling, community management, and influencer coordination — delivered at the standard defined in the strategy phase. Every post approved before it goes live.</p></div>
+    <div class="proc-cell"><span class="proc-n">04</span><span class="proc-label" data-i18n="pr4-t">// Review</span><p class="proc-desc" data-i18n="pr4-d">Monthly brand-aligned performance review, strategy refinement, and forward planning. The brand's social presence isn't static — it evolves with campaigns, seasons, and positioning shifts.</p></div>
   </div>
+</div>
 </section>
 
 <hr class="rule"/>
 
-<hr class="rule"/>
-
 <!-- CTA -->
-<section class="cta-sec fade-up">
-  <span class="sec-stamp">// Get in touch</span>
-  <h2 class="sec-title">LET'S TALK<br>ABOUT YOUR BRAND</h2>
+<section>
+<div class="sec-wrap fade-up">
+  <span class="sec-stamp" data-i18n="cta-stamp">// Get in touch</span>
+  <h2 class="sec-title" data-i18n-html="cta-h">LET'S TALK<br>ABOUT YOUR BRAND</h2>
   <div class="cta-grid">
     <div class="cta-left">
-      <h3>WRITE TO ME DIRECTLY</h3>
-      <p>Tell me about the brand, where it is, and where it needs to be on social media. I'll come back to you within 24 hours with whether I think I can help and what that might look like.</p>
-      <p>In the initial conversation we'll cover:</p>
+      <h3 data-i18n="cta-title">WRITE TO ME DIRECTLY</h3>
+      <p data-i18n="cta-p1">Tell me about the brand, where it is, and where it needs to be on social media. I'll come back to you within 24 hours with whether I think I can help and what that might look like.</p>
+      <p data-i18n="cta-p2">In the initial conversation we'll cover:</p>
       <ul>
-        <li>The brand's current social presence and what's working</li>
-        <li>The positioning gap between where it is and where it should be</li>
-        <li>The platforms and strategy that make sense for this specific brand</li>
-        <li>What working together would look like practically</li>
+        <li data-i18n="cl1">The brand's current social presence and what's working</li>
+        <li data-i18n="cl2">The positioning gap between where it is and where it should be</li>
+        <li data-i18n="cl3">The platforms and strategy that make sense for this specific brand</li>
+        <li data-i18n="cl4">What working together would look like practically</li>
       </ul>
       <a href="mailto:hugo@brandkosmos.company?subject=Luxury Brand Social Media — Enquiry" class="cta-email-btn">hugo@brandkosmos.company</a>
     </div>
     <div class="cta-right">
-      <span class="cr-label">// Direct contact</span>
+      <span class="cr-label" data-i18n="cr-label">// Direct contact</span>
       <a href="mailto:hugo@brandkosmos.company" class="cr-link">hugo@brandkosmos.company</a>
       <div class="cr-sep"></div>
-      <p class="cr-detail"><strong>Response time:</strong> within 24 hours on working days</p>
-      <p class="cr-detail"><strong>Location:</strong> Spain — available across Europe</p>
-      <p class="cr-detail"><strong>Languages:</strong> English, Spanish, Italian</p>
+      <p class="cr-detail"><strong data-i18n="cr-resp-lbl">Response time:</strong> <span data-i18n="cr-resp">within 24 hours on working days</span></p>
+      <p class="cr-detail"><strong data-i18n="cr-loc-lbl">Location:</strong> <span data-i18n="cr-loc">Spain — available across Europe</span></p>
+      <p class="cr-detail"><strong data-i18n="cr-lang-lbl">Languages:</strong> <span data-i18n="cr-lang">English, Spanish, Italian</span></p>
       <div class="cr-sep"></div>
-      <p class="cr-detail">Also managing <a href="/executive-linkedin/" style="color:var(--green-a);text-decoration:none;">LinkedIn Executive Presence</a> for founders and C-suite — see the service if that's also relevant.</p>
+      <p class="cr-detail" data-i18n-html="cr-also">Also managing <a href="/executive-linkedin/" style="color:var(--green-a);text-decoration:none;">LinkedIn Executive Presence</a> for founders and C-suite — see the service if that's also relevant.</p>
     </div>
   </div>
+</div>
 </section>
 
 </main>
 
 <footer>
-  <span class="f-copy">© 2026 BrandKosmos — Premium Social Media Management</span>
+  <span class="f-copy" data-i18n="f-copy">© 2026 BrandKosmos — Premium Social Media Management</span>
   <div class="f-soc">
-    <a href="/" class="f-a">Home</a>
+    <a href="/" class="f-a" data-i18n="f-home">Home</a>
     <a href="/executive-linkedin/" class="f-a">LinkedIn</a>
     <a href="/blog/" class="f-a">Blog</a>
     <a href="mailto:hugo@brandkosmos.company" class="f-a">Email</a>
@@ -401,7 +319,151 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(46,82,40,0.2);paddi
 </footer>
 
 <script>
-const obs = new IntersectionObserver(entries=>{
+const T={
+  en:{
+    'nav-cta':"LET'S TALK",
+    'hero-stamp':'// Luxury Brand Social Media Management',
+    'hero-h':'YOUR BRAND<br>IS <span style="color:var(--green-a)">PREMIUM</span>.<br>YOUR SOCIAL<br>SHOULD BE TOO.',
+    'hero-sub':'Social media management for luxury brands, premium events, and high-end B2B companies. Strategy, content, and brand positioning at the level your brand demands — not the level most agencies default to.',
+    'hero-cta':'Get in touch',
+    'hero-guide':'Read the guide →',
+    'hs1':'Bespoke strategy — no templates, no shortcuts',
+    'hs2':'Years managing premium & luxury brand accounts',
+    'hs3':'Working with luxury brands across Europe & Global',
+    's1-stamp':'// The problem with standard social media management',
+    's1-h':'STANDARD PLAYBOOKS<br>DAMAGE LUXURY BRANDS',
+    's1-p1':'Most social media agencies were built to serve mass-market brands: post frequently, optimise for reach, chase trends, measure follower counts. That approach actively contradicts how luxury brands work.',
+    's1-p2':"Luxury is built on scarcity, selectivity, and aspiration. A luxury brand that posts twice a day, uses viral formats, and partners with macro-influencers is communicating the opposite of what it should: it's saying it needs your attention rather than deserving it.",
+    's1-p3s':'The production standard, the frequency, the platform selection, the content strategy, and the success metrics all need to be different for luxury brands.',
+    's1-p3e':"Most agencies don't know how to operate at this level — because their processes were never designed for it.",
+    's1-p4':"What luxury brands need is a partner who understands that every visual touchpoint carries the weight of what the brand charges, and who holds that standard without needing to be reminded.",
+    'aside-lbl':'// What changes when you work with a premium-first partner',
+    'ca1':'Art-directed content, not just scheduled posts',
+    'ca2':'Platform strategy driven by audience quality, not reach',
+    'ca3':'Influencer selection by relevance, not follower count',
+    'ca4':'Frequency calibrated to exclusivity, not the algorithm',
+    'ca5':'Metrics that measure qualified leads, not vanity numbers',
+    'ca6':'Consistent visual identity that extends your brand world',
+    's2-stamp':'// Who this is for',
+    's2-h':'BRANDS WHERE<br>QUALITY IS NON-NEGOTIABLE',
+    'w1-t':'Luxury retail & fashion','w1-d':'Heritage brands, independent luxury houses, and premium fashion labels who need their social presence to match the standard of their product.',
+    'w2-t':'Premium events & experiences','w2-d':'Luxury event organisers, private members clubs, and high-end experience brands. Social media that builds anticipation and signals exclusivity — not just promotion.',
+    'w3-t':'High-end hospitality','w3-d':'Boutique luxury hotels, fine dining, and premium travel brands where the experience is the product and the social presence must convey what words alone cannot.',
+    'w4-t':'Luxury real estate','w4-d':'Premium property developers, luxury real estate agents, and high-end architectural studios who need social content at the level of their projects.',
+    'w5-t':'Premium B2B companies','w5-d':'High-end professional services, premium consulting firms, and B2B companies targeting executive audiences — where LinkedIn presence matters as much as Instagram.',
+    'w6-t':'Lifestyle & wellness brands','w6-d':'Premium wellness, luxury beauty, and high-end lifestyle brands where the brand world is the primary asset and social media must protect and extend it consistently.',
+    's3-stamp':"// What's included",
+    's3-h':'WHAT LUXURY BRAND<br>SOCIAL MEDIA LOOKS LIKE',
+    'sv1-tag':'// 01 — Strategy','sv1-t':'BRAND AUDIT & POSITIONING STRATEGY','sv1-d':"Before anything goes live, I audit the current social presence against the brand's positioning: what's working, what's contradicting the brand, what's missing. Then we define the social strategy — platform selection, content pillars, visual identity standards, tone of voice — that aligns with where the brand needs to be.",
+    'sv2-tag':'// 02 — Content','sv2-t':'ART-DIRECTED CONTENT CREATION','sv2-d':"Content created at the standard a luxury brand demands: art-directed imagery, storyboarded video, crafted copy. Not stock assets, not repurposed content, not templates. Every post is a deliberate brand touchpoint — the visual identity, the caption, the timing — all held to the standard of the brand.",
+    'sv3-tag':'// 03 — Community','sv3-t':'SELECTIVE COMMUNITY MANAGEMENT','sv3-d':"Managing the brand's social presence with the same selectivity the brand applies to everything else. Responding to qualified interactions, curating mentions, managing DM inquiries, and protecting the brand's comment sections — without over-moderating in a way that kills authentic engagement.",
+    'sv4-tag':'// 04 — Influence','sv4-t':'PRECISION INFLUENCER STRATEGY','sv4-d':"Identifying and managing partnerships with influencers whose audiences match the brand's target customer — not by follower count, but by audience quality, lifestyle alignment, and genuine brand affinity. For luxury brands, one right partnership is worth more than twenty wrong ones.",
+    'sv5-tag':'// 05 — Reporting','sv5-t':'BRAND-ALIGNED PERFORMANCE REPORTING','sv5-d':"Monthly reporting focused on the metrics that matter for luxury brands: qualified reach, lead quality, engagement from target demographics, and press mentions driven by social content. Not vanity metrics — data that tells you whether the brand's social presence is building what it should.",
+    's4-stamp':'// How it works','s4-h':'THE PROCESS',
+    'pr1-t':'// Brand Immersion','pr1-d':"Deep dive into the brand's world: positioning, audience, competitors, visual identity, and current social presence. This is where I understand what the brand is — and what it's not allowed to be on social media.",
+    'pr2-t':'// Strategy','pr2-d':'Platform selection, content pillars, editorial calendar, visual standards, tone of voice guide, and success metrics — all calibrated to the luxury positioning rather than generic best practice.',
+    'pr3-t':'// Execution','pr3-d':'Monthly content creation, scheduling, community management, and influencer coordination — delivered at the standard defined in the strategy phase. Every post approved before it goes live.',
+    'pr4-t':'// Review','pr4-d':"Monthly brand-aligned performance review, strategy refinement, and forward planning. The brand's social presence isn't static — it evolves with campaigns, seasons, and positioning shifts.",
+    'cta-stamp':'// Get in touch',
+    'cta-h':"LET'S TALK<br>ABOUT YOUR BRAND",
+    'cta-title':'WRITE TO ME DIRECTLY',
+    'cta-p1':"Tell me about the brand, where it is, and where it needs to be on social media. I'll come back to you within 24 hours with whether I think I can help and what that might look like.",
+    'cta-p2':'In the initial conversation we\'ll cover:',
+    'cl1':"The brand's current social presence and what's working",
+    'cl2':'The positioning gap between where it is and where it should be',
+    'cl3':'The platforms and strategy that make sense for this specific brand',
+    'cl4':'What working together would look like practically',
+    'cr-label':'// Direct contact',
+    'cr-resp-lbl':'Response time:','cr-resp':'within 24 hours on working days',
+    'cr-loc-lbl':'Location:','cr-loc':'Spain — available across Europe',
+    'cr-lang-lbl':'Languages:','cr-lang':'English, Spanish, Italian',
+    'cr-also':'Also managing <a href="/executive-linkedin/" style="color:var(--green-a);text-decoration:none;">LinkedIn Executive Presence</a> for founders and C-suite — see the service if that\'s also relevant.',
+    'f-copy':'© 2026 BrandKosmos — Premium Social Media Management',
+    'f-home':'Home'
+  },
+  es:{
+    'nav-cta':'HABLEMOS',
+    'hero-stamp':'// Gestión de Redes Sociales para Marcas de Lujo',
+    'hero-h':'TU MARCA<br>ES <span style="color:var(--green-a)">PREMIUM</span>.<br>TUS REDES<br>TAMBIÉN DEBERÍAN SERLO.',
+    'hero-sub':'Gestión de redes sociales para marcas de lujo, eventos premium y empresas B2B de alto nivel. Estrategia, contenido y posicionamiento de marca al nivel que tu marca exige — no al nivel al que por defecto llega la mayoría de las agencias.',
+    'hero-cta':'Contáctame',
+    'hero-guide':'Leer la guía →',
+    'hs1':'Estrategia a medida — sin plantillas ni atajos',
+    'hs2':'Años gestionando cuentas de marcas premium y de lujo',
+    'hs3':'Trabajando con marcas de lujo en Europa y a nivel global',
+    's1-stamp':'// El problema con la gestión estándar de redes sociales',
+    's1-h':'LOS PLAYBOOKS ESTÁNDAR<br>DAÑAN A LAS MARCAS DE LUJO',
+    's1-p1':'La mayoría de agencias de redes sociales fueron creadas para marcas masivas: publicar frecuentemente, optimizar el alcance, seguir tendencias, medir seguidores. Ese enfoque contradice activamente cómo funcionan las marcas de lujo.',
+    's1-p2':'El lujo se construye sobre escasez, selectividad y aspiración. Una marca de lujo que publica dos veces al día, usa formatos virales y se asocia con macro-influencers está comunicando lo contrario de lo que debería: que necesita tu atención en lugar de merecerla.',
+    's1-p3s':'El estándar de producción, la frecuencia, la selección de plataformas, la estrategia de contenido y las métricas de éxito deben ser diferentes para las marcas de lujo.',
+    's1-p3e':'La mayoría de agencias no saben operar a este nivel — porque sus procesos nunca fueron diseñados para ello.',
+    's1-p4':'Lo que las marcas de lujo necesitan es un partner que entienda que cada punto de contacto visual lleva el peso de lo que cobra la marca, y que mantiene ese estándar sin necesidad de recordatorio.',
+    'aside-lbl':'// Qué cambia cuando trabajas con un partner premium-first',
+    'ca1':'Contenido con dirección de arte, no solo posts programados',
+    'ca2':'Estrategia de plataforma basada en calidad de audiencia, no en alcance',
+    'ca3':'Selección de influencers por relevancia, no por número de seguidores',
+    'ca4':'Frecuencia calibrada a la exclusividad, no al algoritmo',
+    'ca5':'Métricas que miden leads cualificados, no vanity numbers',
+    'ca6':'Identidad visual consistente que extiende el mundo de tu marca',
+    's2-stamp':'// Para quién es',
+    's2-h':'MARCAS DONDE<br>LA CALIDAD NO ES NEGOCIABLE',
+    'w1-t':'Retail y moda de lujo','w1-d':'Marcas de patrimonio, casas de lujo independientes y firmas de moda premium que necesitan que su presencia social esté a la altura de su producto.',
+    'w2-t':'Eventos y experiencias premium','w2-d':'Organizadores de eventos de lujo, clubes privados y marcas de experiencias de alto nivel. Redes sociales que generan anticipación y señalan exclusividad — no solo promoción.',
+    'w3-t':'Hostelería de alto nivel','w3-d':'Hoteles boutique de lujo, gastronomía fine dining y marcas de viaje premium donde la experiencia es el producto y las redes deben transmitir lo que las palabras solas no pueden.',
+    'w4-t':'Inmobiliaria de lujo','w4-d':'Promotores de propiedades premium, agentes inmobiliarios de lujo y estudios de arquitectura de alto nivel que necesitan contenido social a la altura de sus proyectos.',
+    'w5-t':'Empresas B2B premium','w5-d':'Servicios profesionales de alto nivel, firmas de consultoría premium y empresas B2B dirigidas a audiencias ejecutivas — donde la presencia en LinkedIn importa tanto como el Instagram.',
+    'w6-t':'Lifestyle y wellness de lujo','w6-d':'Wellness premium, belleza de lujo y marcas de lifestyle de alto nivel donde el mundo de marca es el activo principal y las redes deben protegerlo y extenderlo consistentemente.',
+    's3-stamp':'// Qué incluye',
+    's3-h':'ASÍ ES LA GESTIÓN DE REDES<br>PARA MARCAS DE LUJO',
+    'sv1-tag':'// 01 — Estrategia','sv1-t':'AUDITORÍA DE MARCA Y ESTRATEGIA DE POSICIONAMIENTO','sv1-d':'Antes de que nada se publique, audito la presencia social actual frente al posicionamiento de la marca. Luego definimos la estrategia social — selección de plataformas, pilares de contenido, estándares de identidad visual, tono de voz — alineada con donde la marca necesita estar, no donde está actualmente.',
+    'sv2-tag':'// 02 — Contenido','sv2-t':'CREACIÓN DE CONTENIDO CON DIRECCIÓN DE ARTE','sv2-d':'Contenido creado al estándar que exige una marca de lujo: imágenes con dirección de arte, vídeo con storyboard, textos elaborados. Sin assets de stock, sin contenido reutilizado, sin plantillas. Cada post es un punto de contacto de marca deliberado.',
+    'sv3-tag':'// 03 — Comunidad','sv3-t':'GESTIÓN DE COMUNIDAD SELECTIVA','sv3-d':'Gestionar la presencia social de la marca con la misma selectividad que la marca aplica a todo lo demás. Respondiendo a interacciones cualificadas, curando menciones, gestionando consultas por DM y protegiendo los comentarios de la marca.',
+    'sv4-tag':'// 04 — Influencia','sv4-t':'ESTRATEGIA DE INFLUENCERS DE PRECISIÓN','sv4-d':'Identificar y gestionar partnerships con influencers cuyas audiencias coincidan con el cliente objetivo de la marca — no por número de seguidores, sino por calidad de audiencia, alineación de estilo de vida y afinidad genuina con la marca.',
+    'sv5-tag':'// 05 — Reporting','sv5-t':'REPORTING DE RENDIMIENTO ALINEADO CON LA MARCA','sv5-d':'Reporting mensual centrado en las métricas que importan para las marcas de lujo: alcance cualificado, calidad de leads, engagement de demografías objetivo y menciones en prensa generadas por contenido social. No vanity metrics.',
+    's4-stamp':'// Cómo funciona','s4-h':'EL PROCESO',
+    'pr1-t':'// Inmersión en la Marca','pr1-d':'Inmersión profunda en el mundo de la marca: posicionamiento, audiencia, competidores, identidad visual y presencia social actual. Aquí entiendo qué es la marca — y qué no puede ser en redes sociales.',
+    'pr2-t':'// Estrategia','pr2-d':'Selección de plataformas, pilares de contenido, calendario editorial, estándares visuales, guía de tono de voz y métricas de éxito — todo calibrado al posicionamiento de lujo en lugar de a las mejores prácticas genéricas.',
+    'pr3-t':'// Ejecución','pr3-d':'Creación de contenido mensual, programación, gestión de comunidad y coordinación de influencers — entregado al estándar definido en la fase de estrategia. Cada post aprobado antes de publicarse.',
+    'pr4-t':'// Revisión','pr4-d':'Revisión mensual de rendimiento alineada con la marca, refinamiento de estrategia y planificación hacia adelante. La presencia social de la marca no es estática — evoluciona con campañas, temporadas y cambios de posicionamiento.',
+    'cta-stamp':'// Contacto',
+    'cta-h':'HABLEMOS<br>DE TU MARCA',
+    'cta-title':'ESCRÍBEME DIRECTAMENTE',
+    'cta-p1':'Cuéntame sobre la marca, dónde está y dónde necesita estar en redes sociales. Te respondo en 24 horas con si creo que puedo ayudar y cómo sería eso.',
+    'cta-p2':'En la conversación inicial cubriremos:',
+    'cl1':'La presencia social actual de la marca y qué funciona',
+    'cl2':'La brecha de posicionamiento entre dónde está y dónde debería estar',
+    'cl3':'Las plataformas y estrategia que tienen sentido para esta marca específica',
+    'cl4':'Cómo sería trabajar juntos en la práctica',
+    'cr-label':'// Contacto directo',
+    'cr-resp-lbl':'Tiempo de respuesta:','cr-resp':'en 24 horas en días laborables',
+    'cr-loc-lbl':'Ubicación:','cr-loc':'España — disponible en toda Europa',
+    'cr-lang-lbl':'Idiomas:','cr-lang':'Inglés, Español, Italiano',
+    'cr-also':'También gestionando <a href="/executive-linkedin/" style="color:var(--green-a);text-decoration:none;">presencia ejecutiva en LinkedIn</a> para fundadores y C-suite — consulta el servicio si también te interesa.',
+    'f-copy':'© 2026 BrandKosmos — Gestión Premium de Redes Sociales',
+    'f-home':'Inicio'
+  }
+};
+
+function setLang(l){
+  try{localStorage.setItem('hj-lang',l);}catch(e){}
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('on',b.dataset.lang===l));
+  const t=T[l]||T.en;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(t[k]!==undefined)el.textContent=t[k];});
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{const k=el.dataset.i18nHtml;if(t[k]!==undefined)el.innerHTML=t[k];});
+  document.documentElement.lang=l;
+}
+
+const _l=(()=>{try{return localStorage.getItem('hj-lang')||'en';}catch(e){return 'en';}})();
+setLang(_l);
+
+/* Progress bar */
+window.addEventListener('scroll',()=>{
+  const h=document.body.scrollHeight-window.innerHeight;
+  if(h>0) document.getElementById('prog').style.width=(window.scrollY/h*100)+'%';
+},{passive:true});
+
+/* Fade-up */
+const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
 },{threshold:0.08});
 document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
@@ -415,37 +477,20 @@ document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
   const canvas=document.getElementById('three-canvas');
   const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
   renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
-  renderer.shadowMap.enabled=true;
-  renderer.shadowMap.type=THREE.PCFSoftShadowMap;
-
+  renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
   const scene=new THREE.Scene();
   const camera=new THREE.PerspectiveCamera(40,innerWidth/innerHeight,0.1,100);
   camera.position.set(0,0,6);
-
   function resize(){renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();}
   resize();window.addEventListener('resize',resize);
-
   scene.add(new THREE.AmbientLight(0x888880,0.5));
-  const mainL=new THREE.DirectionalLight(0xfff8f0,2.8);
-  mainL.position.set(5,6,3);mainL.castShadow=true;scene.add(mainL);
+  const mainL=new THREE.DirectionalLight(0xfff8f0,2.8);mainL.position.set(5,6,3);mainL.castShadow=true;scene.add(mainL);
   const rimL=new THREE.DirectionalLight(0x90a0b0,0.6);rimL.position.set(-4,-2,2);scene.add(rimL);
   const fillL=new THREE.DirectionalLight(0xb0a890,0.4);fillL.position.set(0,-5,1);scene.add(fillL);
   const ptL=new THREE.PointLight(0xfff0e0,1.2,8);ptL.position.set(0,1,3);scene.add(ptL);
-
   const mat=new THREE.MeshStandardMaterial({color:0x6a8060,roughness:0.96,metalness:0.0});
-  const BASE=new THREE.IcosahedronGeometry(1.4,5);
-  const vCount=BASE.attributes.position.count;
-
-  function makeTarget(fn){
-    const pos=BASE.attributes.position,arr=new Float32Array(vCount*3);
-    for(let i=0;i<vCount;i++){
-      const x=pos.getX(i),y=pos.getY(i),z=pos.getZ(i),r=Math.sqrt(x*x+y*y+z*z);
-      const nx=x/r,ny=y/r,nz=z/r,res=fn(nx,ny,nz);
-      arr[i*3]=res.x;arr[i*3+1]=res.y;arr[i*3+2]=res.z;
-    }
-    return arr;
-  }
-
+  const BASE=new THREE.IcosahedronGeometry(1.4,5);const vCount=BASE.attributes.position.count;
+  function makeTarget(fn){const pos=BASE.attributes.position,arr=new Float32Array(vCount*3);for(let i=0;i<vCount;i++){const x=pos.getX(i),y=pos.getY(i),z=pos.getZ(i),r=Math.sqrt(x*x+y*y+z*z);const nx=x/r,ny=y/r,nz=z/r,res=fn(nx,ny,nz);arr[i*3]=res.x;arr[i*3+1]=res.y;arr[i*3+2]=res.z;}return arr;}
   const targets=[
     makeTarget((nx,ny,nz)=>{const d=1.4+0.15*Math.sin(ny*3.1)*Math.cos(nx*4.2)+0.08*Math.sin(nz*5);return{x:nx*d,y:ny*d,z:nz*d};}),
     makeTarget((nx,ny,nz)=>{const d=1.35+0.2*Math.sin(ny*4)*Math.sin(nx*3)+0.12*Math.cos(nz*6);return{x:nx*d*0.85,y:ny*d*1.3,z:nz*d*0.85};}),
@@ -454,38 +499,19 @@ document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
     makeTarget((nx,ny,nz)=>{const d=1.5+0.3*Math.sin(nx*8+ny*6)+0.15*Math.cos(nz*9+nx*5);return{x:nx*d,y:ny*d,z:nz*d};}),
     makeTarget((nx,ny,nz)=>{const d=1.5+0.06*Math.sin(ny*2)*Math.cos(nx*2);return{x:nx*d,y:ny*d,z:nz*d};}),
   ];
-
-  const geo=BASE.clone();
-  const workPos=geo.attributes.position.array;
-  const mesh=new THREE.Mesh(geo,mat);
-  mesh.scale.setScalar(0.68);scene.add(mesh);
-
-  function lerp(a,b,t){return a+(b-a)*t;}
-  function easeIO(t){return t<0.5?2*t*t:(4-2*t)*t-1;}
-
+  const geo=BASE.clone();const workPos=geo.attributes.position.array;
+  const mesh=new THREE.Mesh(geo,mat);mesh.scale.setScalar(0.68);scene.add(mesh);
+  function lerp(a,b,t){return a+(b-a)*t;}function easeIO(t){return t<0.5?2*t*t:(4-2*t)*t-1;}
   let sp=0,dp=0,t=0;
   window.addEventListener('scroll',()=>{const h=document.body.scrollHeight-window.innerHeight;if(h>0)sp=Math.min(1,window.scrollY/h);},{passive:true});
-
-  (function animate(){
-    requestAnimationFrame(animate);
-    t+=0.008;dp+=(sp-dp)*0.05;
-    const n=targets.length-1,raw=dp*n;
-    const fi=Math.min(Math.floor(raw),n-1),ti=Math.min(fi+1,n),fr=easeIO(raw-fi);
+  (function animate(){requestAnimationFrame(animate);t+=0.008;dp+=(sp-dp)*0.05;
+    const n=targets.length-1,raw=dp*n,fi=Math.min(Math.floor(raw),n-1),ti=Math.min(fi+1,n),fr=easeIO(raw-fi);
     const from=targets[fi],to=targets[ti];
-    for(let i=0;i<vCount;i++){
-      const br=1+0.018*Math.sin(t*0.9+i*0.05);
-      workPos[i*3]=lerp(from[i*3],to[i*3],fr)*br;
-      workPos[i*3+1]=lerp(from[i*3+1],to[i*3+1],fr)*br;
-      workPos[i*3+2]=lerp(from[i*3+2],to[i*3+2],fr)*br;
-    }
+    for(let i=0;i<vCount;i++){const br=1+0.018*Math.sin(t*0.9+i*0.05);workPos[i*3]=lerp(from[i*3],to[i*3],fr)*br;workPos[i*3+1]=lerp(from[i*3+1],to[i*3+1],fr)*br;workPos[i*3+2]=lerp(from[i*3+2],to[i*3+2],fr)*br;}
     geo.attributes.position.needsUpdate=true;geo.computeVertexNormals();
-    mesh.rotation.y+=0.003+dp*0.003;
-    mesh.rotation.x=Math.sin(t*0.3)*0.08+dp*0.2;
-    mesh.rotation.z+=0.0008;
-    mainL.position.x=5*Math.cos(dp*Math.PI*0.8);
-    mainL.intensity=2.8-dp*0.6;
-    renderer.render(scene,camera);
-  })();
+    mesh.rotation.y+=0.003+dp*0.003;mesh.rotation.x=Math.sin(t*0.3)*0.08+dp*0.2;mesh.rotation.z+=0.0008;
+    mainL.position.x=5*Math.cos(dp*Math.PI*0.8);mainL.intensity=2.8-dp*0.6;
+    renderer.render(scene,camera);})();
 })();
 </script>
 </body>
