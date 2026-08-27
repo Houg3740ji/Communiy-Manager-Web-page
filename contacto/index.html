@@ -73,6 +73,9 @@ nav{position:sticky;top:0;z-index:100;height:52px;padding:0 36px;display:flex;al
 .n-link:hover,.n-link.on{color:var(--c6);}
 .n-cta{font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--green-a);text-decoration:none;border:1px solid var(--green-l);padding:5px 13px;transition:background .2s,color .2s;}
 .n-cta:hover{background:var(--green-l);color:var(--c7);}
+.lang-tog{display:flex;border:1px solid rgba(64,108,54,0.35);overflow:hidden;}
+.lang-btn{background:none;border:none;font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(200,194,170,0.5);padding:5px 9px;cursor:pointer;transition:all .2s;}
+.lang-btn.on{background:var(--green-a);color:var(--c7);}
 
 /* LAYOUT */
 .wrap{max-width:960px;margin:0 auto;padding:72px 36px 100px;}
@@ -88,20 +91,12 @@ nav{position:sticky;top:0;z-index:100;height:52px;padding:0 36px;display:flex;al
 @media(max-width:680px){.contact-grid{grid-template-columns:1fr;}}
 
 /* DIRECT CONTACTS */
-.direct-block{display:flex;flex-direction:column;gap:24px;}
+.direct-block{display:flex;flex-direction:column;gap:24px;align-items:stretch;align-self:start;}
 .contact-card{background:var(--c1);border:1px solid rgba(46,82,40,0.35);padding:24px;}
 .contact-card-label{font-family:var(--fm);font-size:0.48rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:var(--green-a);display:block;margin-bottom:8px;}
 .contact-card-value{font-family:var(--fs);font-size:1.05rem;font-weight:600;color:var(--c7);text-decoration:none;display:block;transition:color .2s;}
 .contact-card-value:hover{color:var(--green-a);}
 .contact-card-sub{font-size:0.76rem;color:var(--c3);margin-top:5px;display:block;}
-
-/* WHATSAPP */
-.wa-btn{display:flex;align-items:center;gap:12px;background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.3);padding:16px 20px;text-decoration:none;transition:background .2s;}
-.wa-btn:hover{background:rgba(37,211,102,0.14);}
-.wa-icon{font-size:1.4rem;flex-shrink:0;}
-.wa-text{flex:1;}
-.wa-label{font-family:var(--fm);font-size:0.48rem;letter-spacing:0.24em;text-transform:uppercase;color:rgba(37,211,102,0.6);display:block;margin-bottom:3px;}
-.wa-value{font-size:0.95rem;font-weight:600;color:var(--c7);}
 
 /* AVAIL BADGE */
 .avail-badge{display:flex;align-items:center;gap:10px;background:var(--c1);border:1px solid rgba(46,82,40,0.35);padding:14px 18px;}
@@ -161,11 +156,16 @@ footer{border-top:1px solid rgba(46,82,40,0.25);padding:28px 36px;text-align:cen
 <nav>
   <a href="/" class="n-logo">BRANDKOSMOS</a>
   <div class="n-r">
+    <div class="lang-tog" aria-label="Language">
+      <button class="lang-btn on" data-lang="es" onclick="setLang('es')" aria-label="Español">ES</button>
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')" aria-label="English">EN</button>
+    </div>
+    <a href="/" class="n-link" data-i18n="nav-home">INICIO</a>
     <a href="/sobre-mi/" class="n-link">SOBRE MÍ</a>
     <a href="/executive-linkedin/" class="n-link">LINKEDIN</a>
     <a href="/luxury-brands/" class="n-link">LUXURY</a>
     <a href="/blog/" class="n-link">BLOG</a>
-    <a href="/contacto/" class="n-cta on">HABLEMOS</a>
+    <a href="/contacto/" class="n-cta on" data-i18n="nav-cta">HABLEMOS</a>
   </div>
 </nav>
 
@@ -176,8 +176,8 @@ footer{border-top:1px solid rgba(46,82,40,0.25);padding:28px 36px;text-align:cen
   <!-- HERO -->
   <div class="hero-section">
     <span class="stamp">// BrandKosmos — Madrid</span>
-    <span class="page-title">HABLEMOS.</span>
-    <p class="hero-sub">Primera consulta gratuita y sin compromiso. En 30 minutos analizamos tu situación y vemos si tiene sentido trabajar juntos. Sin presión, sin plantillas, sin perder el tiempo.</p>
+    <span class="page-title" data-i18n="page-title">HABLEMOS.</span>
+    <p class="hero-sub" data-i18n="hero-sub">Primera consulta gratuita y sin compromiso. En 30 minutos analizamos tu situación y vemos si tiene sentido trabajar juntos. Sin presión, sin plantillas, sin perder el tiempo.</p>
   </div>
 
   <!-- MAIN GRID -->
@@ -188,55 +188,41 @@ footer{border-top:1px solid rgba(46,82,40,0.25);padding:28px 36px;text-align:cen
 
       <div class="avail-badge">
         <span class="avail-dot"></span>
-        <span class="avail-text">Disponible para nuevos proyectos — respuesta en &lt;24h</span>
+        <span class="avail-text" data-i18n="avail-text">Disponible para nuevos proyectos — respuesta en &lt;24h</span>
       </div>
 
       <div class="contact-card">
         <span class="contact-card-label">// Email</span>
         <a href="mailto:hugo@brandkosmos.company" class="contact-card-value">hugo@brandkosmos.company</a>
-        <span class="contact-card-sub">Para propuestas, consultas y proyectos</span>
+        <span class="contact-card-sub" data-i18n="email-sub">Para propuestas, consultas y proyectos</span>
       </div>
 
       <div class="contact-card">
-        <span class="contact-card-label">// Teléfono</span>
+        <span class="contact-card-label" data-i18n="phone-label">// Teléfono</span>
         <a href="tel:+34623171921" class="contact-card-value">+34 623 171 921</a>
-        <span class="contact-card-sub">Lunes a viernes, 9h–19h Madrid</span>
-      </div>
-
-      <a href="https://wa.me/34623171921?text=Hola%20Hugo%2C%20me%20interesa%20el%20servicio%20de%20gesti%C3%B3n%20de%20redes%20sociales.%20%C2%BFPodemos%20hablar%3F" target="_blank" rel="noopener" class="wa-btn">
-        <span class="wa-icon">💬</span>
-        <div class="wa-text">
-          <span class="wa-label">// WhatsApp</span>
-          <span class="wa-value">+34 623 171 921 — Mensaje directo</span>
-        </div>
-      </a>
-
-      <div class="contact-card">
-        <span class="contact-card-label">// LinkedIn</span>
-        <a href="https://www.linkedin.com/in/hugo-jim%C3%A9nez-herrero-514ba3305" target="_blank" rel="noopener" class="contact-card-value" style="font-size:0.85rem;">Hugo Jiménez — BrandKosmos</a>
-        <span class="contact-card-sub">Para proyectos de LinkedIn executive</span>
+        <span class="contact-card-sub" data-i18n="phone-sub">24/7 · También por WhatsApp</span>
       </div>
 
     </div>
 
     <!-- FORM -->
     <div class="form-block">
-      <span class="form-title">ESCRÍBEME.</span>
+      <span class="form-title" data-i18n="form-title">ESCRÍBEME.</span>
       <form id="contact-form" onsubmit="sendForm(event)">
         <div class="f-group">
-          <label class="f-label" for="c-name">// Nombre</label>
+          <label class="f-label" for="c-name" data-i18n="lbl-name">// Nombre</label>
           <input class="f-inp" id="c-name" type="text" name="from_name" placeholder="Tu nombre y apellido" required/>
         </div>
         <div class="f-group">
-          <label class="f-label" for="c-email">// Email</label>
+          <label class="f-label" for="c-email" data-i18n="lbl-email">// Email</label>
           <input class="f-inp" id="c-email" type="email" name="reply_to" placeholder="tu@empresa.com" required/>
         </div>
         <div class="f-group">
-          <label class="f-label" for="c-company">// Empresa / marca</label>
+          <label class="f-label" for="c-company" data-i18n="lbl-company">// Empresa / marca</label>
           <input class="f-inp" id="c-company" type="text" name="company" placeholder="Nombre de tu empresa o marca"/>
         </div>
         <div class="f-group">
-          <label class="f-label" for="c-service">// Qué necesitas</label>
+          <label class="f-label" for="c-service" data-i18n="lbl-service">// Qué necesitas</label>
           <select class="f-sel" id="c-service" name="service">
             <option value="">Selecciona el tipo de proyecto</option>
             <option value="Gestión completa de redes sociales">Gestión completa de redes sociales</option>
@@ -249,16 +235,16 @@ footer{border-top:1px solid rgba(46,82,40,0.25);padding:28px 36px;text-align:cen
           </select>
         </div>
         <div class="f-group">
-          <label class="f-label" for="c-msg">// Cuéntame tu proyecto</label>
+          <label class="f-label" for="c-msg" data-i18n="lbl-msg">// Cuéntame tu proyecto</label>
           <textarea class="f-ta" id="c-msg" name="message" placeholder="Qué haces, qué quieres conseguir en redes sociales, y cualquier detalle relevante para que pueda preparar la primera conversación." required></textarea>
         </div>
         <button class="f-btn" type="submit">
-          <span>ENVIAR MENSAJE</span>
+          <span data-i18n="btn-send">ENVIAR MENSAJE</span>
           <span>→</span>
         </button>
-        <p class="f-note">Sin spam. Sin newsletters automáticos. Solo respondo yo.</p>
-        <div class="f-msg ok" id="msg-ok">Mensaje enviado. Te respondo en menos de 24 horas laborables.</div>
-        <div class="f-msg err" id="msg-err">Error al enviar. Escríbeme directamente a hugo@brandkosmos.company.</div>
+        <p class="f-note" data-i18n="form-note">Sin spam. Sin newsletters automáticos. Solo respondo yo.</p>
+        <div class="f-msg ok" id="msg-ok" data-i18n="msg-ok">Mensaje enviado. Te respondo en menos de 24 horas laborables.</div>
+        <div class="f-msg err" id="msg-err" data-i18n="msg-err">Error al enviar. Escríbeme directamente a hugo@brandkosmos.company.</div>
       </form>
     </div>
 
@@ -266,47 +252,47 @@ footer{border-top:1px solid rgba(46,82,40,0.25);padding:28px 36px;text-align:cen
 
   <!-- WHAT TO EXPECT -->
   <div class="expect-section">
-    <span class="stamp">// Cómo funciona</span>
-    <span class="section-title">QUÉ ESPERAR.</span>
+    <span class="stamp" data-i18n="stamp-expect">// Cómo funciona</span>
+    <span class="section-title" data-i18n="section-expect">QUÉ ESPERAR.</span>
     <div class="expect-grid">
       <div class="expect-card">
         <span class="expect-num">01</span>
-        <span class="expect-title">Primera consulta</span>
-        <span class="expect-desc">30 minutos gratuitos por videollamada o teléfono. Analizamos tu situación en redes, tus objetivos, y lo que tiene sentido hacer. Sin presentación de ventas.</span>
+        <span class="expect-title" data-i18n="exp-1-title">Primera consulta</span>
+        <span class="expect-desc" data-i18n="exp-1-desc">30 minutos gratuitos por videollamada o teléfono. Analizamos tu situación en redes, tus objetivos, y lo que tiene sentido hacer. Sin presentación de ventas.</span>
       </div>
       <div class="expect-card">
         <span class="expect-num">02</span>
-        <span class="expect-title">Propuesta a medida</span>
-        <span class="expect-desc">Si hay encaje, en 48-72 horas recibes una propuesta específica para tu proyecto: alcance, resultados esperados, precio y condiciones.</span>
+        <span class="expect-title" data-i18n="exp-2-title">Propuesta a medida</span>
+        <span class="expect-desc" data-i18n="exp-2-desc">Si hay encaje, en 48-72 horas recibes una propuesta específica para tu proyecto: alcance, resultados esperados, precio y condiciones.</span>
       </div>
       <div class="expect-card">
         <span class="expect-num">03</span>
-        <span class="expect-title">Onboarding y arranque</span>
-        <span class="expect-desc">Si decides avanzar, empezamos con un proceso de onboarding de 1-2 semanas. Estrategia documentada, accesos, calendario de contenido. Sin lanzar nada sin estrategia previa.</span>
+        <span class="expect-title" data-i18n="exp-3-title">Onboarding y arranque</span>
+        <span class="expect-desc" data-i18n="exp-3-desc">Si decides avanzar, empezamos con un proceso de onboarding de 1-2 semanas. Estrategia documentada, accesos, calendario de contenido. Sin lanzar nada sin estrategia previa.</span>
       </div>
     </div>
   </div>
 
   <!-- FAQ -->
   <div class="faq-section">
-    <span class="stamp">// Preguntas frecuentes</span>
-    <span class="section-title">ANTES DE ESCRIBIR.</span>
+    <span class="stamp" data-i18n="stamp-faq">// Preguntas frecuentes</span>
+    <span class="section-title" data-i18n="section-faq">ANTES DE ESCRIBIR.</span>
     <div class="faq-list">
       <div class="faq-item">
-        <div class="faq-q">¿Cuánto tarda en responder?</div>
-        <div class="faq-a">Máximo 24 horas laborables. Si tu mensaje llega en fin de semana, lo recibirás el lunes. No uso respuestas automáticas ni gestores de bandeja de entrada.</div>
+        <div class="faq-q" data-i18n="faq-1-q">¿Cuánto tarda en responder?</div>
+        <div class="faq-a" data-i18n="faq-1-a">Máximo 24 horas laborables. Si tu mensaje llega en fin de semana, lo recibirás el lunes. No uso respuestas automáticas ni gestores de bandeja de entrada.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">¿La primera consulta es realmente gratuita?</div>
-        <div class="faq-a">Sí, y sin compromiso. No voy a intentar venderte nada en esa primera llamada. El objetivo es entender si tu proyecto y mi forma de trabajar son compatibles. Si no lo son, te lo digo sin rodeos.</div>
+        <div class="faq-q" data-i18n="faq-2-q">¿La primera consulta es realmente gratuita?</div>
+        <div class="faq-a" data-i18n="faq-2-a">Sí, y sin compromiso. No voy a intentar venderte nada en esa primera llamada. El objetivo es entender si tu proyecto y mi forma de trabajar son compatibles. Si no lo son, te lo digo sin rodeos.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">¿Con qué tipo de empresas trabajas?</div>
-        <div class="faq-a">Con marcas de lujo, empresas del sector financiero (banca privada, gestoras, inmobiliaria premium), empresas B2B con presencia en LinkedIn, y marcas con altas exigencias de imagen. Si tu empresa opera en un sector donde la imagen importa de verdad, probablemente hay encaje.</div>
+        <div class="faq-q" data-i18n="faq-3-q">¿Con qué tipo de empresas trabajas?</div>
+        <div class="faq-a" data-i18n="faq-3-a">Con marcas de lujo, empresas del sector financiero (banca privada, gestoras, inmobiliaria premium), empresas B2B con presencia en LinkedIn, y marcas con altas exigencias de imagen. Si tu empresa opera en un sector donde la imagen importa de verdad, probablemente hay encaje.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">¿Cuánto cuesta el servicio?</div>
-        <div class="faq-a">Depende del alcance y el sector. El rango habitual para una gestión completa (2-3 redes, estrategia incluida, informes mensuales) está entre 800€ y 2.500€/mes. Los proyectos de LinkedIn executive para directivos tienen precio separado. Te lo detallo en la propuesta tras la primera consulta.</div>
+        <div class="faq-q" data-i18n="faq-4-q">¿Cuánto cuesta el servicio?</div>
+        <div class="faq-a" data-i18n="faq-4-a">Depende del alcance y el sector. El rango habitual para una gestión completa (2-3 redes, estrategia incluida, informes mensuales) está entre 800€ y 2.500€/mes. Los proyectos de LinkedIn executive para directivos tienen precio separado. Te lo detallo en la propuesta tras la primera consulta.</div>
       </div>
     </div>
   </div>
@@ -327,19 +313,109 @@ footer{border-top:1px solid rgba(46,82,40,0.25);padding:28px 36px;text-align:cen
 
 <script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
+const T = {
+  es: {
+    'nav-home':      'INICIO',
+    'nav-cta':       'HABLEMOS',
+    'page-title':    'HABLEMOS.',
+    'hero-sub':      'Primera consulta gratuita y sin compromiso. En 30 minutos analizamos tu situación y vemos si tiene sentido trabajar juntos. Sin presión, sin plantillas, sin perder el tiempo.',
+    'avail-text':    'Disponible para nuevos proyectos — respuesta en <24h',
+    'email-sub':     'Para propuestas, consultas y proyectos',
+    'phone-label':   '// Teléfono',
+    'phone-sub':     '24/7 · También por WhatsApp',
+    'form-title':    'ESCRÍBEME.',
+    'lbl-name':      '// Nombre',
+    'lbl-email':     '// Email',
+    'lbl-company':   '// Empresa / marca',
+    'lbl-service':   '// Qué necesitas',
+    'lbl-msg':       '// Cuéntame tu proyecto',
+    'btn-send':      'ENVIAR MENSAJE',
+    'form-note':     'Sin spam. Sin newsletters automáticos. Solo respondo yo.',
+    'msg-ok':        'Mensaje enviado. Te respondo en menos de 24 horas laborables.',
+    'msg-err':       'Error al enviar. Escríbeme directamente a hugo@brandkosmos.company.',
+    'stamp-expect':  '// Cómo funciona',
+    'section-expect':'QUÉ ESPERAR.',
+    'exp-1-title':   'Primera consulta',
+    'exp-1-desc':    '30 minutos gratuitos por videollamada o teléfono. Analizamos tu situación en redes, tus objetivos, y lo que tiene sentido hacer. Sin presentación de ventas.',
+    'exp-2-title':   'Propuesta a medida',
+    'exp-2-desc':    'Si hay encaje, en 48-72 horas recibes una propuesta específica para tu proyecto: alcance, resultados esperados, precio y condiciones.',
+    'exp-3-title':   'Onboarding y arranque',
+    'exp-3-desc':    'Si decides avanzar, empezamos con un proceso de onboarding de 1-2 semanas. Estrategia documentada, accesos, calendario de contenido. Sin lanzar nada sin estrategia previa.',
+    'stamp-faq':     '// Preguntas frecuentes',
+    'section-faq':   'ANTES DE ESCRIBIR.',
+    'faq-1-q':       '¿Cuánto tarda en responder?',
+    'faq-1-a':       'Máximo 24 horas laborables. Si tu mensaje llega en fin de semana, lo recibirás el lunes. No uso respuestas automáticas ni gestores de bandeja de entrada.',
+    'faq-2-q':       '¿La primera consulta es realmente gratuita?',
+    'faq-2-a':       'Sí, y sin compromiso. No voy a intentar venderte nada en esa primera llamada. El objetivo es entender si tu proyecto y mi forma de trabajar son compatibles. Si no lo son, te lo digo sin rodeos.',
+    'faq-3-q':       '¿Con qué tipo de empresas trabajas?',
+    'faq-3-a':       'Con marcas de lujo, empresas del sector financiero (banca privada, gestoras, inmobiliaria premium), empresas B2B con presencia en LinkedIn, y marcas con altas exigencias de imagen. Si tu empresa opera en un sector donde la imagen importa de verdad, probablemente hay encaje.',
+    'faq-4-q':       '¿Cuánto cuesta el servicio?',
+    'faq-4-a':       'Depende del alcance y el sector. El rango habitual para una gestión completa (2-3 redes, estrategia incluida, informes mensuales) está entre 800€ y 2.500€/mes. Los proyectos de LinkedIn executive para directivos tienen precio separado. Te lo detallo en la propuesta tras la primera consulta.',
+  },
+  en: {
+    'nav-home':      'HOME',
+    'nav-cta':       "LET'S TALK",
+    'page-title':    "LET'S TALK.",
+    'hero-sub':      "Free first consultation, no commitment. In 30 minutes we analyse your social media situation and see if it makes sense to work together. No pressure, no templates, no time wasted.",
+    'avail-text':    'Available for new projects — response in <24h',
+    'email-sub':     'For proposals, queries and projects',
+    'phone-label':   '// Phone',
+    'phone-sub':     '24/7 · Also on WhatsApp',
+    'form-title':    'WRITE TO ME.',
+    'lbl-name':      '// Name',
+    'lbl-email':     '// Email',
+    'lbl-company':   '// Company / brand',
+    'lbl-service':   '// What you need',
+    'lbl-msg':       '// Tell me about your project',
+    'btn-send':      'SEND MESSAGE',
+    'form-note':     'No spam. No automated newsletters. Only I reply.',
+    'msg-ok':        'Message sent. I will reply within 24 business hours.',
+    'msg-err':       'Error sending. Write to me directly at hugo@brandkosmos.company.',
+    'stamp-expect':  '// How it works',
+    'section-expect':'WHAT TO EXPECT.',
+    'exp-1-title':   'First consultation',
+    'exp-1-desc':    'Free 30 minutes by video call or phone. We analyse your social media situation, your goals, and what makes sense to do. No sales pitch.',
+    'exp-2-title':   'Custom proposal',
+    'exp-2-desc':    'If there is a fit, within 48-72 hours you receive a specific proposal for your project: scope, expected results, price and terms.',
+    'exp-3-title':   'Onboarding and launch',
+    'exp-3-desc':    'If you decide to move forward, we start with a 1-2 week onboarding process. Documented strategy, access, content calendar. Nothing launched without prior strategy.',
+    'stamp-faq':     '// Frequently asked questions',
+    'section-faq':   'BEFORE YOU WRITE.',
+    'faq-1-q':       'How long does it take to get a reply?',
+    'faq-1-a':       'Maximum 24 business hours. If your message arrives on a weekend, you will receive a reply on Monday. I do not use automated replies or inbox managers.',
+    'faq-2-q':       'Is the first consultation really free?',
+    'faq-2-a':       "Yes, and no commitment. I'm not going to try to sell you anything on that first call. The goal is to understand if your project and my way of working are compatible. If they're not, I'll tell you straight.",
+    'faq-3-q':       'What kind of companies do you work with?',
+    'faq-3-a':       'Luxury brands, financial sector companies (private banking, fund managers, premium real estate), B2B companies with LinkedIn presence, and brands with high image standards. If your company operates in a sector where image truly matters, there is probably a fit.',
+    'faq-4-q':       'How much does the service cost?',
+    'faq-4-a':       'It depends on the scope and sector. The usual range for full management (2-3 networks, strategy included, monthly reports) is between €800 and €2,500/month. LinkedIn executive projects for executives have a separate price. I will detail it in the proposal after the first consultation.',
+  }
+};
+
+function setLang(l) {
+  try { localStorage.setItem('hj-lang', l); } catch(e) {}
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('on', b.dataset.lang === l));
+  const t = T[l] || T.es;
+  document.querySelectorAll('[data-i18n]').forEach(el => { const k = el.dataset.i18n; if (t[k] !== undefined) el.textContent = t[k]; });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => { const k = el.dataset.i18nHtml; if (t[k] !== undefined) el.innerHTML = t[k]; });
+  document.documentElement.lang = l;
+}
+const _l = (function() { try { return localStorage.getItem('hj-lang') || 'es'; } catch(e) { return 'es'; } })();
+setLang(_l);
+
 const EJS_SERVICE  = 'service_y3nmipr';
 const EJS_TEMPLATE = 'template_kejky2a';
 const EJS_PUBLIC   = 'wKeXOOBA1C5iufhgI';
 
 function sendForm(e) {
   e.preventDefault();
-  const btn = e.target.querySelector('.f-btn');
-  btn.textContent = 'ENVIANDO...';
+  const btn = e.target.querySelector('.f-btn span[data-i18n="btn-send"]').parentElement;
   btn.disabled = true;
 
   emailjs.init({ publicKey: EJS_PUBLIC });
 
   const params = {
+    to_email:  'hugo@brandkosmos.company',
     from_name: document.getElementById('c-name').value,
     reply_to:  document.getElementById('c-email').value,
     company:   document.getElementById('c-company').value,
@@ -351,11 +427,11 @@ function sendForm(e) {
     .then(() => {
       document.getElementById('msg-ok').style.display = 'block';
       document.getElementById('contact-form').reset();
-      btn.textContent = 'ENVIADO ✓';
+      btn.querySelector('[data-i18n="btn-send"]').textContent = 'ENVIADO ✓';
     })
     .catch(() => {
       document.getElementById('msg-err').style.display = 'block';
-      btn.textContent = 'REINTENTAR';
+      btn.querySelector('[data-i18n="btn-send"]').textContent = 'REINTENTAR';
       btn.disabled = false;
     });
 }

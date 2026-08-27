@@ -61,6 +61,9 @@ nav{position:sticky;top:0;z-index:100;height:52px;padding:0 36px;display:flex;al
 .n-link:hover,.n-link.on{color:var(--c6);}
 .n-cta{font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--green-a);text-decoration:none;border:1px solid var(--green-l);padding:5px 13px;transition:background .2s,color .2s;}
 .n-cta:hover{background:var(--green-l);color:var(--c7);}
+.lang-tog{display:flex;border:1px solid rgba(64,108,54,0.35);overflow:hidden;}
+.lang-btn{background:none;border:none;font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(200,194,170,0.5);padding:5px 9px;cursor:pointer;transition:all .2s;}
+.lang-btn.on{background:var(--green-a);color:var(--c7);}
 
 /* LAYOUT */
 .wrap{max-width:900px;margin:0 auto;padding:72px 36px 100px;}
@@ -69,22 +72,12 @@ nav{position:sticky;top:0;z-index:100;height:52px;padding:0 36px;display:flex;al
 .breadcrumb a:hover{color:var(--c5);}
 
 /* HERO BIO */
-.bio-grid{display:grid;grid-template-columns:220px 1fr;gap:48px;align-items:start;margin-bottom:60px;padding-bottom:60px;border-bottom:1px solid rgba(46,82,40,0.25);}
-@media(max-width:640px){.bio-grid{grid-template-columns:1fr;}}
-.bio-img-wrap{position:relative;}
-.bio-img{width:100%;display:block;filter:grayscale(15%) contrast(1.05);}
-.bio-img-tag{position:absolute;bottom:0;left:0;right:0;background:rgba(5,9,5,0.85);padding:10px 12px;}
-.bio-img-name{font-family:var(--fb);font-size:1.1rem;letter-spacing:0.06em;color:var(--c7);display:block;}
-.bio-img-role{font-family:var(--fm);font-size:0.44rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--green-a);display:block;margin-top:3px;}
+.bio-section{margin-bottom:60px;padding-bottom:60px;border-bottom:1px solid rgba(46,82,40,0.25);}
 .bio-copy{}
 .stamp{font-family:var(--fm);font-size:0.48rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--green-a);display:block;margin-bottom:14px;}
 .page-title{font-family:var(--fb);font-size:clamp(2.8rem,6vw,5rem);line-height:0.9;color:var(--c7);display:block;margin-bottom:22px;letter-spacing:0.02em;}
 .bio-text{font-size:0.95rem;color:var(--c4);line-height:1.75;margin-bottom:16px;}
 .bio-text strong{color:var(--c6);font-weight:600;}
-.li-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(10,102,194,0.3);padding:8px 14px;text-decoration:none;margin-top:8px;transition:border-color .2s,background .2s;}
-.li-badge:hover{border-color:rgba(10,102,194,0.6);background:rgba(10,102,194,0.06);}
-.li-badge-icon{font-size:0.9rem;}
-.li-badge-text{font-family:var(--fm);font-size:0.5rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(10,102,194,0.8);}
 
 /* SPECIALIZATIONS */
 .section-block{margin-bottom:60px;}
@@ -139,11 +132,16 @@ footer{border-top:1px solid rgba(46,82,40,0.25);padding:28px 36px;text-align:cen
 <nav>
   <a href="/" class="n-logo">BRANDKOSMOS</a>
   <div class="n-r">
+    <div class="lang-tog" aria-label="Language">
+      <button class="lang-btn on" data-lang="es" onclick="setLang('es')" aria-label="Español">ES</button>
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')" aria-label="English">EN</button>
+    </div>
+    <a href="/" class="n-link" data-i18n="nav-home">INICIO</a>
     <a href="/sobre-mi/" class="n-link on">SOBRE MÍ</a>
     <a href="/executive-linkedin/" class="n-link">LINKEDIN</a>
     <a href="/luxury-brands/" class="n-link">LUXURY</a>
     <a href="/blog/" class="n-link">BLOG</a>
-    <a href="/contacto/" class="n-cta">HABLEMOS</a>
+    <a href="/contacto/" class="n-cta" data-i18n="nav-cta">HABLEMOS</a>
   </div>
 </nav>
 
@@ -152,113 +150,99 @@ footer{border-top:1px solid rgba(46,82,40,0.25);padding:28px 36px;text-align:cen
   <span class="breadcrumb"><a href="/">Inicio</a> / Sobre mí</span>
 
   <!-- BIO -->
-  <div class="bio-grid">
-    <div class="bio-img-wrap">
-      <picture>
-        <source srcset="/hugo.webp" type="image/webp"/>
-        <img src="/hugo.png" class="bio-img" alt="Hugo Jiménez — Community Manager Madrid, BrandKosmos" width="220" height="280" loading="eager"/>
-      </picture>
-      <div class="bio-img-tag">
-        <span class="bio-img-name">HUGO JIMÉNEZ</span>
-        <span class="bio-img-role">// Community Manager Madrid</span>
-      </div>
-    </div>
+  <div class="bio-section">
     <div class="bio-copy">
-      <span class="stamp">// Sobre BrandKosmos</span>
-      <span class="page-title">QUIEN<br>HAY<br>DETRÁS.</span>
-      <p class="bio-text">Soy Hugo Jiménez, community manager y social media director basado en <strong>Madrid</strong>. Fundé BrandKosmos para llenar un hueco concreto en el mercado: empresas con altas exigencias de imagen que no encajaban ni con el freelance junior ni con la agencia que vende al socio y asigna al becario.</p>
-      <p class="bio-text">Me especialicé en tres sectores donde la imagen de marca tiene consecuencias directas en el negocio: <strong>marcas de lujo</strong>, <strong>sector financiero</strong> (banca privada, gestoras de fondos, inmobiliaria premium) y <strong>empresas B2B</strong> con presencia en LinkedIn. En esos tres contextos, una presencia digital mediocre no es invisible — activamente perjudica.</p>
-      <p class="bio-text">Lo que ofrezco no es volumen de publicaciones. Es criterio, consistencia y la capacidad de hablar el idioma de tu sector. No creo en el contenido genérico porque he visto demasiadas veces lo que le hace a una marca premium.</p>
-      <a href="https://www.linkedin.com/in/hugo-jim%C3%A9nez-herrero-514ba3305" target="_blank" rel="noopener" class="li-badge">
-        <span class="li-badge-icon">in</span>
-        <span class="li-badge-text">Hugo Jiménez en LinkedIn</span>
-      </a>
+      <span class="stamp" data-i18n="stamp-intro">// Sobre BrandKosmos</span>
+      <span class="page-title" data-i18n-html="page-title">QUIEN<br>HAY<br>DETRÁS.</span>
+      <p class="bio-text" data-i18n="bio-p1">Soy Hugo Jiménez, community manager y social media director basado en <strong>Madrid</strong>. Fundé BrandKosmos para llenar un hueco concreto en el mercado: empresas con altas exigencias de imagen que no encajaban ni con el freelance junior ni con la agencia que vende al socio y asigna al becario.</p>
+      <p class="bio-text" data-i18n-html="bio-p2">Me especialicé en tres sectores donde la imagen de marca tiene consecuencias directas en el negocio: <strong>marcas de lujo</strong>, <strong>sector financiero</strong> (banca privada, gestoras de fondos, inmobiliaria premium) y <strong>empresas B2B</strong> con presencia en LinkedIn. En esos tres contextos, una presencia digital mediocre no es invisible — activamente perjudica.</p>
+      <p class="bio-text" data-i18n="bio-p3">Lo que ofrezco no es volumen de publicaciones. Es criterio, consistencia y la capacidad de hablar el idioma de tu sector. No creo en el contenido genérico porque he visto demasiadas veces lo que le hace a una marca premium.</p>
     </div>
   </div>
 
   <!-- STATS -->
   <div class="section-block">
-    <span class="stamp">// En números</span>
-    <span class="section-title">RESULTADOS.</span>
+    <span class="stamp" data-i18n="stamp-numbers">// En números</span>
+    <span class="section-title" data-i18n="section-results">RESULTADOS.</span>
     <div class="stat-row">
       <div class="stat-box">
         <span class="stat-num">+340%</span>
-        <span class="stat-lbl">Crecimiento de alcance medio</span>
+        <span class="stat-lbl" data-i18n="stat-1-lbl">Crecimiento de alcance medio</span>
       </div>
       <div class="stat-box">
         <span class="stat-num">×4</span>
-        <span class="stat-lbl">Engagement rate conseguido</span>
+        <span class="stat-lbl" data-i18n="stat-2-lbl">Engagement rate conseguido</span>
       </div>
       <div class="stat-box">
         <span class="stat-num">−60%</span>
-        <span class="stat-lbl">Reducción coste por lead</span>
+        <span class="stat-lbl" data-i18n="stat-3-lbl">Reducción coste por lead</span>
       </div>
       <div class="stat-box">
         <span class="stat-num">3</span>
-        <span class="stat-lbl">Sectores de especialización</span>
+        <span class="stat-lbl" data-i18n="stat-4-lbl">Sectores de especialización</span>
       </div>
     </div>
   </div>
 
   <!-- SPECIALIZATIONS -->
   <div class="section-block">
-    <span class="stamp">// Especialización</span>
-    <span class="section-title">EN QUÉ<br>TRABAJO.</span>
+    <span class="stamp" data-i18n="stamp-spec">// Especialización</span>
+    <span class="section-title" data-i18n-html="section-work">EN QUÉ<br>TRABAJO.</span>
     <div class="spec-grid">
       <div class="spec-card">
-        <span class="spec-icon">// Lujo y Premium</span>
-        <div class="spec-title">Marcas de lujo y premium</div>
-        <p class="spec-desc">Gestión de redes sociales para marcas donde la estética y el posicionamiento importan tanto como la venta. Moda, joyería, gastronomía premium, eventos de alto perfil. El contenido genérico destruye el lujo — el criterio editorial lo construye.</p>
+        <span class="spec-icon" data-i18n="spec-1-icon">// Lujo y Premium</span>
+        <div class="spec-title" data-i18n="spec-1-title">Marcas de lujo y premium</div>
+        <p class="spec-desc" data-i18n="spec-1-desc">Gestión de redes sociales para marcas donde la estética y el posicionamiento importan tanto como la venta. Moda, joyería, gastronomía premium, eventos de alto perfil. El contenido genérico destruye el lujo — el criterio editorial lo construye.</p>
       </div>
       <div class="spec-card">
-        <span class="spec-icon">// Sector Financiero</span>
-        <div class="spec-title">Banca privada y finanzas</div>
-        <p class="spec-desc">Social media para gestoras de fondos, banca privada, despachos de abogados financieros e inmobiliaria premium. El sector financiero tiene sus propios códigos de comunicación — trabajar con alguien que no los conoce sale caro.</p>
+        <span class="spec-icon" data-i18n="spec-2-icon">// Sector Financiero</span>
+        <div class="spec-title" data-i18n="spec-2-title">Banca privada y finanzas</div>
+        <p class="spec-desc" data-i18n="spec-2-desc">Social media para gestoras de fondos, banca privada, despachos de abogados financieros e inmobiliaria premium. El sector financiero tiene sus propios códigos de comunicación — trabajar con alguien que no los conoce sale caro.</p>
       </div>
       <div class="spec-card">
-        <span class="spec-icon">// LinkedIn B2B</span>
-        <div class="spec-title">LinkedIn para directivos y B2B</div>
-        <p class="spec-desc">Personal branding para CEOs, directores financieros y C-suite. Gestión completa de LinkedIn: perfil, contenido, engagement, estrategia de thought leadership. Para directivos que quieren presencia digital sin perder tiempo en ella.</p>
+        <span class="spec-icon" data-i18n="spec-3-icon">// LinkedIn B2B</span>
+        <div class="spec-title" data-i18n="spec-3-title">LinkedIn para directivos y B2B</div>
+        <p class="spec-desc" data-i18n="spec-3-desc">Personal branding para CEOs, directores financieros y C-suite. Gestión completa de LinkedIn: perfil, contenido, engagement, estrategia de thought leadership. Para directivos que quieren presencia digital sin perder tiempo en ella.</p>
       </div>
       <div class="spec-card">
-        <span class="spec-icon">// Estrategia</span>
-        <div class="spec-title">Estrategia y consultoría</div>
-        <p class="spec-desc">Auditorías de presencia digital, estrategias de contenido documentadas, formación de equipos internos y consultoría puntual. Para empresas que quieren construir capacidad propia con orientación externa.</p>
+        <span class="spec-icon" data-i18n="spec-4-icon">// Estrategia</span>
+        <div class="spec-title" data-i18n="spec-4-title">Estrategia y consultoría</div>
+        <p class="spec-desc" data-i18n="spec-4-desc">Auditorías de presencia digital, estrategias de contenido documentadas, formación de equipos internos y consultoría puntual. Para empresas que quieren construir capacidad propia con orientación externa.</p>
       </div>
     </div>
   </div>
 
   <!-- VALUES -->
   <div class="section-block">
-    <span class="stamp">// Forma de trabajar</span>
-    <span class="section-title">PRINCIPIOS.</span>
+    <span class="stamp" data-i18n="stamp-values">// Forma de trabajar</span>
+    <span class="section-title" data-i18n="section-principles">PRINCIPIOS.</span>
     <div class="values-list">
       <div class="value-item">
         <span class="value-num">01</span>
         <div class="value-body">
-          <div class="value-title">Trato directo, sin intermediarios</div>
-          <div class="value-desc">Tratas conmigo desde la primera llamada hasta el último informe mensual. No hay cuentas gestionadas por juniors ni playbooks genéricos aplicados sin criterio. Lo que ves en la propuesta es lo que recibes.</div>
+          <div class="value-title" data-i18n="val-1-title">Trato directo, sin intermediarios</div>
+          <div class="value-desc" data-i18n="val-1-desc">Tratas conmigo desde la primera llamada hasta el último informe mensual. No hay cuentas gestionadas por juniors ni playbooks genéricos aplicados sin criterio. Lo que ves en la propuesta es lo que recibes.</div>
         </div>
       </div>
       <div class="value-item">
         <span class="value-num">02</span>
         <div class="value-body">
-          <div class="value-title">Honestidad sobre lo que funciona y lo que no</div>
-          <div class="value-desc">Si una estrategia no está funcionando, lo digo antes de que me preguntes. Si el problema no está en las redes sociales sino en otro lugar del negocio, también. Prefiero perder un cliente a corto plazo que retenerlo con resultados mediocres.</div>
+          <div class="value-title" data-i18n="val-2-title">Honestidad sobre lo que funciona y lo que no</div>
+          <div class="value-desc" data-i18n="val-2-desc">Si una estrategia no está funcionando, lo digo antes de que me preguntes. Si el problema no está en las redes sociales sino en otro lugar del negocio, también. Prefiero perder un cliente a corto plazo que retenerlo con resultados mediocres.</div>
         </div>
       </div>
       <div class="value-item">
         <span class="value-num">03</span>
         <div class="value-body">
-          <div class="value-title">Especialización, no generalismo</div>
-          <div class="value-desc">No trabajo con todos los sectores ni con todos los presupuestos. Trabajo bien en los contextos donde tengo criterio real. Si tu empresa no encaja en ese perfil, te lo digo en la primera consulta y te ahorro tiempo a los dos.</div>
+          <div class="value-title" data-i18n="val-3-title">Especialización, no generalismo</div>
+          <div class="value-desc" data-i18n="val-3-desc">No trabajo con todos los sectores ni con todos los presupuestos. Trabajo bien en los contextos donde tengo criterio real. Si tu empresa no encaja en ese perfil, te lo digo en la primera consulta y te ahorro tiempo a los dos.</div>
         </div>
       </div>
       <div class="value-item">
         <span class="value-num">04</span>
         <div class="value-body">
-          <div class="value-title">Métricas de negocio, no de vanidad</div>
-          <div class="value-desc">Los seguidores y el alcance son indicadores intermedios, no el objetivo. Lo que me interesa es qué relación tienen las redes sociales con tus objetivos de negocio reales: leads, conversaciones de venta, reputación de marca, posicionamiento de precio.</div>
+          <div class="value-title" data-i18n="val-4-title">Métricas de negocio, no de vanidad</div>
+          <div class="value-desc" data-i18n="val-4-desc">Los seguidores y el alcance son indicadores intermedios, no el objetivo. Lo que me interesa es qué relación tienen las redes sociales con tus objetivos de negocio reales: leads, conversaciones de venta, reputación de marca, posicionamiento de precio.</div>
         </div>
       </div>
     </div>
@@ -266,19 +250,19 @@ footer{border-top:1px solid rgba(46,82,40,0.25);padding:28px 36px;text-align:cen
 
   <!-- RELATED ARTICLES -->
   <div class="section-block">
-    <span class="stamp">// Artículos relacionados</span>
-    <span class="section-title">PARA SABER<br>MÁS.</span>
+    <span class="stamp" data-i18n="stamp-related">// Artículos relacionados</span>
+    <span class="section-title" data-i18n-html="section-more">PARA SABER<br>MÁS.</span>
     <div class="related-list">
       <a href="/blog/como-elegir-un-community-manager/" class="related-card">
-        <span class="related-tag">// Guía</span>
+        <span class="related-tag" data-i18n="rel-1-tag">// Guía</span>
         <span class="related-title">Cómo elegir un community manager: las preguntas que tienes que hacer antes de contratar</span>
       </a>
       <a href="/blog/cuanto-cobra-un-community-manager-en-espana/" class="related-card">
-        <span class="related-tag">// Precios</span>
+        <span class="related-tag" data-i18n="rel-2-tag">// Precios</span>
         <span class="related-title">Cuánto cobra un community manager en España en 2026: tarifas reales por nivel y sector</span>
       </a>
       <a href="/blog/community-manager-freelance-vs-agencia/" class="related-card">
-        <span class="related-tag">// Decisión</span>
+        <span class="related-tag" data-i18n="rel-3-tag">// Decisión</span>
         <span class="related-title">Community manager freelance vs agencia: precios, calidad y cuál elegir en 2026</span>
       </a>
       <a href="/blog/gestion-redes-sociales-madrid/" class="related-card">
@@ -290,9 +274,9 @@ footer{border-top:1px solid rgba(46,82,40,0.25);padding:28px 36px;text-align:cen
 
   <!-- CTA -->
   <div class="cta-block">
-    <span class="cta-title">¿TIENE SENTIDO<br>TRABAJAR JUNTOS?</span>
-    <span class="cta-sub">Primera consulta gratuita y sin compromiso. En 30 minutos vemos si hay encaje.</span>
-    <a href="/contacto/" class="cta-btn">Contactar ahora →</a>
+    <span class="cta-title" data-i18n-html="cta-title">¿TIENE SENTIDO<br>TRABAJAR JUNTOS?</span>
+    <span class="cta-sub" data-i18n="cta-sub">Primera consulta gratuita y sin compromiso. En 30 minutos vemos si hay encaje.</span>
+    <a href="/contacto/" class="cta-btn" data-i18n="cta-btn">Contactar ahora →</a>
   </div>
 
 </div>
@@ -308,5 +292,115 @@ footer{border-top:1px solid rgba(46,82,40,0.25);padding:28px 36px;text-align:cen
   </div>
   <span class="f-copy">MADRID · ESPAÑA · GLOBAL</span>
 </footer>
+
+<script>
+const T = {
+  es: {
+    'nav-home':        'INICIO',
+    'nav-cta':         'HABLEMOS',
+    'stamp-intro':     '// Sobre BrandKosmos',
+    'page-title':      'QUIEN<br>HAY<br>DETRÁS.',
+    'bio-p1':          'Soy Hugo Jiménez, community manager y social media director basado en Madrid. Fundé BrandKosmos para llenar un hueco concreto en el mercado: empresas con altas exigencias de imagen que no encajaban ni con el freelance junior ni con la agencia que vende al socio y asigna al becario.',
+    'bio-p2':          'Me especialicé en tres sectores donde la imagen de marca tiene consecuencias directas en el negocio: <strong>marcas de lujo</strong>, <strong>sector financiero</strong> (banca privada, gestoras de fondos, inmobiliaria premium) y <strong>empresas B2B</strong> con presencia en LinkedIn. En esos tres contextos, una presencia digital mediocre no es invisible — activamente perjudica.',
+    'bio-p3':          'Lo que ofrezco no es volumen de publicaciones. Es criterio, consistencia y la capacidad de hablar el idioma de tu sector. No creo en el contenido genérico porque he visto demasiadas veces lo que le hace a una marca premium.',
+    'stamp-numbers':   '// En números',
+    'section-results': 'RESULTADOS.',
+    'stat-1-lbl':      'Crecimiento de alcance medio',
+    'stat-2-lbl':      'Engagement rate conseguido',
+    'stat-3-lbl':      'Reducción coste por lead',
+    'stat-4-lbl':      'Sectores de especialización',
+    'stamp-spec':      '// Especialización',
+    'section-work':    'EN QUÉ<br>TRABAJO.',
+    'spec-1-icon':     '// Lujo y Premium',
+    'spec-1-title':    'Marcas de lujo y premium',
+    'spec-1-desc':     'Gestión de redes sociales para marcas donde la estética y el posicionamiento importan tanto como la venta. Moda, joyería, gastronomía premium, eventos de alto perfil. El contenido genérico destruye el lujo — el criterio editorial lo construye.',
+    'spec-2-icon':     '// Sector Financiero',
+    'spec-2-title':    'Banca privada y finanzas',
+    'spec-2-desc':     'Social media para gestoras de fondos, banca privada, despachos de abogados financieros e inmobiliaria premium. El sector financiero tiene sus propios códigos de comunicación — trabajar con alguien que no los conoce sale caro.',
+    'spec-3-icon':     '// LinkedIn B2B',
+    'spec-3-title':    'LinkedIn para directivos y B2B',
+    'spec-3-desc':     'Personal branding para CEOs, directores financieros y C-suite. Gestión completa de LinkedIn: perfil, contenido, engagement, estrategia de thought leadership. Para directivos que quieren presencia digital sin perder tiempo en ella.',
+    'spec-4-icon':     '// Estrategia',
+    'spec-4-title':    'Estrategia y consultoría',
+    'spec-4-desc':     'Auditorías de presencia digital, estrategias de contenido documentadas, formación de equipos internos y consultoría puntual. Para empresas que quieren construir capacidad propia con orientación externa.',
+    'stamp-values':    '// Forma de trabajar',
+    'section-principles': 'PRINCIPIOS.',
+    'val-1-title':     'Trato directo, sin intermediarios',
+    'val-1-desc':      'Tratas conmigo desde la primera llamada hasta el último informe mensual. No hay cuentas gestionadas por juniors ni playbooks genéricos aplicados sin criterio. Lo que ves en la propuesta es lo que recibes.',
+    'val-2-title':     'Honestidad sobre lo que funciona y lo que no',
+    'val-2-desc':      'Si una estrategia no está funcionando, lo digo antes de que me preguntes. Si el problema no está en las redes sociales sino en otro lugar del negocio, también. Prefiero perder un cliente a corto plazo que retenerlo con resultados mediocres.',
+    'val-3-title':     'Especialización, no generalismo',
+    'val-3-desc':      'No trabajo con todos los sectores ni con todos los presupuestos. Trabajo bien en los contextos donde tengo criterio real. Si tu empresa no encaja en ese perfil, te lo digo en la primera consulta y te ahorro tiempo a los dos.',
+    'val-4-title':     'Métricas de negocio, no de vanidad',
+    'val-4-desc':      'Los seguidores y el alcance son indicadores intermedios, no el objetivo. Lo que me interesa es qué relación tienen las redes sociales con tus objetivos de negocio reales: leads, conversaciones de venta, reputación de marca, posicionamiento de precio.',
+    'stamp-related':   '// Artículos relacionados',
+    'section-more':    'PARA SABER<br>MÁS.',
+    'rel-1-tag':       '// Guía',
+    'rel-2-tag':       '// Precios',
+    'rel-3-tag':       '// Decisión',
+    'cta-title':       '¿TIENE SENTIDO<br>TRABAJAR JUNTOS?',
+    'cta-sub':         'Primera consulta gratuita y sin compromiso. En 30 minutos vemos si hay encaje.',
+    'cta-btn':         'Contactar ahora →',
+  },
+  en: {
+    'nav-home':        'HOME',
+    'nav-cta':         "LET'S TALK",
+    'stamp-intro':     '// About BrandKosmos',
+    'page-title':      'THE PERSON<br>BEHIND IT.',
+    'bio-p1':          "I'm Hugo Jiménez, community manager and social media director based in Madrid. I founded BrandKosmos to fill a specific gap: companies with high image standards that didn't fit either the junior freelancer or the agency that sells to the partner and assigns to the intern.",
+    'bio-p2':          'I specialised in three sectors where brand image has direct business consequences: <strong>luxury brands</strong>, <strong>the financial sector</strong> (private banking, fund managers, premium real estate) and <strong>B2B companies</strong> with LinkedIn presence. In those three contexts, a mediocre digital presence is not invisible — it actively damages the brand.',
+    'bio-p3':          "What I offer is not volume of posts. It's judgment, consistency and the ability to speak your sector's language. I don't believe in generic content — I've seen too many times what it does to a premium brand.",
+    'stamp-numbers':   '// In numbers',
+    'section-results': 'RESULTS.',
+    'stat-1-lbl':      'Average reach growth',
+    'stat-2-lbl':      'Engagement rate achieved',
+    'stat-3-lbl':      'Reduction in cost per lead',
+    'stat-4-lbl':      'Sectors of specialisation',
+    'stamp-spec':      '// Specialisation',
+    'section-work':    'WHAT I<br>DO.',
+    'spec-1-icon':     '// Luxury & Premium',
+    'spec-1-title':    'Luxury and premium brands',
+    'spec-1-desc':     'Social media management for brands where aesthetics and positioning matter as much as sales. Fashion, jewellery, premium gastronomy, high-profile events. Generic content destroys luxury — editorial judgment builds it.',
+    'spec-2-icon':     '// Financial Sector',
+    'spec-2-title':    'Private banking and finance',
+    'spec-2-desc':     'Social media for fund managers, private banking, financial law firms and premium real estate. The financial sector has its own communication codes — working with someone who does not know them is expensive.',
+    'spec-3-icon':     '// LinkedIn B2B',
+    'spec-3-title':    'LinkedIn for executives and B2B',
+    'spec-3-desc':     'Personal branding for CEOs, CFOs and C-suite. Full LinkedIn management: profile, content, engagement, thought leadership strategy. For executives who want digital presence without spending time on it.',
+    'spec-4-icon':     '// Strategy',
+    'spec-4-title':    'Strategy and consulting',
+    'spec-4-desc':     'Digital presence audits, documented content strategies, internal team training and one-off consulting. For companies that want to build internal capability with external guidance.',
+    'stamp-values':    '// Way of working',
+    'section-principles': 'PRINCIPLES.',
+    'val-1-title':     'Direct contact, no intermediaries',
+    'val-1-desc':      'You deal with me from the first call to the last monthly report. No accounts managed by juniors, no generic playbooks applied without judgment. What you see in the proposal is what you get.',
+    'val-2-title':     "Honesty about what works and what doesn't",
+    'val-2-desc':      "If a strategy isn't working, I'll tell you before you ask. If the problem isn't in social media but elsewhere in the business, I'll say that too. I'd rather lose a client short-term than keep them with mediocre results.",
+    'val-3-title':     'Specialisation, not generalism',
+    'val-3-desc':      "I don't work with every sector or every budget. I work well in the contexts where I have real judgment. If your company doesn't fit that profile, I'll tell you in the first consultation — and save both our time.",
+    'val-4-title':     'Business metrics, not vanity metrics',
+    'val-4-desc':      "Followers and reach are intermediate indicators, not the goal. What I care about is the relationship between social media and your real business objectives: leads, sales conversations, brand reputation, price positioning.",
+    'stamp-related':   '// Related articles',
+    'section-more':    'TO KNOW<br>MORE.',
+    'rel-1-tag':       '// Guide',
+    'rel-2-tag':       '// Pricing',
+    'rel-3-tag':       '// Decision',
+    'cta-title':       'DOES IT MAKE SENSE<br>TO WORK TOGETHER?',
+    'cta-sub':         'Free first consultation, no commitment. In 30 minutes we see if there is a fit.',
+    'cta-btn':         'Contact now →',
+  }
+};
+
+function setLang(l) {
+  try { localStorage.setItem('hj-lang', l); } catch(e) {}
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('on', b.dataset.lang === l));
+  const t = T[l] || T.es;
+  document.querySelectorAll('[data-i18n]').forEach(el => { const k = el.dataset.i18n; if (t[k] !== undefined) el.textContent = t[k]; });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => { const k = el.dataset.i18nHtml; if (t[k] !== undefined) el.innerHTML = t[k]; });
+  document.documentElement.lang = l;
+}
+const _l = (function() { try { return localStorage.getItem('hj-lang') || 'es'; } catch(e) { return 'es'; } })();
+setLang(_l);
+</script>
 </body>
 </html>
