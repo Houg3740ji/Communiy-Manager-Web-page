@@ -157,11 +157,11 @@ footer{border-top:1px solid rgba(46,82,40,0.25);padding:28px 36px;text-align:cen
   <a href="/" class="n-logo">BRANDKOSMOS</a>
   <div class="n-r">
     <div class="lang-tog" aria-label="Language">
-      <button class="lang-btn on" data-lang="es" onclick="setLang('es')" aria-label="Español">ES</button>
-      <button class="lang-btn" data-lang="en" onclick="setLang('en')" aria-label="English">EN</button>
+      <button class="lang-btn on" data-lang="en" onclick="setLang('en')" aria-label="English">EN</button>
+      <button class="lang-btn" data-lang="es" onclick="setLang('es')" aria-label="Español">ES</button>
     </div>
     <a href="/" class="n-link" data-i18n="nav-home">INICIO</a>
-    <a href="/sobre-mi/" class="n-link">SOBRE MÍ</a>
+    <a href="/sobre-mi/" class="n-link" data-i18n="nav-about">SOBRE MÍ</a>
     <a href="/executive-linkedin/" class="n-link">LINKEDIN</a>
     <a href="/luxury-brands/" class="n-link">LUXURY</a>
     <a href="/blog/" class="n-link">BLOG</a>
@@ -316,6 +316,7 @@ footer{border-top:1px solid rgba(46,82,40,0.25);padding:28px 36px;text-align:cen
 const T = {
   es: {
     'nav-home':      'INICIO',
+    'nav-about':     'SOBRE MÍ',
     'nav-cta':       'HABLEMOS',
     'page-title':    'HABLEMOS.',
     'hero-sub':      'Primera consulta gratuita y sin compromiso. En 30 minutos analizamos tu situación y vemos si tiene sentido trabajar juntos. Sin presión, sin plantillas, sin perder el tiempo.',
@@ -354,6 +355,7 @@ const T = {
   },
   en: {
     'nav-home':      'HOME',
+    'nav-about':     'ABOUT ME',
     'nav-cta':       "LET'S TALK",
     'page-title':    "LET'S TALK.",
     'hero-sub':      "Free first consultation, no commitment. In 30 minutes we analyse your social media situation and see if it makes sense to work together. No pressure, no templates, no time wasted.",
