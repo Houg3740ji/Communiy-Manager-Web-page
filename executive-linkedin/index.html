@@ -204,11 +204,11 @@ footer{padding:24px clamp(24px,8vw,100px);border-top:1px solid var(--border);dis
       <button class="lang-btn" data-lang="es" onclick="setLang('es')" aria-label="Español">ES</button>
     </div>
     <a href="/" class="n-blog" data-i18n="nav-home">HOME</a>
-    <a href="/sobre-mi/" class="n-blog">SOBRE MÍ</a>
+    <a href="/sobre-mi/" class="n-blog" data-i18n="nav-about">SOBRE MÍ</a>
     <a href="/executive-linkedin/" class="n-blog">LINKEDIN</a>
     <a href="/luxury-brands/" class="n-blog">LUXURY</a>
     <a href="/blog/" class="n-blog">BLOG</a>
-    <a href="/contacto/" class="n-cta">HABLEMOS</a>
+    <a href="/contacto/" class="n-cta" data-i18n="nav-cta">HABLEMOS</a>
     <button class="ham" id="ham-btn" aria-label="Open menu" onclick="toggleMob()">
       <span></span><span></span><span></span>
     </button>
@@ -220,10 +220,11 @@ footer{padding:24px clamp(24px,8vw,100px);border-top:1px solid var(--border);dis
     <button class="mob-lang-btn" data-lang="es" onclick="setLang('es');closeMob()">ES</button>
   </div>
   <a href="/" onclick="closeMob()" data-i18n="nav-home">HOME</a>
+  <a href="/sobre-mi/" onclick="closeMob()" data-i18n="nav-about">SOBRE MÍ</a>
   <a href="/executive-linkedin/" onclick="closeMob()">LINKEDIN</a>
   <a href="/luxury-brands/" onclick="closeMob()">LUXURY</a>
   <a href="/blog/" onclick="closeMob()">BLOG</a>
-  <a href="/contacto/" class="mob-cta">HABLEMOS</a>
+  <a href="/contacto/" class="mob-cta" data-i18n="nav-cta">HABLEMOS</a>
 </div>
 
 <main>
@@ -524,7 +525,7 @@ footer{padding:24px clamp(24px,8vw,100px);border-top:1px solid var(--border);dis
 <script>
 const T={
   en:{
-    'nav-home':'HOME','nav-cta':"LET'S TALK",
+    'nav-home':'HOME','nav-about':'ABOUT ME','nav-cta':"LET'S TALK",
     'hero-ol':'// LinkedIn Executive Management',
     'hero-h':'YOUR LINKEDIN<br>DOESN\'T MATCH<br><em>WHO YOU ARE.</em>',
     'hero-body':"You're running a company, closing deals, and building something real. But your LinkedIn profile still reads like a CV from 2018 — and your content, when it exists at all, sounds like a press release.<br><br>I fix that. I manage your LinkedIn presence so it reflects the authority you've already built — turning your profile and content into the business asset it should have always been.",
@@ -592,7 +593,7 @@ const T={
     'f-home':'← Home'
   },
   es:{
-    'nav-home':'INICIO','nav-cta':'HABLEMOS',
+    'nav-home':'INICIO','nav-about':'SOBRE MÍ','nav-cta':'HABLEMOS',
     'hero-ol':'// Gestión LinkedIn para Ejecutivos',
     'hero-h':'TU LINKEDIN<br>NO REFLEJA<br><em>QUIÉN ERES.</em>',
     'hero-body':"Llevas una empresa, cierras acuerdos y construyes algo real. Pero tu perfil de LinkedIn sigue pareciendo un CV de 2018 — y tu contenido, cuando existe, suena a nota de prensa.<br><br>Yo cambio eso. Gestiono tu presencia en LinkedIn para que refleje la autoridad que ya has construido — convirtiendo tu perfil y contenido en el activo empresarial que siempre debería haber sido.",
