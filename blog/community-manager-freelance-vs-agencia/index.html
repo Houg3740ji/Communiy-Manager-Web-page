@@ -70,6 +70,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:800;height:52px;padding:0 36px;d
 .n-blog:hover{color:var(--c6);}
 .n-cta{font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--green-a);text-decoration:none;border:1px solid var(--green-l);padding:5px 13px;transition:background .2s,color .2s;}
 .n-cta:hover{background:var(--green-l);color:var(--c7);}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px;z-index:850;}
+.ham span{display:block;width:21px;height:1.5px;background:var(--c5);transition:transform .25s,opacity .25s;}
+.ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.ham.open span:nth-child(2){opacity:0;}
+.ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+.mob-menu{display:none;position:fixed;top:52px;left:0;right:0;bottom:0;background:rgba(4,8,4,0.99);backdrop-filter:blur(20px);z-index:797;padding:0 24px;flex-direction:column;overflow-y:auto;}
+.mob-menu.open{display:flex;}
+.mob-menu a{font-family:var(--fm);font-size:0.7rem;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:rgba(200,194,170,0.7);text-decoration:none;padding:18px 0;border-bottom:1px solid rgba(46,82,40,0.2);}
+.mob-menu a:hover{color:var(--c7);}
+.mob-cta{color:var(--green-a) !important;}
+.mob-lang-row{display:flex;gap:8px;padding:24px 0;}
+.mob-lang-btn{background:none;border:1px solid rgba(64,108,54,0.35);font-family:var(--fm);font-size:0.6rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(200,194,170,0.6);padding:8px 16px;cursor:pointer;transition:all .2s;}
+.mob-lang-btn.on{background:var(--green);color:var(--c7);border-color:var(--green);}
 .article-wrap{max-width:720px;margin:0 auto;padding:100px 36px 80px;}
 .art-hero{border-bottom:1px solid rgba(46,82,40,0.3);padding-bottom:40px;margin-bottom:48px;}
 .stamp{font-family:var(--fm);font-size:0.56rem;font-weight:700;letter-spacing:0.34em;text-transform:uppercase;color:var(--green-a);display:block;margin-bottom:12px;padding-left:12px;border-left:2px solid var(--green-l);}
