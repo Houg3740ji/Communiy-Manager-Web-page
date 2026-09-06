@@ -75,6 +75,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:800;height:52px;padding:0 36px;d
 .n-back:hover{color:var(--c6);}
 .n-cta{font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--green-a);text-decoration:none;border:1px solid var(--green-l);padding:5px 13px;transition:background .2s,color .2s;}
 .n-cta:hover{background:var(--green-l);color:var(--c7);}
+.lang-tog{display:flex;border:1px solid rgba(64,108,54,0.35);overflow:hidden;}
+.lang-btn{background:none;border:none;font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(200,194,170,0.5);padding:5px 9px;cursor:pointer;transition:all .2s;}
+.lang-btn.on{background:var(--green-a);color:var(--c7);}
 .article-wrap{max-width:720px;margin:0 auto;padding:100px 36px 80px;}
 .art-hero{border-bottom:1px solid rgba(46,82,40,0.3);padding-bottom:40px;margin-bottom:48px;}
 .stamp{font-family:var(--fm);font-size:0.56rem;font-weight:700;letter-spacing:0.34em;text-transform:uppercase;color:var(--green-a);display:block;margin-bottom:12px;padding-left:12px;border-left:2px solid var(--green-l);}
@@ -156,7 +159,7 @@ footer{border-top:1px solid rgba(46,82,40,0.2);padding:24px 36px;display:flex;al
 .mob-menu a:hover{color:var(--c6);}
 .mob-menu .mob-cta{color:var(--green-a);border-bottom:none;margin-top:4px;}
 @media(max-width:700px){
-  nav{padding:0 12px;height:48px;}.n-logo{font-size:0.9rem;}
+  nav{padding:0 12px;height:48px;}.n-logo{font-size:0.9rem;}.lang-tog{display:flex;gap:1px;}.lang-btn{font-size:0.45rem;padding:3px 6px;}
   .n-back{display:none;}.n-cta{display:none;}.ham{display:flex;}
   .article-wrap{padding:78px 18px 60px;}
   .format-grid{grid-template-columns:1fr;}
@@ -171,6 +174,10 @@ footer{border-top:1px solid rgba(46,82,40,0.2);padding:24px 36px;display:flex;al
 <nav aria-label="Main navigation">
   <a href="/" class="n-logo" title="BrandKosmos — Premium Social Media">BRANDKOSMOS</a>
   <div class="n-r">
+    <div class="lang-tog" aria-label="Language">
+      <button class="lang-btn on" data-lang="en" onclick="setLang('en')" aria-label="English">EN</button>
+      <button class="lang-btn" data-lang="es" onclick="setLang('es')" aria-label="Español">ES</button>
+    </div>
     <a href="/" class="n-back">← HOME</a>
     <a href="/blog/" class="n-back">BLOG</a>
     <a href="/contacto/" class="n-cta">LET'S TALK</a>
@@ -425,6 +432,8 @@ footer{border-top:1px solid rgba(46,82,40,0.2);padding:24px 36px;display:flex;al
 <script>
 function toggleMob(){document.getElementById('mob-menu').classList.toggle('open');document.getElementById('ham-btn').classList.toggle('open');}
 function closeMob(){document.getElementById('mob-menu').classList.remove('open');document.getElementById('ham-btn').classList.remove('open');}
+function setLang(l){try{localStorage.setItem('hj-lang',l);}catch(e){}document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('on',b.dataset.lang===l));}
+(function(){try{var l=localStorage.getItem('hj-lang');if(l)setLang(l);}catch(e){}})();
 </script>
 </body>
 </html>
