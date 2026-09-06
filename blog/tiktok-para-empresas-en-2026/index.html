@@ -396,10 +396,6 @@ footer{border-top:1px solid rgba(46,82,40,0.2);padding:24px 36px;display:flex;al
 <script>
 function toggleMob(){document.getElementById('mob-menu').classList.toggle('open');document.getElementById('ham-btn').classList.toggle('open');}
 function closeMob(){document.getElementById('mob-menu').classList.remove('open');document.getElementById('ham-btn').classList.remove('open');}
-</script>
-<script>
-function toggleMob(){document.getElementById('mob-menu').classList.toggle('open');document.getElementById('ham-btn').classList.toggle('open');}
-function closeMob(){document.getElementById('mob-menu').classList.remove('open');document.getElementById('ham-btn').classList.remove('open');}
 function setLang(l){
   try{localStorage.setItem('hj-lang',l);}catch(e){}
   document.querySelectorAll('.lang-btn,.mob-lang-btn').forEach(function(b){b.classList.toggle('on',b.dataset.lang===l);});
