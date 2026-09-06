@@ -438,7 +438,12 @@ footer{border-top:1px solid rgba(46,82,40,0.2);padding:24px 36px;display:flex;al
 <script>
 function toggleMob(){document.getElementById('mob-menu').classList.toggle('open');document.getElementById('ham-btn').classList.toggle('open');}
 function closeMob(){document.getElementById('mob-menu').classList.remove('open');document.getElementById('ham-btn').classList.remove('open');}
-function setLang(l){try{localStorage.setItem('hj-lang',l);}catch(e){}document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('on',b.dataset.lang===l));}
+function setLang(l){
+  try{localStorage.setItem('hj-lang',l);}catch(e){}
+  document.querySelectorAll('.lang-btn,.mob-lang-btn').forEach(b=>b.classList.toggle('on',b.dataset.lang===l));
+  var t=l==='es'?{'nav-about':'SOBRE MÍ','nav-cta':'HABLEMOS'}:{'nav-about':'ABOUT ME','nav-cta':"LET'S TALK"};
+  document.querySelectorAll('[data-i18n]').forEach(function(el){var v=t[el.dataset.i18n];if(v!==undefined)el.textContent=v;});
+}
 (function(){try{var l=localStorage.getItem('hj-lang');if(l)setLang(l);}catch(e){}})();
 </script>
 </body>
