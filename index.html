@@ -901,11 +901,11 @@ footer{
       <button class="lang-btn on" data-lang="en" onclick="setLang('en')" aria-label="English">EN</button>
       <button class="lang-btn" data-lang="es" onclick="setLang('es')" aria-label="Español">ES</button>
     </div>
-    <a href="/sobre-mi/" class="n-blog" title="Sobre Hugo Jiménez — BrandKosmos">SOBRE MÍ</a>
+    <a href="/sobre-mi/" class="n-blog" title="Sobre Hugo Jiménez — BrandKosmos" data-i18n="nav-about">SOBRE MÍ</a>
     <a href="/executive-linkedin/" class="n-blog" title="LinkedIn Executive Management — Personal branding for CEOs">LINKEDIN</a>
     <a href="/luxury-brands/" class="n-blog" title="Social Media for Luxury Brands">LUXURY</a>
     <a href="/blog/" class="n-blog" title="Blog — Estrategia de contenido y social media">BLOG</a>
-    <a href="/contacto/" class="n-cta" title="Contactar con BrandKosmos">HABLEMOS</a>
+    <a href="/contacto/" class="n-cta" title="Contactar con BrandKosmos" data-i18n="nav-cta">HABLEMOS</a>
     <button class="ham" id="ham-btn" aria-label="Open menu" onclick="toggleMob()">
       <span></span><span></span><span></span>
     </button>
@@ -916,11 +916,11 @@ footer{
     <button class="mob-lang-btn on" data-lang="en" onclick="setLang('en');closeMob()">EN</button>
     <button class="mob-lang-btn" data-lang="es" onclick="setLang('es');closeMob()">ES</button>
   </div>
-  <a href="/sobre-mi/" onclick="closeMob()">SOBRE MÍ</a>
+  <a href="/sobre-mi/" onclick="closeMob()" data-i18n="nav-about">SOBRE MÍ</a>
   <a href="/executive-linkedin/" onclick="closeMob()">LINKEDIN</a>
   <a href="/luxury-brands/" onclick="closeMob()">LUXURY</a>
   <a href="/blog/" onclick="closeMob()">BLOG</a>
-  <a href="/contacto/" class="mob-cta" onclick="closeMob()">HABLEMOS</a>
+  <a href="/contacto/" class="mob-cta" onclick="closeMob()" data-i18n="nav-cta">HABLEMOS</a>
 </div>
 
 <!-- SCROLL STAGE -->
@@ -1852,7 +1852,7 @@ document.querySelectorAll('a[href="#p8"]').forEach(a=>{
 ═══════════════════════════════════════ */
 const T={
   en:{
-    'nav-cta':"LET'S TALK",'c-tr':'EUROPE / GLOBAL<br><span style="color:var(--c3)">SOCIAL MEDIA DIRECTOR</span>',
+    'nav-about':'ABOUT ME','nav-cta':"LET'S TALK",'c-tr':'EUROPE / GLOBAL<br><span style="color:var(--c3)">SOCIAL MEDIA DIRECTOR</span>',
     'h-stamp':'// social media management','h-h':'YOUR<br>BRAND<br>DESERVES<br>MORE.',
     'h-b':'Not just content — strategic brand presence. I build social media systems that position luxury and B2B brands where their high-value audiences actually pay attention.',
     'h-sub':'— BrandKosmos. Premium social media<br>for brands that mean business.',
@@ -1899,7 +1899,7 @@ const T={
     'p7-mid':'// no middlemen','p7-talk':'YOU<br>TALK<br>TO ME.<br>ONLY.'
   },
   es:{
-    'nav-cta':'HABLEMOS','c-tr':'ESPAÑA / EUROPA<br><span style="color:var(--c3)">SOCIAL MEDIA DIRECTOR</span>',
+    'nav-about':'SOBRE MÍ','nav-cta':'HABLEMOS','c-tr':'ESPAÑA / EUROPA<br><span style="color:var(--c3)">SOCIAL MEDIA DIRECTOR</span>',
     'h-stamp':'// gestión de redes sociales','h-h':'TU<br>MARCA<br>MERECE<br>MÁS.',
     'h-b':'No solo contenido — presencia estratégica de marca. Construyo sistemas de social media que posicionan marcas de lujo y B2B donde su audiencia de alto valor realmente presta atención.',
     'h-sub':'— BrandKosmos. Social media premium<br>para marcas que saben lo que quieren.',
