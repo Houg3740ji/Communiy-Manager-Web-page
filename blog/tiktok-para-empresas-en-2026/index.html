@@ -69,9 +69,9 @@ body{background:#070b07;color:var(--c6);font-family:var(--fs);min-height:100vh;o
 nav{position:fixed;top:0;left:0;right:0;z-index:800;height:52px;padding:0 36px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,9,5,0.96);border-bottom:1px solid rgba(46,82,40,0.45);backdrop-filter:blur(14px);}
 .n-logo{font-family:var(--fb);font-size:1.15rem;letter-spacing:0.14em;color:var(--c7);text-decoration:none;transition:color .2s;}
 .n-logo:hover{color:var(--green-a);}
-.n-r{display:flex;align-items:center;gap:16px;}
-.n-back{font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(200,194,170,0.45);text-decoration:none;transition:color .2s;}
-.n-back:hover{color:var(--c6);}
+.n-r{display:flex;align-items:center;gap:20px;}
+.n-blog{font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(200,194,170,0.45);text-decoration:none;transition:color .2s;}
+.n-blog:hover{color:var(--c6);}
 .n-cta{font-family:var(--fm);font-size:0.55rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--green-a);text-decoration:none;border:1px solid var(--green-l);padding:5px 13px;transition:background .2s,color .2s;}
 .n-cta:hover{background:var(--green-l);color:var(--c7);}
 .article-wrap{max-width:720px;margin:0 auto;padding:100px 36px 80px;}
@@ -149,7 +149,7 @@ footer{border-top:1px solid rgba(46,82,40,0.2);padding:24px 36px;display:flex;al
 .mob-menu a:hover{color:var(--c6);}
 .mob-menu .mob-cta{color:var(--green-a);border-bottom:none;margin-top:4px;}
 @media(max-width:700px){
-  nav{padding:0 12px;height:48px;}.n-logo{font-size:0.9rem;}.lang-tog{display:flex;gap:1px;}.lang-btn{font-size:0.45rem;padding:3px 6px;}.n-back{display:none;}.n-cta{display:none;}.ham{display:flex;}
+  nav{padding:0 12px;height:48px;}.n-logo{font-size:0.9rem;}.lang-tog{display:flex;gap:1px;}.lang-btn{font-size:0.45rem;padding:3px 6px;}.n-blog{display:none;}.n-cta{font-size:0.45rem;padding:4px 8px;}.ham{display:flex;}
   .article-wrap{padding:78px 18px 60px;}
   .sector-grid{grid-template-columns:1fr;}
   .related-grid{grid-template-columns:1fr;}
@@ -160,22 +160,32 @@ footer{border-top:1px solid rgba(46,82,40,0.2);padding:24px 36px;display:flex;al
 <body>
 
 <nav aria-label="Navegación principal">
-  <a href="/" class="n-logo" title="BrandKosmos — Gestión Premium de Redes Sociales">BRANDKOSMOS</a>
+  <a href="/" class="n-logo" title="BrandKosmos — Premium Social Media">BRANDKOSMOS</a>
   <div class="n-r">
-    <a href="/" class="n-back">← INICIO</a>
-    <a href="/blog/" class="n-back">BLOG</a>
-    <a href="/contacto/" class="n-cta">HABLEMOS</a>
-    <button class="ham" id="ham-btn" aria-label="Abrir menú" onclick="toggleMob()">
+    <div class="lang-tog" aria-label="Seleccionar idioma">
+      <button class="lang-btn on" data-lang="en" onclick="setLang('en')" aria-label="English">EN</button>
+      <button class="lang-btn" data-lang="es" onclick="setLang('es')" aria-label="Español">ES</button>
+    </div>
+    <a href="/sobre-mi/" class="n-blog" title="Sobre Hugo Jiménez — BrandKosmos" data-i18n="nav-about">SOBRE MÍ</a>
+    <a href="/executive-linkedin/" class="n-blog" title="LinkedIn Executive Management — Personal branding for CEOs">LINKEDIN</a>
+    <a href="/luxury-brands/" class="n-blog" title="Social Media for Luxury Brands">LUXURY</a>
+    <a href="/blog/" class="n-blog" title="Blog — Estrategia de contenido y social media">BLOG</a>
+    <a href="/contacto/" class="n-cta" title="Contactar con BrandKosmos" data-i18n="nav-cta">HABLEMOS</a>
+    <button class="ham" id="ham-btn" aria-label="Open menu" onclick="toggleMob()">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
-<div class="mob-menu" id="mob-menu" role="navigation" aria-label="Navegación móvil">
-  <a href="/" onclick="closeMob()">← INICIO</a>
-  <a href="/blog/" onclick="closeMob()">BLOG</a>
+<div class="mob-menu" id="mob-menu" role="navigation" aria-label="Mobile navigation">
+  <div class="mob-lang-row">
+    <button class="mob-lang-btn on" data-lang="en" onclick="setLang('en');closeMob()">EN</button>
+    <button class="mob-lang-btn" data-lang="es" onclick="setLang('es');closeMob()">ES</button>
+  </div>
+  <a href="/sobre-mi/" onclick="closeMob()" data-i18n="nav-about">SOBRE MÍ</a>
   <a href="/executive-linkedin/" onclick="closeMob()">LINKEDIN</a>
   <a href="/luxury-brands/" onclick="closeMob()">LUXURY</a>
-  <a href="/contacto/" class="mob-cta" onclick="closeMob()">HABLEMOS</a>
+  <a href="/blog/" onclick="closeMob()">BLOG</a>
+  <a href="/contacto/" class="mob-cta" onclick="closeMob()" data-i18n="nav-cta">HABLEMOS</a>
 </div>
 
 <main>
