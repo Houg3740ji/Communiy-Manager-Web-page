@@ -296,6 +296,7 @@ footer{border-top:1px solid rgba(46,82,40,0.25);padding:28px 36px;text-align:cen
 <script>
 const T = {
   es: {
+    'doc-title':       'Hugo Jiménez · Community Manager Madrid · Fundador BrandKosmos',
     'nav-home':        'INICIO',
     'nav-about':       'SOBRE MÍ',
     'nav-cta':         'HABLEMOS',
@@ -344,6 +345,7 @@ const T = {
     'cta-btn':         'Contactar ahora →',
   },
   en: {
+    'doc-title':       'Hugo Jiménez · Community Manager Madrid | BrandKosmos',
     'nav-home':        'HOME',
     'nav-about':       'ABOUT ME',
     'nav-cta':         "LET'S TALK",
@@ -399,6 +401,7 @@ function setLang(l) {
   const t = T[l] || T.es;
   document.querySelectorAll('[data-i18n]').forEach(el => { const k = el.dataset.i18n; if (t[k] !== undefined) el.textContent = t[k]; });
   document.querySelectorAll('[data-i18n-html]').forEach(el => { const k = el.dataset.i18nHtml; if (t[k] !== undefined) el.innerHTML = t[k]; });
+  if (t['doc-title']) document.title = t['doc-title'];
   document.documentElement.lang = l;
 }
 const _l = (function() { try { return localStorage.getItem('hj-lang') || 'es'; } catch(e) { return 'es'; } })();
