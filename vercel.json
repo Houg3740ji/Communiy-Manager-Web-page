@@ -1,17 +1,65 @@
 {
   "trailingSlash": true,
   "redirects": [
-    { "source": "/index.html", "destination": "/", "permanent": true },
-    { "source": "/:path*/index.html", "destination": "/:path*/", "permanent": true }
+    {
+      "source": "/blog/community-manager-madrid",
+      "destination": "/servicios/community-manager-madrid/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/contratar-community-manager-madrid",
+      "destination": "/servicios/community-manager-madrid/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/gestion-redes-sociales-madrid",
+      "destination": "/servicios/community-manager-madrid/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/community-manager-madrid/",
+      "destination": "/servicios/community-manager-madrid/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/contratar-community-manager-madrid/",
+      "destination": "/servicios/community-manager-madrid/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/gestion-redes-sociales-madrid/",
+      "destination": "/servicios/community-manager-madrid/",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*/index.html",
+      "destination": "/:path*/",
+      "permanent": true
+    }
   ],
   "headers": [
     {
       "source": "/reports/(.*)",
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
     },
     {
       "source": "/(.*)\\.(png|webp|ico|svg|jpg|jpeg)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000"
+        }
+      ]
     }
   ]
 }
