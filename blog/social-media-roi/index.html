@@ -160,8 +160,8 @@ footer{border-top:1px solid rgba(46,82,40,0.2);padding:24px 36px;display:flex;al
   <a href="/" class="n-logo" title="BrandKosmos — Premium Social Media">BRANDKOSMOS</a>
   <div class="n-r">
     <div class="lang-tog" aria-label="Seleccionar idioma">
-      <button class="lang-btn on" data-lang="en" onclick="setLang('en')" aria-label="English">EN</button>
-      <button class="lang-btn" data-lang="es" onclick="setLang('es')" aria-label="Español">ES</button>
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')" aria-label="English">EN</button>
+      <button class="lang-btn on" data-lang="es" onclick="setLang('es')" aria-label="Español">ES</button>
     </div>
     <a href="/sobre-mi/" class="n-blog" title="Sobre Hugo Jiménez — BrandKosmos" data-i18n="nav-about">SOBRE MÍ</a>
     <a href="/executive-linkedin/" class="n-blog" title="LinkedIn Executive Management — Personal branding for CEOs">LINKEDIN</a>
@@ -175,8 +175,8 @@ footer{border-top:1px solid rgba(46,82,40,0.2);padding:24px 36px;display:flex;al
 </nav>
 <div class="mob-menu" id="mob-menu" role="navigation" aria-label="Mobile navigation">
   <div class="mob-lang-row">
-    <button class="mob-lang-btn on" data-lang="en" onclick="setLang('en');closeMob()">EN</button>
-    <button class="mob-lang-btn" data-lang="es" onclick="setLang('es');closeMob()">ES</button>
+    <button class="mob-lang-btn" data-lang="en" onclick="setLang('en');closeMob()">EN</button>
+    <button class="mob-lang-btn on" data-lang="es" onclick="setLang('es');closeMob()">ES</button>
   </div>
   <a href="/sobre-mi/" onclick="closeMob()" data-i18n="nav-about">SOBRE MÍ</a>
   <a href="/executive-linkedin/" onclick="closeMob()">LINKEDIN</a>
@@ -344,6 +344,7 @@ footer{border-top:1px solid rgba(46,82,40,0.2);padding:24px 36px;display:flex;al
   <div class="f-soc">
     <a href="/" class="f-a">Inicio</a>
     <a href="/blog/" class="f-a">Blog</a>
+    <a href="/servicios/community-manager-madrid/" class="f-a">Community Manager Madrid</a>
     <a href="mailto:hugo@brandkosmos.company" class="f-a">Email</a>
   </div>
 </footer>
@@ -356,7 +357,7 @@ function setLang(l){
   var t=l==='es'?{'nav-about':'SOBRE MÍ','nav-cta':'HABLEMOS'}:{'nav-about':'ABOUT ME','nav-cta':"LET'S TALK"};
   document.querySelectorAll('[data-i18n]').forEach(function(el){var v=t[el.dataset.i18n];if(v!==undefined)el.textContent=v;});
 }
-try{setLang(localStorage.getItem('hj-lang')||'en');}catch(e){setLang('en');}
+try{setLang(localStorage.getItem('hj-lang')||'es');}catch(e){setLang('es');}
 </script>
 </body>
 </html>

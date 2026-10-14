@@ -75,7 +75,7 @@ nav{position:sticky;top:0;z-index:100;height:52px;padding:0 36px;display:flex;al
 .bio-section{margin-bottom:60px;padding-bottom:60px;border-bottom:1px solid rgba(46,82,40,0.25);}
 .bio-copy{}
 .stamp{font-family:var(--fm);font-size:0.48rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--green-a);display:block;margin-bottom:14px;}
-.page-title{font-family:var(--fb);font-size:clamp(2.8rem,6vw,5rem);line-height:0.9;color:var(--c7);display:block;margin-bottom:22px;letter-spacing:0.02em;}
+.page-title{margin-top:0;font-weight:inherit;font-family:var(--fb);font-size:clamp(2.8rem,6vw,5rem);line-height:0.9;color:var(--c7);display:block;margin-bottom:22px;letter-spacing:0.02em;}
 .bio-text{font-size:0.95rem;color:var(--c4);line-height:1.75;margin-bottom:16px;}
 .bio-text strong{color:var(--c6);font-weight:600;}
 
@@ -147,8 +147,8 @@ footer{border-top:1px solid rgba(46,82,40,0.25);padding:28px 36px;text-align:cen
   <a href="/" class="n-logo" title="BrandKosmos — Premium Social Media">BRANDKOSMOS</a>
   <div class="n-r">
     <div class="lang-tog" aria-label="Seleccionar idioma">
-      <button class="lang-btn on" data-lang="en" onclick="setLang('en')" aria-label="English">EN</button>
-      <button class="lang-btn" data-lang="es" onclick="setLang('es')" aria-label="Español">ES</button>
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')" aria-label="English">EN</button>
+      <button class="lang-btn on" data-lang="es" onclick="setLang('es')" aria-label="Español">ES</button>
     </div>
     <a href="/sobre-mi/" class="n-blog" title="Sobre Hugo Jiménez — BrandKosmos" data-i18n="nav-about">SOBRE MÍ</a>
     <a href="/executive-linkedin/" class="n-blog" title="LinkedIn Executive Management — Personal branding for CEOs">LINKEDIN</a>
@@ -162,8 +162,8 @@ footer{border-top:1px solid rgba(46,82,40,0.25);padding:28px 36px;text-align:cen
 </nav>
 <div class="mob-menu" id="mob-menu" role="navigation" aria-label="Mobile navigation">
   <div class="mob-lang-row">
-    <button class="mob-lang-btn on" data-lang="en" onclick="setLang('en');closeMob()">EN</button>
-    <button class="mob-lang-btn" data-lang="es" onclick="setLang('es');closeMob()">ES</button>
+    <button class="mob-lang-btn" data-lang="en" onclick="setLang('en');closeMob()">EN</button>
+    <button class="mob-lang-btn on" data-lang="es" onclick="setLang('es');closeMob()">ES</button>
   </div>
   <a href="/sobre-mi/" onclick="closeMob()" data-i18n="nav-about">SOBRE MÍ</a>
   <a href="/executive-linkedin/" onclick="closeMob()">LINKEDIN</a>
@@ -180,8 +180,8 @@ footer{border-top:1px solid rgba(46,82,40,0.25);padding:28px 36px;text-align:cen
   <div class="bio-section">
     <div class="bio-copy">
       <span class="stamp" data-i18n="stamp-intro">// Sobre BrandKosmos</span>
-      <span class="page-title" data-i18n-html="page-title">QUIEN<br>HAY<br>DETRÁS.</span>
-      <p class="bio-text" data-i18n="bio-p1">Soy Hugo Jiménez, community manager y social media director basado en <strong>Madrid</strong>. Fundé BrandKosmos para llenar un hueco concreto en el mercado: empresas con altas exigencias de imagen que no encajaban ni con el freelance junior ni con la agencia que vende al socio y asigna al becario.</p>
+      <h1 class="page-title" data-i18n-html="page-title">QUIEN<br>HAY<br>DETRÁS.</h1>
+      <p class="bio-text" data-i18n="bio-p1">Soy Hugo Jiménez, community manager y social media director basado en Madrid. Fundé BrandKosmos para llenar un hueco concreto en el mercado: empresas con altas exigencias de imagen que no encajaban ni con el freelance junior ni con la agencia que vende al socio y asigna al becario.</p>
       <p class="bio-text" data-i18n-html="bio-p2">Me especialicé en tres sectores donde la imagen de marca tiene consecuencias directas en el negocio: <strong>marcas de lujo</strong>, <strong>sector financiero</strong> (banca privada, gestoras de fondos, inmobiliaria premium) y <strong>empresas B2B</strong> con presencia en LinkedIn. En esos tres contextos, una presencia digital mediocre no es invisible — activamente perjudica.</p>
       <p class="bio-text" data-i18n="bio-p3">Lo que ofrezco no es volumen de publicaciones. Es criterio, consistencia y la capacidad de hablar el idioma de tu sector. No creo en el contenido genérico porque he visto demasiadas veces lo que le hace a una marca premium.</p>
     </div>
