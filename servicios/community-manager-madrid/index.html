@@ -109,8 +109,9 @@ nav{position:sticky;top:0;z-index:100;height:52px;padding:0 36px;display:flex;al
 .faq-q{line-height:1.4;font-size:0.92rem;font-weight:600;color:var(--c7);margin-bottom:8px;}
 .faq-a{font-size:0.84rem;color:var(--c4);line-height:1.65;}
 .plain-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin-top:10px;}
-.plain-list li{font-size:0.84rem;color:var(--c4);line-height:1.55;display:flex;gap:8px;align-items:baseline;}
-.plain-list li::before{content:'→';color:var(--green-a);font-family:var(--fm);font-size:0.6rem;flex-shrink:0;}
+.plain-list li{font-size:0.84rem;color:var(--c4);line-height:1.55;position:relative;padding-left:18px;}
+.plain-list li strong{color:var(--c6);font-weight:600;}
+.plain-list li::before{content:'→';color:var(--green-a);font-family:var(--fm);font-size:0.6rem;position:absolute;left:0;top:0.25em;}
 .plain-list.neg li::before{content:'✕';color:#9a5a4a;}
 .body-p{font-size:0.92rem;color:var(--c4);line-height:1.75;margin-bottom:16px;max-width:720px;}
 .body-p strong{color:var(--c6);font-weight:600;}
